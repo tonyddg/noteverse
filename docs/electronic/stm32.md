@@ -13,7 +13,7 @@
     挂载在 STM32 上的外设
 ## 存储器映射
 存储器映射即给存储器分配地址
-被动单元功能部件共同排列在 4GB 的地址空间内
+被动单元功能部件共同排列在 4GB 的地址!空间内
 以 512 MB 为一个 BLOCK 划分地址空间
 1. Block0 Flash
 2. Block1 SRAM
@@ -40,7 +40,7 @@ Block2(+0x4000 0000) =>  APB2 (+ 0x0001 0000) => GPIOB (+0x0000 0C00) => GPIOB_O
 
 ### 寄存器说明
 通过查找手册, 了解寄存器信息
-![](/stm32_src/pt.png)
+![](./stm32_src/pt.png)
 1. 名称
 (GPIOx_BSRR)(x=A...E) 寄存器名为 GPIOx_BSRR, 适用于 GPIOA...GPIOE
 2. 地址偏移
