@@ -14,6 +14,8 @@ export default defineUserConfig({
                 katex: true,
                 // 启用标记
                 mark: true,
+                // 显示图片信息
+                figure: true,
             }
         },
         // 页脚设置
