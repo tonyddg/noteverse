@@ -1,0 +1,148 @@
+column-count	(将子元素按列布局)设置子元素的列数
+当列大于块时或有行内元素时将会在各列间分布
+column-gap	设置列与列的间距
+column-rule-style	列间隙样式(值同border)	
+column-rule-width	列间隙宽度
+column-rule-color	列间隙颜色
+column-rule	可合并为一个属性
+column-width	设置列的最小宽度
+column-fill	balance 均匀填充各栏，auto 按顺序填充
+
+break-inside	(用与子元素)描述了在多列布局页面下的内容盒子如何中断
+使用瀑布流时需要设为avoid阻止中断
+column-span	用于子元素，设置该元素是否可以横跨
+(1一行，all横跨所有行(可用于标题栏等))
+
+text-align		设置子元素文字的位置
+(水平方向相对于行高)
+line-height	设置文字行高
+将此属性设置与父元素高度相同，加上text-align实现垂直居中
+(仅适用于单行的情况)
+
+margin:auto	浏览器将通过设置margin实现块级元素的居中
+当该块在文档流中，margin:auto仅可实现水平居中
+配合position:absolute使块元素脱离文档流，并设置上左下右的位置均为0
+告诉浏览器该元素撑满整个页面(父元素)，此时margin:auto将实现块居中的效果
+
+布局时父元素使用max/min-width，子元素使用比例实现页面的自适应
+默认情况下height会根据内容变化(无内容为0)
+width会撑满页面，最好手动给出height与width
+position不为static时，width也会随内容变化
+设置为auto时则会充满父元素
+
+设置两侧固定长度中间充满(见placeexam)
+
+margin取负数可以实现position外的移动
+margin-left: -100%实现向上移一行(向左移动一行的宽度)
+
+弹性容器flex
+display:flex	使直接子元素成为弹性元素
+diaplay:inline-flex	
+flex-wrap:		设置为wrap时，大小不足时会使子元素换行，默认no-wrap
+flex-direction	设置弹性元素的排列方向(主轴)，默认row按行排列
+flex-flow		合并上两个元素
+名词:
+主轴，弹性元素的排列方向
+垂轴，垂直于主轴的方向
+主轴起边，垂直于主轴起始点的边
+主轴终边，垂直于主轴结束点的边
+
+justify-content	设置弹性子元素主轴方向的对齐
+取值
+flex-start/end	紧靠主轴起/终边
+center		居中
+(默认为紧靠，可通过margin定义间距)
+space-center	紧靠两边居中
+space-around	相距两边为间距的50%，其余均匀分布
+space-evenly	余均匀分布
+
+align-content	设置弹性子元素垂轴方向的对齐(多行)
+同justify-content，需要多行时才可实现
+以一整行为单位，统一修改行中的元素
+
+align-items	设置弹性子元素垂轴方向的对齐(单行)
+取值
+flex-start/end	紧靠主轴起/终边
+center		居中
+baseline		基线对齐
+stretch		默认，拉伸弹性元素填满垂轴
+以单个元素为单位，分别修改各个子元素，子元素可能大小不同
+
+align-self		同align-item，但是在子元素中设置
+
+order		设置弹性元素的顺序，默认0，越大越先晚出现
+
+弹性元素会压缩自身内容的大小以保持被容纳的状态
+flex-shrink	设置弹性元素的压缩比例
+设置为0，弹性元素不参与压缩，设置为n，压缩比例为原来的n倍
+当压缩比例过大会导致元素内容变形时，会无视比例停止压缩
+
+flex-grow		设置弹性元素的放大比例，默认为0，不放大
+若放大会尽量撑满容器
+
+flex-basis		设置弹性元素在主轴上的初始尺寸，自动覆盖width或height
+flex		上方三个元素的结合
+
+flex中不会发生margin塌陷
+当flex中的元素脱离文档流(设置position)，将不会受影响
+
+栅格布局
+
+术语
+GridLine		栅格线
+GridTrack		栅格轨道，相邻两条栅格线围成，可横或综
+GridCell		栅格单元，相邻四条栅格线围成正方形
+GridArea		栅格区域，四条栅格线围成
+
+display: grid	创造栅格容器
+
+auto			有浏览器决定 无fr->撑满 有fr->由内容决定
+fr单位			分得剩余位置的份数
+min-content		内容完整显示的最小大小(单词不分割)
+max-content		内容完整显示的最大大小(句子在一行)
+fit-content(n)		根据n来确定一个合适的尺寸
+repeat(n, s)		n重复的次数 s重复的内容
+auto-fill			用于repeat中的n，自动确定n的值(会换行)
+auto-fit			用于repeat中的n，自动确定n的值(不会换行)
+minmax(a, b)		指定尺寸的最大值最小值
+
+grid-template-columns	各个纵向栅格列得宽度
+100px 1fr -> 第一列100px，第二列占据剩下空间
+1fr 2fr -> 第一列占1份，第二列占2份
+grid-template-rows		各个横向栅格列得宽度
+当未指定大小时，fr为按比例决定高度，一份为1fr列的最小大小(刚好容纳内容)
+
+grid-area			为栅格子元素确定名称(无引号)
+grid-template-areas	确定指定名称的栅格区域
+先使用grid-area再使用grid-template-areas
+grid-template-areas a行b列个参数，根据栅格行列数决定，
+一个字符串表示一行，各列以空格区分(加引号无需逗号)，
+任意个.表示留空，形状必须是矩形
+
+grid-template		以上效果的简写
+grid(-column/row)-gap	栅格之间的间距，合并后两参数先行后列
+
+(栅格本身改变)
+justify-content		栅格元素在水平方向的对齐方式
+center	end	space-content 等值(类似)
+align-content		栅格元素在垂直方向的对齐方式
+
+(栅格框架不变，里面的内容改变)
+()-items		栅格元素的内容相对于栅格的对齐方式
+()-self		同items，在子元素中设置
+place-()		justify与align的合并
+
+栅格线
+默认栅格线以1,2,3..顺序命名，可以有多个名字
+grid-template-column: [(此处栅格线名)] 宽度 [(此处栅格线名)]...
+注意三列有四条栅格线(头尾各有一条)
+
+grid-column-start/end	通过栅格线的名称确定栅格区域
+grid-row-start/end		通过栅格线的名称确定栅格区域
+gird-()			起 / 终 start与end的合并
+gird-area			上方2个的合并，使用/分隔参数
+(可以通过此方法实现栅格间的覆盖)
+z-index			设置栅格的覆盖顺序，越大越在上层
+
+grid-auto-flow	栅格元素的放置规则(用于无指定grid-area的情况)
+grid-auto-rows/column	当使用了一个未定义的栅格边时的默认长度

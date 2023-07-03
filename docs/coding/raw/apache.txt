@@ -1,0 +1,22 @@
+1.通过重定向实现伪静态url
+https://httpd.apache.org/docs/2.4/mod/mod_rewrite.html
+
+a.在网站根目录下的.htaccess
+保证apache可以读取htaccess
+示例代码：将.../123转换为.../index.php?id=123
+RewriteEngine On
+RewriteBase "/"
+RewriteRule "^([0-9]+)$" "test/index.php?id=$1" [L]
+
+b.在网站配置文件中的.htaccess
+速度更快，在部署网站后使用
+示例代码：将.../123转换为.../index.php?id=123
+<Directory "D:/xampp/htdocs/test">
+    RewriteEngine On
+    RewriteBase "/"
+    RewriteRule "^([0-9]+)$" "test/index.php?id=$1" [L]
+</Directory>
+
+2.在linux上启动/关闭apache
+[apache目录]/bin/apachectl -k start
+[apache目录]/bin/apachectl -k stop

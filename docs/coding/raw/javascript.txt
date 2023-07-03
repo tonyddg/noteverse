@@ -1,0 +1,87 @@
+0.引入javascript使用
+<script type = 'text/javascript' src = '[地址]'></script>
+通常放在body最后，放在head中可以修改head中的内容
+使用ctl+shift+j查看js错误消息
+
+1.运算符
+A.js没有xor(php)有^(c++)用于异或运算
+B.js有===全等于号与!==
+C.字符串之间使用+号进行拼接
+D.使用typeof [变量] 获取变量类型
+E.使用 a *= 1; 强制确保a为数值类型
+F.使用 b += ''; 强制确保b为字符串
+G.一元运算符优先级高，赋值低
+
+2.变量
+A.不使用任何关键字的变量，在任何位置都为全局变量
+如果实在函数中定义，需要调用函数后才生效
+B.使用var，在函数外定义时为全局变量，且成为window的成员
+当一个变量为window的成员时，可以通过window.[变量名]跨文件访问
+在函数内定义时，只在函数内生效
+C.使用let，只在定义的语块中生效
+D.使用const，同let，但不能重复赋值，声明时必须进行初始化
+E.变量的默认值为undefined，类型也为undefined
+通过typeof判断是否为undefined来确定变量是否定义过
+F.false，字符串false，空字符串，0，-0，null，undefined，NaN的值为false
+G.js中关键字最好只小写，不存在TRUE与FALSE
+H.定义变量后最好根据想要的类型初始化
+字符串 = '' 数字 = 0等
+
+2.1 显式类型转换
+parseInt()，Boolean()，parseFloat()，String()，Array()
+
+3.特殊语句
+A.使用with([var]){}，语块中出现的未定义变量将视为var的成员
+B.onerror = [fun(message, url, line)]
+将一个函数(fun带有指定的参数接收onerror的信息)赋给onerror
+在出错时将自动运行onerror的函数
+C.try...catch
+try语句允许定义在执行时进行错误测试的代码块。
+catch 语句允许定义当 try 代码块发生错误时，所执行的代码块。
+finally 语句在 try和 catch之后无论有无异常都会执行。
+实例: try{A}catch(err){B}finally{C}
+D.switch 同php
+
+4.函数
+A.使用[函数名].arguments为函数的参数数组
+使用数组的length成员获取参数个数，可用于任意长度参数的函数
+B.作为值的函数 [变量] = function(){} 可以将函数作为值赋给变量
+
+5.对象
+A.直接定义对象(成员函数也可通过此方法定义)
+var classvar = {meb1 : 'str', meb2 : 123, .....};
+B.在函数中构建对象
+使用this.[成员] = .... 初始化对象，最后使用var [test] = new [fun](....)实现构建
+C.定义成员函数
+使用this.[成员]实现对其他成员变量的访问
+如果函数使用此方法访问成员变量，即使不是成员函数也可用obj.fun()访问
+D.伪静态成员
+在[类名，即函数中构建对象的函数名].prototype.[成员](不用this)
+一般将函数设为静态成员，避免重复赋值
+E.使用new创建成员
+F.类创建范例:
+function [类名](...构造函数的参数)
+{
+    this.[一般成员变量] = [初值];
+    [类名].prototype.[成员函数名] = function(){}
+}
+G.扩展成员
+[类名].prototype.[成员] = [function(){}]
+一般用于扩展成员函数，被扩展的类也可以是内置的类
+H.伪关联数组式使用对象
+a.使用类伪装为关联数组test = {'meba' : value1, ....};
+b.使用关联数组的方式访问成员test['meba'];
+c.使用for([迭代索引名字符串] in [被迭代的对象])test[...];遍历对象
+
+6.数组
+A.使用test = []; 或 test = new Array();初始化数字数组
+B.数组在添加新元素时需要使用[arrayname].push([元素值])
+C.使用test = Array(....初始元素)为数组初始化赋值，当初始元素为array()，即为多为数组
+D.array.length获取数组长度
+E.array.some([fun(element, index, array) : bool])查找第一个使fun返回true的的元素
+F.array.indexOf([var]);返回第一个等于var的元素的索引
+G.array.concat([array2]);将自身与array合并
+H.array.forEach([fun(element, index, array)]);对数组中的元素逐个使用fun
+I.array.push(var)/pop();向数组最后添加/移去元素 
+J.array.sort([fun(a, b) : number]);默认升序，当返回值大于0，b在a前
+K.与字符串结合：将转化为"(元素1),(元素2),..."的字符串

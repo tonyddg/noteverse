@@ -1,0 +1,89 @@
+注意，background属性指父元素的背景，设置总体的背景使用body{}
+background-color		背景颜色，必定被图片覆盖
+background-image		背景图片，可指定多张，用,分隔，左侧的在上
+background-position
+background-size
+background-repeat		背景图片的重复方式
+background-attachment	设置背景图片的位置随元素或页面改变
+background-origin		背景图片从盒子模型的哪个位置开始显示
+background-clip		背景图片在盒子模型的哪个范围内
+background系列属性可将属性值写在background:内
+
+盒子模型 margin -> border -> padding -> content
+
+大小数值的意义：px像素 %占修饰元素(父元素)的百分比 em字体像素
+
+border-style	边框样式(其他边框属性生效前必须先指定该属性)
+border-width	边框宽度
+border-color	边框颜色
+border-radius	边框圆角 一个值 圆角半径 两个值(a/b) 水平/竖直半径
+同background，可写在border内
+中间修饰 -top- -right- -bottom- -left-
+将中间的修饰写在同一行内
+1：全部 2：上下 左右 3：上 左右 下 4：上 右 下 左(逆时针)
+使用p.line{border-left-style:solid;border-left-color:red;}
+可实现行强调的设计效果
+
+border-image-source	设置图像边框/默认在4个角
+border-image-slice		将图像3x3分，作为边框元素，属性为图像大小，但不加px单位
+border-image-repeat	图像边框重复的方式
+border-image-width
+border-image-outset
+
+padding: [大小]	设置内边距，对边的设置同border
+margin		设置外边距，同padding
+margin: auto	使盒子自动居中，需要先设置width
+margin塌陷
+兄弟元素的外边距会发生折叠 A - B，AB之间的距离取决与AB间外边距的最大值
+父元素与子元素同时有margin时，子元素的margin会失效
+
+(content-box)默认元素尺寸 = 内容大小+border+padding
+box-sizing:	设置width与heigh的作用依据，以此自动调整内容的大小
+content-box padding-box margin-box border-box
+max/min-width	设置最大/最小大小，可用于防止浏览器放大缩小导致元素的变化
+overflow(-x/y)	设置对溢出的处理方法
+hidden 截掉溢出内容 scroll 添加滚动 auto 自动选择滚动 visible 默认，直接溢出
+resize		是否允许用户调整元素尺寸(overflow不为visible时生效)
+
+轮廓可用于强调表达元素(不属于盒子，不会改变大小)
+outline		轮廓，大部分同border
+outline-offset	设置轮廓相对边框的偏移(四条边的整体位移)
+box-shadow	设置元素的阴影，阴影的形状与边框相同
+
+display:		设置与元素的特征
+block 		块级元素，与其他元素隔离(换行)，有大小
+inline 		行内元素，无大小，无上下外边距(有左右边距)
+inline-block	行内块元素，有大小，不与其他元素隔离，可以通过此使块在同一行
+none		不显示元素
+xxx-item		使用xxx(标签)的方式显示
+
+visibility		设置元素显示 hidden 不显示但占据位置
+
+float:		设置元素的浮动位置(left/right)，元素会变为块级且脱离文档流
+浮动会覆盖块级元素，使行内元素环绕
+多个元素浮动时注意加载顺序
+clear:		无视元素周围的浮动(left/right/both)
+
+position		设置元素定位
+static		默认，此时top/left等定位不会生效
+relative		相对于周围的元素
+absolute		相对于一个position不为static的父元素，或浏览器
+要使absolute生效，需要设置left/top等定位属性
+最好将absolute元素放置在relative的父元素中，使内部的元素定位统一
+此时元素也会脱离文档流
+fixed		相对于窗口
+sticky		默认absolute，到达指定位置为fixed，可用于浮动的导航栏等
+https://www.bilibili.com/video/BV1QW411N762?p=54
+bottom/left/right/top 对应边相对于被定位元素对应边的位置
+通过同时定义四个位置实现中间自定义，四周大小已知的布局
+
+z-index		设置文件的显示优先级，默认0
+可用于实现元素间相互层叠的效果
+
+BFC
+使块成为一个独立的样式容器，内部不受其他块影响
+条件(任意一个)：
+float不为none，position不为static或relative，overflow不为visible
+一般通过overflow: hidden启用
+当一个块成为BFC后将不会出现margin塌陷
+BFC会阻止内容环绕

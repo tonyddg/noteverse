@@ -1,0 +1,16 @@
+安装
+yum install php
+yum install mariadb
+yum install php-mysqli
+yum install php-json
+
+管理
+service httpd start
+service mariadb start
+
+php配置
+/etc/php.ini
+php错误日志
+/var/log/php-fpm/www-error.log
+服务器位置
+/var/www/html

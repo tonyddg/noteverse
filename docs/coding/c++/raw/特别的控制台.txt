@@ -1,0 +1,28 @@
+    // 启动方式
+    // Set output mode to handle virtual terminal sequences
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hOut == INVALID_HANDLE_VALUE)
+    {
+        return GetLastError();
+    }
+
+    DWORD dwMode = 0;
+    if (!GetConsoleMode(hOut, &dwMode))
+    {
+        return GetLastError();
+    }
+
+    dwMode |= 0x0004;
+    if (!SetConsoleMode(hOut, dwMode))
+    {
+        return GetLastError();
+    }
+详见https://docs.microsoft.com/zh-cn/windows/console/console-virtual-terminal-sequences
+
+\e (\033) 可用于特殊的控制台输出控制
+\e[x;y;zm 修改文字的背景颜色与底色
+\e[0m 恢复默认格式
+\ec 清屏
+\e[x;yH 移动光标位置
+\e[s 记录光标位置
+\e[u 回复光标位置

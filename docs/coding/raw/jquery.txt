@@ -1,0 +1,172 @@
+使用
+在head中使用CDN
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+官方版本
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+当效果中有颜色变化时需要启用此插件
+<script src="https://code.jquery.com/color/jquery.color-2.2.0.js"></script>
+
+对元素使用jquery的方法时，一般需要加上$(元素)
+如$(document)，$(this)
+(事件的回调函数中，this为html元素，要对此元素查询子元素时要使用$(this).children())
+
+选择器补充
+[a]		选择带有a属性的元素
+tag[a='b']		选择名为tag中a='b'的元素
+tag[a!='b']	选择名为tag中a不等于'b'的元素
+tag:even/odd	选择奇数/偶数位置的元素
+(用于选择表单元素)
+:button		选取所有 type="button" 的 <input> 元素 和 <button> 元素
+当一个元素要被多次选择时，可以使用el = $("div");将其保存在一个变量中
+
+事件
+使用方法
+$("选择器").事件(function(event){});
+$("选择器").事件(, function(event){});
+
+入口事件
+$(document).ready(function(){})/$(function(){})
+DOM结构加载完成后运行，可以运行多次
+注意，事件的监听设置必须在入口中设置！
+
+其他事件
+https://www.runoob.com/jquery/jquery-events.html
+
+效果
+$(selector).效果(speed,callback);
+$(selector).效果(speed,效果,callback);
+可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒(不是秒)。
+可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+效果可选，为一个字符串，jQuery自身提供"linear" 和 "swing"
+
+callback的注意
+1.$(selector)选中的元素的个数为n个，则callback函数会执行n次；
+2.callback函数名后加括号，会立刻执行函数体，而不是等到显示/隐藏完成后才执行；
+3.callback既可以是函数名，也可以是匿名函数；
+4.当 callback 函数加上括号时，函数立即执行，只会调用一次， 如果不加括号，元素显示或隐藏后调用函数，才会调用多次
+5.使用匿名函数时，默认为不加括号的情况
+
+hide				隐藏元素
+show				显示元素
+toggle				切换显示与隐藏
+fadeIn()				淡入(显示元素)
+fadeOut()				淡出(隐藏元素)
+fadeToggle()			切换
+fadeTo(speed,opacity,callback)	变换到某个透明度(前两个参数不可缺)
+slideDown()			向下滑动(无法水平滑动)	
+slideUp()				向上滑动
+slideToggle()			切换
+
+动画
+$(selector).animate({params},speed,callback);
+param为一个关联数组，存放关键帧中的css状态
+eg
+  $("div").animate({
+    left:'250px',
+    opacity:'0.5',
+    height:'150px',
+    width:'150px'
+  }, 1000);
+1.使用相对值时，只要将属性值改为"+/-=xxx"
+2.如果使用相对值且动画停止，动画将会从停止的位置开始计算(将导致意外的结果)
+3.多次调用animate会将各个关键帧存放在队列中逐一执行
+4.当使用颜色变化时需要启用jquery.color插件
+5.当css属性为head-body 修改属性时需要使用 headBody 代替
+6.默认情况下，所有 HTML 元素都有一个静态位置，且无法移动。
+如需对位置进行操作，要记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute！
+7.通过在最后一个关键帧回调动画实现动画的循环播放
+eg. function ani(){
+$("ani").animate(...., 1000);$("ani").animate(...., 1000, ani);
+}
+
+动画停止
+$(selector).stop((bool)stopAll,(bool)goToEnd);
+stopAll	停止所有动画，否则只是跳过当前的关键帧
+goToEnd	达到该关键帧的末尾
+注意停止相当于将该关键帧从动画队列中移除
+无法恢复，元素属性保持停止的状态，只能进行下一个关键帧
+
+链操作
+$("选择器").效果1.效果2....
+此时效果将逐个运行，可以避免多次查找元素
+
+修改html
+text("设置的值")		设置或返回所选元素的文本内容
+html("设置的值")		设置或返回所选元素的内容（包括 HTML 标记）
+val("设置的值")		设置或返回表单字段的值
+attr("属性名", "设置的值")	设置或返回所选元素的属性值(html标签中)
+removeAttr("属性名")	删除所选元素的属性值(html标签中)
+其中"设置的值"可以为一个回调函数function(i, origin); i为第i个元素 origin为其原始的值
+
+
+append()			在被选元素的子元素的结尾插入内容
+prepend()			在被选元素的子元素的开头插入内容
+after()			在被选元素之后插入内容
+before()			在被选元素之前插入内容
+参数为字符串，可以为一个html代码，jquery的html元素，js的html元素
+参数也可以是数组以添加多个元素
+
+remove()			删除元素及子元素($(selector) 语法的返回结果是一个元素的列表)
+empty()			删除元素内的子元素
+参数为jquery的选择器，即只删除被选择的元素
+remove中，不会删除符合条件的子元素
+
+addClass("css类名")		为元素添加类(类的效果在css定义，不用.)，多个类时使用空格
+removeClass()		从被选元素删除一个或多个类
+toggleClass()		对被选元素进行添加/删除类的切换操作
+css("属性名", "设置的值")	设置或返回所选元素的css属性值
+使用此语法设置多个css({"propertyname":"value","propertyname":"value",...});
+
+获取与处理尺寸
+width()			内容尺寸
+height()
+innerWidth()		加上内边距
+innerHeight()
+outerWidth()		加上边框
+outerHeight()
+
+遍历dom
+parent()			获取直接祖先
+parents()			获取所有祖先(直到html)
+parentsUntil("选择器")	获取祖先直到
+
+children("选择器")		获取符合的直接后代
+find("选择器")		获取符合的所有后代
+
+siblings()			获取所有同胞
+next()			获取下一个同胞
+nextAll()			后去下面所有同胞
+nextUntil()		后去下面同胞直到
+prev()			反方向
+prevAll()
+prevUntil()
+
+进一步过滤获取的元素
+使用$()获取的通常都是一个元素列表，因此需要进一步过滤
+first()			列表中的第一个元素
+last()			方法返回被选元素的最后一个元素
+eq()			方法返回被选元素中带有指定索引号的元素
+filter(选择器) 		不匹配这个选择器的元素会被从集合中删除，匹配的元素会被返回。
+not(选择器)		与filter相反
+			
+ajax
+$(selector).load(URL,data,callback);
+必需的 URL 参数规定您希望加载的 URL。
+可选的 data 参数规定与请求一同发送的查询字符串键/值对集合。
+可选的 callback 参数是 load() 方法完成后所执行的函数名称。
+
+callback为一个函数function(responseTxt,statusTxt,xhr)
+responseTxt：获取的文本
+statusTxt：获取的状态，可能取值有success与error
+xhr：原始的 XMLHttpRequest
+jQuery会将得到的内容直接插入选择器中
+
+//不需要选择直接$
+$.get(URL,callback);
+以get方法请求
+$.post(URL,data,callback);
+以post方法请求
+其中的data为{[名称1]:"[值1]",[名称2]:"[值2]"...}
+
+jquery cookie插件
+https://blog.csdn.net/weixin_44975322/article/details/121272529

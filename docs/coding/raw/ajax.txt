@@ -1,0 +1,49 @@
+1.创建 XMLHttpRequest 对象
+variable=new XMLHttpRequest();
+
+2.向服务器发送请求
+xmlhttp.open("GET","ajax_info.txt",true);
+xmlhttp.send();
+
+xmlhttp.open(method,url,async)
+method：请求的类型；GET 或 POST
+url：文件在服务器上的位置
+async：true（异步）或 false（同步）
+
+xmlhttp.send(string)	
+将请求发送到服务器。
+string：仅用于 POST 请求
+发送大量数据，更新服务器上的文件或数据库，包含未知字符时，用post
+
+使用post时，再open与send之间还要加上
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+传递表单时注意
+GET：[url]?[变量名1]=[值1，不加引号]&[变量名2]=[值2，不加引号]...
+POST：将传递的参数写在send中，写法同get
+
+3.服务器响应
+如果来自服务器的响应并非 XML，使用 responseText 属性
+
+4.onreadystatechange 事件
+onreadystatechange	存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。
+readyState		XMLHttpRequest 的状态。从 0 到 4 发生变化。
+0: 请求未初始化
+1: 服务器连接已建立
+2: 请求已接收
+3: 请求处理中
+4: 请求已完成，且响应已就绪
+status			请求状态 ：200: "OK"	 404: 未找到页面
+
+5.与php结合
+将响应的内容通过echo等方式输出，结果传回时将作为字符串储存在responseText 中
+
+6.请求json
+当请求的内容非xml时(responseText)，都会将请求结果以字符串的形式存在responseText中
+如果请求的内容时json时，可以将结果使用函数JSON.parse([string]);将json的字符串转化为javascript的类
+从php向javascript发送变量
+json_encode([var])	将一个php变量(关联数组)转换为json
+
+7.其它
+abort()	终止当前请求
+encodeURIComponent() 使用ajax发送字符串参数时，需要使用该函数转义字符串防止发送后信息丢失

@@ -1,0 +1,60 @@
+1.准备登入
+a.连接sql时，最好将登入信息存在一个php文件中
+b.使用require_once "[登入文件]"; 来获取登入信息
+c.新建mysqli类对象使用 new sqli(链接, 用户名, 密码, 数据库名);实现连接
+d.通过检查connect_error(为真时出错)成员来确定连接状态
+e.链接错误时可用die("错误信息")来退出php,或跳转至错误页面
+
+2.执行查询
+执行查询时使用成员函数$result = $sqlcon->query("sql命令");
+在执行完查询后还需使用if(!$result)来验证是否查询成功
+查询失败的错误信息将存储在sqlcon->connect_error中
+
+3.获取结果
+$result->num_rows 共查询到的行数
+$result->data_seek($j) 设置查询第j行的数据(影响行查询语句)
+$result->fetch_assoc()
+返回第j行(上文设置)的数据(以列名为索引的关联数组)且向下移动一行
+$result->fetch_array([结果类型]) 同 fetch_assoc 可设置结果
+MYSQL_NUM 返回数值数组 MYSQL_ASSOC 返回关联数组 MYSQL_BOTH 同时返回
+
+使用函数 htmlspecialchars 净化获取数据防止XSS攻击
+
+$result->colse() 关闭查询结果
+$sqlcon->colse() 关闭连接
+
+遍历结果的方式
+for($i = 0; $i < $sqlRes->num_rows; $i++)
+{
+    $sqlRow = $sqlRes->fetch_assoc();//或者$result->fetch_array(MYSQL_ASSOC)
+    $sqlRow....(每行的结果存在索引数组sqlRow中)
+}
+
+非查询操作中，query将返回true或false，false为发生错误时的返回
+
+安全
+
+1.在通过读取用户的信息再用于查询时，必须用mysqli->real_escape_string([用户输入])
+净化用户的输入，使其可以被正确地解析为SQL命令
+eg. $query = sprintf("SELECT CountryCode FROM City WHERE name='%s'",
+    $mysqli->real_escape_string($city));
+(当黑客输入$s = 'admin' #' #为注释, 可能导致意外的结果)
+
+2.使用占位符，更加安全
+a.使用占位符插入命令时需要先使用$stmt = mysqli->prepare('INSERT INTO table VALUES(?, ?, ?)');
+?可以任意个，与列数相同
+b.返回的stmt用于接收占位符的数据
+接受接受的变量时使用方法stmt->bind_param([接收类型字符串], $接受的变量1, $接受的变量2, ...);
+接受字符串用于表示各个接受变量的类型
+s表示字符串 i表示整形 d表示双精度浮点型 b表示二进制数据(BLOB)
+可以在绑定之后再对被绑定的变量赋值，在复制结束之后使用$stmt->execute();执行操作
+通过检查$stmt->affected_rows确定是否成功
+在占位命令执行完成后使用$stmt->close()关闭
+
+在插入datatime数据时可以使用date("Y-m-d H:i:s")
+
+3.净化用户输入的作为内容的数据
+当有功能为接受用户输入并显示时，必须使用htmlentities(字符串) 进行净化，将<与>等符号转化为&gt;等(不会影响空格(str_replace())与换行(使用nl2br))
+htmlentities转换所有的html标记
+htmlspecialchars只格式化& 、’、 “、 <、> 这几个特殊符号。
+使用htmlentities不指定编码的话遇到中文会乱码

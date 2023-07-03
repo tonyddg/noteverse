@@ -1,0 +1,21 @@
+javascript的表单验证
+给form添加onsubmit = 'return fun(this)'
+form将根据return的值是否为bool确定是否提交表单
+
+fun(this)中的this为一个对象，其成员为表单的'name'
+假设为fun(form) 通过 form.[name].value获取表单的值
+或者通过document.[表单的name属性].[字段的name属性].value访问表单
+
+js可以通过url访问get传递的参数
+window.location 关于url的解析
+属性
+ash		从井号 (#) 开始的 URL（锚）
+host		主机名和当前 URL 的端口号
+hostname	当前 URL 的主机名
+href		完整的 URL
+pathname	当前 URL 的路径部分
+port		当前 URL 的端口号
+protocol	当前 URL 的协议
+search		从问号 (?，结果第一个字符为?，使用substring去除) 开始的 URL（查询部分）
+其中search后可接get传递的参数(使用split('&')拆分)
+(通过post传输的参数则无法被访问)

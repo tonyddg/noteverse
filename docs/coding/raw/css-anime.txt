@@ -1,0 +1,54 @@
+由状态A<->状态B
+transition-duration		设置过渡时间(s/ms)
+transition-delay		过度延迟
+transition-property		过渡方向，可用width，height,
+transition-timing-function	过度速度曲线
+ease		缓慢变化
+linear		线性变化
+ease-in/out	由慢到快/由快到慢
+cubic-bezier()	自定义变化(查询三次贝塞尔曲线)
+steps(步长, 时间点)	步进变化，时间点可为end/start
+
+transition-property: width, height;
+transition-duration: 1s, 2s;
+分别设置两个方向的变化用时
+
+默认两个状态都使用，但如果分别设置时
+设置在A处的transition影响A->B
+
+transform:	变形效果
+A->B，变形效果放置在B处
+配合transition实现动画效果
+以下为trasform的参数
+rotate(n deg)	旋转n度 正数为顺时针
+rotateX/Y/Z	延XYZ轴旋转
+rotate3D		按分量旋转
+translateX/Y()	延轴移动一段距离
+translate(x, y)	斜向移动
+scaleX/Y()	缩放，参数为缩放比例
+skewX/Y()		倾斜，参数为角度
+perspective(px)	三维效果的视域
+
+transform-origin	确定原点(参数right，left，top，bottom或长度值(距离左上点的位置))
+transform-style	变形方式(用于父元素)，默认变形时子元素将在父元素的基础上变形
+backface-visibility	对元素背面的渲染，设置元素旋转时的背面是否可见
+
+@keyframe [关键帧名]	建立关键帧
+帧名
+[数字]% 	该时间的关键帧
+from	开始的关键帧
+to	结束的关键帧
+使用逗号可为多帧指定关键帧
+
+animation-name		动画使用的关键帧
+animation-duration		关键帧持续时间
+animation-iteration-count	动画重复次数(infinite无限次)
+animation-delay		动画开始延迟(支持负数)
+(可以在关键帧中设置该属性，调节各关键帧过渡效果)
+animation-timing-function	动画速度曲线，同上
+animation-direction	动画执行方向
+alternate(奇数正向，偶数反向) normal(正常方向) reserve(反向)
+animation-fill-mode	动画播放模式(循环/停止)
+
+filter:		为元素的显示添加滤镜，具体查api
+mix-blend-mode	设置重叠元素的混合模式

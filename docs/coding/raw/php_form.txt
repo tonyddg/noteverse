@@ -1,0 +1,76 @@
+在HTML中创建表单
+1.form标签
+属性
+method 	表单方法 POST 或 GET
+action	表单提交的位置
+2.input标签
+属性
+type	类型
+name	名称，用于接收到的表单数据获取
+value	默认值
+
+输入类型
+1.text输入框
+新属性 size maxlength
+2.<textarea>文本框
+标签的内容为默认值
+主要属性 wrap
+可用的值有
+off 不换行
+soft 自动换行，返回的数据不包含自动的换行
+hard 自动换行，返回的数据包含自动的换行
+3.checkbox复选框
+value属性为被选中时返回的值，不被选中时不出现在提交的信息中
+如果name相同的复选框有多个，最后name的值为最后一个框的value
+将name设置为'test[]'返回表单的test字段将为一个数组
+test数组将存储所有为被选中的name为'test[]'的值(长度不定)
+新属性checked，当值为'checked'表示默认选中
+4.radio单选框
+name相同时，按钮互斥
+新属性checked，当值为'checked'表示默认选中
+5.hidden
+隐藏的字段
+在表单中使用实现向表单中发送隐藏的值，可以用于识别按钮的位置与信息
+6.<select>选择框
+主要属性
+size 一次最多显示选项数
+multiple 可用的值为'multiple' 此时按ctrl可以选择多项
+内容为选项标签<option>
+属性value 选中后返回的值 内容为选项内容
+7.<label>
+当点击到label的内容视为点击到表单项
+8.submit
+提交按钮，通过value设定按钮的文本
+9.color 颜色输入框
+10.number 数字输入框
+11.date, month, week, time, datetime, datetime-local 时间选择器
+12.特殊输入框tel url email
+13.password 用于输入密码
+14.range 拉动条
+max最大值 min最小值 step步长
+
+HTML5的额外属性
+1.autocomplete 自动填充历史输入
+可用的值有on 开 与 off 关
+2.autofocus 页面加载后自动聚焦
+可用的值 autofocus 打开
+3.placeholder 提示文本
+值为提示文本的内容
+4.required 必须输入，否则不会提交表单
+可用的值 required 打开
+5.form[被覆盖的属性] 表单属性覆盖
+值为修改后的属性值
+用于submit，当又该属性的按钮被点击后，会修改表单的原始属性
+6.max/min 输入数字或时间的最大值与最小值
+7.step 输入数字或时间的步幅
+8.form 外部关联表单
+在表单中添加属性id，可将input写在表单外，并指定form = '[id]'
+10.list 为输入框附加一个预设值列表
+在外部定义<datalist id = '[id]'>
+内容为<option label = '选项名' value = '值'>
+在使用输入框时(text)添加list = '[id]'
+可以让用户从预设值中选择
+
+接受表单的注意事项
+1.链接sql时需要使用mysqli->real_escape_string() 净化输入或占位符
+2.链接html时需要使用htmlspecialchars() 净化输入

@@ -1,0 +1,95 @@
+一个元素可以有多个类, 只能有一个id
+不同的类使用空格分隔
+class='c1 c2'
+
+测试文字效果时使用 lorem 自动填充字符
+
+类选择器 .[类名]
+id选择器#[id]
+元素选择器[元素名]
+全部选择器*
+
+交集选择器
+元素选择器.类选择器 | 元素选择器#id选择器
+并集选择器
+(选择器1), (选择器2), (选择器3)...
+同时选中所有选择器
+后代选择器
+(选择器1) (选择器2) (选择器3)...
+同时选中符合全部选择器的元素或其内部的元素
+body .content -> 选中body标签下所有class为content的元素
+子元素选择器
+(选择器1) > (选择器2)
+选中选择器1的子元素中符合选择器2的元素
+body > .content -> 选中body标签下第一层中class为content的元素
+<body><p class = 'content'><a class = 'content'></a></p></body>
+其中a不会被选中，p将被选中
+相邻兄弟选择器
+(选择器1) + (选择器2)
+选择紧跟在选择器1后的选择器2，且在同一个父元素中
+<p class = 'c1'></p><p class = 'c2'></p>
+p.c1 + p.c2 此时c2将被选中
+通用兄弟选择器
+(选择器1) ~ (选择器2)
+当选择器2与选择器1在同一个父元素中，选择器2被选中
+(以上选择器可配合下面的伪选择器使用发挥更大的效果)
+
+[一般选择器]::[伪元素选择器]
+::first-line		选中第一行，仅对块级元素生效
+::first-letter	选中第一个字符
+::before		在开头插入content属性中的内容
+注：使用url()用于表示图片等内容
+::after		在末尾插入content属性中的内容
+::selection	用户选中的内容
+
+[一般选择器]:[伪类选择器]
+a:link		链接未被访问
+a:visited		连接被访问
+a:hover		鼠标悬停在元素上(可用于其他标签)
+a:active		鼠标悬停在元素上，且按下(可用于其他标签)
+此四个选择器必须按此顺序定义
+:focuse		表单被选中时
+:enabled		表单enabled时
+:disabled		表单disabled时
+:checked		表单被选中时(checkbox等)
+:required		表单required时
+:optional		表单optional时(默认)
+:default		选中表单只有type属性的元素
+:valid		用户的输入合法
+:invalid		用户输入不合法
+:in-range		用户输入在范围内(type = 'number')	
+:out-of-range	用户输入不在范围内(type = 'number')
+:read-only	表单只读(readonly)时
+:read-write	表单可读写时(默认)
+eg. input:check + span{color = ...}
+<input type = 'checkbox'><span>选项A</span>
+可用于改变选项的文本提示选项被选中
+:root			用于<html>
+:empty			选择空元素
+:first/last-child		(任何元素下，下同)第一个/最后一个作为子元素的元素
+:only-child		唯一一个子元素
+[type]:first/last-of-type	第一个/最后一个为type的元素
+[type]:only-of-type		唯一一个为type的元素
+:nth-child(n)		第n个作为子元素的元素(1开始索引，下同)
+:nth-last-child(n)		倒数第n个作为子元素的元素(1开始索引，下同)
+[type]:nth-of-type(n)	第n个为type的元素
+[type]:nth-last-of-type(n)	倒数第n个为type的元素
+高级使用(选择奇偶，指定间隔的子元素)
+https://man.ilovefishc.com/pageCSS3/dotnth-child-n.html#%E5%A5%87%E6%95%B0%E5%81%B6%E6%95%B0%E4%BD%8D
+
+锚点
+<a href = '#[id]'><\a>跳转到指定id元素的位置
+:target	使用锚点跳转后，选中目标元素
+
+:lang([na])	语言为na时选中(通过标签的lang属性设置)
+:not([选择器])	选中与选择器相反的内容
+
+伪类：代替原来可用calss的效果，减少class的创建与使用
+伪元素：指代不存在的元素
+
+属性选择器
+[属性 = [val]]	(选中有相同属性且，下同)值为val的元素
+[属性 ^= [val]]	值的开头为val的元素
+[属性 $= [val]]	值的结尾为val的元素
+[属性 *= [val]]	值有子字符串val的元素
+[属性 |= [val]]	???

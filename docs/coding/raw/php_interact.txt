@@ -1,0 +1,56 @@
+1.cookie
+a.cookie在HTML发送之前发送
+可以在客户端处被用户修改
+大小不超过4kb
+适合储存用户设置信息
+签发cookie后，cookie信息将在之后的请求中附带在请求中
+b.设置cookie
+设置cookie需要在传送HTML之前设置
+使用函数setcookie(name, value, expire, path, domain, secure, httponly)
+name	cookie的名称
+value	cookie的内容
+expire	(可选)过期的unix时间戳，一般使用time() + 秒数，默认立刻销毁
+path	(可选)cookie可用的服务器路径，一般为'/'表示全部位置可用
+domain	(可选)cookie所属域名，其子域名也可用，但其他域名不可用
+eg test.com的子域名为www.test.com与image.test.com等
+secure	(可选)是否在安全连接时才可用，默认false
+httponly	(可选)是否只有http可访问，启用时js无法访问cookie，默认false
+c.访问cookie
+签发cookie后需要再次访问网站才会附带cookie的内容
+使用$_COOKIE['字段']访问cookie
+d.销毁cookie
+将过期时间设置为过去的时间即可销毁cookie
+或者将cookie的值设置为空字符串或false也可销毁
+
+2.密码的储存
+储存密码时需要使用单向加密函数password_hash('[密码字符串]', PASSWORD_DEFAULT);
+参数PASSWORD_DEFAULT为必须参数，表示使用默认的加密方法
+函数返回加密后的字符串，储存密码时，确保有255个字符的空间
+使用hash值验证函数password_verify('[输入的密码]', '[储存的加密密码]');验证密码
+
+3.会话
+会话为与服务器连接时，临时储存在服务器上的数据(同cookie但存在服务端)
+在服务器内跳转页面也依然储存
+使用函数session_start()开始会话(使用$_SESSION前均要调用)
+直接将值保存在$_SESSION中即可
+删除会话使用函数session_destroy()
+并使用setcookie(session_name(), false, time - 2592000, '/');清除用户与会话有关的信息
+在删除会话前可设置$_SESSION = array()清空会话
+
+4.防止会话劫持
+通过$_SERVER['REMOTE_ADDR']获取用户ip地址 
+$_SERVER['ua']获取用户的客户端环境
+并使用hash('ripemd128', $_SERVER['REMOTE_ADDR'] . $_SERVER['ua']);
+获取用户的信息的hash
+通过在会话中记录用户的信息hash并比对防止会话劫持
+最好的方法为启用https
+
+5.防止会话固定
+在会话中添加一个变量判断是否是新的会话
+如果是旧的会话，使用函数session_regenerate_id()
+重置会话的id，使攻击者不能通过个其他用户已设定的id来劫持其会话
+
+6.杂项
+实现页面跳转
+header("Location: $url");
+如果是网站内的文件则无需加上域名

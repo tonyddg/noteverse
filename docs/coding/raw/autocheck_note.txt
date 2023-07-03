@@ -1,0 +1,26 @@
+php
+die应返回字符串
+die返回的数据效果同echo
+
+通过检测连接是否出错获取sql的连接状态
+if($sqlConnect->error)
+
+检测是否无结果应先检测返回的值是否为false
+if($sqrPidRes && $sqrPidRes->num_rows != 0)
+
+preg_match会直接返回符合的个数
+php中的正则表达式特别注意 \ 转义
+
+在php中使用sql查询字符串时不要忘记加上 ''
+eg.$sqlConnect->query($strSql . "'"  . $_POST['str']) . "'" );
+
+js
+在switch中数据类型要相同
+a = '1' 不会进入case 1
+
+使用send前要先open
+
+send传输表单信息时
+1.使用encodeURIComponent净化内容
+2.以&为分割
+3.不能有换行(``中)
