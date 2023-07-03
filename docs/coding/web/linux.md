@@ -35,8 +35,8 @@ i INSERT
 1. nG 移动到第 n 行
 2. G 移动到最后一行
 3. gg 移动到第一行
-4. [n]<enter> 向下移动n行
-5. [n]<space> 向左移动n个字符
+4. [n]\<enter\> 向下移动n行
+5. [n]\<space\> 向左移动n个字符
 
 ### 搜索
 1. /[word] 向下搜索word
