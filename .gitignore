@@ -1,0 +1,16 @@
+# vuepress
+node_modules
+docs/.vuepress
+
+# note & blog
+local
+
+# blog output
+*.html
+*.pdf
+
+# test
+coding
+course
+electronic
+random
