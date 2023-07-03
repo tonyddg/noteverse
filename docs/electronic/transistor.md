@@ -95,7 +95,7 @@ D 漏极 S 源极 G 栅极
 栅极靠近源极
 
 ### N 沟道增强型 MOSFET 工作原理
-![](/transisitor_src/n_mos.jpg)
+![](./transisitor_src/n_mos.jpg)
 ![](./transisitor_src/moseft_n_enh.png)
 栅极没有电压时(相对于源极), 通道载流子很少, 通道电阻很大
 将正电压加在栅极上后, P 型半导体中电子移向沟道, 增加通道导通性
