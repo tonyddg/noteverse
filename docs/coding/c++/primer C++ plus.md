@@ -139,7 +139,7 @@ const的连接性为内部保证const可以定义在头文件中
 1. 构造函数 int *p = new int (6);
 2. 初始化结构/数组 int *p = new int [4] {1, 2, 3, 4};
 ### 定位new运算符
-在 #include<new> 后, 可以指定new的位置
+在 #include\<new\> 后, 可以指定new的位置
 eg
 ``` cpp
 #include<new>
@@ -734,7 +734,7 @@ class exam{...};
 ```
 1. 非模板友元
 	* 可以直接使用 friend void fun();
-	* 也可以指定特定的重载函数 friend void fun(example<T>&);
+	* 也可以指定特定的重载函数 friend void fun(example\<T\>&);
 	注意此处 fun 不是模板函数, 需要有对应参数的重载的 fun 才能为友元
 2. 约束模板友元
 	当友元为模板时, 友元模板的参数与类的模板参数有关
@@ -1113,7 +1113,7 @@ example& operator=(example&& obj) {
 ## 智能指针
 [参考](https://learn.microsoft.com/zh-cn/cpp/cpp/smart-pointers-modern-cpp?source=recommendations&view=msvc-170)
 
-* 智能指针是一系列来自头文件 <memory> 的对象
+* 智能指针是一系列来自头文件 \<memory\> 的对象
 
 ### 智能指针特性
 * 智能指针可以用于管理指针, 防止指针忘记释放与裸指针造成危害
@@ -1334,13 +1334,13 @@ void print_all(const vector<T>& v)
 ```
 
 #### lambda 表达式应用
-在头文件 <algorithm> 中, 有与 lambda 表达式配合的函数
+在头文件 \<algorithm\> 中, 有与 lambda 表达式配合的函数
 1. for_each 函数中使用了 lambda 表达式遍历数据结构
 1. find_if 函数中使用了 lambda 遍历数据结构查找符合的元素
 1. sort 规定 sort 的比较函数
 
 ### 函数包装模板
-* 定义于头文件 <functional>
+* 定义于头文件 \<functional\>
 * 可用于包装 函数, 函数指针, 函数对象 (重载 () 运算符), lambda 表达式
 * 需要在 function 的模板中定义函数的返回值与参数
 ```cpp
