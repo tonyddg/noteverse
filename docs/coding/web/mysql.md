@@ -127,7 +127,9 @@ $$\Pi_{A_1,A_2,...,A_n}(R)$$
 从 $R$ 中选出列 $A_1,A_2,...,A_n$
 投影为集合运算, ==要去除重复列==
 #### 连接 JOIN P53
-$$R\mathop{{\bowtie}}\limits_{A\theta B} S$$
+
+<!-- $$R\mathop{{\bowtie}}\limits_{A\theta B} S$$ -->
+
 A和B分别为R和S上列数相等且可比的属性组, $\theta$ 为比较符号
 将A与B做笛卡尔积, 再筛选出满足的元组
 ##### 等值连接
