@@ -291,7 +291,7 @@ AIN 端口直接与 ADC 模块连接, 且不进行任何转换, 不使用时, �
 
 ### 初始化
 使用结构体 GPIO_InitStructure 定义初始化信息
-```C++
+```cpp
 struct GPIO_InitStructure
 {
     //初始化的引脚

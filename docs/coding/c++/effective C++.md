@@ -1,7 +1,7 @@
 # 0
 ## 定义头文件避免多次包含
 使用
-```C++
+```cpp
 #ifndef LIBRARY
 #define LIBRARY
 ...//头文件
@@ -29,7 +29,7 @@ const char* 仅保证 str 所指向的内容不能被修改, 但str仍可能被�
 使用const std::string str("something");
 ### class 专属常量
 1. static const
-```C++
+```cpp
 class exam
 {
     static const int num1 = 10;//类内定义(可能不支持)
@@ -38,7 +38,7 @@ class exam
 const int exam::num2 = 20;
 ```
 2. enum
-```C++
+```cpp
 class exam
 {
 private:
@@ -47,7 +47,7 @@ private:
 ```
 enum 只能用于 整形常量, 但无法获取地址, 更类似 #define
 ### 宏
-```C++
+```cpp
 #define MAX_DEF(a, b) a > b ? a : b
 
 template<typename T>
@@ -62,21 +62,21 @@ inline T& MAX_INLINE(T &a, T &b)
 2. char* const str;
 3. const char const* str
 ### STL迭代器 与 const
-```C++
+```cpp
 //表示 it 不能被改变
 const std::vector<int>::iterator it = vec.begin();
 //表示 it 可以被改变, 但it指向的内容不可以被改变
 std::vector<int>::const_iterator it = vec.begin();
 ```
 ### 返回 const
-```C++
+```cpp
 const exam fun(const exam& l, const exam& r);
 ```
 通过返回const值, 可以避免 fun(a, b) = c; 通过编译
 ### const 成员函数
 1. 编写const 成员函数 可以重载 non-const 成员函数
 const类型的变量常用于 const & 传参, 因此编写const 成员函数十分重要
-```C++
+```cpp
 char& operatror[](std::size_t pos);
 //const成员必须返回const char&, 避免潜在的修改const变量的风险
 const char& operatror[](std::size_t pos) const;
@@ -92,7 +92,7 @@ const char& operatror[](std::size_t pos) const;
     * 由于初始化一定是按成员定义的顺序进行, 因此初始化列表有必要按成员定义的顺序排列
 3. 由于class内的static初始化与使用发生在不同cpp文件中, 被调用时可能仍未初始化, 因此应使用成员函数内的static变量模拟, 保证其初始化
 eg.
-```C++
+```cpp
 class example
 {
 public:
@@ -116,7 +116,7 @@ public:
 * 当类使用动态内存时, 务必主动定义这四个被默认创建的函数
 ## 拒绝使用编译器自动生成的函数
 ### 声明为private但不实现
-```C++
+```cpp
 class example
 {
 private:
@@ -127,7 +127,7 @@ private:
 通过声明, 从而阻止自动生成; 通过将其作为private成员, 从而阻止外部调用
 只声明不定义, 仍可能在友元中调用并导致link错误, 但影响不大
 ### 定义基类Uncopyable
-```C++
+```cpp
 class Uncopyable
 {
 protected:
@@ -147,7 +147,7 @@ private:
 构析函数常用于释放内存, 一旦在析构函数中抛出异常, 将导致内粗无法被完全释放, 从而导致内存泄漏
 因此需要提前捕获所有异常, 注意所有可能抛出异常的函数都要捕获
 eg.
-```C++
+```cpp
 example::~example()
 {
     try
@@ -175,7 +175,7 @@ example::~example()
 如果派生类的版本中使用了非派生的成员, 必定未初始化, 这将导致结果不可预知
 注意, 不仅是不能调用虚函数, 还包括调用使用了虚函数的成员函数
 eg.
-```C++
+```cpp
 class example
 {
 public:
@@ -185,7 +185,7 @@ public:
 };
 ```
 ### 部分情况的替代方案
-```C++
+```cpp
 class example
 {
 public:
@@ -200,7 +200,7 @@ public:
 };
 ```
 改为
-```C++
+```cpp
 class example
 {
 public:
@@ -218,7 +218,7 @@ public:
 对于+=, *= 等也应该有同样的操作
 ## 安全的 operator=
 现有类
-```C++
+```cpp
 class example
 {
 private:
@@ -239,7 +239,7 @@ example& example::operator= (const example& obj)
 当自我赋值时, str 与 obj.str 指向同一块内存
 如果 delete str, obj.str 将指向一个已删除的对象
 导致 new std::string(*obj.str); 出错
-```C++
+```cpp
 example& example::operator= (const example& obj)
 {
     // 先逐个判断是否使用同一个内存
@@ -261,7 +261,7 @@ example& example::operator= (const example& obj)
 当 new std::string(*obj.str); 发生异常
 不会执行赋值
 此时 str 储存的地址不会变, 将指向一个已删除的对象
-```C++
+```cpp
 example& example::operator= (const example& obj)
 {
     // 使用一个临时的变量保存旧的地址
@@ -275,7 +275,7 @@ example& example::operator= (const example& obj)
 当使用上述方案时, 自我赋值安全性也将得到保障
 当自我赋值仍将导致额外的消耗
 ### 结合方案
-```C++
+```cpp
 example& example::operator= (const example& obj)
 {
     // 此处直接比较两个对象是否是同一个对象
@@ -295,7 +295,7 @@ example& example::operator= (const example& obj)
 ### 特殊方案
 假设example有成员 swap(const example& obj)
 可以交换 obj 与 this
-```C++
+```cpp
 example& example::operator= (const example& obj)
 {
     if(this != &obj)
@@ -315,14 +315,14 @@ operator=() 与 复制构造函数需要特别注意
 ### 基类中的成员
 1. 复制构造函数
 注意调用基类的复制构造函数, 否则将调用基类的默认构造函数
-```C++
+```cpp
 example::example(const example& obj):
 member(obj.member),
 base(obj)//将复制来源作为参数初始化基类
 {}
 ```
 2. operator=()
-```C++
+```cpp
 example& example::operator= (const example& obj)
 {
     //注意调用基类的 = 以对基类成员赋值
@@ -335,7 +335,7 @@ example& example::operator= (const example& obj)
 # 3
 ## 使用对象/智能指针管理动态内存
 对于函数
-```C++
+```cpp
 void fun()
 {
     bool flag1 = true, flag2 = true;
@@ -366,7 +366,7 @@ std::unique_ptr
 通常为成员函数 get()
 不应该编写隐式转换函数, 这将导致风险
 ## 使用相同形式的new 与 delete
-```C++
+```cpp
 typedef std::string strarr[4];//对数组使用typedef, 应在别名处规定长度
 
 std::string* ptr1 = new std::string;

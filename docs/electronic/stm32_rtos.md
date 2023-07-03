@@ -83,7 +83,7 @@ Heap_5 可以用不同的数组空间对内存进行分配, 使用 vPortDefineHe
 在FreeRTOS中, 线程 (Thread) 和任务 (Task) 的概念是相同的, 每个任务就是一个线程
 
 ### 任务基本模式
-```c++
+```cpp
 void TaskFunction( void *pvParameters )
 {
     for(;;)
@@ -112,7 +112,7 @@ void TaskFunction( void *pvParameters )
 
 ### 任务的创建
 任务由 FreeRTOS 中 xTaskCreate() 函数创建
-```c++
+```cpp
 BaseType_t xTaskCreate( TaskFunction_t pvTaskCode,
                         const char * const pcName,
                         uint16_t usStackDepth,
@@ -187,7 +187,7 @@ BaseType_t xTaskCreate( TaskFunction_t pvTaskCode,
 
 ### 队列操作方法
 #### 创建队列
-```c++
+```cpp
 QueueHandle_t xQueueCreate(
     UBaseType_t uxQueueLength, UBaseType_t uxItemSize)
 ```
@@ -200,7 +200,7 @@ QueueHandle_t xQueueCreate(
     * 没有足够的空间时, 返回 NULL
 
 #### 发送数据
-```c++
+```cpp
 BaseType_t xQueueSend( 
     QueueHandle_t xQueue, 
     const void * pvItemToQueue,
@@ -217,7 +217,7 @@ BaseType_t xQueueSend(
 发送数据成功时返回 pdPASS, 失败时返回 errQUEUE_FULL
 
 #### 读取数据
-```c++
+```cpp
 BaseType_t xQueueReceive( 
     QueueHandle_t xQueue, 
     void * const pvBuffer,
@@ -233,7 +233,7 @@ BaseType_t xQueueReceive(
 发送数据成功时返回 pdPASS, 失败时返回 errQUEUE_FULL
 
 #### 获取队列中的数据
-```c++
+```cpp
 UBaseType_t uxQueueMessagesWaiting( 
     QueueHandle_t xQueue )
 ```
@@ -287,12 +287,12 @@ osMessageQueueNew
 FreeRTOS 中, 三种信号量的操作函数相同
 
 #### 创建二进制信号量
-```c++
+```cpp
 SemaphoreHandle_t xSemaphoreCreateBinary(void)
 ```
 
 #### 创建计数信号量
-```c++
+```cpp
 SemaphoreHandle_t xSemaphoreCreateCounting(
      UBaseType_t uxMaxCount,
     UBaseType_t uxInitialCount );
@@ -303,12 +303,12 @@ SemaphoreHandle_t xSemaphoreCreateCounting(
 计数信号量中信号量的初始值
 
 #### 创建互斥量
-```c++
+```cpp
 SemaphoreHandle_t xSemaphoreCreateMutex( void )
 ```
 
 #### 等待信号量
-```c++
+```cpp
 BaseType_t xSemaphoreTake( 
     SemaphoreHandle_t xSemaphore, 
     TickType_t xTicksToWait )
@@ -321,7 +321,7 @@ BaseType_t xSemaphoreTake(
 pdPASS 表示成功获取了信号量, 返回值为 pdFALSE 表示获取信号量失败
 
 #### 给出信号量
-```c++
+```cpp
 BaseType_t xSemaphoreGive( 
     SemaphoreHandle_t xSemaphore );
 ```
@@ -331,7 +331,7 @@ BaseType_t xSemaphoreGive(
 pdPASS 表示成功给予信号量, 返回值为 pdFALSE 表示给予信号量失败
 
 #### 在中断中给出信号量
-```c++
+```cpp
 BaseType_t xSemaphoreGiveFromISR( 
     SemaphoreHandle_t xSemaphore,
     BaseType_t *pxHigherPriorityTaskWoken) 
@@ -342,25 +342,25 @@ BaseType_t xSemaphoreGiveFromISR(
 ### CMSIS RTOS 信号量操作函数
 #### 互斥量部分
 ##### 创建互斥量
-```c++
+```cpp
 osMutexId_t osMutexNew (const osMutexAttr_t * attr)	
 ```
 * attr
 互斥量属性, 对于一般使用 NULL 即可
 
 ##### 等待互斥量
-```c++
+```cpp
 osStatus_t osMutexAcquire(
     osMutexId_t mutex_id, uint32_t timeout)	
 ```
 
 ##### 给出互斥量
-```c++
+```cpp
 osStatus_t osMutexRelease(osMutexId_t mutex_id)	
 ```
 
 ##### 获取互斥量的来源
-```c++
+```cpp
 osThreadId_t osMutexGetOwner(osMutexId_t mutex_id)	
 ```
 
@@ -372,12 +372,12 @@ osThreadId_t osMutexGetOwner(osMutexId_t mutex_id)
 * 另一种资源管理方法, 在关键区内, 任务不能被调度, 必须完整执行关键区内的内容
 
 #### 进入关键区
-```c++
+```cpp
 taskENTER_CRITICAL()
 ```
 
 #### 离开关键区
-```c++
+```cpp
 taskEXIT_CRITICAL()
 ```
 

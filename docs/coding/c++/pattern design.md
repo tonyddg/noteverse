@@ -77,7 +77,7 @@
 1. 骨架内部的步骤不稳定
 
 #### 实现
-```c++
+```cpp
 class Framework{
 public:
 // 在框架中定义一个操作的算法
@@ -127,7 +127,7 @@ int main()
 1. 对于同一个操作, 可以采用不同的方案
 
 #### 实现
-```c++
+```cpp
 class TaxStrategy{
 public:
     virtual void Calculate(Context& context) = 0;
@@ -172,7 +172,7 @@ public:
 1. 通知通过 list 传播, 观察者自行决定是否要观察, 而主类对于是否有观察不关系
 
 #### 实现
-```c++
+```cpp
 class ProgressObserver{
 public:
     // 将通知作为接口
@@ -232,7 +232,7 @@ public:
 1. 并且在这些组合类中频繁调用父类的函数
 
 #### 实现
-```c++
+```cpp
 class Stream{
 public:
     virtual void Read() = 0;
@@ -317,7 +317,7 @@ int main(){
 1. 一个主类同时继承了多个单一类型的接口
 
 #### 实现
-```c++
+```cpp
 class Display{
 public:
     virtual void Draw() = 0;
@@ -395,7 +395,7 @@ public:
 1. 当出现以实现某种功能为职责的接口 (只完成某种具体功能) 时, 很可能需要工厂方法
 
 #### 实现
-```c++
+```cpp
 // 具体功能及接口
 class Zip{
 public:

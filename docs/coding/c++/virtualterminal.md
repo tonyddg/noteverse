@@ -1,7 +1,7 @@
 ## 控制台虚拟终端序列
 ### 启用
 #### Windows下的启用方式
-```c++
+```cpp
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     if (hOut == INVALID_HANDLE_VALUE)
     {

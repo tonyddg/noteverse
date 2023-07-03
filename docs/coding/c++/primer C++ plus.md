@@ -18,7 +18,7 @@ const char* / char const* (等价)
 表明指针指向一个常量
 因此指针所指向的值不能更改
 但指针变量储存的地址可以改变(==也可进行 + 等操作==)
-```C++
+```cpp
 const char* p = "ABC";
 p = "CDF";//正确
 p++;//正确
@@ -26,7 +26,7 @@ p++;//正确
 ### 指针常量
 char *const
 指针为一个常量, 即指针变量储存的地址不能改变
-```C++
+```cpp
 char const* p = "ABC";//不正确, 不能将const char*赋给char*
 char str[] = "ABC";
 char const* p = str;//正确
@@ -62,7 +62,7 @@ const int&
 1. 默认情况
 2. 代码块中声明的变量将在代码块结束后释放
 3. 同名时, 局部变量将隐藏外部变量
-``` C++
+``` cpp
 int main()
 {
     int a = 10;
@@ -141,7 +141,7 @@ const的连接性为内部保证const可以定义在头文件中
 ### 定位new运算符
 在 #include<new> 后, 可以指定new的位置
 eg
-``` C++
+``` cpp
 #include<new>
 int buffer[256];
 int main()
@@ -160,7 +160,7 @@ int main()
 由于名称空间不能在代码块中, 因此名称空间中的变量通常为外连接性
 允许多个使用相同名称空间的namespace存在
 eg
-``` C++
+``` cpp
 namespace test
 {
 	int fun();
@@ -180,7 +180,7 @@ namespace test
 1. 语法 using [带有名称空间的变量/函数]
 2. 作用 把声明的变量加入全局/局部(代码块)区域中
 eg
-``` C++
+``` cpp
 namespace test
 {
 	int a;
@@ -197,7 +197,7 @@ int main()
 2. 将指定的名称空间包含到全局名称空间中
 3. 与using声明的区别: 由于只是包含名称空间, 名称空间中的变量连接性不变
 eg
-``` C++
+``` cpp
 namespace test
 {
 	int a;
@@ -213,7 +213,7 @@ int main()
 1. 可以对名称空间嵌套
 2. 可以在名称空间中使用using
 eg
-``` C++
+``` cpp
 namespace a
 {
 	int i;
@@ -248,7 +248,7 @@ struct中默认访问控制为public
 2. 构析函数没有参数
 ### 局部构析函数的调用
 构析函数将在代码块结束后调用
-```C++
+```cpp
 class a
 {
 	string name_;
@@ -295,13 +295,13 @@ int main()
 可以使用static const定义类中的常量
 ### 类作用域中的枚举
 通常情况下的枚举
-```C++
+```cpp
 enum a{s1, s2, s3};
 enum b{s1, s2, s3};
 ```
 两种枚举类型的枚举量冲突(同一个域中不能有两个相同的枚举量)
 在类作用域中的枚举
-```C++
+```cpp
 enum class a{s1 = 1, s2 = 2, s3 = 3};
 enum class b{s1 = 1, s2 = 2, s3 = 3};
 class c
@@ -336,7 +336,7 @@ eg. 已经定义 A A::operator+(int), 即A+int, 但 int+A未定义, 将会出错
 1. 
 当类有当值的构造函数时, 将作为隐式转换的函数
 eg
-```c++
+```cpp
 //假设A有无参数与参数为int的构造函数
 A a;//使用无参数的构造函数
 a = 10;//使用10参数为int的构造函数建立临时变量, 再复制给a
@@ -389,7 +389,7 @@ friend A operator+(const A &a, const A &b);//当参数为double时, 编译器将
 2. 通常被赋值后, 被赋值变量的值将被舍弃, 需要delete, 不能直接覆盖
 3. 在使用2后, 应避免将自身赋值给自身, 因为赋值前自身的值已被删除(可在赋值时建立临时变量解决)
 4. 自我赋值的处理
-```C++
+```cpp
 //自我赋值处理
 if (this == &animal) {
     return *this;
@@ -418,11 +418,11 @@ if (this == &animal) {
 例如 + 运算符等
 ### const 对象
 如果重载 + 运算符仅返回对象时, 以下语法将通过
-``` C++
+``` cpp
 if(A1 + A2 = A3);//将A3赋给加法运算返回的临时变量中
 ``` 
 ## 初始化列表
-```C++
+```cpp
 Classy::Classy(int n, int m):men1(n), men2(m), arr{n, m}
 {...}
 ```
@@ -513,7 +513,7 @@ eg. (Base &) A.baseFun();
 使其可以在第三代派生类中继续访问基类的公有与保护成员
 ## 多重继承
 对于继承结构
-``` C++
+``` cpp
 class Worker{};
 class Singer: public Worker{};
 class Waiter: public Worker{};
@@ -521,7 +521,7 @@ class SingWaiter: public Waiter, public Singer{};
 ```
 由于Singer与Waiter均有一个Worker组件, SingWaiter将包含两个Worker组件
 ### 防止多态的二义性
-``` C++
+``` cpp
 SingWaiter sw;
 Worker* w1 = &sw;//错误, 无法明确使用哪一个的Worker组件
 Worker* w2 = (Singer*)sw;//指针
@@ -529,7 +529,7 @@ Worker* w3 = (Waiter*)sw;//指针
 ```
 ### 虚基类
 实际上, SingWaiter不应该有多个Worker组件, 需要使用虚基类解决
-``` C++
+``` cpp
 class SingerV: virtual public Worker{};
 class WaiterV: virtual public Worker{};
 class SingWaiterV: public Waiter, public Singer{};
@@ -548,14 +548,14 @@ class SingWaiterV: public Waiter, public Singer{};
 1. 通过域运算符指定 C c; c.A::fun(); c.B::fun();
 2. 重新定义 C::fun(){A::fun();B::fun();}
 ### 混合使用虚继承与继承
-``` C++
+``` cpp
 class example: public A, public B, virtual public C, virtual public D
 {};
 ```
 当A, B, C, D均来自同一个基类base时, A 与 B 将有一个独立的base, C 与 D 将共享一个base
 ## 函数模板
 ### 定义模板
-``` C++
+``` cpp
 //模板函数的定义
 template<typename Type>
 void fun3(T)
@@ -564,13 +564,13 @@ void fun3(T)
 默认情况下, 编译器会根据提供的类型替换模板, 生成具体的函数
 但可能部分类型下函数不能很好的运行需要专门定义, 即显示具体化
 eg.
-```C++
+```cpp
 template<typename T>
 bool fun(T& a, T& b){return a > b}
 ```
 对于char*类型可能不适用
 因此需要显式具体化
-```C++
+```cpp
 template<> bool fun<type>(type a, type b){...}
 ```
 type 为具体化的类型, template<> 为具体化的必要前缀
@@ -582,7 +582,7 @@ fun后的\<type\> 可以省略, 编译器将自动识别
 允许函数同时存在 非模板版本, 具体化版本, 模板版本
 编译器调用优先级 非模板版本(同名的普通函数)(未指定模板类型时) > 具体化版本 > 模板版本
 ### 显式实例化
-```C++
+```cpp
 template bool fun<type>(type a, type b){...}
 ```
 默认情况下编译器会自动实例化, 也可手动显示实例化, 此时不可省略\<type\>
@@ -598,7 +598,7 @@ template bool fun<type>(type a, type b){...}
 3. 指定使用模板版本
 当函数有非模板版本时, 在函数调用前加上\<\>或\<type\>将强制使用模板版本
 ### inline函数模板
-```C++
+```cpp
 //正确写法
 template<typename T>inline T min(const T&,const T&)
  
@@ -611,7 +611,7 @@ inline template<typename T>T min(const T&,const T&)
 
 template\<typename(模板参数类型 此处指类型) Type(参数名, 不同于变量)\>
 
-``` C++
+``` cpp
 //类声明 example.h
 template<typename Type>
 class example
@@ -643,38 +643,38 @@ eg. template\<typename a = int\>
 ### 模板实例化
 编译器将自动实例化使用到的模板
 也可显式实例化
-```C++
+```cpp
 template class example<type>;
 ```
 ### 模板具体化
-```C++
+```cpp
 template<> class example<type>{...};
 ...
 void example<type>::fun(){}//类外定义成员函数不需要template<>
 ```
 ### 部分具体化
 当类有多个模板参数时, 可以只针对其中几个参数具体化
-```C++
+```cpp
 template<typename targ1, int targ2, ...> class example<targ1, targ2, ..., arg1, arg2, ...>{...};
 ```
 1. template<> 内为没有被具体化的参数, 需要包含类型, 当template<>内为空即具体化整个模板
 2. example<> 内为具体参数(模板中的所有参数), 可以是template中的未具体化的参数
 eg
-```C++
+```cpp
 template<T1, T2> class example<T1, T2, T2>{};
 ```
 此类具体化未T2与T3相同时的具体化
 3. 当有多个模板可选时, 将选择具体化程度最高的模板
 ### 成员函数具体化
 可以单独具体化成员
-```C++
+```cpp
 template<> void example<type>::fun();
 ```
 当具体化成员函数时, 允许分离具体化函数的声明与定义(不同于一般的模板
 )
 ### 关于具体化常量引用类型参数的模板
 前提见 <a href='#clclzzyy'>常量常量指针引用</a>
-```C++
+```cpp
 template<typename T>
 //const T& obj要求obj所引用的值不能修改
 void fun(const T& obj){...}
@@ -687,7 +687,7 @@ template<> void fun<const char*>(const char *const & obj){...}//正确
 ```
 ### 类内模板
 C++允许成员函数或嵌套类为模板
-```C++
+```cpp
 template<typename T>
 class base
 {
@@ -702,7 +702,7 @@ class base
 };
 ```
 类外定义时注意
-```C++
+```cpp
 template<typename T>
 	template<typename U>//嵌套类的模板需要独立
 	class base<T>::hold//使用带模板参数的类名与域解析运算符
@@ -715,7 +715,7 @@ template<typename T>
 ```
 ### 以模板类型为参数
 对于定义
-```C++
+```cpp
 template<template<typename T> typename TT, typename U, typename V>
 class exam
 {
@@ -728,7 +728,7 @@ class exam
 且可以在 exam 内指定 TT 的模板参数
 ### 模板类的友元
 设模板类
-```C++
+```cpp
 template<typename T>
 class exam{...};
 ```
@@ -739,7 +739,7 @@ class exam{...};
 2. 约束模板友元
 	当友元为模板时, 友元模板的参数与类的模板参数有关
 	eg.
-	```C++
+	```cpp
 	template<typename T>
 	class exam
 	{
@@ -755,7 +755,7 @@ class exam{...};
 3. 非约束模板友元
 	当友元为模板时, 友元模板的参数与类的模板参数无关
 	eg.
-	```C++
+	```cpp
 	template<typename T>
 	class exam
 	{
@@ -767,7 +767,7 @@ class exam{...};
 #### using =
 C++11 特性, 添加 using = 语法, 实现模板别名
 eg.
-```C++
+```cpp
 //模板别名
 template<typename T>
 	using arr12 = std::array<T, 12>;
@@ -776,7 +776,7 @@ using strp = char*;
 ```
 #### typedef 嵌套类型
 结合模板类与嵌套类型的特性实现模板别名
-```C++
+```cpp
 template<typename T>
 class root
 {
@@ -801,7 +801,7 @@ class root<T>::leaf
 ### 前向声明
 由于定义友元时, 类/函数可能未定义/循环定义, 需要前向声明
 eg.
-```C++
+```cpp
 //前向声明
 class exam;
 
@@ -819,7 +819,7 @@ class exam
 ### 友元成员函数
 有的时候不需要整个类均为友元, 仅需要部分成员函数作为友元
 可以使用友元成员函数
-```C++
+```cpp
 friend void exam::fun();
 ```
 ## 嵌套类
@@ -841,7 +841,7 @@ friend void exam::fun();
 try: try 块中的代码标识将被激活的特定异常。它后面通常跟着一个或多个 catch 块。
 catch: 在您想要处理问题的地方，通过异常处理程序捕获异常。catch 关键字用于捕获异常。
 如果 try 块在不同的情境下会抛出不同的异常，这个时候可以尝试罗列多个 catch 语句，用于捕获不同类型的异常。
-```C++
+```cpp
 try
 {
    // 保护代码
@@ -862,7 +862,7 @@ catch(...){} 表示
 如果没有try捕捉异常, 或对应类型的catch, 将导致程序终止
 否则将执行对应catch内的程序
 ### 实例
-```C++
+```cpp
 #include<iostream>
 using namespace std;
 
@@ -889,7 +889,7 @@ int main()
 ```
 ### 异常规格说明
 (几乎弃用的特性)
-```C++
+```cpp
 double fun(double a, double b) throw(const char*)
 {
 	if(b == 0)
@@ -911,11 +911,11 @@ throw(const char*) 表明抛出的异常类型为 const char*
 一种继承自 std::exception 的类
 定义于头文件 stdexcept 中
 包含一个虚成员函数
-```C++
+```cpp
 const char * what () const throw ()
 ```
 实例
-```C++
+```cpp
 #include <iostream>
 #include <stdexcept>
 using namespace std;
@@ -963,7 +963,7 @@ int main()
 可以使用 set_terminate(f) 设置 terminate 的行为
 f 为一个没有参数, 返回值为 void 的函数
 ### 抛出异常导致的内存泄漏
-```C++
+```cpp
 void fun()
 {
 	double *p = new double[100];
@@ -980,7 +980,7 @@ void fun()
 ### dynamic_cast
 用于含虚函数的, 有派生关系的类
 检查是否可以安全的将对象地址赋给特定类型的指针
-```C++
+```cpp
 class child : public base
 {...};
 class grand : public child
@@ -994,7 +994,7 @@ base* p3 = dynamic_cast<base*>(gr); //安全, 返回 gr
 ```
 
 #### 实例应用
-```C++
+```cpp
 child* p4 = NULL;
 base* parr[10]// 假设 parr 随机指向 base, child 与 grand
 // 在一个循环中运行 child 中的成员函数 inChild
@@ -1009,7 +1009,7 @@ for(int i = 0; i < 10; i++)
 ```
 
 #### 对引用使用
-```C++
+```cpp
 //注意赋值时的类型
 try
 {
@@ -1027,7 +1027,7 @@ catch(bad_cast& err)
 typeid 用于判断变量的类型
 返回一个 type_info 的引用
 #### 使用方法
-```C++
+```cpp
 if(typeid(a) === typeid(b))
 {
 	...
@@ -1044,7 +1044,7 @@ cast 即丢弃, 即告诉编译器丢弃某些特性检查
 
 #### const_cast
 用于将一个常量指针转化为普通指针
-```C++
+```cpp
 const int* cpi = new int(10);
 const double* cpd = new double(3.14);
 
@@ -1059,7 +1059,7 @@ int* pi2 = const_cast<int*>(cpd);// 不允许, const_cast 不能改变类型
 ## 右值引用
 ### 左值与右值
 对于赋值运算
-```c++
+```cpp
 int a = 10;
 ```
 
@@ -1084,7 +1084,7 @@ int a = 10;
 ### 右值引用应用
 #### 浅拷贝构造函数
 基于右值引用的特性, 可以定义出一套严格的浅拷贝函数, 保证程序的高效
-```c++
+```cpp
 class example
 {
 private:
@@ -1123,7 +1123,7 @@ example& operator=(example&& obj) {
 * 当智能指针生命周期结束将会被自动销毁 (利用构析函数, 保证指针即使销毁)
 * 智能指针使用 delete 销毁资源, 因此最好使用 new 创建资源 (不创建数组或采用 make_unique)
 * 智能指针以指针为参数的构造函数为 explict 型, 表明不会在函数传参 / 赋值操作中隐式转换, 需要显示调用构造函数
-```c++
+```cpp
 int* a = new int(100);
 // 允许
 std::unique_ptr<int> ptr(a); 
@@ -1133,12 +1133,12 @@ std::unique_ptr<int> ptr = a;
 
 ### 独占智能指针
 unique_ptr 独享指针的资源, 不可复制 / 直接赋值
-```C++
+```cpp
 std::unique_ptr<T> ptr(T*)
 ```
 
 unique_ptr 可以将指针地址作为构造函数, 也可以使用 make_unique 创建 (用法类似 new)
-```c++
+```cpp
 class nums
 {
 int _a, _b;
@@ -1156,13 +1156,13 @@ int main(){
 ```
 
 应使用 std::move() 方法转移控制权
-```c++
+```cpp
 unique_ptr<int> p(new int(5));
 unique_ptr<int> p2 = std::move(p);
 ```
 
 当遍历以 unique_ptr 为对象的数据结构时, 应当使用引用的方式 (没有复制构造函数)
-```c++
+```cpp
 vector<unique_ptr<int>> arr;
 
 arr.push_back(make_unique<int>(1)); 
@@ -1178,7 +1178,7 @@ for (const auto& iter : arr)
 ```
 
 可以使用 make_unique 创建数组, 但无法为创建的数组指定初始值
-```c++
+```cpp
 auto p = make_unique<int[]>(5);
 
 for (int i = 0; i < 5; ++i)
@@ -1198,12 +1198,12 @@ for (int i = 0; i < 5; ++i)
 * share_ptr 采用引用计数法, 当指针的管理对象被全部销毁时, 才会销毁指针
 * 当资源的使用者只是临时调用, 则需要引用传递 (一般函数)
 * 当资源的使用者需要保存资源, 长期使用, 则需要按值传递 (构造函数 / 提取数据并保存)
-```C++
+```cpp
 std::share_ptr<T> ptr(T*)
 ```
 
 share_ptr 允许相互赋值, 或将指针作为参数构造对象, 但最好使用 make_share 构建智能指针, 减少构造开销
-```c++
+```cpp
 auto sp1 = make_shared<int>(10);
 shared_ptr<int> sp2(new int(20));
 
@@ -1212,7 +1212,7 @@ auto sp4(sp1);
 ```
 
 share_ptr 重载了 == 运算符, 当其引用同一个指针时, 返回 true
-```c++
+```cpp
 auto sp1 = make_shared<int>(10);
 shared_ptr<int> sp2(new int(10));
 auto sp3 = sp1;
@@ -1223,7 +1223,7 @@ if(sp1 == sp2) ...; // 返回 false
 
 如果两个类可以相互管理, 则 share_ptr 可能导致循环引用
 示例中, father 与 son 在函数结束时仅删除了一次引用, 没有释放资源
-```c++
+```cpp
 struct Father
 {
     shared_ptr<Son> son_;
@@ -1246,7 +1246,7 @@ int main()
 }
 ```
 为了解决问题, 需要引入 weak_ptr, 作用与 share_ptr 相同, 但不会添加引用计数
-```c++
+```cpp
 struct Son
 {
     weak_ptr<Father> father_;
@@ -1272,7 +1272,7 @@ struct Son
 本质为一个类, 并通过重载 () 运算符的方式而可视为一个函数
 
 #### lambda 表达式基本格式
-```c++
+```cpp
 [捕获列表](参数列表)可变规格 -> 返回类型 {函数体}
 ```
 
@@ -1304,12 +1304,12 @@ struct Son
 
 #### 定义 lambda 表达式
 ##### 使用 auto 语法
-```c++
+```cpp
 auto add = [](int a, int b){return a + b;};
 ```
 
 ##### 函数包装器
-```c++
+```cpp
 std::function<int(int, int)> add = [](int a, int b)
 {
 	return a + b;
@@ -1322,7 +1322,7 @@ std::function<int(int, int)> add = [](int a, int b)
 1. 可以嵌套定义 lambda 表达式
 1. 利用 function, 可以将 lambda 表达式作为参数传递
 1. lambda 表达式可以配合模板使用
-```c++
+```cpp
 template <typename T>
 void print_all(const vector<T>& v)
 {
@@ -1343,7 +1343,7 @@ void print_all(const vector<T>& v)
 * 定义于头文件 <functional>
 * 可用于包装 函数, 函数指针, 函数对象 (重载 () 运算符), lambda 表达式
 * 需要在 function 的模板中定义函数的返回值与参数
-```c++
+```cpp
 std::function<返回值(参数 1 类型, 参数 2 类型, ...)>
 ```
 
@@ -1367,7 +1367,7 @@ bind(函数指针, 函数参数)
 * 当使用占位符时, 将作为返回函数的参数出现
 * 被包装函数有多少个参数时, 给出多少个参数 / 占位符
 eg.
-```c++
+```cpp
 int add(int a, int b) {return a + b;}
 
 int main()
@@ -1413,7 +1413,7 @@ bind(成员函数指针, 对象实例指针, placeholders::_1, ...)
 	1. 不允许 try, goto
 
 ### constexpr 实例
-```c++
+```cpp
 // 计算乘方, 使用常量引用传递值
 constexpr float exp2(const float& x, const int& n)
 {

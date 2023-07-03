@@ -44,7 +44,7 @@
 1. 保留 CubeMX 生成的 .c 代码
 2. 通过 .c 代码运行 .h 中的通过 .cpp 定义的函数实现混合编程
 3. 通过以下方式, 将函数与全局变量暴露给 .c
-```c++
+```cpp
 #ifdef __cplusplus
 extern "C"{
 #endif
@@ -64,7 +64,7 @@ extern int c;
 ```
 
 4. 使用宏规定哪些部分暴露给 .c 文件的部分使用
-```c++
+```cpp
 # ifdef __cplusplus
 // 不暴露部分 如 class 定义等
 # endif
@@ -115,11 +115,11 @@ GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 3. NVIC 中启用中断
 ### HAL 操作
 1. 未定义的函数 可以在此定义中断回调
-```c++
+```cpp
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 ```
 2. 产生回调后清除中断标志
-```c++
+```cpp
 __HAL_GPIO_EXTI_CLEAR_IT(GPIO_Pin)
 ```
 
