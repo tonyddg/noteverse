@@ -388,7 +388,7 @@ public:
 1. 通过将工厂对象作为成员组合, 在需要子类时通过工厂创建
 1. 工厂的本质即一个创建工厂的接口
 1. 工厂的多态性从而保证了函数内依赖的多态性, 让主类决定实例化哪个类
-1. 缺点: 要求函数内依赖的创建方式必须一致
+1. 缺点: 要求函数内依赖的创建方式必须一致, ==因此在工厂方法中, 必须优先设计接口==
 
 #### 适用情况
 1. 在成员函数中, 出现了 [接口指针] = new [具体实现], 导致了主类依赖与具体类
@@ -397,40 +397,40 @@ public:
 #### 实现
 ```cpp
 // 具体功能及接口
-class Zip{
+class IZip{
 public:
     virtual void Progress() = 0;
-    virtual ~Zip(){};
+    virtual ~IZip(){};
 };
 
-class NormalZip : public Zip{
+class NormalZip : public IZip{
 public:
     virtual void Progress(){...};
 };
 
-class CryptoZip : public Zip{
+class CryptoZip : public IZip{
 public:
     virtual void Progress(){...};
 };
 
 // 为每个具体实现设计一个工厂
-class ZipFactory{
+class IZipFactory{
 public:
     // 如果工厂不需要而外参数, 可定义为静态类
     // 工厂函数返回产品的指针
-    virtual static Zip* CreateZip() = 0;
+    virtual static IZip* CreateZip() = 0;
 };
 
-class NormalZipFactory : public ZipFactory{
+class NormalZipFactory : public IZipFactory{
 public:
-    virtual static Zip* CreateZip(){
+    virtual static IZip* CreateZip(){
         return new NormalZip();
     };
 };
 
-class CryptoZipFactory : public ZipFactory{
+class CryptoZipFactory : public IZipFactory{
 public:
-    virtual static Zip* CreateZip(){
+    virtual static IZip* CreateZip(){
         return new CryptoZip();
     };
 };
@@ -439,19 +439,136 @@ public:
 class ZipApp{
 protected:
     // 将工厂与类组合
-    ZipFactory* _factory;
+    IZipFactory* _factory;
 public:
-    ZipApp(ZipFactory* factory): _factory(factory)
+    ZipApp(IZipFactory* factory): _factory(factory)
     {}
 
     void StartZip(){
         ...
         // 有工厂创建函数内依赖
-        Zip* zip = _factory->CreateZip();
+        IZip* zip = _factory->CreateZip();
         zip->Process(...);
         ...
         // 明确职责, 工厂产生的产品由子类处理
         delete zip;
     }
 }
+```
+
+### Abstract Factory 抽象工厂 (Family Factory)
+1. 抽象工厂建立在工厂模式的基础上, 当一个类中的多个工厂间存在联系时适用. 如当使用了工厂 A1, 则必定会使用 A2; 若使用 B1 则并定会使用 B2. 即工厂间存在内部依赖.
+1. 因此可使用一个抽象工厂同时承担创建这一系列相关工厂的职责, 实现这一系列依赖的紧耦合
+
+#### 适用情况
+
+#### 实现
+```cpp
+// 接口定义
+class IDBDataReader{
+    ...
+}
+class IDBCommand{
+    public:
+        virtual IDBDataReader CommandText(string) = 0;
+};
+class IDBConnectInfo{
+    public:
+        virtual string Info() = 0;
+        virtual string Warn() = 0;
+};
+
+// 具体实例定义 (MySql)
+// 其中 SqlConnect 为一个由第三方库定义用于操作数据库的类
+class SqlDataReader: public IDBDataReader{
+    ...
+}
+class SqlDBCommand: public IDBCommand{
+    public:
+        SqlDBCommand(SqlConnect*);
+        virtual IDBDataReader Command(string){
+            ...
+        };
+};
+class SqlConnectInfo: public IDBConnectInfo{
+    public:
+        SqlConnectInfo(SqlConnect*);
+        virtual string Info(){
+            ...
+        };
+        virtual string Warn(){
+            ...
+        };
+};
+
+
+// 具体实例定义 (ORACLE)
+// 其中 OracleConnect 为一个由第三方库定义用于操作数据库的类
+class ORACLEDataReader: public IDBDataReader{
+    ...
+}
+class ORACLEDBCommand: public IDBCommand{
+    public:
+        ORACLEDBCommand(OracleConnect*){
+            ...
+        }
+        virtual IDBDataReader Command(string){
+            ...
+        };
+};
+class ORACLEConnectInfo: public IDBConnectInfo{
+    public:
+        ORACLEConnectInfo(ORACLEConnect*){
+            ...
+        }
+        virtual string Info(){
+            ...
+        };
+        virtual string Warn(){
+            ...
+        };
+};
+
+
+// 抽象工厂接口定义
+class IDBFactory{
+    public:
+        virtual IDBCommand CreateCommand() = 0;
+        virtual IDBConnectInfo CreateConnectInfo() = 0;
+};
+
+// 具体工厂定义
+class SqlFactory : public IDBFactory{
+    public:
+        SqlConnect* connect;
+
+        // 注意, 可以通过向工厂的构造函数传入参数, 实现同一个工厂制造不同的产品 (一般工厂模式也可使用此方法)
+        SqlFactory(SqlConnect*){
+            ...
+        }
+        // 在一个工厂中生产同一系列的多个产品, 同时这些产品公用一套原料
+        virtual IDBCommand CreateCommand(){
+            return new SqlCommand(connect);
+        }
+        virtual IDBConnectInfo CreateConnectInfo(){
+            return new SqlConnectInfo(connect);
+        }
+}
+
+class ORACLEFactory : public IDBFactory{
+    public:
+        ORACLEConnect* connect;
+
+        // 注意, 可以通过向工厂的构造函数传入参数, 实现同一个工厂制造不同的产品 (一般工厂模式也可使用此方法)
+        ORACLEFactory(ORACLEConnect*){
+            ...
+        }
+        virtual IDBCommand CreateCommand(){
+            return new ORACLECommand(connect);
+        }
+        virtual IDBConnectInfo CreateConnectInfo(){
+            return new ORACLEConnectInfo(connect);
+        }
+}
+
 ```
