@@ -9,5 +9,8 @@ local
 *.html
 *.pdf
 
+# vscode
+.vscode
+
 # test
 

@@ -7,6 +7,9 @@ export default defineUserConfig({
     description: 'A place for everythin I would like to record.',
     base: '/noteverse/',
 
+    // 以 docs 为 sourceDir
+    public: `docs/public`,
+
     theme: hopeTheme({
         plugins: {
             mdEnhance:{
@@ -16,7 +19,12 @@ export default defineUserConfig({
                 mark: true,
                 // 显示图片信息
                 figure: true,
-            }
+            },
+
+            autoCatalog:{
+                // 排除资源文件
+                exclude: ["public"],
+            },
         },
         // 页脚设置
         displayFooter: true,
