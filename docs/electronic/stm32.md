@@ -1,3 +1,5 @@
+> todo pcb设计 <http://uinio.com/Electronics/PCB_Principle>
+
 # 芯片基础
 ## 芯片结构
 ### 总线
