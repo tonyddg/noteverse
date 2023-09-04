@@ -7,8 +7,8 @@ $$\mathscr{L}[f(t)]=F(s)=\int_{0}^{+\infty}f(t)e^{-st}dt=\mathscr{F}[f(t)u(t)e^{
 2. $$\mathscr{L} [e^{\alpha t}]=\frac{1}{s-\alpha}$$
 3. $$\mathscr{L} [\delta(t)]=1$$
 4. $$\mathscr{L} [t^{m}]=\frac{m!}{s^{m+1}}$$
-5. $$\mathscr{L} [cos\alpha t]=\frac{s}{s^2+\alpha^2}$$
-6. $$\mathscr{L} [sin\alpha t]=\frac{\alpha}{s^2+\alpha^2}$$
+5. $$\mathscr{L} [\cos\alpha t]=\frac{s}{s^2+\alpha^2}$$
+6. $$\mathscr{L} [\sin\alpha t]=\frac{\alpha}{s^2+\alpha^2}$$
 * 可将常用变换结果作为积分公式用于傅里叶变换等积分计算
 ## 拉普拉斯变换的性质
 ### 微分性质
@@ -24,7 +24,7 @@ $$\mathscr{L}^{-1}[e^{-s\tau}F(s)]=f(t-\tau)u(t-\tau)$$
 
 * 由于拉普拉斯变换中, 像函数 $f(t)$ 默认为非负, 因此逆变换后的 $f(t-\tau)$ 也是非负函数
 * 可用于求 $F(s)e^{-\alpha s}$ 型函数的逆变换
-* 由于当 $t<0$ 时, $f(t)=0$ 这一要求, 因此 $\mathscr{L}[sin(t-\pi)]\neq \mathscr{L}[-cos(t)]$, $sin(t-\pi)$ 在 $t<\pi$ 均为 $0$
+* 由于当 $t<0$ 时, $f(t)=0$ 这一要求, 因此 $\mathscr{L}[\sin(t-\pi)]\neq \mathscr{L}[-\cos(t)]$, $\sin(t-\pi)$ 在 $t<\pi$ 均为 $0$
 ### 位移性质
 设 $\mathscr{L}[f(t)]=F(s)$, $a$ 为任意复常数, 则有 
 $$\mathscr{L}[e^{at}f(t)]=F(s-a)$$
