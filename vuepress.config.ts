@@ -4,7 +4,7 @@ import { hopeTheme } from "vuepress-theme-hope";
 export default defineUserConfig({
     lang: 'zh-CN',
     title: "Tonyddg's Noteverse",
-    description: 'A place for everythin I would like to record.',
+    description: 'A place for everything I would like to record.',
     base: '/noteverse/',
 
     // 以 docs 为 sourceDir
