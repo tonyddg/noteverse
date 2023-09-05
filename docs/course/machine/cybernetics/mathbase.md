@@ -1,8 +1,12 @@
 # 拉普拉斯变换
 对于详细部分也可参考复变函数与积分变换笔记的[傅里叶变换](/course/math/Complex%20Variables%20and%20Integral%20Transformation/ch8.md)与[拉普拉斯变换](/course/math/Complex%20Variables%20and%20Integral%20Transformation/ch9.md)部分
 
+## 拉普拉斯变换的定义
+$f(t)$ 为定义在 $[0,+\infty)$ 的实函数, $s=\delta+j\omega$ 为复参数, 其中 $\beta$ 为一个足够大的实数, 象函数 $F(s)$ 在复平面上某一区域内收敛, 定义拉普拉斯变换 (Laplace)
+$$\mathscr{L}[f(t)]=F(s)=\int_{0}^{+\infty}f(t)e^{-st}dt$$
+
 ## 基本函数的拉普拉斯变换
-使用 $f(t)$ 表示原函数, 即表示时域上的信号, 使用 $F(s)$ 表示变换后的函数, 称为像函数, 其函数变量 $s$ 为一个复数  
+使用 $f(t)$ 表示原函数, 即表示时域上的信号, 使用 $F(s)$ 表示变换后的函数, 称为象函数, 其函数变量 $s$ 为一个复数  
 如果没有说明, 通常认为原函数 $f(t)=0,t<0$. 部分情况下需要使用 $f(t)H(t)$ 强调此特性
 
 有拉氏变换关系 $F(s)=L[f(t)]F(s)=\mathscr{L}[f(t)]$
@@ -17,6 +21,9 @@ $$u(t)=\begin{cases}
 0,&t<0
 \end{cases}$$
 
+易得阶跃函数有性质
+$$H(t-a)=-H(a-t)$$
+
 其有拉氏变换
 $$\mathscr{L}[H(t)]=\frac{1}{s}$$
 
@@ -30,6 +37,16 @@ $$\mathscr{L}[1]=\frac{1}{s}$$
 
 $f_1(t)$ 可表示为 $f_1(t)=H(t+2)$  
 $f_2(t)$ 可表示为 $f_2(t)=H(t+2)-H(t-3)$
+
+![](./src/math_step3.svg)
+
+对于方波, 矩形波等也可使用单位阶跃函数表示, 如图三角波有
+$$f(t)=t[H(t)-H(t-1)]$$
+
+其拉氏变换可根据延迟定律得出
+$$\begin{aligned}\mathscr{L}[t(H(t)-H(t-1))]&=\mathscr{L}[tH(t)-(t-1)H(t-1)-H(t-1)]\\
+&=\frac{1}{s^2}-\frac{e^{-s}}{s^2}-\frac{e^{-s}}{s}\\
+&=\frac{1-e^{-s}(1+s)}{s^2}\end{aligned}$$
 
 ### 单位冲激函数
 ![](./src/math_impluse.svg)
@@ -111,30 +128,30 @@ $$\begin{aligned}\mathscr{L}^{-1}[\frac{2s+3}{s^2+2s+10}]&=\mathscr{L}^{-1}[\fra
 如图所示, 如果要让信号整体向右平移 $a$, 不能仅变换信号函数的自变量为 $f(t-a)$, 因为还会将函数 $<0$ 的部分一起引入. 为了消除额外引入的部分, 还需要乘上阶跃函数, 因此整体平移后的信号为
 $$f(t-a)H(t-a)$$
 
-对于这个整体平移的信号, 有拉氏变换 (注意, 第二移位定理中 $a$ 的符号没有改变, 与第一移位定理不同)
-$$\mathscr{L}[f(t-a)H(t-a)]=F(s)e^{-at}$$
+对于这个整体平移的信号, 有拉氏变换 (注意, ==第二移位定理中 $a$ 的符号没有改变且变换后变量保持为 $s$==, 与第一移位定理不同)
+$$\mathscr{L}[f(t-a)H(t-a)]=F(s)e^{-as}$$
 
-其中称 $e^{-at}$ 为延迟环节
+其中称 $e^{-as}$ 为延迟环节
 
-对于正变换, 可先根据 $H(t-a)$ 部分配凑, 其中常数的变换满足(见阶跃函数变换说明) $\mathscr{L}[m]=\mathscr{L}[mH(t)]=\frac{m}{s}$, 有例子
-$$\begin{aligned}\mathscr{L}[t\cdot H(t-5)]&=\mathscr{L}[(t-5)\cdot H(t-5)+5H(t-5)]\\&=\frac{1}{s^2}e^{-5t}+\frac{5}{s}e^{-5t}\end{aligned}$$
+对于正变换, 可先根据 $H(t-a)$ 部分配凑, 其中==对常数的延迟变换满足(见阶跃函数变换说明) $\mathscr{L}[mH(t-a)]=\frac{m}{s}e^{-as}$==, 有例子
+$$\begin{aligned}\mathscr{L}[t\cdot H(t-5)]&=\mathscr{L}[(t-5)\cdot H(t-5)+5H(t-5)]\\&=\frac{1}{s^2}e^{-5s}+\frac{5}{s}e^{-5s}\end{aligned}$$
 
 对于反变换, 可先忽视延迟环节变换, 再对结果代入 $t\to t-a$ 并乘上 $H(t-a)$ , 有例子
 $$\mathscr{L}^{-1}[e^{-3s}\frac{s}{s^2+16}]=\cos[4(t-3)]H(t-3)$$
 
 ### 微分特性定理
-当对原函数求导后, 其导数的像函数与原来的像函数与原函数存在关系
+当对原函数求导后, 其导数的象函数与原来的象函数与原函数存在关系
 $$\begin{aligned}\mathscr{L}[f^{(n)}(t)]&=s^{n}F(s)-s^{n-1}f(0)-s^{n-2}f'(0)-...-f^{(n-1)}(0)\\ &=s^{n}F(s)-\sum_{i=1}^{n}s^{n-i}f^{(i-1)}(0)\end{aligned}$$
 
 可根据 $s$ 的次数从第一项开始递减, 且 $s$ 的次数与 $f(0)$ 的导数之和始终为 $n-1$ 记忆
 
-注意区分 $s^nF(s)$ 部分为像函数, $s^af^{(b)}(0)$ 部分为以 $0$ 处原函数导数的值为系数的多项式例如
+注意区分 $s^nF(s)$ 部分为象函数, $s^af^{(b)}(0)$ 部分为以 $0$ 处原函数导数的值为系数的多项式例如
 $$\begin{aligned}\mathscr{L}[f'(t)]&=sF(s)-f(0)\\ \mathscr{L}[f''(t)]&=s^2F(s)-sf(0)-f'(0)\end{aligned}$$
 
-以 $y$ 表示原函数, $Y$ 表示像函数, 以常微分方程为例
+以 $y$ 表示原函数, $Y$ 表示象函数, 以常微分方程为例
 $$ y''+4y'+3y=3\cos(2t),y(0)=0,y'(0)=1$$
 
-首先先求出各个原函数导数对应的像函数
+首先先求出各个原函数导数对应的象函数
 $$\begin{aligned}\mathscr{L}[y']&=sY-y(0)\\ \mathscr{L}[y'']&=s^2Y-sy(0)-y'(0)\end{aligned}$$
 
 对方程两侧同时变换有
@@ -144,7 +161,7 @@ $$\begin{aligned}(s^2+4s+3)Y-1&=\frac{3s}{s^2+4}\\ Y&=\frac{s^2+3s+4}{(s^2+4)(s+
 $$y(t)=\mathscr{L}^{-1}[Y(s)]=\frac{-3}{65}\cos(2t)+\frac{24}{65}\sin(2t)+\frac{e^{-t}}{5}-\frac{2e^{-3t}}{13}$$
 
 ### 积分特性定理
-当对原函数积分后, 其导数的像函数与原来的像函数与原函数存在关系
+当对原函数积分后, 其导数的象函数与原来的象函数与原函数存在关系
 $$\mathscr{L}[\int_0^t f(\lambda)d\lambda]=\frac{1}{s}F(s)$$
 
 同理对于多重积分有
@@ -160,19 +177,19 @@ $$\lim_{t\to 0}f(t)=\lim_{s\to \infty}sF(s)$$
 $$\lim_{t\to \infty}f(t)=\lim_{s\to 0}sF(s)$$
 
 ### 卷积定理
-设原函数 $g(t)$ 的像函数为 $G(t)$
+设原函数 $g(t)$ 的象函数为 $G(t)$
 
-定义卷积运算有 (注意卷积运算后得到的结果为一个函数), 注意与傅里叶变换不同, $t<0$ 时, $f(t)=g(t)=0$
-$$f(t)*g(t)=\int_0^\infty f(\tau)g(t-\tau)d\tau=\int_0^\infty f(t-\tau)g(\tau)d\tau$$
+定义卷积运算有 (注意卷积运算后得到的结果为一个函数), 注意与傅里叶变换不同, $t<0$ 时, $f(t)=g(t)=0$, 被积函数在区间 $[0,t]$ 外的值均为 $0$, 因此==拉普拉斯变换下的卷积中, 要以 $t$ 为积分上限== (如果参与运算的函数严格复合信号函数的条件, 则以 $\infty$ 作为积分上限时与 $t$ 等价)
+$$(f*g)(t)=\int_0^t f(\tau)g(t-\tau)d\tau=\int_0^t f(t-\tau)g(\tau)d\tau$$
 
 卷积的拉氏变换满足 (此定理重要性较低)
-$$\mathscr{L}[f(t)*g(t)]=F(s)\cdot G(s)$$
+$$\mathscr{L}[(f*g)(t)]=F(s)\cdot G(s)$$
 
-有例题 (解答未确定)
-$$\begin{aligned}\mathscr{L}[e^{2t}\int^{\infty}_0 e^{-2\lambda}\sin(3\lambda)d\lambda]&=\mathscr{L}[\int^{\infty}_0 e^{2(t-\lambda)}\sin(3\lambda)d\lambda]\\ &=\mathscr{L}[e^{2t}*\sin(3t)]\\ &=\frac{1}{s-2}\cdot\frac{3}{s^2+9} \end{aligned}$$
+有例题 (注意, 积分变量为 $\lambda$, 因此 $e^{2t}$ 对于被积函数来说相当于常量)
+$$\begin{aligned}\mathscr{L}[e^{2t}\int^{t}_0 e^{-2\lambda}\sin(3\lambda)d\lambda]&=\mathscr{L}[\int^{t}_0 e^{2(t-\lambda)}\sin(3\lambda)d\lambda]\\ &=\mathscr{L}[e^{2t}*\sin(3t)]\\ &=\frac{1}{s-2}\cdot\frac{3}{s^2+9} \end{aligned}$$
 
 ### 微分与积分关系定理
-原函数与像函数之间有微分与积分关系 (此定理重要性较低)
+原函数与象函数之间有微分与积分关系 (此定理重要性较低)
 $$\mathscr{L}[tf(t)]=-\frac{dF(s)}{ds}$$
 $$\mathscr{L}[\frac{1}{t}f(t)]=\int_{s}^{+\infty}F(s)ds$$
 
