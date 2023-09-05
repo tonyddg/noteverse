@@ -12,5 +12,5 @@ local
 # vscode
 .vscode
 
-# test
-
+# tmp files
+tmp*
