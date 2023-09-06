@@ -14,7 +14,10 @@ export default defineUserConfig({
         plugins: {
             mdEnhance:{
                 // 使用 KaTeX 启用 TeX 支持
-                katex: true,
+                katex: {
+                    mhchem: true,
+                    copy: true,
+                },
                 // 启用标记
                 mark: true,
                 // 显示图片信息
