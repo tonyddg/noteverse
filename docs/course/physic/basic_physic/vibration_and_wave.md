@@ -2,8 +2,8 @@
 ## 简谐振动
 ### 判断简谐振动
 #### 受力情况
-$x$ 为合外力为 0 的点(不是初始位置)
-$$F_合=-kx$$
+$x$ 为合外力为 $0$ 的点(不是初始位置)
+$$F_\text{合}=-kx$$
 
 #### 微分形式
 $$\frac{d^2x}{dt^2}+\omega^2x=0$$
@@ -11,14 +11,14 @@ $$\frac{d^2x}{dt^2}+\omega^2x=0$$
 #### 运动方程
 $$x=A\cos(\omega t+\varphi)$$
 * 当运动方程为 $\sin$ 型时, 需要化为 $\cos$, 才可称为标准的简谐运动方程, 修正方法
-$A\sin(\omega x+\varphi)=A\cos(\pi/2-\omega x-\varphi)$
+$$A\sin(\omega x+\varphi)=A\cos(\pi/2-\omega x-\varphi)$$
 * 标准简谐运动方程 $A$ 不可取负, 修正方法
-$-A\cos(\omega x+\varphi)=A\cos(\omega x-\varphi+\pi)$
+$$-A\cos(\omega x+\varphi)=A\cos(\omega x-\varphi+\pi)$$
 * 标准简谐运动方程 $\omega$ 不可取负值, 修正方法
-$\cos(-\omega x+\varphi)=\cos(\omega x-\varphi)$
+$$\cos(-\omega x+\varphi)=\cos(\omega x-\varphi)$$
 
 ### 振动的物理量
-* 以下物理量均==要在标准振动方程中才有意义==
+以下物理量均==要在标准振动方程中才有意义==
 
 #### 速度
 $$v=\frac{dx}{dt}=\omega A\cos(\omega t+\varphi+\frac{\pi}{2})$$
@@ -44,13 +44,14 @@ $$A=\sqrt{x^2+\frac{v^2}{\omega^2}}$$
 1. 符号为 $\varphi$
 2. 对于任意时刻下的 $x$ 与 $v$ 满足
 $$\tan\varphi=-\frac{v}{\omega x}$$
-3. 初位相有两个取值(arctan), 需要根据速度判断
+3. 初位相有两个取值($\arctan$), 需要根据速度判断
 
 #### 角速度
 1. 符号为 $\omega$
 2. 由物体的本质属性决定
 3. 与周期 $T$, 频率 $\nu$ 的关系
-$$T=\frac{2\pi}{\omega}$$ $$\nu=\frac{1}{T}=\frac{\omega}{2\pi}$$
+$$T=\frac{2\pi}{\omega}$$ 
+$$\nu=\frac{1}{T}=\frac{\omega}{2\pi}$$
 4. $\omega,\varphi,A$ 完全确定了简谐振动的运动状态
 5. 对于弹簧振子, 其固有频率满足 $$\omega^2=\frac{k}{m}$$
 #### 相位差
@@ -70,7 +71,7 @@ $$T=\frac{2\pi}{\omega}$$ $$\nu=\frac{1}{T}=\frac{\omega}{2\pi}$$
 3. 通过几何求解
 
 ### 同方向不同频率振动的合成
-1. 假设两振动振幅相同, 初相位为 0, 和振动为
+1. 假设两振动振幅相同, 初相位为 $0$, 和振动为
 $$x=2A\cos(\frac{\omega_2-\omega_1}{2}t)\cos(\frac{\omega_2+\omega_1}{2}t+\varphi)$$
 2. 当 $\omega_2,\omega_1$ 较大, 且差值较小, 和振动的振幅成周期性变化, 称为拍现象
 
@@ -90,7 +91,8 @@ $$x=2A\cos(\frac{\omega_2-\omega_1}{2}t)\cos(\frac{\omega_2+\omega_1}{2}t+\varph
 1. 图形与矩形 $x$ 方向边的交点数 $n_1$, 与 $y$ 方向边的交点数 $n_2$
 2. $x$ 方向边的交点体现 $y$ 方向振动在一个 $T$ 内完成的半周期数, 因此 $n_2=\frac{T}{T_2/2}$
 3. $y$ 方向同理有 $n_1=\frac{T}{T_1/2}$
-4. 因此两个分振动的==频率比==满足 $$\frac{\nu_1}{\nu_2}=\frac{n_1}{n_2}$$
+4. 因此两个分振动的==频率比==满足 
+$$\frac{\nu_1}{\nu_2}=\frac{n_1}{n_2}$$
 5. 当频率不成整数比则无法形成稳定的轨迹
 
 ## 实际振动
@@ -101,7 +103,8 @@ $$\frac{\gamma}{m}=2\beta$$
 
 #### 弱阻尼
 1. 当阻尼较小时, 物体依然保持往复运动
-2. 弱阻尼下, 物体的角速度减小, 固有周期增长, 振动被延缓 $$\omega=\sqrt{\omega_0^2-\beta^2}$$
+2. 弱阻尼下, 物体的角速度减小, 固有周期增长, 振动被延缓 
+$$\omega=\sqrt{\omega_0^2-\beta^2}$$
 
 #### 过阻尼/临界阻尼
 1. $\beta>\omega_0$ 时, 为过阻尼, 物体==回到平衡位置后==不再运动
@@ -172,7 +175,8 @@ $$I=\frac{\overline{P}}{S}=\frac{1}{2}\rho A^2\omega^2 u$$
 #### 干涉的极大与极小
 1. 当相位差 $\Delta\varphi=(\varphi_2-\varphi_2)=2k\pi(k=0,\pm 1,\pm 2,...)$ 时, 两列波同相, 为干涉极大, 和振幅为 $A=A_1+A_2$
 2. 当相位差 $\Delta\varphi=(\varphi_2-\varphi_2)=2k\pi(k=0,\pm 1,\pm 2,...)$ 时, 两列波反相, 为干涉极小, 和振幅为 $|A|=|A_1-A_2|$
-3. 当两列波初相位相同, 相位差只取决于波程差(两列波的波速相同) $$\frac{\Delta\varphi}{2\pi}\lambda=\Delta r=r_2-r_1$$
+3. 当两列波初相位相同, 相位差只取决于波程差(两列波的波速相同) 
+$$\frac{\Delta\varphi}{2\pi}\lambda=\Delta r=r_2-r_1$$
 4. 两个波源在一点的==位相差要综合考虑波源初位相与波程导致的位相差==
 $$\Delta\varphi = (\varphi_2-\varphi_1)-\frac{2\pi}{\lambda}(r_2-r_1)$$
 
