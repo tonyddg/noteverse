@@ -41,6 +41,143 @@ $$\vec{a}=\vec{a_r}+\vec{a_e}+2\vec{\omega}\times\vec{v_r}$$
     1. 圆心
     1. 杆的一端
 
+### 例题
+
+![](./theoretical_mechanics_res/quest1.jpg)
+
+杆 $DE$ 以 $v$ 沿垂直滑道匀速下滑, 图示瞬间, 杆 $OA$ 垂直, $AB=BD=2r,OA\parallel ED$. 求此时杆 $OA$ 的角速度和角加速度
+
+#### 几何关系确定
+* 依题意得有 
+$$AB=BD=2r$$
+* 如图所示角度满足
+$$\angle ABO=\angle DBE=30^\circ,\angle OAB=60^\circ$$
+* $OA$ 段长度有
+$$OA=AB\sin 30^\circ$$
+
+#### 速度分析
+
+在速度分析前先规定机构中杆件角速度的正方向, 也可以统一采用逆时针, 便于判断科氏力的方向
+
+---
+
+从具有已知量的部分开始分析, 以未知部分杆 $AB$ 为动系, 稳定接触点铰链 $D$ 为动点
+
+动点 $D$ 为杆 $DE$ 的一端, 且杆 $DE$ 匀速平动, 因此其绝对速度即杆 $DE$ 的平动速度, 方向向下, 有
+$$v_D=v$$
+
+动系杆 $AD$ 绕铰链 $B$ 转动, 因此动系上 $D$ 处的点的速度 (牵连速度) 方向垂直于杆, 大小满足
+$$v_D^e=BD\omega_{AD}=2r\omega_{AD}$$
+
+假设动系静止, 动点 $D$ 所在的套筒只能沿杆 $AD$ 平动, 因此在此瞬间, 动点 $D$ 的相对速度沿杆方向, 大小未知 
+
+确定几个速度分量的几何关系后画出动点 $D$ 速度简图
+
+![](./theoretical_mechanics_res/quest1_1.drawio.svg)
+
+根据速度合成定律有
+$$\vec{v_D}=\vec{v_D^e}+\vec{v_D^r}$$
+
+由于 $\vec{v_D^e}$ 与 $\vec{v_D^r}$ 方向垂直, 因此可将矢量沿这两个方向分别分解得到
+$$v_D^e=v_D\cos 30^\circ=\frac{\sqrt{3}}{2}v$$
+$$v_D^r=v_D\sin 30^\circ=\frac{1}{2}v$$
+
+根据 $\vec{v_D^e}$ 与 $\omega_{AD}$ 的关系还可以得到
+$$\omega_{AD}=\frac{\sqrt{3}v}{4r}$$
+
+---
+
+从已知部分逐步分析到待求部分, 以待求部分杆 $AO$ 为动系, 稳定接触点铰链 $A$ 为动点
+
+分别分析三个速度可得到如图方向关系与以下代数关系
+$$v_A^e=\omega_{AO}$$
+$$v_A=AB\omega_{AD}=2r\omega_{AD}=\frac{\sqrt{3}v}{2}$$
+
+确定几个速度分量的几何关系后画出动点 $A$ 速度简图
+
+![](./theoretical_mechanics_res/quest1_2.drawio.svg)
+
+根据速度合成定律
+$$\vec{v_A}=\vec{v_A^e}+\vec{v_A^r}$$
+
+分别沿 $x$, $y$ 轴方向 ($\vec{v_A^e},\vec{v_A^r}$ 方向) 分解可得
+$$v_A^r=v_A\cos 30^\circ=\frac{3}{4}v$$
+$$v_A^e=v_A\sin 30^\circ=\frac{\sqrt{3}}{4}v$$
+
+根据 $\vec{v_A^e}$ 与 $\omega_{AO}$ 的关系还可以得到
+$$\omega_{AO}=\frac{\sqrt{3}v}{4r}$$
+
+#### 加速度分析
+
+按原先速度分析的顺序对加速度进行分析
+
+由于杆 $DE$ 匀速运动, 因此动点 $D$ 的绝对加速度满足
+$$a_D=0$$
+
+杆 $AD$ 上的点 $D$ 绕铰链 $B$ 旋转, 因此需要将牵连加速度 $\vec{a_D^e}$ 按自然坐标系分解为法向 $\vec{a_D^{en}}$ 与切向 $\vec{a_D^{e\tau}}$, 其中
+* 切向加速度的方向与速度方向相同, 垂直于杆 $AD$, 大小满足
+$$a_D^{e\tau}=BD\alpha_{AD}=2r\alpha_{AD}$$
+* 法向加速度的方向指向旋转中点, 平行于杆 $AD$, 满足
+$$a_D^{en}=BD\omega_{AD}^2=\frac{3v^2}{8r}$$
+
+同相对速度, 套筒仅会沿杆运动, 因此动点 $D$ 的相对加速度 $\vec{a_D^r}$ 依然为沿杆 $AD$ 方向
+
+注意, 由于动系杆 $AD$ 的角速度 $\omega_{AD}\neq 0$, 因此还存在科氏加速度 
+$$a_D^k=2\omega_{AD}\times v_D^r=\frac{\sqrt{3}v^2}{4r}$$
+
+其中科氏加速的方向需要具体分析. $\omega_{AD}$ 为顺时针方向, 因此矢量方向为垂直纸面向下, 与 $\vec{v_D^r}$ 通过右手定则得到 $\vec{a_D^k}$ 方向
+
+确定几个加速度分量的几何关系后画出动点 $D$ 的加速度简图
+
+![](./theoretical_mechanics_res/quest1_3.drawio.svg)
+
+根据加速度合成定律
+$$\vec{a_D}=\vec{a_D^{e\tau}}+\vec{a_D^{en}}+\vec{a_D^{r}}+\vec{a_D^{k}}$$
+
+一个矢量方程能够分解为两个独立的方程, 解出两个未知量  
+对于此题, 仅未知量 $\alpha_{AD}$ 对于求出待求量有帮助, 因此仅求出 $\vec{a_D^{e\tau}}$ 即可, 避免加速度分析中不必要的计算 (由于速度分析较简单, 且与加速度分析关联强, 因此能求出的未知量尽量求出)  
+为了最大程度避免额外未知量参与, 可沿待求未知量 $\vec{a_D^{e\tau}}$ 方向分解矢量, 得到方程
+$$a_D^{e\tau}=-a_D^k=-\frac{\sqrt{3}v^2}{4r}$$
+
+根据其与 $\alpha_{AD}$ 的关系得出
+$$\alpha_{AD}=-\frac{\sqrt{3}v^2}{8r^2}$$
+
+---
+
+对动点 $A$ 进行加速度分析
+
+由于杆 $AD$ 绕铰链 $B$ 转动, 因此动点 $A$ 的绝对加速也由切向 $\vec{a_A^\tau}$ 与法向 $\vec{a_A^n}$ 两部分组成, 满足
+$$a_A^{\tau}=AB\alpha_{AD}=-\frac{\sqrt{3}v^2}{4r}$$
+$$a_A^{n}=AB\omega_{AB}^2=\frac{3v^2}{8r}$$
+
+同样, 杆 $AO$ 绕铰链 $O$ 转动, 动点的牵连加速度同样由两部分 $\vec{a_A^{e\tau}}$ 与 $\vec{a_A^{en}}$ 组成, 满足
+$$a_A^{e\tau}=AO\alpha_{AO}$$
+$$a_A^{en}=AO\omega_{AO}^2=\frac{3v^2}{16r}$$
+
+并且动系 $AO$ 存在角速度, 因此还有科氏加速度 
+$$\vec{a_A^{k}}=2\omega_{AO}v_A^r=\frac{3\sqrt{3}v^2}{8r}$$  
+
+整理几何关系可得动点 $A$ 的加速度简图为
+
+![](./theoretical_mechanics_res/quest1_4.drawio.svg)
+
+根据加速度合成定律
+$$\vec{a_A^{\tau}}+\vec{a_A^{n}}=\vec{a_A^{e\tau}}+\vec{a_A^{en}}+\vec{a_A^{r}}+\vec{a_A^{k}}$$
+
+加速度分量中, $a_A^{e\tau}$ 与待求量 $\alpha_{AO}$ 有关, 因此沿 $\vec{\alpha_{AO}}$ 方向分解 (注意等式两侧)
+$$\begin{split}a_A^{\tau}\cos 60^\circ+a_A^{n}\cos 30^\circ&=a_A^{e\tau}+a_A^{k}\\
+-\frac{\sqrt{3}v^2}{8r}+\frac{3\sqrt{3}v^2}{16r}&=a_A^{e\tau}+\frac{3\sqrt{3}}{8r}\\
+a_A^{e\tau}&=-\frac{5\sqrt{3}v^2}{16r}\\
+\alpha_{AO}&=-\frac{5\sqrt{3}v^2}{16r^2}\end{split}$$
+
+解 $\alpha_{AO}$ 中的负号表明其实际方向与设定的正方向方向相反
+
+---
+
+最终得到题目的解
+$$\omega_{AO}=\frac{\sqrt{3}v}{4r},\circlearrowright$$
+$$\alpha_{AO}=-\frac{5\sqrt{3}v^2}{16r^2},\circlearrowleft$$
+
 ## 刚体的平面运动
 ### 刚体转动
 在刚体上选取任意基点, 刚体上其他点相对于基点的角速度与角加速度相同
