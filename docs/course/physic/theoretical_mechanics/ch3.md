@@ -136,6 +136,90 @@ $$\vec{M_I}=-J_D\vec{\alpha}$$
 * ==注意惯性力的大小与简化中心的位置有关==
 * 力矩在任何位置作用效果相同
 
+### 例题
+![](./theoretical_mechanics_res/quest3.drawio.svg)
+
+已知 $AB=2.5m,BO=1m,PA=2m$, 图示瞬间 $\omega_{AB}=1rad/s$, 求此时杆 $AB$ 的角加速度
+
+#### 几何分析
+易得, $\Delta PBA$ 为一个直角三角形, 边 $PB=1.5m$
+
+#### 速度分析
+![](./theoretical_mechanics_res/quest3_1.drawio.svg)
+
+$A$ 紧贴地面, 因此 $\vec{v_A}$ 沿水平方向. $B$ 点绕 $O$ 转动, 因此 $\vec{v_B}$ 沿竖直方向  
+已知杆 $AB$ 上两点的速度, 分别做垂线得到速度瞬心 $P$. 由于 $\omega_{AB}$ 已知, 因此可得
+$$v_B=PB\omega_{AB}=1.5m/s$$
+$$v_A=PA\omega_{AB}=2m/s$$
+
+#### 加速度分析
+![](./theoretical_mechanics_res/quest3_2.drawio.svg)
+
+以加速度情况最简单的点 $A$ 为基点分析加速度
+
+对于点 $B$ 绕 $O$ 旋转, 其绝对加速度可分为 $\vec{a_B^n}$ 与 $\vec{a_B^\tau}$ 两部分, 满足
+$$a_B^n=\frac{v_B^2}{OB}=2.25m/s^2$$
+$$a_B^\tau=OB\alpha_{OB}=\alpha_{OB}(m/s^2)$$
+
+$B$ 相对基点 $A$ 的运动满足
+$$a_{AB}^n=AB\omega_{AB}^2=2.5m/s^2$$
+$$a_{AB}^\tau=AB\alpha_{AB}=2.5\alpha_{AB}(m/s^2)$$
+
+此外还有加速度合成满足
+$$\vec{a_B^n}+\vec{a_B^\tau}=\vec{a_A}+\vec{a_{AB}^n}+\vec{a_{AB}^\tau}$$
+
+其中共有未知量 $3$ 个分别为 $a_A,\alpha_{AB},\alpha_{OB}$.  
+注意未知量中 $\alpha_{AB}$ 为待求量, $\alpha_{OB}$ 显然与待求量无关, 因此可先沿垂直于 $\vec{a_B^\tau}$ 方向分解, 避开未知量 $\alpha_{OB}$, 有
+$$\begin{split}a_B^n&=a_A+a_{AB}^n\sin\varphi-a_{AB}^\tau\cos\varphi\\
+0.75&=a_A-2\alpha_{AB}\end{split}\tag{a1}$$
+
+---
+
+对于点 $C$, 其绝对加速度大小方向均未知, 因此沿 $x,y$ 轴分解为 $\vec{a_{Cx}}$ 与 $\vec{a_{Cy}}$ 两部分
+
+$C$ 相对基点 $A$ 的运动满足
+$$a_{AC}^n=AC\omega_{AB}^2=1.25m/s^2$$
+$$a_{AC}^\tau=AC\alpha_{AB}=1.25\alpha_{AB}(m/s^2)$$
+
+此外还有加速度合成满足
+$$\vec{a_{Cx}}+\vec{a_{Cy}}=\vec{a_A}+\vec{a_{AC}^n}+\vec{a_{AC}^\tau}$$
+
+其中共有未知量 $4$ 个分别为 $a_A,\alpha_{AB},a_{Cx},a_{Cy}$, 且不存在特殊方向, 因此暂时无法求解.  
+直接向 $x,y$ 方向分解后有
+$$\begin{split}a_{Cx}&=a_A+a_{AC}^n\sin\varphi-a_{AC}^\tau\cos\varphi\\
+-\frac{3}{4}&=a_A-\alpha_{AB}-a_{Cx}\end{split}\tag{a2}$$
+$$\begin{split}a_{Cy}&=a_{AC}^n\cos\varphi+a_{AC}^\tau\sin\varphi\\
+-1&=\frac{3}{4}\alpha_{AB}-a_{Cy}\end{split}\tag{a3}$$
+
+至此加速度分析中共有四个未知量 $a_A,\alpha_{AB},a_{Cx},a_{Cy}$ 需要求解, 有独立方程三个, 仍需一个方程.
+
+#### 受力分析
+![](./theoretical_mechanics_res/quest3_3.drawio.svg)
+
+根据达朗贝尔原理, 将运动的杆 $AB$ 视为静止, 取质心 $C$ 为简化中心, 产生与 $C$ 点加速度方向相反的虚拟力 $F_{Ix},F_{Iy}$ ==以及与杆 $AB$ 角加速度方向相反的虚力矩==, 满足
+$$\vec{F_{Ix}}=-m\vec{a_{Cx}}$$
+$$\vec{F_{Iy}}=-m\vec{a_{Cy}}$$
+$$\vec{M_{I}}=-J_{AB}\vec{\alpha_{AB}}=-\frac{mAB^2}{12}\vec{\alpha_{AB}}$$
+
+除虚拟力外, 杆上还在 $A$ 点有约束力 $N$, $B$ 点有拉力 $T$, 质心 $C$ 上有重力 $mg$.  
+为了避开无关未知量 $N,T$ 对其力方向交点 $P$ 取矩有
+$$\begin{split}(F_{Iy}-mg)\frac{PB}{2}+F_{Ix}\frac{PA}{2}+M_I&=0\\
+3g&=3a_{Cy}+4a_{Cx}+\frac{25}{12}\alpha_{AB}\end{split}\tag{a4}$$
+
+在补充此方程后, 方程数与未知量相同可以求解
+
+#### 结果求解
+根据四个方程得到方程组
+$$\begin{bmatrix}1&-1&-1&0\\
+0&\frac{3}{4}&0&-1\\
+0&\frac{25}{12}&4&3\\
+1&-2&0&0\end{bmatrix}
+\begin{bmatrix}a_A\\\alpha_{AB}\\a_{Cx}\\a_{Cy}\end{bmatrix}=
+\begin{bmatrix}-\frac{3}{4}\\-1\\3g\\\frac{3}{4}\end{bmatrix}$$
+
+取 $g=10$, 解得
+$$\alpha_{AB}=2.52rad/s\curvearrowright$$
+
 ### 自由度
 * 完全确定一个机构的状态的最少参数
 * 一个二维刚体提供 $3$ 个自由度

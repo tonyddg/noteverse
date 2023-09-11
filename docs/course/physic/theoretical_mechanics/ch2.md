@@ -231,25 +231,29 @@ $$\vec{a_A}\cdot\vec{e_{AB}}=\vec{a_B}\cdot\vec{e_{AB}}$$
 
 #### 纯滚动的运动特性
 
-1. 当纯滚动的接触面为地面时 (静止物体, 圆心水平运动)
-    1. 纯滚动中, 接触点 $v_A=0$ 为速度瞬心
-    1. 根据速度瞬心法可得 $v_O=r\omega$
-    1. 接触点不是加速度瞬心
-    1. 圆心的切向加速度满足 $a_O^t=r\alpha$
-1. 当纯滚动的接触面为弧面时, 圆心还有法向加速度 $a_O^n=\frac{v_O^2}{r+R}$ (切向加速度不变)
-3. 当相对于运动物块纯滚动时, 则以物块为动系, 当物块平动时, 满足 $a_O^r=r\alpha$
+* 当纯滚动的接触面为地面时 (静止物体, 圆心水平运动)
+    * 纯滚动中, 接触点 $v_A=0$ 为速度瞬心
+    * 根据速度瞬心法可得 
+    $$v_O=r\omega$$
+    * 接触点不是加速度瞬心
+    * 圆心的切向加速度满足 
+    $$a_O^t=r\alpha$$
+* 当纯滚动的接触面为弧面时, 圆心切向加速度不变, 还有法向加速度(注意与法向加速度公式区分)
+$$a_O^n=\frac{v_O^2}{r+R}=\frac{r^2\omega^2}{r+R}$$
+* 当相对于运动物块纯滚动时, 则以物块为动系, 当物块平动时, 满足 
+$$a_O^r=r\alpha$$
 
 #### 纯滚动的其他特性
 1. 对于绳子绕在圆柱上, 认为绳子与圆柱的接触点纯滚动
 1. 纯滚动的位置通常存在一个拉力 / 滑动摩擦力
 
 #### 齿轮问题
-1. 齿轮齿数 $z$ 满足 
+* 齿轮齿数 $z$ 满足 
 $$\frac{z_1}{z_2}=\frac{r_1}{r_2}=i_{12}$$ 
 其中 $i_{12}$ 为齿轮的传动比
-1. 齿轮 / 齿条的啮合处 $C$ 为纯滚动, 且对于两齿轮速度相同, 满足 
+* 齿轮 / 齿条的啮合处 $C$ 为纯滚动, 且对于两齿轮速度相同, 满足 
 $$r_1\omega_1=-r_2\omega_2=v_C$$
-1. ==注意外啮合的两个齿轮转向必定相反, 因此要加负号==
+* ==注意外啮合的两个齿轮转向必定相反, 因此要加负号==
 
 ### 刚体绕平行轴转动
 对于二维动系中的刚体, 满足 
@@ -265,3 +269,105 @@ $$\alpha_a=\alpha_r+\alpha_e$$
 1. 套筒内的刚体相对于套筒平动, 即刚体上各点的 $v_r$ 相同, 刚体 $\omega_r=0$
 1. 根据角速度叠加可得, 套筒内的刚体绝对角速度与绝对角加速度与套筒相同
 1. 与套筒转轴的重合点 $P$ 上, $v_e=0$, 因此 $v_r=v_P$ (套筒为动系, $P$ 为动点)
+
+### 例题
+
+![](./theoretical_mechanics_res/quest2.drawio.svg)
+
+半径为 $r$ 的圆盘 $B$ 在半径为 $5r$ 的固定圆上纯滚动. 杆 $OA$ 以匀角速度 $3\omega$ 转动, 求图示瞬间 $AB$ 中点 $C$ 的速度和加速度以及圆盘 $B$ 的角速度和角加速度.
+
+#### 速度分析
+
+==统一采用逆时针方向为待求角速度与角加速度的方向==
+
+首先分析杆 $AC$  
+
+![](./theoretical_mechanics_res/quest2_1.drawio.svg)
+
+杆 $AC$ 上的点 $A$ 绕点 $O$ 旋转, 此时速度 $\vec{v_A}$ 方向为水平向右. 杆 $AC$ 上的点 $B$ 同时也是圆盘 $B$ 的圆心, 此时 $B$ 与固定圆圆心垂直于 $OB$, 因此速度 $\vec{v_B}$ 方向平行于 $\vec{v_A}$. 杆 $AB$ 上有两个平行的速度, 因此==杆 $AB$ 在此瞬间为平动==, 有
+$$v_A=v_B=v_C=OA\omega_{AO}=6r\omega$$
+
+由于杆瞬时平动, 因此
+$$\omega_{AB}=0$$
+
+---
+
+分析圆盘 $B$
+
+![](./theoretical_mechanics_res/quest2_2.drawio.svg)
+
+圆盘与固定圆在接触点 $D$ 做纯滚动, 因此 $B$ 点的速度还满足
+$$v_B=r\omega_B\to\omega_B=6\omega$$
+
+#### 加速度分析
+
+![](./theoretical_mechanics_res/quest2_3.drawio.svg)
+
+点 $A$ 在匀速转动的杆 $OA$ 上, 因此其加速度满足
+$$a_A^\tau=OA\alpha_{OA}=0$$
+$$a_A^n=OA\omega_{OA}^2=18r\omega^2$$ 
+
+---
+
+![](./theoretical_mechanics_res/quest2_4.drawio.svg)
+
+点 $B$ 为纯滚动圆盘的圆心, 根据[纯滚动的性质](#纯滚动的运动特性), $B$ 的加速度满足
+$$a_B^\tau=r\alpha_{B}$$
+$$a_B^n=\frac{r^2\omega_{B}^2}{r+5r}=6r\omega^2$$ 
+
+---
+
+![](./theoretical_mechanics_res/quest2_5.drawio.svg)
+
+以 $A$ 为基点对杆 $AB$ 上的点 $C,B$ 分析
+
+其中相对加速度满足
+$$a_{AC}^\tau=AC\alpha_{AB},\;a_{AC}^n=AC\omega_{AB}^2=0$$
+$$a_{AB}^\tau=AB\alpha_{AB},\;a_{AB}^n=AB\omega_{AB}^2=0$$
+
+---
+
+对于点 $B$ 有加速度合成方程
+$$\vec{a_B^n}+\vec{a_B^\tau}=\vec{a_A}+\vec{a_{AB}^n}+\vec{a_{AB}^\tau}(1)$$
+
+对于点 $C$, 由于其绝对加速度 $\vec{a_C}$ 的大小与方向均无法确定, 因此将其沿杆 $AB$ 分解为两个分量 $\vec{a_{Cx}}$ 与 $\vec{a_{Cy}}$, 有
+$$\vec{a_{Cx}}+\vec{a_{Cy}}=\vec{a_A}+\vec{a_{AC}^n}+\vec{a_{AC}^\tau}(2)$$
+
+对于方程 $(1)$ 中有两个未知量, 可以求解. 对于方程 $(2)$ 中有三个未知量, 可等方程 $(1)$ 求解完后再分析 (如果方程的未知量均大于 $2$, 则可先尝试往特定方向分解)
+
+---
+
+方程 $(1)$ 中未知的待求量为 $a_{B}^\tau(\alpha_{B})$ 与 $a_{AB}^\tau(\alpha_{AB})$. ==首先沿 $\perp \vec{a_{B}^\tau}$ 方向分解, 避开其中一个待求量==有
+$$\begin{split}a_B^n &=a_A^n-a_{AB}^n\sin 30^\circ-a_{AB}^\tau\cos 30^\circ\\
+6r\omega^2 &=18r\omega^2-0-\frac{\sqrt{3}}{2}a_{AB}^\tau\\
+a_{AB}^\tau &=8\sqrt{3}r\omega^2\\
+\alpha_{AB} &=2\sqrt{3}\omega^2\end{split}$$
+
+之后沿 $\vec{a_{B}^\tau}$ 方向分解, 求出另一个未知量
+$$\begin{split}a_{B}^\tau&=a_{AB}^n\cos 30^\circ-a_{AB}^\tau\cos 60^\circ\\
+a_{B}^\tau&=0-4\sqrt{3}r\omega^2\\
+\alpha_{B}&=-4\sqrt{3}\omega^2
+\end{split}$$
+
+---
+
+方程 $(1)$ 中得出的 $\alpha_{AB}$ 即方程 $(2)$ 中的一个未知量, 因此此时方程 $(2)$ 可解
+
+沿 $\vec{a_{Cx}}$ 方向分解有
+$$\begin{split}a_{Cx}&=a_{AC}^n-a_A\cos 60^\circ\\
+a_{Cx}&=0-9r\omega^2\\
+a_{Cx}&=-9r\omega^2\end{split}$$
+
+沿 $\vec{a_{Cy}}$ 方向分解有
+$$\begin{split}a_{Cy}&=a_{A}\cos 30^\circ-a_{AC}^\tau\\
+a_{Cy}&=9\sqrt{3}r\omega^2-AC\alpha_{AB}\\
+a_{Cy}&=5\sqrt{3}r\omega^2\end{split}$$
+
+---
+
+综上可得
+$$v_C=6r\omega,\text{方向向左}$$
+$$a_{Cx}=9r\omega^2,\text{沿AB向下}$$
+$$a_{Cy}=5\sqrt{3}r\omega^2,\text{垂直AB向下}$$
+$$\omega_B=6\omega,\text{逆时针方向}$$
+$$\alpha_B=4\sqrt{3}\omega^2,\text{顺时针方向}$$
