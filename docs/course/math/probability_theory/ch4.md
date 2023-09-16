@@ -1,4 +1,8 @@
-# Ch4. 数字特征
+---
+order: 4
+---
+
+# 数字特征
 ## 数学期望
 $$EX=\sum_{i=1}^{\infty}x_ip_i=\int_{-\infty}^{\infty}xf(x)dx$$
 ### 条件

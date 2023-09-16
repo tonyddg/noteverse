@@ -1,4 +1,8 @@
-# 第一章 矩阵基础
+---
+order: 1
+---
+
+# 矩阵基础
 > 参考教程 [麻省理工公开课 线性代数](https://www.bilibili.com/video/BV1zx411g7gq) P1~P5
 
 

@@ -1,3 +1,7 @@
+---
+order: 9
+---
+
 # 拉普拉斯变换
 $f(t)$ 为定义在 $[0,+\infty)$ 的实函数, $s=\beta+j\omega$ 为复参数, 其中 $\beta$ 为一个足够大的实数, 像函数 $F(s)$ 在复平面上某一区域内收敛
 $$\mathscr{L}[f(t)]=F(s)=\int_{0}^{+\infty}f(t)e^{-st}dt=\mathscr{F}[f(t)u(t)e^{-\beta t}]$$
