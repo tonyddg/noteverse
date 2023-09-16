@@ -1,4 +1,9 @@
-# 齿轮
+---
+order: 2
+---
+
+# 齿轮 
+<Badge type="warning" text="施工中" vertical="top" />
 
 ## 主要失效形式
 ### 轮齿折断
