@@ -22,6 +22,10 @@ export default defineUserConfig({
                 mark: true,
                 // 显示图片信息
                 figure: true,
+                // 启用图片标记
+                imgMark: true,
+                // 启用图片大小
+                imgSize: true,
             },
 
             autoCatalog:{
