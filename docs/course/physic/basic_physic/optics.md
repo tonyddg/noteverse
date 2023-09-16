@@ -1,7 +1,11 @@
+---
+order: 6
+---
+
 # 光学
 ## 电磁波理论
 ### 惠更斯原理
-![](./optics_res/Huygens.png)
+![](./src/optics/Huygens.png)
 
 波面上的各点都可以看成产生子波 (球面波) 的波源, 这些子波的包络面可以看成新的波面
 
@@ -84,7 +88,7 @@ $$\delta=\begin{cases}\lambda k,& \text{明条纹}\\\lambda(k+\frac{1}{2}),& \te
 
 ## 分波阵面干涉
 ### 杨氏干涉
-![](./optics_res/Young_1.png)
+![](./src/optics/Young_1.png)
 
 子光源 $S_1,S_2$ 来自同一个光源(波阵面), 因此为相干光, 当$SS_1=SS_2$ 时, 两个子光源在 $P$ 点的光程差为 
 $$\delta=r_2-r_1\approx S_2N\approx d\sin\theta\approx d\tan\theta=d\frac{x}{D}$$
@@ -108,7 +112,7 @@ $$I_P=4I_1\cos^2(\frac{\Delta\varphi}{2})$$
 $$2\beta=\Delta\varphi=\frac{2\pi}{\lambda}d\sin\theta$$
 
 ### 劳埃德镜
-![](./optics_res/Lloyd_1.svg)
+![](./src/optics/Lloyd_1.svg)
 
 1. 可将 $S_1$ 在平面镜中的的虚像视为相干光源光源 $S_2$, 即杨氏干涉中的第二条狭缝
 2. 由于光线从空气入射平面镜将产生半波损失, 因此干涉条纹的明暗与杨氏干涉相反
@@ -136,7 +140,7 @@ $$\frac{b_0d}{2R}=\frac{\lambda}{2}$$
 * 由于利用了反射与折射, 需要注意半波损失
 
 ### 等倾干涉
-![](./optics_res/Equal_1.jpg)
+![](./src/optics/Equal_1.jpg)
 
 1. 将分解光源的两层薄膜平行的干涉称为等倾干涉
 2. 由于两列相干光平行, 因此认为相遇于无穷远处, 或需要透镜聚焦
@@ -165,7 +169,7 @@ $$\delta=2d\sqrt{n^2-n_1^2\sin^2i}=k\lambda(k=1,2,\dots)$$
 1. 从反方向观察, $B$ 处折射光与 $C$ 处反射再折射光也将产生等倾干涉, 并且条纹与正面观察的相反 (由于半波损失情况与正面相反导致, 符合能量守恒)
 
 ### 等厚干涉
-![](./optics_res/Wedge_1.png)
+![](./src/optics/Wedge_1.png)
 
 1. 将分解光源的两层薄膜成一定角度的干涉称为等厚干涉
 1. 实际问题中, 只讨论 $i=0$ 即垂直入射的情况
@@ -187,7 +191,7 @@ $$\Delta l=\frac{\lambda}{2n\theta}$$
 确定薄膜厚度, 使反射光为干涉极小, 增大透射光光强
 
 #### 牛顿环
-![](./optics_res/Newton_1.jpg)
+![](./src/optics/Newton_1.jpg)
 
 * 环的半径与厚度关系 
 $$r^2=2Rd-d^2\approx 2Rd$$
@@ -198,7 +202,7 @@ $$r^2=2Rd-d^2\approx 2Rd$$
 * 由于 $k=0,r=0$, 因此中心条纹为暗纹 (仅当中心紧贴着下表面时成立)
 
 #### 迈克尔逊干涉仪
-![](./optics_res/Mickelson_1.jpg)
+![](./src/optics/Mickelson_1.jpg)
 
 1. 引入补偿板 $P_2$, 使两束光均经过两次透光板, 保证两束光除空气外光程相同
 1. 干涉仪将光源分为折射 $1$ 与反射 $2$ 两束, 一束来自可动镜 $M_2$, 另一束来自固定镜 $M_1$, 其虚像 $M_1'$ 与 $M_2$ 平行
@@ -209,14 +213,14 @@ $$r^2=2Rd-d^2\approx 2Rd$$
 1. 当 $M_1'\nparallel M_2$, 光源为平行光, 得到等厚干涉图样
 
 ## 夫琅禾费衍射
-![](./optics_res/Fraunhofer_1.jpg)
+![](./src/optics/Fraunhofer_1.jpg)
 
 * 根据惠更斯原理, 光波在狭缝处可分解为无数个子光源, 光屏上的点 $P$ 为子光源共同聚焦的结果
 * 当入射狭缝的光源为平行光时, 称为单缝夫琅禾费衍射
 * ==无论单缝位置在哪, 衍射图像主要与透镜的位置有关==, 其中 $\theta$ 为光屏上 $P$ 点与透镜中心及中心线所成的角
 
 ### 叠加法推导单缝夫琅禾费衍射
-![](./optics_res/Fraunhofer_2.jpg)
+![](./src/optics/Fraunhofer_2.jpg)
 
 * 将子光源在 $p$ 点的光振动以相量形式表示为 $d\vec{B}=dE\angle d\varphi_0$
 * 由相邻光振动的光程差 $d\delta\approx dx\sin\theta$ 可得 
@@ -228,7 +232,7 @@ $$E=2\frac{E_0}{\varphi'}\cdot\sin\frac{\varphi'}{2}=\frac{E_0\sin\alpha}{\alpha
 * 根据惠更斯原理, $E_0\propto a$, 因此最大光强与缝宽成正比
 
 #### 夫琅禾费衍射光强分析
-![](./optics_res/Fraunhofer_3.jpg)
+![](./src/optics/Fraunhofer_3.jpg)
 
 实际分析中通常分析光强分布 
 $$I\propto E^2=I_0(\frac{\sin\alpha}{\alpha})^2$$ 
@@ -246,7 +250,7 @@ $$\Delta x=2f\tan\Delta\theta\approx 2f\frac{\lambda}{\alpha}$$
 * 综上可得, 单缝缝宽 $a$ 越小, 主极大亮度 $I_0$ 越低, 但宽度 $\Delta x$ 越大
 
 #### 半波带法
-![](./optics_res/Fraunhofer_4.jpg)
+![](./src/optics/Fraunhofer_4.jpg)
 
 * 将缝宽向光线方向的投影以宽度 $\lambda/2$ 等分, 反过来将入射光源分为 $n$ 部分
 * 各部分子光源间的光程差为 $\lambda/2$, 因此每两部分的光线相干抵消, 最终叠加得到暗条纹
@@ -256,7 +260,7 @@ $$\Delta x=2f\tan\Delta\theta\approx 2f\frac{\lambda}{\alpha}$$
     1. $n$ 为奇数, 至少有一部分子光源没有被抵消, 为次极大
 
 ### 双缝衍射与干涉
-![](./optics_res/Double_1.jfif)
+![](./src/optics/Double_1.jfif)
 
 * 由于单缝衍射的图样与单缝位置无关, 因此两缝产生的条纹完全重合, 但光程差不同
 * 两图样的叠加可通过双缝干涉的方法计算
@@ -284,12 +288,12 @@ $$\beta=d\frac{\pi\sin\theta}{\lambda}$$
 1. 根据对称性, 左右两第 $k$ 缺级中, 共会有 $2\times(k-1)+1$ 条条纹
 
 ## 衍射光栅
-![](./optics_res/Raster_1.jpg)
+![](./src/optics/Raster_1.jpg)
 
 * 设光栅常量即两缝中心距 $d$, 双缝缝宽 $a$, 共有 $N$ 条狭缝
 
 ### 叠加法推导衍射光栅
-![](./optics_res/Fraunhofer_2.jpg)
+![](./src/optics/Fraunhofer_2.jpg)
 
 1. 每个狭缝产生的衍射图样重合, 且条纹之间的光程差均为 $\Delta\varphi=\frac{2\pi d\sin\theta}{\lambda}$, 光矢量振幅均为 $E_i=E_0\frac{\sin\alpha}{\alpha}$
 1. 因此也可以对各个狭缝在 $P$ 点的光振动相量叠加, 得到一个圆弧, 实际光振动相量即圆弧的弦 $\vec{B_N}$
@@ -316,7 +320,7 @@ $$\Delta\theta_k\approx\frac{\lambda}{N\cos\theta_k}$$
 * 与双缝类似, 光栅衍射也存在缺级, 条件依然为 $k=k'\frac{d}{a}$ 可以此判断 $\frac{d}{a}$ 大小
 
 ### 非水平入射情况
-![](./optics_res/Raster_2.jpg)
+![](./src/optics/Raster_2.jpg)
 
 当平行光不是水平入射, 而是存在入射角 $i\neq 0$, 则相当于入射前的光还存在一个额外的光程差, 此时光程差为 
 $$\delta=d(\sin\theta+\sin i)$$ 
@@ -343,7 +347,7 @@ $$R=kN$$
 
 ## 特殊衍射
 ### X射线衍射
-![](./optics_res/XRay_1.jpg)
+![](./src/optics/XRay_1.jpg)
 
 从 $\theta$ 处观察 (与水平晶面夹角), 当 X 射线的波长满足以下条件时, 干涉极大
 $$\lambda=\frac{2d\sin\varphi}{k}(k=1,2,\dots)$$
@@ -398,9 +402,9 @@ $$\tan i_B=\frac{n_2}{n_1}$$
 
 ### 双折射
 #### 晶体双折射现象
-![](./optics_res/Crystal_3.jpg)
+![](./src/optics/Crystal_3.jpg)
 
-![](./optics_res/Crystal_1.jpg)
+![](./src/optics/Crystal_1.jpg)
 
 1. 各向异性介质 (晶体) 中, 一束入射光将产生两束折射光, 将符合折射定律的折射光称为 $o$ 光, 另一束则称为 $e$ 光
 1. 晶体中存在一个方向, 沿此方向不发生双折射, 称为光轴 (存在无数条, 相互平行)
@@ -430,7 +434,7 @@ $$\tan i_B=\frac{n_2}{n_1}$$
 1. 入射光为圆偏振光时, 能够改变其旋转方向
 
 ### 偏振光的干涉
-![](./optics_res/Crystal_2.jpg)
+![](./src/optics/Crystal_2.jpg)
 
 * 线偏振光通过波片, 改变其 $o$ 光与 $e$ 光方向分量的相位差
 * 再通过偏振片, 获得其 $o$ 光与 $e$ 光方向分量在偏振片方向的投影

@@ -1,7 +1,11 @@
+---
+order: 8
+---
+
 # 早期量子力学理论
 ## 黑体辐射
 ### 绝对黑体
-![](./quantum_mechanics_res/Black_1.jpg)
+![](./src/quantum_mechanics/Black_1.jpg)
 
 * 在不透明的空腔上开一个小孔, 外界辐射进入小孔后, 将会几乎被完全吸收, 可将小孔认为是绝对黑体
 * 凡是易于吸收辐射的物体, 也一定是易于发出辐射的, 这样才能达到热平衡
@@ -15,7 +19,7 @@ $$\varepsilon=h\nu$$
 * 谐振子能量交换的过程也不连续, 其放出与吸收的能量只能是 $\varepsilon$ 的整数倍
 
 ## 光电效应
-![](./quantum_mechanics_res/Photoelectric_1.png)
+![](./src/quantum_mechanics/Photoelectric_1.png)
 
 将单色光照到阴极板 $K$ 上, 并施加电压 $U$ , 记录电流计的读书 $I$ 
 
@@ -52,7 +56,7 @@ $$m=\frac{h\nu}{c^2}$$
 $$p=mc=\frac{h\nu}{c}=\frac{h}{\lambda}$$
 
 ## 康普顿效应
-![](./quantum_mechanics_res/Compton_1.jpg)
+![](./src/quantum_mechanics/Compton_1.jpg)
 
 波长为 $\lambda_0$ 的X射线通过散射物质后, 将沿各个方向发射出散射射线
 
@@ -160,7 +164,7 @@ $$E=\frac{n^2\pi^2\hbar^2}{2ma^2}(n=1,2,\dots)$$
 * 当量子数 $n$ 足够大时, 近似均匀出现, 与经典理论相符
 
 ### 一维势垒
-![](./quantum_mechanics_res/Barrier_1.jpg)
+![](./src/quantum_mechanics/Barrier_1.jpg)
 1. 能垒左侧是电子物质波入射波与反射波的合成
 1. 在能垒中, 电子出现的概率密度按指数减小, 当 $L$ 不大, 仍有概率出现在能垒右侧
 1. 因此电子有一定的概率在能垒的右侧被检测到
