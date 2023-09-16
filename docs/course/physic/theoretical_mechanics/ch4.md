@@ -1,6 +1,10 @@
-# 分析力学初步
+---
+order: 4
+---
+
+# 分析力学初步<Badge type="warning" text="施工中" vertical="top" />
 ## 约束
-此部分参考自 
+此部分参考自视频 <https://www.bilibili.com/video/BV19x411L7iq>
 
 ### 约束方程
 使用约束方程表示物体在位置与速度上受到的限制
