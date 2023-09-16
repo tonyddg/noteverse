@@ -3,6 +3,8 @@ title: 力学基础
 order: 1
 ---
 
+---
+
 # 力学基本定律
 ## 自然坐标系 P11
 $$\vec{a} = \frac{v^2}{R}  \vec{e_n} + \frac{dv}{dt}  \vec{e_t}$$
