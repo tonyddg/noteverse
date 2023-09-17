@@ -68,7 +68,7 @@ $$\forall\varepsilon>0,\exists \delta > 0,\forall x\in \mathring{N}(a,\delta):|f
 #### 箭头
 ![latex 箭头符号表](./src/latex/latex_arrow.jpg)
 
-`\xrightarrow[下方公式]{上方公式}` $\xrightarrow[上方公式]{下方公式}$
+`\xrightarrow[下方公式]{上方公式}` $\xrightarrow[\text{上方公式}]{\text{下方公式}}$
 
 顺时针表示 `\curvearrowright` $\curvearrowright$
 逆时针表示 `\curvearrowleft` $\curvearrowleft$

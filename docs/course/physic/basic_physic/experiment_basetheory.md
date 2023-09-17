@@ -89,7 +89,7 @@ $$U_a=t_p\times u_a$$
 $$u_B = \sqrt{u_\text{仪}^2 + u_\text{估}^2} \approx u_\text{仪}^2 = k_p\frac{\Delta_\text{仪}}{C} \approx \Delta_\text{仪}$$
 1. $k_p$ 置信因子 与置信概率有关
 2. $C$ 置信系数 与仪器的误差概率分布有关
-3. $\Delta_仪$为仪器最大允许误差，有时也直接取为仪表最小刻度的一半
+3. $\Delta_\text{仪}$为仪器最大允许误差，有时也直接取为仪表最小刻度的一半
     * 对于未加说明的仪器 $\Delta_\text{仪} = \frac{\text{最小分度}}{2}$
     * 游标卡尺/数字仪表 $\Delta_\text{仪} = \text{最小分度}$
 #### 标准不确定度
@@ -136,4 +136,4 @@ $$u_i < \frac{k\%}{\sqrt{n}}\frac{\partial x_i}{\partial lnY} (\text{注意}n\te
 带入实验的估计结果得到 $u_i$ 的最大值  
 应用  
 单摆实验中，测量单摆周期的主要误差为开始/停止计时时按下按键的误差，因此可将其视为T的不确定度，可以通过增加测量的周期，均分误差，使误差达到要求。
-$$\frac{2\Delta_人}{n} \le u_{Tmax}(\text{此处}n\text{表示测量的周期})$$
+$$\frac{2\Delta_\text{人}}{n} \le u_{Tmax}(\text{此处}n\text{表示测量的周期})$$

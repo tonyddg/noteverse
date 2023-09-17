@@ -178,7 +178,7 @@ $$\delta=2d\sqrt{n^2-n_1^2\sin^2i}=k\lambda(k=1,2,\dots)$$
 
 #### 劈尖干涉
 当 $\theta\approx 0$, ==沿斜边距离棱角 $l$ 处==的光程差为 
-$$\delta=2nl\tan\theta\approx 2nl\theta=k\lambda(亮条纹)$$
+$$\delta=2nl\tan\theta\approx 2nl\theta=k\lambda(\text{亮条纹})$$
 干涉中相邻的条纹距离为 
 $$\Delta l=\frac{\lambda}{2n\theta}$$
 一般劈尖中心为空气, $n=1$

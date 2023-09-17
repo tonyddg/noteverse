@@ -36,10 +36,10 @@ $f(0,0)$ 处 $x,y$ 偏导均为无穷(不存在)
 $f_{xy},\;f_{yx}$存在且连续时有
 $f_{xy}=f_{yx}$
 ### 全微分
-1. 当$f(P)$可微, 则$f_x(P)与$$f_y(P)$存在且
+1. 当$f(P)$可微, 则$f_x(P)$ 与 $f_y(P)$存在且
 $$df(P)=f_x(P)dx+f_y(P)dy+o(\rho)$$
-2. 当$F_x(P)与$$F_y(P)$存在且==偏导数连续==则F(x, y)与P处可微(==仅充分条件==)
-3. 当$F_x(P)与$$F_y(P)$不连续时满足
+2. 当$F_x(P)$ 与 $F_y(P)$ 存在且==偏导数连续==则 $F(x, y)$ 于 $P$ 处可微(==仅充分条件==)
+3. 当$F_x(P)$ 与 $F_y(P)$ 不连续时满足
 $$\lim_{\rho\to 0}\frac{[f(x+\Delta x,y+\Delta y)-f(x,y)]-f_x(x,y)\Delta x-f_y(x,y)\Delta y}{\rho}=0$$
 $$\rho=\sqrt{\Delta x^2+\Delta y^2}$$
 也可微(定义的变形, 用于不连续的情况)
@@ -54,9 +54,9 @@ $$\rho=\sqrt{\Delta x^2+\Delta y^2}$$
 * 找出自变量(题目最终要求的偏导的自变量, 其他均看作关于自变量的函数)
 * 全微分后对所有式子除以自变量的微分(自变量组则分别除以自变量组中的自变量)
 * 除了自变量组以外的==因变量除以自变量的微分时, 变为偏微分, 且不可消去==
-1. $$dx=f_1du+f_2dv(草稿纸)\\
+1. $$dx=f_1du+f_2dv\\
 1=f_1\frac{\partial u}{\partial x}+f_2\frac{\partial v}{\partial x}$$
-2. $$dy=g_1du+g_2dv(草稿纸)\\
+2. $$dy=g_1du+g_2dv\\
 0=g_1\frac{\partial u}{\partial x}+g_2\frac{\partial v}{\partial x}$$
 3. 结合两个方程解出 $\frac{\partial u}{\partial x}$ 与 $\frac{\partial v}{\partial x}$
 ## 微分学几何应用

@@ -66,7 +66,7 @@ USART_TDR 为发送的数据, 写入 USART_DR 时自动写入 TDR
     * RXNEIE 发送完成中断使能
 
 #### 小数波特率生成器
-$$Tx/Rx波特率=\frac{f_{PLCK}}{16\times USARTDIV}$$
+$$Tx/Rx\text{波特率}=\frac{f_{PLCK}}{16\times USARTDIV}$$
 $f_{PLCK}$ 为 USART 所在总线的时钟(不同总线下不同, 通常为 72MHz(APB2))
 
 USARTDIV 存放在寄存器 USART_BRR 的小数

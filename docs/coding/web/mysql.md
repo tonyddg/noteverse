@@ -144,12 +144,12 @@ $$R(A,B)\;S(B,C)\\
 (b_5,c_1)\in S\;(a_1,b_4)\in R\\
 b_4\notin S.B\;b_5\notin R.B$$
 ##### 外连接
-$$R⟗S$$
+$$R\text{⟗}S$$
 保证结果中被连接列 B 的在 R 与 S 中所有的取值会出现在结果中
 例子中 $b_4$ 与 $b_5$ 不同时存在于 $R,S$ 中, 但也会在结果中保留, 不能确定的列取空值
 ##### 左/右连接
 以左连接为例
-$$R⟕S$$
+$$R\text{⟕}S$$
 保证结果中被连接列 B 的在 R(左侧) 中所有的取值会出现在结果中, 不能确定的列取空值
 #### 除运算 P55
 $$R\div S$$
@@ -399,7 +399,7 @@ $$X\mathop{\rightarrow}\limits^PY$$
 假设
 $$X\rightarrow Y\;Y\nrightarrow X\;Y\rightarrow Z$$
 则
-$$X\mathop{\rightarrow}\limits^{传递}Z$$
+$$X\mathop{\rightarrow}\limits^{\text{传递}}Z$$
 ## 码 P181
 ### 定义
 $$R<U,F>$$
@@ -425,8 +425,8 @@ $S$ 中可以有额外属性, 且可以完全或部分函数依赖于 $U$
 ### 第二范式 2NF P182
 非主属性完全函数依赖于任何一个候选码
 e.g.
-$$R(学号, 课程, 成绩, 姓名)$$
-候选码 $$K=\{学号, 课程\}\;K\mathop{\rightarrow}\limits^P姓名$$
+$$R(\text{学号}, \text{课程}, \text{成绩}, \text{姓名})$$
+候选码 $$K=\{\text{学号}, \text{课程}\}\;K\mathop{\rightarrow}\limits^P姓名$$
 不符合第二范式
 1. 数据冗余
 姓名重复
@@ -443,8 +443,8 @@ $$R(学号, 课程, 成绩, 姓名)$$
 每一个==非主属性==不传递依赖于码
 (主属性内可能有传递依赖关系)
 e.g.
-$$R(学号,系,系名)$$
-$$学号\rightarrow系\rightarrow系名$$
+$$R(\text{学号},\text{系},\text{系名})$$
+$$\text{学号}\rightarrow\text{系}\rightarrow\text{系名}$$
 不符合第三范式, 需要拆分传递函数依赖的部分
 1. 修改复杂
 当系名修改, 需要额外修改整张表
@@ -458,7 +458,7 @@ $$学号\rightarrow系\rightarrow系名$$
 $K_2$ 解释: 仅有 $S$ 无法推出 $T,J$ (属性组 $S, J$ 函数确定 $T$), 仅有 $T$ 无法推出 $S$
 可得主属性 $S$ 非主属性 $T,J$
 对于两个候选码, 均能直接函数确定非主属性, 符合第三范式
-但是存在 $(S,J)\mathop{\rightarrow}\limits^{传递}J$
+但是存在 $(S,J)\mathop{\rightarrow}\limits^{\text{传递}}J$
 不符合BCNF, 需要拆分
 # 数据库设计 P209
 1. 需求分析

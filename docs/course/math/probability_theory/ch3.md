@@ -30,7 +30,7 @@ $$f_y(y)=\int_{-\infty}^{\infty}f(x,y)dx$$
 ### 均匀分布
 $$f(x,y)=\begin{cases}
 \frac{1}{S}&,(x,y)\in S,\\
-0&,其余
+0&,\text{其余}
 \end{cases}$$
 ### 二维正态分布
 $$(X,Y)\sim N(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)$$
@@ -53,7 +53,7 @@ $$\therefore f(x|y)=\frac{f(x,y)}{f_Y(y)}$$
 ### 离散型随机变量
 $$P(X+Y<a|Y=b)=\frac{P(X+b<a)}{P(Y=b)}$$
 ### 独立性
-$$X,Y独立\iff f(x,y)=f_x(x)f_y(y)\iff F(x,y)=F_X(x)F_Y(y)$$
+$$X,Y\text{独立}\iff f(x,y)=f_x(x)f_y(y)\iff F(x,y)=F_X(x)F_Y(y)$$
 技巧
 $X,Y$ 独立, 求 $P(G(X,Y)<0)$
 可以化为(注意分情况, ==负正得负, 负负得正==) 
@@ -75,13 +75,15 @@ $$f_z(z)=\int_{-\infty}^{\infty}|x|f(x,zx)dx$$
 #### 最大值
 设 $X_1,X_2,...,X_n$ 相互独立
 $$Z=max\{X_1,X_2,...,X_n\}$$
-$$P(Z\le z)=P(max\{X_1,X_2,...,X_n\}\le z) 即大于所有X_n$$
+$$P(Z\le z)=P(max\{X_1,X_2,...,X_n\}\le z)$$ 
+即大于所有 $X_n$
 $$P(Z\le z)=P(X_1\le z)P(X_2\le z)...P(X_n\le z)$$
 $$\therefore F(z)=F_{X_1}(z)F_{X_2}(z)...F_{X_n}(z)$$
 #### 最小值
 设 $X_1,X_2,...,X_n$ 相互独立
 $$Z=min\{X_1,X_2,...,X_n\}$$
-$$P(Z> z)=P(min\{X_1,X_2,...,X_n\}> z) 即小于所有X_n$$
+$$P(Z> z)=P(min\{X_1,X_2,...,X_n\}> z)$$
+即小于所有 $X_n$
 $$P(Z> z)=P(X_1> z)P(X_2> z)...P(X_n> z)$$
 $$P(Z\le z)=1-P(Z>z)=1-(1-P(X_1\le z))(1-P(X_2\le z))...(1-P(X_n\le z))$$
 $$\therefore F(z)=1-(1-F_{X_1}(z))(1-F_{X_2}(z))...(1-F_{X_n}(z))$$

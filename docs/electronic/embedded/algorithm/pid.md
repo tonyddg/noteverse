@@ -9,7 +9,7 @@ $$U(t)=K_P err(t)+\frac{K_I}{T}\int err(t)dt+TK_D\frac{d err(t)}{dt}$$
 ## 名词
 1. $U(t)$ 输出量
 2. $N(t)$ 输入量(需要控制的量)
-3. $err(t)=N_{目标}(t)-N_{实际}(t)$ 输入量误差
+3. $err(t)=N_{\text{目标}}(t)-N_{\text{实际}}(t)$ 输入量误差
 4. $T$ 系统经过的时间
 5. $P$ proportion 比例
 6. $I$ integration 积分
