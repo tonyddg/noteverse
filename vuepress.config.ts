@@ -20,6 +20,12 @@ export default defineUserConfig({
                 },
                 // 启用标记
                 mark: true,
+
+                // 启用下角标功能
+                sub: true,
+                // 启用上角标
+                sup: true,
+
                 // 显示图片信息
                 figure: true,
                 // 启用图片标记
