@@ -46,3 +46,9 @@ order: 7
 3. SPI_I2S_FLAG_RXNE 接收寄存器非空
 4. SPI_I2S_SendData(SPIx, DATA) 发送数据
 5. SPI_I2S_ReceiveData(SPIx) 接收数据 与发送数据必须在同一个 CS 周期中
+
+## 踩坑笔记
+1. 读取数据的同时接收数据
+2. 使用 SPI 外设时, 即使不发送数据, 也要发送 0xFF, 否则无法读到数据
+3. LL 使用 SPI 前需要先调用函数 LL_SPI_Enable
+1. 全双工模式下, 写入后必须马上读取

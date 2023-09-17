@@ -114,3 +114,31 @@ while (USART_GetFlagStatus(USARTn, USART_FLAG_TXE) == RESET);
 
 ### 数据接收
 为了防止数据丢失, 数据接收应在中断 USARTn_IRQHandler 中进行
+
+## HAL 库配置
+### DMA 发送数据
+#### 使用注意
+1. 使用 DMA 模式时, 需要在 DMA Setting 中, 使能相应的 DMA
+1. 除了使能 DMA, 还要开启 UART 的中断
+#### 发送流程
+1. 使能相关中断, 并通过发送数据
+1. 发送完成后进入中断
+1. 关闭有关中断的使能
+1. 进入回调函数 HAL_UART_TxCpltCallback(UART_HandleTypeDef* huart)
+
+### DMA 接收数据
+通常使用 HAL_UARTEx_ReceiveToIdle_IT/DMA 函数高效接收数据
+#### IDLE 标志位
+当总线空闲时, 将触发 IDLE 标志位, 通常 IDLE 标识在 ==RX 不再接收到数据时==触发 (RX 没有数据不会触发 IDLE 标志位), 因此可以通过判断 IDLE 标志位来判断接收是否结束
+
+#### 接收流程
+1. 使能相关中断并等待 RX 接收数据
+1. RX 无法接收到数据时, 触发 IDLE 标识, 进入中断
+1. 关闭有关中断使能
+1. 进入回调函数 (注意带有接收数据信息) HAL_UARTEx_RxEventCallback(UART_HandleTypeDef* huart, uint16_t size)
+
+## 踩坑笔记
+1. 中断是否使能
+2. 是否添加 NVIC
+3. 波特率是否匹配
+

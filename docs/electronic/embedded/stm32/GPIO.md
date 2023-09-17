@@ -144,3 +144,14 @@ void RCC_XXXXPeriphClockCmd(uint32_t RCC_XXXXPeriph, FunctionalState NewState)
 
 1. RCC_XXXXPeriph 初始化的RCC, 使用宏 RCC_XXXXPeriph_GPIOx 作为参数
 2. NewState 设置状态, 初始化则使用 ENABLE
+
+## HAL 库配置
+1. 设置引脚电平
+```c
+void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+```
+2. 读取引脚的电平状态
+```c
+GPIO_PinState HAL_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+```
+

@@ -161,3 +161,7 @@ TIM_OCInitTypeDef
 8. LL_TIM_IC_SetPolarity 设置捕获极性, 用于捕获高电平长度
 9. LL_TIM_CC_EnableChannel 启动比较输出功能
 10. LL_TIM_EnableCounter 启动计数器(开始输出)
+
+## 踩坑笔记
+1. 计时器没有使能函数 LL_TIM_ENABLE, 要使能计数器, TIM 才能正常工作 LL_TIM_EnableCounter; 关闭计数器即暂停
+2. 没有捕捉时调用 LL_TIM_GetCapture 可能导致异常

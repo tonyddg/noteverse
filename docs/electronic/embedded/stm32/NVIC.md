@@ -27,3 +27,6 @@ NVIC 嵌套向量中断控制器
 
 * 函数 NVIC_PriorityGroupConfig(uint32_t); 参数 NVIC_PriorityGroup_n 使用第 n 组优先级分组
 * 对于外设的中断还需要先通过 XXX_ITConfig 使能
+
+## 踩坑笔记
+1. 部分中断服务函数没有在启动文件中声明, 需要手动添加
