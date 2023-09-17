@@ -22,7 +22,7 @@ $$!a\!b\\ ,a\, b \\ :a\: b \\ ;a\; b \\ a\quad b \\ a\qquad b$$
 ### 空行
 使用 \viskp\baselineskip 
 ### 希腊字母
-![latex 希腊字母表](latex_greece.png)
+![latex 希腊字母表](./src/latex/latex_greece.png)
 ### 花体字母
 \mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}
 
@@ -64,11 +64,16 @@ eg. $C_3^2$
 * \exists 存在
 eg. 
 $$\forall\varepsilon>0,\exists \delta > 0,\forall x\in \mathring{N}(a,\delta):|f(x) - l| > \varepsilon$$  
-![latex 逻辑符号表](latex_logic.jpg)
+![latex 逻辑符号表](./src/latex/latex_logic.jpg)
 #### 箭头
-![latex 箭头符号表](latex_arrow.jpg)
+![latex 箭头符号表](./src/latex/latex_arrow.jpg)
 
-\xrightarrow[下方公式]{上方公式} $\xrightarrow[上方公式]{下方公式}$
+`\xrightarrow[下方公式]{上方公式}` $\xrightarrow[上方公式]{下方公式}$
+
+顺时针表示 `\curvearrowright` $\curvearrowright$
+逆时针表示 `\curvearrowleft` $\curvearrowleft$
+
+
 #### 特殊运算符
 特殊运算则用以下特殊命令\pm\; \times\; \div\; \cdot\; \cap\; \cup\; \geq\; \leq\; \neq\; \approx\; \equiv
 
