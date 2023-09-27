@@ -1,6 +1,8 @@
 # vuepress
 node_modules
-docs/.vuepress
+docs/.vuepress/dist
+docs/.vuepress/.cache
+docs/.vuepress/.temp
 
 # note & blog
 local

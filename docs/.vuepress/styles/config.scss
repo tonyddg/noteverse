@@ -1,0 +1,5 @@
+.block_anchor
+{
+    margin-top: calc(0rem - var(--navbar-height));
+    padding-top: calc(var(--navbar-height) - 1.0rem);
+}

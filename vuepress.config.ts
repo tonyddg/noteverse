@@ -7,9 +7,6 @@ export default defineUserConfig({
     description: 'A place for everything I would like to record.',
     base: '/noteverse/',
 
-    // 以 docs 为 sourceDir
-    public: `docs/public`,
-
     theme: hopeTheme({
         plugins: {
             mdEnhance:{
@@ -32,11 +29,12 @@ export default defineUserConfig({
                 imgMark: true,
                 // 启用图片大小
                 imgSize: true,
+
+                // 为 Markdown 元素添加属性
+                attrs: true,
             },
 
             autoCatalog:{
-                // 排除资源文件
-                exclude: ["public", "src"],
                 // 根据 frontmatter 的 order 属性确定自动目录的排序, 数值越大越靠后, 同时也是侧边栏的目录顺序
                 orderGetter: function(page){
                     return Number(page.frontmatter.order)
