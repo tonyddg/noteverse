@@ -99,9 +99,9 @@
 |$\bar{a}$|`\bar{a}`|$\overgroup{ABC}$|`\overgroup{ABC}`|
 |$\breve{a}$|`\breve{a}`|$\widetilde{ABC}$|`\widetilde{ABC}`|
 |$\check{a}$|`\check{a}`|$\widehat{ABC}$|`\widehat{ABC}`|
-|$\hat{a}$|`\hat{a}`|$\cancel{ABC}$|`\cancel{ABC}`|
+|$\hat{a}$|`\hat{a}`|$\mathrm{ABC}$|`\mathrm{ABC}`|
 |$\vec{a}$|`\vec{a}`|$\bm{ABC}$|`\bm{ABC}`|
-|$\dot{a}$|`\dot{a}`|$\bf{ABC}$|`\bf{ABC}`|
+|$\dot{a}$|`\dot{a}`|$\mathbf{ABC}$|`\mathbf{ABC}`|
 |$\mathring{a}$|`\mathring{a}`|$\sout{ABC}$|`\sout{ABC}`|
 |$\braket{ABC}$|`\braket{ABC}`|$\operatorname{Function}$|`\operatorname{Function}`|
 |$\red{ABC}$|`\red{ABC}`|$\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}$|`\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}`|
