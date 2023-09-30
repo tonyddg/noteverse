@@ -50,19 +50,37 @@
 
 ### 简单运算符号
 
-|字母|latex 命令|字母|latex 命令|字母|latex 命令|字母|latex 命令|
-|---|---|---|---|---|---|---|---|
-|$\supset$|`\supset`|$\times$|`\times`|$\bot$|`\bot`|$\P$|`\P`|
-|$\subset$|`\subset`|$\div$|`\div`|$\sim$|`\sim`|$\S$|`\S`|
-|$\subseteq$|`\subseteq`|$\cdot$|`\cdot`|$\bowtie$|`\bowtie`|$\hbar$|`\hbar`|
-|$\cap$|`\cap`|$\geq$|`\geq`|$\perp$|`\perp`|$\imath$|`\imath`|
-|$\cup$|`\cup`|$\leq$|`\leq`|$\parallel$|`\parallel`|$\jmath$|`\jmath`|
-|$\ni$|`\ni`|$\gg$|`\gg`|$\nabla$|`\nabla`|$\mathrm{d}$|`\mathrm{d}`|
-|$\in$|`\in`|$\ll$|`\ll`|$\angle$|`\angle`|$\partial$|`\partial`|
-|$\notin$|`\notin`|$\equiv$|`\equiv`|$\because$|`\because`|$\propto$|`\propto`|
-|$\forall$|`\forall`|$\approx$|`\approx`|$\therefore$|`\therefore`|$\infty$|`\infty`|
-|$\exists$|`\exists`|$\neq$|`\neq`|$\pm$|`\pm`|$\to$|`\to`|
-|$\varnothing$|`\varnothing`|$\cong$|`\cong`|$\mp$|`\mp`|$\gets$|`\gets`|
+|函数|latex 命令|备注|函数|latex 命令|备注|
+|---|---|---|---|---|---|
+|$\supset$|`\supset`|将 `b` 换为 `p` 可改变方向|$\times$|`\times`|叉乘|
+|$\subset$|`\subset`|真包含|$\div$|`\div`|除|
+|$\subseteq$|`\subseteq`|包含|$\cdot$|`\cdot`|点乘|
+|$\subsetneqq$|`\subsetneqq`|真子集|$\not\gt$|`\not\gt`|`\not` 修饰运算符|
+|$\cap$|`\cap`|交集|$\geq$|`\geq`|大于等于|
+|$\cup$|`\cup`|并集|$\leq$|`\leq`|小于等于|
+|$\ni$|`\ni`|将 `in` 换为 `ni` 可改变方向|$\gg$|`\gg`|远大于|
+|$\in$|`\in`|属于|$\ll$|`\ll`|远小于|
+|$\notin$|`\notin`|不属于|$\equiv$|`\equiv`|恒等于|
+|$\forall$|`\forall`|全部|$\approx$|`\approx`|约等于|
+|$\exists$|`\exists`|存在|$\neq$|`\neq`|不等于|
+|$\varnothing$|`\varnothing`|空集|$\cong$|`\cong`|全等于|
+||
+|$A\degree$|`\degree`|度|$\P$|`\P`|段落符号|
+|$\sim$|`\sim`|相似|$\S$|`\S`|分节符|
+|$\bowtie$|`\bowtie`|关联|$\hbar$|`\hbar`|约化普朗克常数|
+|$\perp$|`\perp`|垂直|$\imath$|`\imath`|虚数单位 $i$|
+|$\parallel$|`\parallel`|平行|$\jmath$|`\jmath`|虚数单位 $j$|
+|$\nabla$|`\nabla`|哈密顿算子|$\mathrm{d}$|`\mathrm{d}`|微分|
+|$\angle$|`\angle`|角度|$\partial$|`\partial`|偏微分|
+|$\land$|`\land`|与|$\aleph$|`\aleph`||
+|$\lor$|`\lor`|或|$\copyright$|`\copyright`|版权|
+|$\because$|`\because`|因为|$\propto$|`\propto`|正比|
+|$\therefore$|`\therefore`|所以|$\infty$|`\infty`|无穷|
+|$\pm$|`\pm`|正负|$\to$|`\to`|得到|
+|$\mp$|`\mp`|负正|$\gets$|`\gets`|推出|
+|$\oplus$|`\oplus`|圆环和|$\square$|`\square`|矩形|
+|$\otimes$|`\otimes`|圆环积|$\bigcirc$|`\bigcirc`|圆形|
+|$\char"263a$|`\char"263a`|任意 unicode|$\triangle$|`\triangle`|三角形|
 
 ### 省略号与箭头
 
@@ -90,53 +108,80 @@
 
 ## 字母修饰
 ### 标记
-|标记|latex 命令|标记|latex 命令|
-|---|---|---|---|
-|$\acute{a}$|`\acute{a}`|$\overline{ABC}$|`\overline{ABC}`|
-|$\grave{a}$|`\grave{a}`|$\underline{ABC}$|`\underline{ABC}`|
-|$\ddot{a}$|`\ddot{a}`|$\overrightarrow{ABC}$|`\overrightarrow{ABC}`|
-|$\tilde{a}$|`\tilde{a}`|$\overleftarrow{ABC}$|`\overleftarrow{ABC}`|
-|$\bar{a}$|`\bar{a}`|$\overgroup{ABC}$|`\overgroup{ABC}`|
-|$\breve{a}$|`\breve{a}`|$\widetilde{ABC}$|`\widetilde{ABC}`|
-|$\check{a}$|`\check{a}`|$\widehat{ABC}$|`\widehat{ABC}`|
-|$\hat{a}$|`\hat{a}`|$\mathrm{ABC}$|`\mathrm{ABC}`|
-|$\vec{a}$|`\vec{a}`|$\bm{ABC}$|`\bm{ABC}`|
-|$\dot{a}$|`\dot{a}`|$\mathbf{ABC}$|`\mathbf{ABC}`|
-|$\mathring{a}$|`\mathring{a}`|$\sout{ABC}$|`\sout{ABC}`|
-|$\braket{ABC}$|`\braket{ABC}`|$\operatorname{Function}$|`\operatorname{Function}`|
-|$\red{ABC}$|`\red{ABC}`|$\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}$|`\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}`|
-|$\blue{ABC}$|`\blue{ABC}`|$\xlongequal[\text{下方公式}]{\text{上方公式}}$|`\xlongequal[\text{下方公式}]{\text{上方公式}}`|
-|$\green{ABC}$|`\green{ABC}`|$\xrightarrow[\text{下方公式}]{\text{上方公式}}$|`\xrightarrow[\text{下方公式}]{\text{上方公式}}`|
-|$\color{orange}{ABC}$|`\color{任意颜色}{ABC}`|$\xleftarrow[\text{下方公式}]{\text{上方公式}}$|`\xleftarrow[\text{下方公式}]{\text{上方公式}}`|
-|$\boxed{\pi=\frac{c}{d}}$|`\boxed{\pi=\frac{c}{d}}`|$\overbrace{a+b+c}^{\text{note}}$|`\overbrace{a+b+c}^{\text{note}}`|
-|$\phase{-78^\circ}$|`\phase{-78^\circ}`|$\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}$|`\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}`|
+|标记|latex 命令|备注|
+|---|---|---|
+|$\bar{a}$|`\bar{a}`|一声/平均值|
+|$\acute{a}$|`\acute{a}`|二声|
+|$\breve{a}$|`\breve{a}`|三声|
+|$\grave{a}$|`\grave{a}`|四声|
+|$\tilde{a}$|`\tilde{a}`||
+|$\check{a}$|`\check{a}`||
+|$\hat{a}$|`\hat{a}`||
+|$\vec{a}$|`\vec{a}`|向量|
+|$\dot{a}$|`\dot{a}`|导数|
+|$\ddot{a}$|`\ddot{a}`|二阶导|
+|$\mathring{a}$|`\mathring{a}`||
+|$\braket{ABC}$|`\braket{ABC}`||
+|$\red{ABC}$|`\red{ABC}`||
+|$\blue{ABC}$|`\blue{ABC}`||
+|$\green{ABC}$|`\green{ABC}`||
+|$\color{orange}{ABC}$|`\color{任意颜色}{ABC}`|彩色字体|
+|$\boxed{\pi=\frac{c}{d}}$|`\boxed{\pi=\frac{c}{d}}`|方框|
+|$\phase{-78^\circ}$|`\phase{-78^\circ}`|相量|
+||
+|$\overline{ABC}$|`\overline{ABC}`||
+|$\underline{ABC}$|`\underline{ABC}`||
+|$\overrightarrow{ABC}$|`\overrightarrow{ABC}`|大向量|
+|$\overleftarrow{ABC}$|`\overleftarrow{ABC}`||
+|$\overgroup{ABC}$|`\overgroup{ABC}`|圆弧|
+|$\widetilde{ABC}$|`\widetilde{ABC}`||
+|$\widehat{ABC}$|`\widehat{ABC}`||
+|$\mathrm{ABC}$|`\mathrm{ABC}`|正体 (符号)|
+|$\bm{ABC}$|`\bm{ABC}`|加粗 (强调)|
+|$\mathbf{ABC}$|`\mathbf{ABC}`|加粗 (符号)|
+|$\sout{ABC}$|`\sout{ABC}`|删除线|
+|$\operatorname{Function}$|`\operatorname{Function}`|函数名|
+|$\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}$|`\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}`|可逆反应|
+|$\xlongequal[\text{下方公式}]{\text{上方公式}}$|`\xlongequal[\text{下方公式}]{\text{上方公式}}`|一般反应|
+|$\xrightarrow[\text{下方公式}]{\text{上方公式}}$|`\xrightarrow[\text{下方公式}]{\text{上方公式}}`|不可逆反应|
+|$\xleftarrow[\text{下方公式}]{\text{上方公式}}$|`\xleftarrow[\text{下方公式}]{\text{上方公式}}`||
+|$\overbrace{a+b+c}^{\text{note}}$|`\overbrace{a+b+c}^{\text{note}}`||
+|$\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}$|`\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}`||
+|$[\substack{a\\b}]$|`[\substack{a\\b}]`|行内垂直堆叠|
+|$\binom{A}{B}$|`\binom{A}{B}`|数对|
 
 ### 函数
 
-|函数|latex 命令|函数|latex 命令|函数|latex 命令|函数|latex 命令|
-|---|---|---|---|---|---|---|---|
-|$\ln$|`\ln`|$\log$|`\log`|$\min$|`\min`|$\max$|`\max`|
-|$\sin$|`\sin`|$\cos$|`\cos`|$\tan$|`\tan`|$\cot$|`\cot`|
-|$\sec$|`\sec`|$\csc$|`\csc`|$\sh$|`\sh`|$\ch$|`\ch`|
-|$\sinh$|`\sinh`|$\cosh$|`\cosh`|$\tanh$|`\tanh`|$\coth$|`\coth`|
-|$\arcsin$|`\arcsin`|$\arccos$|`\arccos`|$\arctan$|`\arctan`|||
-|$\exp$|`\exp`|$\lg$|`\lg`|$\bmod$|`\bmod`|
+|函数|latex 命令|备注|函数|latex 命令|备注|
+|---|---|---|---|---|---|
+|$\ln$|`\ln`|自然对数|$\log$|`\log`|对数|
+|$\min$|`\min`|最小值|$\max$|`\max`|最大值|
+|$\sin$|`\sin`|正弦|$\cos$|`\cos`|余弦|
+|$\tan$|`\tan`|正切|$\cot$|`\cot`|余切|
+|$\sec$|`\sec`|正割|$\csc$|`\csc`|余割|
+|$\sh$|`\sh`|双曲正弦|$\ch$|`\ch`|双曲余弦|
+|$\sinh$|`\sinh`|双曲正弦|$\cosh$|`\cosh`|双曲余弦|
+|$\tanh$|`\tanh`|双曲正切|$\coth$|`\coth`|双曲余切|
+|$\arcsin$|`\arcsin`|反正弦|$\arccos$|`\arccos`|反余弦|
+|$\arctan$|`\arctan`|反正切|$\deg$|`\deg`|角度|
+|$\exp$|`\exp`|指数函数|$\lg$|`\lg`|$10$ 为底的对数|
+|$\bmod$|`\bmod`|求余|$\det$|`\det`|行列式|
 
 对于其他不在类表内的函数, 可使用 `\operatorname{函数名}` 的方式解决, 如 $\operatorname{sgn},\overrightarrow{\operatorname{grand}},\operatorname{div}$
 
 ## 运算符号
 ### 行内运算符
 
-|运算符|latex 命令|
-|---|---|
-|$\sum_a^b$|`\sum_a^b`|
-|$\prod_a^b$|`\prod_a^b`|
-|$\lim_{x\to a}$|`\lim_{x\to a}`|
-|$\int_a^b$|`\int_a^b`|
-|$\iint_a^b$|`\iint_a^b`|
-|$\iiint_a^b$|`\iiint_a^b`|
-|$\oint_a^b$|`\oint_a^b`|
-|$\oiint_a^b$|`\oiint_a^b`|
+|运算符|latex 命令|备注|
+|---|---|---|
+|$\sum_a^b$|`\sum_a^b`|求和|
+|$\prod_a^b$|`\prod_a^b`|累积|
+|$\lim_{x\to a}$|`\lim_{x\to a}`|极限|
+|$\int_a^b$|`\int_a^b`|积分|
+|$\iint_a^b$|`\iint_a^b`|二重积分|
+|$\iiint_a^b$|`\iiint_a^b`|三重积分|
+|$\oint_a^b$|`\oint_a^b`|环路积分|
+|$\oiint_a^b$|`\oiint_a^b`|二重环路积分|
 
 ### 块级运算符
 `\sum_a^b`
@@ -165,14 +210,20 @@ $$\oint\limits_{C}\mathrm{d}s$$
 eg.`\sum_{\substack{0<i<m\\0<j<n}}^b`
 $$\sum_{\substack{0<i<m\\0<j<n}}^b$$
 
+对于较长的上下限, 可使用 `\mathclap{内容}` 实现紧凑布局  
+eg.`\sum_{\mathclap{1\le i\le j\le n}} x_{ij}`
+$$\sum_{\mathclap{1\le i\le j\le n}} x_{ij}$$
+不使用 `\mathclap{内容}` 时的效果
+$$\sum_{1\le i\le j\le n} x_{ij}$$
+
 ### 其他运算符号
-`\frac{A}{B}\dfrac{A}{B}\tfrac{A}{B}`
+`\frac{A}{B}\dfrac{A}{B}\tfrac{A}{B}` 分数
 $$\frac{A}{B}\;\dfrac{A}{B}\;\tfrac{A}{B}$$
-`f(x)\bigg|_{a=1}`
+`f(x)\bigg|_{a=1}` 取值
 $$f(x)\bigg|_{a=1}$$
-`\sqrt[3]{27}`
+`\sqrt[3]{27}` 开方
 $$\sqrt[3]{27}$$
-`\binom{n}{k}`
+`\binom{n}{k}` 数对
 $$\binom{n}{k}$$
 
 ## 矩阵与排版
