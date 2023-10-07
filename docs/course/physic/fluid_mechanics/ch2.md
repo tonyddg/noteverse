@@ -22,7 +22,6 @@ $$F_{px}=p(x\pm\mathrm{d} x/2,y,z)=(p\pm\frac{\partial p}{\partial x}\frac{\math
 微元体上还受到质量力 ($f_x$ 为沿 $x$ 方向上的单位质量力)
 $$F_{mx}=f_x\rho\mathrm{d}x\mathrm{d}y\mathrm{d}z=f_x\rho\mathrm{d}V$$
 
-
 因此有 $x$ 方向的平衡方程
 
 $$\begin{split}F_{mx}+F_{px1}-F_{px2}&=0\\\
@@ -30,16 +29,26 @@ f_x\rho\mathrm{d}V-\frac{\partial p}{\partial x}\mathrm{d}V&=0\\
 f_x&=\frac{1}{\rho}\frac{\partial p}{\partial x}
 \end{split}$$
 
-对 $y,z$ 轴同理, 因此有
+对 $y,z$ 轴同理, 因此推广到三维有
 
-{#tab2-1 .block_anchor}
+{#tag2-1 .block_anchor}
 $$\mathrm{d}p=\frac{\partial p}{\partial x}\mathrm{d}x+\frac{\partial p}{\partial y}\mathrm{d}y+\frac{\partial p}{\partial z}\mathrm{d}z=\rho(f_x\mathrm{d}x+f_y\mathrm{d}y+f_z\mathrm{d}z)\tag{2.1}$$ 
 
 当已知单位质量力 $\vec{f}$ 的分布后, 对其积分即可得到静止流体的压强 $p$
 
+### 流体平衡微分方程的积分形式
+
+通过引入哈密顿算子, 对于流场中的任意曲线 $\mathrm{d}\vec{l}=(\mathrm{d}x,\mathrm{d}y,\mathrm{d}z)$, 平衡微分方程还可写成如下形式
+$$\begin{split}\rho\vec{f}\cdot\mathrm{d}\vec{l}-\vec{\nabla}p\cdot\mathrm{d}\vec{l}&=0\\
+\rho\vec{f}\cdot\mathrm{d}\vec{l}&=\mathbf{grand}(p)\cdot\mathrm{d}\vec{l}
+\end{split}$$
+
+根据梯度积分与路径无关, 因此对于任意以 $\vec{r_1}$ 为起点, $\vec{r_2}$ 为终点的曲线
+$$\int\limits_l\rho\vec{f}\cdot\mathrm{d}\vec{l}=\int_{\vec{r_1}}^{\vec{r_2}}\mathbf{grand}(p)\cdot\mathrm{d}\vec{l}=p(\vec{r_2})-p(\vec{r_1})$$
+
 ## 静止流体中的压强分布
 ### 重力作用下的压强分布
-在重力作用下有 $\vec{f}=(0,0,-g)$, 根据式 [$(2.1)$](#tab2-1) 积分后得到重力作用下的压强分布满足
+在重力作用下有 $\vec{f}=(0,0,-g)$, 根据式 [$(2.1)$](#tag2-1) 积分后得到重力作用下的压强分布满足
 $$p=-\rho gz+C$$
 
 其中积分常数 $C$ 即 $p\big|_{z=0}$ 的压强, 通常将坐标系建立在基准气压 $p_0$ 上, 此时 $C=p_0$
@@ -47,7 +56,7 @@ $$p=-\rho gz+C$$
 ### 非惯性系下的压强分布
 假设静止液体在具有加速度 $\vec{a}$ 的非惯性系中, 根据达朗贝尔原理, 流体的质量力为 $\vec{f}=\vec{g}-\vec{a}$
 
-假设 $\vec{a}$ 沿 $x$ 方向, 此时有 $\vec{f}=(-a,0,-g)$, 根据式 [$(2.1)$](#tab2-1) 积分后得到重力作用下的压强分布满足
+假设 $\vec{a}$ 沿 $x$ 方向, 此时有 $\vec{f}=(-a,0,-g)$, 根据式 [$(2.1)$](#tag2-1) 积分后得到重力作用下的压强分布满足
 $$p=-\rho ax -\rho gz+C$$
 
 其中积分常数 $C$ 即 $p\big|_{x,z=0}$ 的压强, 因此求解压强分布时需要先确定原点位置
@@ -65,7 +74,7 @@ $$p=-\rho ax -\rho gz+C$$
 $$\begin{split}\vec{f}&=\vec{g}-\vec{a_n}=(\omega^2 r\sin\theta,\omega^2 r\cos\theta,-g)\\
 &=(\omega^2 x,\omega^2 y,-g)\end{split}$$
 
-根据式 [$(2.1)$](#tab2-1) 积分后得到重力作用下的压强分布满足
+根据式 [$(2.1)$](#tag2-1) 积分后得到重力作用下的压强分布满足
 $$\begin{split}p&=\rho(\omega^2\frac{x^2}{2}+\omega^2\frac{x^2}{2}-gz)+C\\
 &=\rho\omega^2\frac{r^2}{2}-\rho gz+C\end{split}$$
 
@@ -110,27 +119,34 @@ $$p=p_a+p_g$$
 
 ### 混合液体压强分布求解
 
-根据式 [$(2.1)$](#tab2-1) 可得, $p$ 的积分与路径无关, 因此对于从 $1\to 2$ 的任意曲线 $l_{12}$ 有积分
+根据式 [$(2.1)$](#tag2-1) 可得, $p$ 的积分与路径无关, 因此对于从 $1\to 2$ 的任意曲线 $l_{12}$ 有积分
 $$p_2-p_1=\int_{1}^{2}dp=\int\limits_{l_{12}}\rho(f_x\mathrm{d}x+f_y\mathrm{d}y+f_z\mathrm{d}z)$$
 
 当流体中的流体种类不同时, $\rho$ 不是常数无法直接得到积分结果, 此时需要以液体分界面对流体划分
 
 假设路径 $l_{12}$ 从 $p_1$ 所在等压面经过 $n-1$ 个等压面后达到 $p_2$ 所在等压面, 因此有 $\rho_i$ 为等压面中流体密度, ==$h_i=-(z_{i}-z_{i-1})$ 为两个等压面之间的**相对距离**, 以从上到下为正== (与 $g$ 同向), 此时有
 
-$$p_2-p_1=\sum_{i=1}^n \rho_i gh_i=\sum_{i=1}^n -\rho_i g(z_{i}-z_{i-1})$$
+$$p_b-p_a=\sum_{i=1}^n \rho_i gh_i=\sum_{i=1}^n -\rho_i g(z_{i}-z_{i-1})$$
+
+将上式中的 $p_a$ 作为基准 $p_0$, $p_b$ 作为两个等压面, 可将公式改写为如下常用形式
+
+{#tag2-2 .block_anchor}
+$$p_1+\sum_{i=1}^n\rho_i g(z_{i}-z_{i-1})=p_2+\sum_{j=1}^m\rho_j g(z_{j}-z_{j-1})=C\tag{2.2}$$
+
+* $p_1,p_2$ 可以是相对压强或绝对压强, 但必须使用相同的标准
+* $p_0$ 可以任意选择, 通常以最低的已知点或液体表面作为基准
+* $z_i$ ==为**基准到**待求面所经过的各个**等压面的距离**, 以**竖直向上为正**== ($z$ 轴正方向) 
 
 #### 例题
 ![](./src/ch2_example_1.drawio.svg)
 
 密封容器中, 上层为油 $\rho_o=800kg/m^2$, 下层为水 $\rho_w=1000kg/m^2$, 各个液面高度为 $z_1=0.6m,z_2=1.4m,z_3=1.5m$, 求 $p_0-p_a$
 
-如图等压面 $a\to 0$ 的路径所示, 从 $p_a$ 等压面到 $p_0$ 等压面的路径上, 共经过两个等压面 (分界面) $1,2$
-
-路径由等压面 $0\to 1$ 有 $\rho_1=\rho_w,h_1=-(z_1-z_2)=0.8m$  
-路径由等压面 $1\to 2$ 有 $\rho_2=\rho_o,h_2=-(z_3-z_1)=-0.9m$
-
-因此两个液面之间的压强差满足
-$$p_0-p_a=\rho_w g h_1+\rho_o g h_2=784Pa$$
+取底面 $p$ 为等压面  
+由 $p$ 到 $p_0$ 上共有两个液面, 有 $p_0+\rho_w gz_1+\rho_o g(z_3-z_1)=C$  
+由 $p$ 到 $p_a$ 上共有一个液面, 有 $p_a+\rho_w gz_2=C$  
+联立两个方程可计算得到结果
+$$p_0-p_a=\rho_w gz_2-[\rho_w gz_1+\rho_o g(z_3-z_1)]=784Pa$$
 
 ## 静止液体在壁面上的总压力
 本节均以重力场中的静止流体为讨论对象, 有 $\vec{f}=(0,0,-g)$
