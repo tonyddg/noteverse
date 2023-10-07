@@ -110,6 +110,7 @@
 ### 标记
 |标记|latex 命令|备注|
 |---|---|---|
+|单字母标记|推荐将上下标置于标记外如 $\vec{v}^2_a$, 不推荐 $\vec{v^2_a}$|`\vec{v}^2_a`|
 |$\bar{a}$|`\bar{a}`|一声/平均值|
 |$\acute{a}$|`\acute{a}`|二声|
 |$\breve{a}$|`\breve{a}`|三声|
@@ -121,14 +122,12 @@
 |$\dot{a}$|`\dot{a}`|导数|
 |$\ddot{a}$|`\ddot{a}`|二阶导|
 |$\mathring{a}$|`\mathring{a}`||
-|$\braket{ABC}$|`\braket{ABC}`||
+|彩色字母|更多颜色见文档||
 |$\red{ABC}$|`\red{ABC}`||
 |$\blue{ABC}$|`\blue{ABC}`||
 |$\green{ABC}$|`\green{ABC}`||
 |$\color{orange}{ABC}$|`\color{任意颜色}{ABC}`|彩色字体|
-|$\boxed{\pi=\frac{c}{d}}$|`\boxed{\pi=\frac{c}{d}}`|方框|
-|$\phase{-78^\circ}$|`\phase{-78^\circ}`|相量|
-||
+|多字母标记|当被标记字母数多于 $1$ 时使用, 其他同单字母标记|
 |$\overline{ABC}$|`\overline{ABC}`||
 |$\underline{ABC}$|`\underline{ABC}`||
 |$\overrightarrow{ABC}$|`\overrightarrow{ABC}`|大向量|
@@ -136,11 +135,13 @@
 |$\overgroup{ABC}$|`\overgroup{ABC}`|圆弧|
 |$\widetilde{ABC}$|`\widetilde{ABC}`||
 |$\widehat{ABC}$|`\widehat{ABC}`||
+|$\sout{ABC}$|`\sout{ABC}`|删除线|
+|字体|更多字体见文档|
 |$\mathrm{ABC}$|`\mathrm{ABC}`|正体 (符号)|
 |$\bm{ABC}$|`\bm{ABC}`|加粗 (强调)|
 |$\mathbf{ABC}$|`\mathbf{ABC}`|加粗 (符号)|
-|$\sout{ABC}$|`\sout{ABC}`|删除线|
 |$\operatorname{Function}$|`\operatorname{Function}`|函数名|
+|复杂标记||
 |$\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}$|`\xrightleftharpoons[\text{下方公式}]{\text{上方公式}}`|可逆反应|
 |$\xlongequal[\text{下方公式}]{\text{上方公式}}$|`\xlongequal[\text{下方公式}]{\text{上方公式}}`|一般反应|
 |$\xrightarrow[\text{下方公式}]{\text{上方公式}}$|`\xrightarrow[\text{下方公式}]{\text{上方公式}}`|不可逆反应|
@@ -149,6 +150,9 @@
 |$\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}$|`\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}`||
 |$[\substack{a\\b}]$|`[\substack{a\\b}]`|行内垂直堆叠|
 |$\binom{A}{B}$|`\binom{A}{B}`|数对|
+|$\boxed{\pi=\frac{c}{d}}$|`\boxed{\pi=\frac{c}{d}}`|方框|
+|$\phase{-78^\circ}$|`\phase{-78^\circ}`|相量|
+|$\braket{ABC}$|`\braket{ABC}`||
 
 ### 函数
 
