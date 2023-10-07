@@ -2,9 +2,57 @@
 order: 3
 ---
 
-# 微积分速查手册
+# 数学速查手册
 
+## 函数
+### 部分函数表达式
+* 正割函数 $\sec$
+$$\sec\theta=\frac{1}{\cos\theta}$$
+* 余割函数 $\csc$
+$$\csc\theta=\frac{1}{\sin\theta}$$
+* 双曲正弦函数 $\sinh$ (奇函数)
+$$\sinh x=\frac{e^x-e^{-x}}{2}$$
+* 双曲余弦函数 $\cosh$ (偶函数)
+$$\cosh x=\frac{e^x+e^{-x}}{2}$$
 
+### 三角函数公式
+#### 诱导公式
+$$\sin(\frac{\pi}{2}-\theta)=\cos\theta$$
+$$\cos(\frac{\pi}{2}-\theta)=\sin\theta$$
+$$\sin(\pi-\theta)=\sin\theta$$
+$$\cos(\pi-\theta)=-\cos\theta$$
+$$\sin(2\pi+\theta)=\sin\theta$$
+$$\cos(2\pi+\theta)=\cos\theta$$
+
+#### 两角和公式
+两角和公式
+$$\sin(A+B)=\sin A\cos B+\cos A\sin B$$
+$$\cos(A+B)=\cos A\cos B-\sin A\sin B$$
+$$\tan(A+B)=\frac{\tan A+\tan B}{1-\tan A\tan B}$$
+
+辅助角公式 (求解方程 $a\sin\theta+b\cos\theta=C$ 中的 $\theta$)
+$$a\sin\theta+b\cos\theta=\sqrt{a^2+b^2}\sin(\theta+\arctan\frac{b}{a})$$
+
+#### 和差化积公式
+$$\sin A+\sin B=2\sin[\frac{A+B}{2}]\cos[\frac{A-B}{2}]$$
+$$\cos A+\cos B=2\cos[\frac{A+B}{2}]\cos[\frac{A-B}{2}]$$
+
+#### 积化和差公式
+$$\sin A\cos B=\frac{1}{2}[\sin(A+B)+\sin(A-B)]$$
+$$\cos A\cos B=\frac{1}{2}[\cos(A+B)+\cos(A-B)]$$
+$$\sin A\sin B=\frac{1}{2}[-\cos(A+B)+\cos(A-B)]$$
+
+#### 反正切函数公式
+$$\arctan (-x)=-\arctan x$$
+$$\arctan A+\arctan B=\arctan(\frac{A+B}{1-AB})$$
+
+### 对数函数公式
+$$a^{\log_a b}=b$$
+$$\log_a (AB)=\log_a A+\log_a B$$
+$$\log_a (A^k)=k\log_a A$$
+
+换底公式
+$$\log_a b=\frac{\log_c b}{\log_c a}$$
 
 ## 微分
 ### 基本求导法则
