@@ -99,6 +99,10 @@ $$\vec{\nabla}\times(c\vec{A}+d\vec{B})=c\vec{\nabla}\times \vec{A}+d\vec{\nabla
 注意, 微分算子不满足交换律
 $$\vec{\nabla}\cdot\vec{A}\neq\vec{A}\cdot\vec{\nabla}=P\frac{\partial}{\partial x}+Q\frac{\partial}{\partial y}+R\frac{\partial}{\partial z}$$
 $$\vec{\nabla}u\neq u\vec{\nabla}=(u\frac{\partial}{\partial x},u\frac{\partial}{\partial y},u\frac{\partial}{\partial z})$$
+$$(\vec{A}\cdot\vec{\nabla})\vec{A}=P\frac{\partial\vec{A}}{\partial x}+Q\frac{\partial\vec{A}}{\partial y}+R\frac{\partial\vec{A}}{\partial z}\\
+\neq\\
+(\vec{\nabla}\cdot\vec{A})\vec{A}=(P\vec{\nabla}\cdot\vec{A},Q\vec{\nabla}\cdot\vec{A},R\vec{\nabla}\cdot\vec{A})$$
+
 
 ### 常用微元与坐标系变换
 
