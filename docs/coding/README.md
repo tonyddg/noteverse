@@ -1,7 +1,7 @@
 ---
 index: false
-order: 1
+order: 3
 ---
 
-# 课程笔记
+# 编程笔记
 <AutoCatalog/>
