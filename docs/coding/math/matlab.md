@@ -1,4 +1,4 @@
-# 基本语法
+# Matlab 基本语法
 ## 关键字
 1. ans 表达式结果
 2. 1i, 1j 复数单位
@@ -222,6 +222,33 @@ res = floor(log10(test));
 4. mlabel 为 m 轴添加标签
 5. legend 在坐标区上添加图例说明(顺序与定义图像的顺序相同)
 6. text 在指定点位置添加文字 指定参数 Units 为 normalized 时, 使用 0 - 1 的相对坐标, 否则默认为实际坐标
+
+为 `for` 循环生成的图像批量添加 legend 的技巧
+1. 使用一个字符串数组保存各个图像的 legend, 其中字符串数组通过函数 `string` 创建, 如 `legend_list = string(n);`
+1. 在每个循环中保存曲线的名称, 其中引号得到的是字符数组, 因此还用将字符数组传入函数 `string`, 使其变为字符串对象 `legend_list(it)=string('line'+it)`
+1. 最后将字符串数组传入 `legend` 函数完成注释 `legend(legend_list)`
+
+示例
+```matlab
+omega_n_list = 0.2:0.2:1;
+xi = 0.707;
+legend_list = string(size(omega_n_list)); %1
+
+figure
+hold on
+
+it = 1;
+for omega_n = omega_n_list
+    sys = tf(omega_n^2, [1 2 * xi * omega_n, omega_n^2]);
+    bode(sys)
+
+    legend_list(it) = string("\omega_n=" + omega_n); %2
+    it = it + 1;
+end
+legend(legend_list); %3
+
+hold off
+```
 
 ### 图像标记
 1. xline 绘制具有常量 x 值的垂直线
