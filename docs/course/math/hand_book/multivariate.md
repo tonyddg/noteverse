@@ -1,92 +1,25 @@
 ---
-order: 3
+order: 5
 ---
+# 多元微积分
+::: warning
+该笔记尚未完成
+:::
 
-# 数学速查手册
-
-## 函数
-### 部分函数表达式
-* 正割函数 $\sec$
-$$\sec\theta=\frac{1}{\cos\theta}$$
-* 余割函数 $\csc$
-$$\csc\theta=\frac{1}{\sin\theta}$$
-* 双曲正弦函数 $\sinh$ (奇函数)
-$$\sinh x=\frac{e^x-e^{-x}}{2}$$
-* 双曲余弦函数 $\cosh$ (偶函数)
-$$\cosh x=\frac{e^x+e^{-x}}{2}$$
-
-### 三角函数公式
-#### 诱导公式
-$$\sin(\frac{\pi}{2}-\theta)=\cos\theta$$
-$$\cos(\frac{\pi}{2}-\theta)=\sin\theta$$
-$$\sin(\pi-\theta)=\sin\theta$$
-$$\cos(\pi-\theta)=-\cos\theta$$
-$$\sin(2\pi+\theta)=\sin\theta$$
-$$\cos(2\pi+\theta)=\cos\theta$$
-
-#### 两角和公式
-两角和公式
-$$\sin(A+B)=\sin A\cos B+\cos A\sin B$$
-$$\cos(A+B)=\cos A\cos B-\sin A\sin B$$
-$$\tan(A+B)=\frac{\tan A+\tan B}{1-\tan A\tan B}$$
-
-辅助角公式 (求解方程 $a\sin\theta+b\cos\theta=C$ 中的 $\theta$)
-$$a\sin\theta+b\cos\theta=\sqrt{a^2+b^2}\sin(\theta+\arctan\frac{b}{a})$$
-
-#### 和差化积公式
-$$\sin A+\sin B=2\sin[\frac{A+B}{2}]\cos[\frac{A-B}{2}]$$
-$$\cos A+\cos B=2\cos[\frac{A+B}{2}]\cos[\frac{A-B}{2}]$$
-
-#### 积化和差公式
-$$\sin A\cos B=\frac{1}{2}[\sin(A+B)+\sin(A-B)]$$
-$$\cos A\cos B=\frac{1}{2}[\cos(A+B)+\cos(A-B)]$$
-$$\sin A\sin B=\frac{1}{2}[-\cos(A+B)+\cos(A-B)]$$
-
-#### 反正切函数公式
-$$\arctan (-x)=-\arctan x$$
-$$\arctan A+\arctan B=\arctan(\frac{A+B}{1-AB})$$
-
-### 对数函数公式
-$$a^{\log_a b}=b$$
-$$\log_a (AB)=\log_a A+\log_a B$$
-$$\log_a (A^k)=k\log_a A$$
-
-换底公式
-$$\log_a b=\frac{\log_c b}{\log_c a}$$
-
-## 微分
-### 基本求导法则
-
-### 常用函数导数
-
-### 微分中值定理
-
-## 极限与级数
-
-### 极限求法
-
-### 常用等效极限
-
-### 常用泰勒级数
-
-## 积分
-### 基本积分技巧
-
-### 常用函数积分
-
-## 多重微积分
 约定
 * 有多元标量函数 $u(x,y,z),v(x,y,z)$  
 * 有多元矢量函数 $\vec{A}(x,y,z)=(P,Q,R),\vec{B}$, 其中 $P,Q,R$ 均为多元标量函数
 * 有一般标量常数 $c,d$
 
-### 多元函数微分
-#### 梯度
+## 多元函数微分
+
+## 多元函数的微分特征
+### 梯度
 $$\mathbf{grad}(u)=(\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},\frac{\partial u}{\partial z})$$
 
 多元函数 $u$ 在点 $(x,y,z)$ 沿梯度方向上有着最快的变化速度, 并且有着最大的方向导数, 即梯度的模
 
-#### 散度
+### 散度
 $$\operatorname{div}(\vec{A})=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$$
 
 对矢量场 $\vec{A}$ 中的闭合曲面 $S$ 围成的空间 $V$, 定义通量
@@ -100,7 +33,7 @@ $$\operatorname{div}(\vec{A})=\lim_{V\to 0}\frac{\Phi}{V}$$
 参考文献  
 <https://wuli.wiki/online/Divgnc.html>
 
-#### 旋度
+### 旋度
 $$\mathbf{rot}(\vec{A})=
 \begin{vmatrix}
 \vec{i}&\vec{j}&\vec{k}\\
@@ -124,7 +57,7 @@ $$\mathbf{rot}(\vec{A})=2\vec{\omega}$$
 <https://zhuanlan.zhihu.com/p/477261640>  
 <https://blog.sina.com.cn/s/blog_5d323f950101ima8.html>
 
-#### 微分算子
+### 微分算子
 使用微分算子 (哈密顿算子) $\vec{\nabla}$ 用于简化对多元函数的微分
 $$\vec{\nabla}=(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z})$$
 
@@ -152,12 +85,6 @@ $$(\vec{A}\cdot\vec{\nabla})\vec{A}=P\frac{\partial\vec{A}}{\partial x}+Q\frac{\
 (\vec{\nabla}\cdot\vec{A})\vec{A}=(P\vec{\nabla}\cdot\vec{A},Q\vec{\nabla}\cdot\vec{A},R\vec{\nabla}\cdot\vec{A})$$
 
 
-### 常用微元与坐标系变换
+## 常用微元与坐标系变换
 
-### 多重积分公式
-
-## 积分变换
-### 傅里叶变换
-
-### 拉普拉斯变换
-
+## 多重积分公式
