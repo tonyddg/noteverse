@@ -37,7 +37,7 @@ $$\frac{\mathrm{D}}{\mathrm{D}t}=v_x\frac{\partial}{\partial x}+v_y\frac{\partia
 ### 流场中的流线
 将流场中于速度矢量处处相切的曲线称为流线, 满足
 
-{#tag3-2 .block_anchor}
+{#tag3-1 .block_anchor}
 $$\begin{split}&\vec{v}\times \mathrm{d}\vec{s}=\vec{0}\\
 \to&\frac{\mathrm{d}x}{v_x}=\frac{\mathrm{d}y}{v_y}=\frac{\mathrm{d}z}{v_z}\end{split}\tag{3.1}$$
 
@@ -49,7 +49,7 @@ $$\begin{split}&\vec{v}\times \mathrm{d}\vec{s}=\vec{0}\\
 ### 连续性方程
 由于物质不能创造与消失, 因此对于流场中的任意一点处的微体 $\mathrm{d}V$, 流出的质量 $\operatorname{div}(\rho\vec{v})\mathrm{d}V$ 等于这一微体损失的质量 $-\frac{\partial\rho}{\partial t}\mathrm{d}V$, 有
 $$\begin{split}\frac{\partial\rho}{\partial t}\mathrm{d}V+\operatorname{div}(\rho\vec{v})\mathrm{d}V&=0\\
-\frac{\partial\rho}{\partial t}+\vec{\nabla}\cdot\vec{v}&=0
+\frac{\partial\rho}{\partial t}+\vec{\nabla}\cdot(\rho\vec{v})&=0
 \end{split}$$
 
 对于不可压缩流体, 流场中的密度为常数, 因此 $\frac{\partial\rho}{\partial t}=0,\rho=C$, 有
@@ -81,7 +81,7 @@ $$\bar{v}=\frac{Q}{A}$$
 根据式 [$(3.2)$](#tag3-2) 与高斯公式可得, 假设流体中有曲面 $S$ 包为的体积 $V$, 对于定常不可压缩流体有
 $$\oint\limits_S \vec{v}\mathrm{d}\vec{S}=\int\limits_{V}\operatorname{div}(\vec{v})\mathrm{d}V=0$$
 
-对于一条流管, 取流管两端截面 $A_1,A_2$, 流体仅通过这两个截面, 因此有定常流动的连续性方程
+对于一条流管, 取流管两端截面 $A_1,A_2$, 流体仅从 $A_1$ 进入并从截面 $A_2$ 离开, 因此有定常流动的连续性方程
 $$\bar{v_1}A_1=\bar{v_2}A_2=Q$$
 
 推广可得对于多通管有
