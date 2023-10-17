@@ -1,18 +1,23 @@
-# 拉普拉斯变换
+---
+order: 1
+---
+# 数学基础
+
+## 拉普拉斯变换
 对于详细部分也可参考复变函数与积分变换笔记的[傅里叶变换](/course/math/Complex%20Variables%20and%20Integral%20Transformation/ch8.md)与[拉普拉斯变换](/course/math/Complex%20Variables%20and%20Integral%20Transformation/ch9.md)部分
 
-## 拉普拉斯变换的定义
+### 拉普拉斯变换的定义
 $f(t)$ 为定义在 $[0,+\infty)$ 的实函数, $s=\delta+j\omega$ 为复参数, 其中 $\beta$ 为一个足够大的实数, 象函数 $F(s)$ 在复平面上某一区域内收敛, 定义拉普拉斯变换 (Laplace)
 $$\mathscr{L}[f(t)]=F(s)=\int_{0}^{+\infty}f(t)e^{-st}dt$$
 
-## 基本函数的拉普拉斯变换
+### 基本函数的拉普拉斯变换
 使用 $f(t)$ 表示原函数, 即表示时域上的信号, 使用 $F(s)$ 表示变换后的函数, 称为象函数, 其函数变量 $s$ 为一个复数  
 如果没有说明, 通常认为原函数 $f(t)=0,t<0$. 部分情况下需要使用 $f(t)H(t)$ 强调此特性
 
 有拉氏变换关系 $F(s)=L[f(t)]F(s)=\mathscr{L}[f(t)]$
 或者拉氏反变换 $\mathscr{L}^{-1}[F(s)]=f(t)$
 
-### 单位阶跃函数
+#### 单位阶跃函数
 ![](./src/math_step1.svg)
 
 通常使用 $H(t)$ 或 $u(t)$ 表示单位阶跃函数, 满足
@@ -30,7 +35,7 @@ $$\mathscr{L}[H(t)]=\frac{1}{s}$$
 由于拉式变换中规定了信号函数 $f(t)$ 必定有 $t\ge 0$, 因此常数 $1$ 作为信号时, 也可直接视为单位阶跃函数, 因此有
 $$\mathscr{L}[1]=\frac{1}{s}$$
 
-#### 阶跃函数变形
+##### 阶跃函数变形
 ![](./src/math_step2.svg)
 
 对于其他含阶跃的函数均可使用单位阶跃函数表示, 以图中函数举例
@@ -48,7 +53,7 @@ $$\begin{aligned}\mathscr{L}[t(H(t)-H(t-1))]&=\mathscr{L}[tH(t)-(t-1)H(t-1)-H(t-
 &=\frac{1}{s^2}-\frac{e^{-s}}{s^2}-\frac{e^{-s}}{s}\\
 &=\frac{1-e^{-s}(1+s)}{s^2}\end{aligned}$$
 
-### 单位冲激函数
+#### 单位冲激函数
 ![](./src/math_impluse.svg)
 
 使用 $\delta(t)$ 表示单位冲激函数.  
@@ -58,7 +63,7 @@ $$\begin{aligned}\mathscr{L}[t(H(t)-H(t-1))]&=\mathscr{L}[tH(t)-(t-1)H(t-1)-H(t-
 
 $$\mathscr{L}[\delta(t)]=1$$
 
-### 幂函数
+#### 幂函数
 对于幂函数的拉氏变换有通式
 $$\mathscr{L}[t^n]=\frac{n!}{s^{n+1}}$$
 
@@ -69,14 +74,14 @@ $$\mathscr{L}[t^n]=\frac{n!}{s^{n+1}}$$
 根据公式有拉氏反变换
 $$\mathscr{L}^{-1}(\frac{3}{s^{8}})=\mathscr{L}^{-1}(\frac{3}{7!}\frac{7!}{s^{7+1}})=\frac{3}{7!}$$
 
-### 指数函数
+#### 指数函数
 对于指数函数有拉氏变换通式
 $$\mathscr{L}[e^{at}]=\frac{1}{s-a}$$
 
 其中 $a$ 可取负数, 例如
 $$\mathscr{L}[e^{-5t}]=\frac{1}{s+5}$$
 
-### 三角函数
+#### 三角函数
 正弦函数的拉氏变换
 $$\mathscr{L}[\sin(\omega t)]=\frac{\omega}{s^2+\omega^2}$$
 
@@ -88,7 +93,7 @@ $$\mathscr{L}[\cos(\omega t)]=\frac{s}{s^2+\omega^2}$$
 例如
 $$\mathscr{L}^{-1}(\frac{5}{s^{2}+29})=\mathscr{L}^{-1}(\frac{5}{\sqrt{29}}\frac{\sqrt{29}}{s^{2}+29})=\frac{5}{\sqrt{29}}\sin(\sqrt{29}t)$$
 
-### 复合函数的拉氏变换
+#### 复合函数的拉氏变换
 根据拉氏变换的线性性, 因此对于拉氏变换与逆变换可先将复合函数拆分为相加形式.
 
 对于复杂分式的拆分方法可见部分分式分解
@@ -104,12 +109,12 @@ $$\mathscr{L}^{-1}[\frac{5}{s^2+16}]=\mathscr{L}^{-1}[\frac{4}{s^2+16}\frac{5}{4
 
 $$\mathscr{L}^{-1}[\frac{7}{s^6}]=\mathscr{L}^{-1}[\frac{5!}{s^6}\frac{7}{5!}]=\frac{7}{5!}t^5$$
 
-## 拉普拉斯变换的基本特性
-### 线性性
+### 拉普拉斯变换的基本特性
+#### 线性性
 拉氏变换及其逆变换具有线性性, 即和的变换等于变换的和, 表达式为
 $$\mathscr{L}[Af(t)+Bg(t)]=A\mathscr{L}[f(t)]+B\mathscr{L}[g(t)]=AF(s)+BG(s)\\ \mathscr{L}^{-1}[AF(s)+BG(s)]=A\mathscr{L}^{-1}[F(s)]+B\mathscr{L}^{-1}[G(s)]=Af(t)+Bf(t)$$
 
-### 第一移位定理
+#### 第一移位定理
 对于拉氏变换 $\mathscr{L}[f(t)]=F(s)$
 当信号 $f(t)$ 乘上一个收敛因子 $e^{at}$ 时, 有拉氏变换
 $$\mathscr{L}[e^{at}f(t)]=F(s-a)$$
@@ -120,7 +125,7 @@ $$\begin{aligned}\mathscr{L}[e^{-3t}\cos(2t)]&=\frac{s+3}{(s+3)^2+4}\\ &=\frac{s
 逆变换中, 当无法直接套用公式时, 可先尝试提出 $s-a$, 有例子
 $$\begin{aligned}\mathscr{L}^{-1}[\frac{2s+3}{s^2+2s+10}]&=\mathscr{L}^{-1}[\frac{2(s+1)+3-2}{(s+1)^2+10-1}]\\ &=\mathscr{L}^{-1}[\frac{2(s+1)}{(s+1)^2+9}+\frac{3}{(s+1)^2+9}\frac{1}{3}]\\ &=e^{-t}[2\cos(3t)+\frac{1}{3}\sin(3t)]\end{aligned}$$
 
-### 第二移位定理 (延迟定理)
+#### 第二移位定理 (延迟定理)
 对于拉氏变换 $\mathscr{L}[f(t)]=F(s)$
 
 ![](./src/math_move.svg)
@@ -139,7 +144,7 @@ $$\begin{aligned}\mathscr{L}[t\cdot H(t-5)]&=\mathscr{L}[(t-5)\cdot H(t-5)+5H(t-
 对于反变换, 可先忽视延迟环节变换, 再对结果代入 $t\to t-a$ 并乘上 $H(t-a)$ , 有例子
 $$\mathscr{L}^{-1}[e^{-3s}\frac{s}{s^2+16}]=\cos[4(t-3)]H(t-3)$$
 
-### 微分特性定理
+#### 微分特性定理
 当对原函数求导后, 其导数的象函数与原来的象函数与原函数存在关系
 $$\begin{aligned}\mathscr{L}[f^{(n)}(t)]&=s^{n}F(s)-s^{n-1}f(0)-s^{n-2}f'(0)-...-f^{(n-1)}(0)\\ &=s^{n}F(s)-\sum_{i=1}^{n}s^{n-i}f^{(i-1)}(0)\end{aligned}$$
 
@@ -160,14 +165,14 @@ $$\begin{aligned}(s^2+4s+3)Y-1&=\frac{3s}{s^2+4}\\ Y&=\frac{s^2+3s+4}{(s^2+4)(s+
 通过求 $Y$ 的逆变换解出
 $$y(t)=\mathscr{L}^{-1}[Y(s)]=\frac{-3}{65}\cos(2t)+\frac{24}{65}\sin(2t)+\frac{e^{-t}}{5}-\frac{2e^{-3t}}{13}$$
 
-### 积分特性定理
+#### 积分特性定理
 当对原函数积分后, 其导数的象函数与原来的象函数与原函数存在关系
 $$\mathscr{L}[\int_0^t f(\lambda)d\lambda]=\frac{1}{s}F(s)$$
 
 同理对于多重积分有
 $$\mathscr{L}[\int_0^t\int_0^t f(\lambda)d\lambda]=\frac{1}{s^2}F(s)$$
 
-### 终值与初值定理
+#### 终值与初值定理
 在对信号函数求极限时有如下定理 
 
 求信号在 $0$ 处的极限有如下公式, 称为初值定理
@@ -176,7 +181,7 @@ $$\lim_{t\to 0}f(t)=\lim_{s\to \infty}sF(s)$$
 求信号在 $\infty$ 处的极限有如下公式, 称为终值定理
 $$\lim_{t\to \infty}f(t)=\lim_{s\to 0}sF(s)$$
 
-### 卷积定理
+#### 卷积定理
 设原函数 $g(t)$ 的象函数为 $G(t)$
 
 定义卷积运算有 (注意卷积运算后得到的结果为一个函数), 注意与傅里叶变换不同, $t<0$ 时, $f(t)=g(t)=0$, 被积函数在区间 $[0,t]$ 外的值均为 $0$, 因此==拉普拉斯变换下的卷积中, 要以 $t$ 为积分上限== (如果参与运算的函数严格复合信号函数的条件, 则以 $\infty$ 作为积分上限时与 $t$ 等价)
@@ -188,7 +193,7 @@ $$\mathscr{L}[(f*g)(t)]=F(s)\cdot G(s)$$
 有例题 (注意, 积分变量为 $\lambda$, 因此 $e^{2t}$ 对于被积函数来说相当于常量)
 $$\begin{aligned}\mathscr{L}[e^{2t}\int^{t}_0 e^{-2\lambda}\sin(3\lambda)d\lambda]&=\mathscr{L}[\int^{t}_0 e^{2(t-\lambda)}\sin(3\lambda)d\lambda]\\ &=\mathscr{L}[e^{2t}*\sin(3t)]\\ &=\frac{1}{s-2}\cdot\frac{3}{s^2+9} \end{aligned}$$
 
-### 微分与积分关系定理
+#### 微分与积分关系定理
 原函数与象函数之间有微分与积分关系 (此定理重要性较低)
 $$\mathscr{L}[tf(t)]=-\frac{dF(s)}{ds}$$
 $$\mathscr{L}[\frac{1}{t}f(t)]=\int_{s}^{+\infty}F(s)ds$$
@@ -196,7 +201,48 @@ $$\mathscr{L}[\frac{1}{t}f(t)]=\int_{s}^{+\infty}F(s)ds$$
 例如
 $$\begin{aligned}\mathscr{L}[t\sin 2t]&=-\frac{d}{ds}[\frac{2}{s^2+4}]\\ &=\frac{4s}{(s^2+4)^2}\end{aligned}$$
 
-## 附录
+## 代数知识
+### 多项式分式
+#### 基本形式
+对于任意实数多项式分式具有以下通常形式
+$$F(x)=\frac{P(x)}{Q(x)}=\frac{\prod_{i=0}^{n}{a_ix^i}}{\prod_{i=0}^{m}{b_ix^i}}$$
+
+#### 多项式方程的解
+多项式方程 $P(x)=0$ 的解有以下的特性
+1. 方程的解必定为实数 $x=m$ 或一对共轭复数 $x=a+bi,x=a-bi$
+1. 当多项式的最高次幂为 $n$, 则方程包括重根共有 $n$ 个解
+1. 根据方程的解, 可将多项式因式分解为 $K\prod(x-x_i)$ 的形式, 对于其中的复数根有 $(x-a-bi)(x-a+bi)=x^2-2ax+a^2+b^2$
+
+#### 零极点形式
+对于多项式分式  
+当 $P(z)=0$ 时, $F(z)=0$, 因此称 $z$ 为 $F(x)$ 的零点  
+当 $Q(p)=0$ 时, $F(p)=\infty$, 因此称 $p$ 为 $F(x)$ 的极点 
+
+根据上述结论, 可将多项式分式化简为如下形式
+
+$$F(x)=\frac{K\prod(x-z_i)\prod[x^2-2a_ix+(a_i^2+b_i^2)]}{\prod(x-p_i)\prod[x^2-2c_ix+(c_i^2+d_i^2)]}$$
+
+其中  
+$z_i$, $a_i\pm b_ii$ 为方程 $P(x)=0$ 的解, 即 $F(x)$ 的零点  
+$p_i$, $c_i\pm d_ii$ 为方程 $Q(x)=0$ 的解, 即 $F(x)$ 的极点  
+
+### 复数
+::: warning
+该部分笔记尚未完成
+:::
+
+#### 分母有理化
+$$\frac{a+bi}{c+di}=\frac{(a+bi)(c-di)}{(c+di)(c-di)}=\frac{ac+bd-adi+bci}{c^2+d^2}$$
+
+#### 复数幅值
+$$|a+bi|=\sqrt{a^2+b^2}$$
+$$|\frac{a+bi}{c+di}|=\frac{|a+bi|}{|c+di|}=\frac{\sqrt{a^2+b^2}}{\sqrt{c^2+d^2}}$$
+
+#### 复数辐角
+![](./src/math_angle1.drawio.svg)
+
+$$\phase{a+bi}=\operatorname{Arctan(a,b)}$$
+
 ### 部分分式分解
 部分分式分解将分式转变为几个简单分式之和, 此技巧在使用拉普拉斯变换求解微分方程与分式不定积分中有重要作用
 
