@@ -100,13 +100,18 @@ $$\frac{\mathrm{d}}{\mathrm{d}x}\arccos x=\frac{1}{1+x^2}$$
 * 值域 $(-\pi,\pi]$
 * 表达式 
 $$\operatorname{Arctan}(x,y)=\begin{cases}
-\arctan\frac{x}{y}&,x>0\\
-\arctan\frac{x}{y}+\pi&,x<0,y\ge 0\\
-\arctan\frac{x}{y}-\pi&,x<0,y<0\\
+\arctan\frac{y}{x}&,x>0\\
+\arctan\frac{y}{x}+\pi&,x<0,y\ge 0\\
+\arctan\frac{y}{x}-\pi&,x<0,y<0\\
 \frac{\pi}{2}&,x=0,y>0\\
 -\frac{\pi}{2}&,x=0,y<0\\
 0&,x=0,y=0
 \end{cases}$$
+
+* 推导图像  
+
+![](./src/Arctan_explain.drawio.svg)
+
 * 参考文献 <https://wuli.wiki/online/Arctan.html>
 
 ### 双曲函数
