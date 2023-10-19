@@ -135,7 +135,7 @@ $$p_2-p_1=\int_{1}^{2}dp=\int\limits_{l_{12}}\rho(f_x\mathrm{d}x+f_y\mathrm{d}y+
 
 $$p_b-p_a=\sum_{i=1}^n \rho_i gh_i=\sum_{i=1}^n -\rho_i g(z_{i}-z_{i-1})$$
 
-将上式中的 $p_a$ 作为基准, $p_0$, $p_b$ 作为两个等压面, 可将公式改写为如下常用形式
+将上式中的 $p_0=p_a$ 作为基准, 取两个等压面 $p_b=p_1,p_2$ , 可将公式改写为如下常用形式
 
 {#tag2-2 .block_anchor}
 $$p_1+\sum_{i=1}^n\rho_i g(z_{i}-z_{i-1})=p_2+\sum_{j=1}^m\rho_j g(z_{j}-z_{j-1})=C\tag{2.2}$$
