@@ -19,6 +19,9 @@ $$\mathbf{grad}(u)=(\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},
 
 多元函数 $u$ 在点 $(x,y,z)$ 沿梯度方向上有着最快的变化速度, 并且有着最大的方向导数, 即梯度的模
 
+对于多元函数的全微分即可使用梯度表示成如下形式
+$$\mathrm{d}f=\mathbf{grad}(f)\cdot\mathrm{d}\vec{r}$$
+
 ### 散度
 $$\operatorname{div}(\vec{A})=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$$
 
