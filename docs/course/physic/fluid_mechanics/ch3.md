@@ -68,7 +68,7 @@ f_x-\frac{1}{\rho}\frac{\partial p}{\partial x}&=[(\vec{v}\cdot\vec{\nabla})+\fr
 对 $y,z$ 轴同理, 因此推广到三维有
 
 {#tag3-3 .block_anchor}
-$$\vec{f}-\frac{1}{\rho}\vec{\nabla}\vec{p}=(\vec{v}\cdot\vec{\nabla})\vec{v}+\frac{\partial\vec{v}}{\partial t}\tag{3.3}$$
+$$\vec{f}-\frac{1}{\rho}\vec{\nabla}p=(\vec{v}\cdot\vec{\nabla})\vec{v}+\frac{\partial\vec{v}}{\partial t}\tag{3.3}$$
 
 ## 运动方程的应用
 ### 定常流动的连续性方程
@@ -289,12 +289,14 @@ $$0-(-\rho\bar{v}_{1}Qh)=-M-(p_1-p_a)A_1h$$
 
 对于旋转洒水器问题, 控制体也是一个绕轴转动的物体, 因此要采用相对速度  
 由于截面绕轴旋转, 因此有牵连速度 $v_e=l\times\omega$, 方向垂直于洒水器臂 
-与[射流与叶片相互作用](#射流与叶片相互作用)不同, 旋转洒水器以取 $\vec{n}\approx\vec{v}_r$ 的方式简化模型, 因此有 
+与[射流与叶片相互作用](#射流与叶片相互作用)不同, 旋转洒水器以取 $\vec{n}\approx\vec{v}_r$ 的方式简化模型, 因此有
 $$\bar{v}_{yr}=\bar{v}\cos\theta-l\times\omega$$
 
-由于液体的进入部分在转轴上, 此时 $r=0$, 因此当平衡时, 转速 $\omega$ 达到最大且流体仅受到旋转摩擦阻力 $M_f$, 有动量矩方程 (由于出口与大气接触, 因此 $p=p_a$, 不考虑压力)
+由于液体的进入部分在转轴上, 此时 $r=0$, 由于出口与大气接触, 因此 $p=p_a$, 不考虑压力 因此当平衡时, 转速 $\omega$ 达到最大且流体仅受到旋转摩擦阻力 $M_f$, 有动量矩方程 (注意 $\omega$ 的方向, 且摩擦力 $M_f$ 与 $\omega$ 相反)
 
 $$\rho(\bar{v}_{1}\cos\theta_1-l_1\times\omega)Ql_1+\rho(\bar{v}_{1}\cos\theta_2-l_2\times\omega)Ql_2=M_f$$
 
 当洒水器被施加外力 $M$ 导致静止时, 则有动量矩方程
-$$\rho\bar{v}_{1}\cos\theta_1Ql_1+\rho\bar{v}_{1}\cos\theta_2Ql_2=M+M_f$$
+$$\rho\bar{v}_{1}\cos\theta_1Ql_1+\rho\bar{v}_{1}\cos\theta_2Ql_2=M$$
+
+[有关例题](./quest_solve.md#单位宽度曲面壁总压力)

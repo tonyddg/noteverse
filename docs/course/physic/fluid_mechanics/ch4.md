@@ -110,7 +110,7 @@ $$\lambda=\begin{cases}
 \\
 \dfrac{0.3164}{Re^{1/4}}&,4000<Re<80\frac{d}{\Delta}&,&\text{湍流水力光滑管}\\
 \\
-\dfrac{1}{[1.74+\lg(\frac{d}{2\Delta})]^2}&,4160(\frac{d}{2\Delta})^{0.85}<Re&,&\text{湍流水力粗糙管}
+\dfrac{1}{[1.74+2\lg(\frac{d}{2\Delta})]^2}&,4160(\frac{d}{2\Delta})^{0.85}<Re&,&\text{湍流水力粗糙管}
 \end{cases}$$
 
 对于过渡部分则需要从尼古拉兹实验曲线或莫迪图等试验曲线上查询

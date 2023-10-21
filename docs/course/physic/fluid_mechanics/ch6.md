@@ -20,6 +20,7 @@ order: 6
 |动力参数|包含 $L,T, M$|
 |$\rho$ 密度|$ML^{-3}$|$kg/m^3$|
 |$F$ 力|$MLT^{-2}$|$kg\cdot m/s^2=N$|
+|$P$ 功率|$ML^2T^{-3}$|$kg\cdot m^2/s^3=W$|
 |$p$ 压强|$ML^{-1}T^{-2}$|$kg/(s^2\cdot m)=Pa$|
 |$\mu$ 动力粘度|$ML^{-1}T^{-1}$|$kg/(s\cdot m)$|
 
@@ -40,7 +41,7 @@ $$\Pi_i=x_i\prod_{k=1}^{n-m} m_k^{a_k}$$
 假设方程涉及基本量纲 $L,T,M$  
 循环量 $y_i=[L^{l_i}T^{t_i}M^{m_i}],(i=1,2,3)$  
 对于参数 $x=[L^{u}T^{v}M^{w}]$  
-有无量纲综合参数 $\Pi=x\cdot y_1^a\cdot y_2^b\cdot y_3^c=[L^0T^0M^0]$, 因此可得到线性方程组
+有无量纲综合参数 $\Pi=x\cdot y_1^a\cdot y_2^b\cdot y_3^c=[L^0T^0M^0]$, 因此可得到线性方程组 (==注意右侧的负号与排列方向==)
 $$\begin{bmatrix}
 l_1&l_2&l_3\\
 t_1&t_2&t_3\\
@@ -55,49 +56,7 @@ a\\ b\\ c
 
 对于同一组循环量, 系数矩阵 $A$ 始终相同, 仅需根据参数的量纲改变方程左侧即可  
 
-#### 例题
-当球体在流体中定向运动中, 其阻力 $F$ 与流体密度 $\rho$, 动力粘度 $\mu$, 球的半径 $R$ 以及流体速度 $v$ 存在关系
-$$F=g(\rho,\mu,R,v)$$
-
-现选择循环量 $\rho,\mu,R$ 将此关系无量纲化  
-这些循环量分别有量纲
-$$\rho=[ML^{-3}]\quad\mu=[ML^{-1}T^{-1}]\quad R=[L]$$
-
-由此可以组成系数矩阵
-$$\begin{bmatrix}
--3&-1&1\\
-0&-1&0\\
-1&1&0\\
-\end{bmatrix}$$
-
-==注意到阻力 $F$ 作为公式结果, 也是物理参数的一部分==, 因此共有两个剩余参数 $F,v$
-
-首先分析参数 $v=[LT^{-1}]$  
-假设其无量纲综合参数为 $\Pi_1=v\cdot \rho^a\mu^b R^c=[L^{-3a-b+c+1}T^{-b-1}M^{a+b}]$  
-令其量纲为 $0$ 即可得到线性方程组
-$$\begin{bmatrix}
--3&-1&1&\big|&-1\\
-0&-1&0&\big|&1\\
-1&1&0&\big|&0\\
-\end{bmatrix}$$
-
-解得 $a=1,b=-1,c=1$, 因此有 
-$$\Pi_1=v\cdot \rho\mu^{-1} R=\frac{v\rho R}{\mu}$$
-
-其次分析参数 $F=[MLT^{-2}]$  
-假设其无量纲综合参数为 $\Pi_2=F\cdot \rho^a\mu^b R^c=[L^{-3a-b+c+1}T^{-b-2}M^{a+b+1}]$  
-令其量纲为 $0$ 即可得到线性方程组
-$$\begin{bmatrix}
--3&-1&1&\big|&-1\\
-1&1&0&\big|&2\\
-0&-1&0&\big|&-1\\
-\end{bmatrix}$$
-
-解得 $a=1,b=-2,c=0$, 因此有 
-$$\Pi_2=F\cdot \rho\mu^{-2} R^0=\frac{F\rho}{\mu^2}$$
-
-最终可得到公式的无量纲形式为
-$$F=\frac{\mu^2}{\rho}f(\frac{v\rho R}{\mu})$$
+[有关例题](./quest_solve.md#无量纲参数选取)
 
 ## 相似性原理
 通常为了测试物体在流场中的状态, 需要根据实际情况放大或缩小比例建立模型  
@@ -137,7 +96,7 @@ $m$ 表示模型 model, $p$ 表示原型 prototype
 
 ### 动力相似准则
 对于不可压缩粘性流体的流动有动力方程
-$$\vec{f}+\frac{1}{\rho}\vec{\nabla}p+\nu\vec{\nabla}^2\vec{v}=\frac{\partial\vec{v}}{\partial t}+(\vec{v}\cdot\vec{\nabla})\vec{v}$$
+$$\vec{f}-\frac{1}{\rho}\vec{\nabla}p+\nu\vec{\nabla}^2\vec{v}=\frac{\partial\vec{v}}{\partial t}+(\vec{v}\cdot\vec{\nabla})\vec{v}$$
 
 其中方程有变量 $\{x,y,z\},t,\vec{v},p$, 与==常量 $\vec{f},\rho,\nu$==
 
@@ -151,7 +110,7 @@ $$\vec{\nabla}=\frac{\vec{\bar{\nabla}}}{l_0},\frac{\partial\vec{v}}{\partial t}
 
 #### 量级
 将不可压缩粘性流体的动力方程无量纲化后有
-$$\vec{f}+(\frac{p_0}{\rho l_0})\vec{\nabla}\bar{p}+(\frac{\nu v_0}{l_0^2})\vec{\bar{\nabla}}^2\vec{\bar{v}}=(\frac{v_0}{t_0})\frac{\partial\vec{\bar{v}}}{\partial \bar{t}}+(\frac{v_0^2}{t_0})(\vec{\bar{v}}\cdot\vec{\bar{\nabla}})\vec{\bar{v}}$$
+$$\vec{f}-(\frac{p_0}{\rho l_0})\vec{\nabla}\bar{p}+(\frac{\nu v_0}{l_0^2})\vec{\bar{\nabla}}^2\vec{\bar{v}}=(\frac{v_0}{t_0})\frac{\partial\vec{\bar{v}}}{\partial \bar{t}}+(\frac{v_0^2}{t_0})(\vec{\bar{v}}\cdot\vec{\bar{\nabla}})\vec{\bar{v}}$$
 
 以此定义运动方程中各项的参数即其对应的量级, 具体如下表
 |原始项|含义|量级|

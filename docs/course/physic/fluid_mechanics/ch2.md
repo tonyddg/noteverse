@@ -37,14 +37,13 @@ $$\mathrm{d}p=\frac{\partial p}{\partial x}\mathrm{d}x+\frac{\partial p}{\partia
 当已知单位质量力 $\vec{f}$ 的分布后, 对其积分即可得到静止流体的压强 $p$
 
 ### 流体平衡微分方程的积分形式
+根据[梯度与全微分的关系](../../math/hand_book/multivariate.md#梯度)此时的压强在相邻 $\mathrm{d}l$ 的两点上满足
+$$\mathrm{d}p=\mathbf{grand}(p)\cdot\mathrm{d}\vec{l}=\rho\vec{f}\cdot\mathrm{d}\vec{l}$$
 
-通过引入哈密顿算子, 对于流场中的任意曲线 $\mathrm{d}\vec{l}=(\mathrm{d}x,\mathrm{d}y,\mathrm{d}z)$, 平衡微分方程还可写成如下形式
-$$\begin{split}\rho\vec{f}\cdot\mathrm{d}\vec{l}-\vec{\nabla}p\cdot\mathrm{d}\vec{l}&=0\\
-\rho\vec{f}\cdot\mathrm{d}\vec{l}&=\mathbf{grand}(p)\cdot\mathrm{d}\vec{l}
-\end{split}$$
-
-根据梯度积分与路径无关, 因此对于任意以 $\vec{r_1}$ 为起点, $\vec{r_2}$ 为终点的曲线
+因此对于流场中任意以 $\vec{r_1}$ 为起点, $\vec{r_2}$ 为终点的曲线 $l$ 有积分
 $$\int\limits_l\rho\vec{f}\cdot\mathrm{d}\vec{l}=\int_{\vec{r_1}}^{\vec{r_2}}\mathbf{grand}(p)\cdot\mathrm{d}\vec{l}=p(\vec{r_2})-p(\vec{r_1})$$
+
+此积分与路径无关, 仅需知道两个点的位置即可得到其压强差
 
 ## 静止流体中的压强分布
 ### 重力作用下的压强分布
@@ -56,7 +55,7 @@ $$p=-\rho gz+C$$
 ### 非惯性系下的压强分布
 假设静止液体在具有加速度 $\vec{a}$ 的非惯性系中, 根据达朗贝尔原理, 流体的质量力为 $\vec{f}=\vec{g}-\vec{a}$
 
-假设 $\vec{a}$ 沿 $x$ 方向, 此时有 $\vec{f}=(-a,0,-g)$, 根据式 [$(2.1)$](#tag2-1) 积分后得到重力作用下的压强分布满足
+假设 $\vec{a}$ 沿 $x$ 方向, 此时有 $\vec{f}=(-a,0,-g)$ (==惯性力方向 $f_i=-a$==), 根据式 [$(2.1)$](#tag2-1) 积分后得到重力作用下的压强分布满足
 $$p=-\rho ax -\rho gz+C$$
 
 其中积分常数 $C$ 即 $p\big|_{x,z=0}$ 的压强, 因此求解压强分布时需要先确定原点位置
@@ -205,9 +204,10 @@ $$F_z=p_0A_z+\rho g V$$
 其中
 
 * $p_0A$ 项为大气压通过流体传递的压强
-    * 当壁面一侧与空气接触, 计算壁面总受力时可以忽略  
+    * 当壁面一侧与空气接触 (或物体轮廓均与空气间接或直接接触), 计算壁面总受力时可以忽略  
     * 忽略右侧项可得空气对壁面的总压强可分解为对壁面沿 $z,x$ 方向投影的压强
-* $V$ 为曲面与液面围成的体积, 称为控制体, 忽略 $p_0$ 项有取 $z$ 轴以向上为正
+* $V$ 为曲面与==液面==围成的体积, 称为控制体, 忽略 $p_0$ 项有取 $z$ 轴以向上为正
     * 当壁面上方与液体接触时, $F_z$ 的方向为垂直向下, 取 $V$ 为负
     * 当壁面下方与液体接触时, $F_z$ 的方向为垂直向上, 取 $V$ 为正
     * 对于复杂曲面, 可分解为多段, 并对控制体叠加 $V=\sum V_i$
+* $F_x$ 不能忽略, 总是从液体指向壁面
