@@ -32,6 +32,9 @@ export default defineUserConfig({
 
                 // 为 Markdown 元素添加属性
                 attrs: true,
+
+                // 启用任务列表
+                tasklist: true,
             },
 
             autoCatalog:{
