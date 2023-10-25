@@ -231,17 +231,48 @@ $p_i$, $c_i\pm d_ii$ 为方程 $Q(x)=0$ 的解, 即 $F(x)$ 的极点
 该部分笔记尚未完成
 :::
 
+设 $u=a+bi=A\phase\phi,v=c+di=B\phase\theta$
+其中 
+* $A$ 为 $u$ 的幅值
+* $\phi$ 为 $u$ 的相位
+* $a$ 为 $u$ 的实部 $Re$
+* $b$ 为 $u$ 的虚部 $Im$
+
 #### 分母有理化
+定义 $\bar{u}=a-bi$ 为 $u$ 的共轭复数, 共轭复数与复数间的相乘满足
+$$u\bar{u}=a^2+b^2$$
+
+因此可将分母乘上其共轭复数, 将其转为实数
 $$\frac{a+bi}{c+di}=\frac{(a+bi)(c-di)}{(c+di)(c-di)}=\frac{ac+bd-adi+bci}{c^2+d^2}$$
 
+#### 复数乘除法
+根据复数的几何意义可得
+
+复数乘法为幅值相乘, 相位相加
+$$u\times v=(A\times B)\phase{(\phi+\theta)}$$
+复数除法为幅值相除, 相位相减
+$$u\div v=(A\div B)\phase{(\phi-\theta)}$$
+
 #### 复数幅值
+对于单个复数, 其幅值及其实部与虚部平方和开根号
 $$|a+bi|=\sqrt{a^2+b^2}$$
-$$|\frac{a+bi}{c+di}|=\frac{|a+bi|}{|c+di|}=\frac{\sqrt{a^2+b^2}}{\sqrt{c^2+d^2}}$$
+
+根据复数乘除法  
+对于多个复数组成的分式, 其幅值为分子因式幅值之积**除以**分母因式幅值之积
+$$\begin{split}|\frac{\prod (a_m+b_mi)}{\prod (c_n+d_ni)}|
+&=\frac{\prod |a_m+b_mi|}{\prod |c_n+d_ni|}\\
+&=\frac{\prod\sqrt{a_m^2+b_m^2}}{\prod\sqrt{c_n^2+d_n^2}}\end{split}$$
 
 #### 复数辐角
-![](./src/math_angle1.drawio.svg)
-
+对于单个复数即关于其实部与虚部的[四象限 $\arctan$](/course/math/hand_book/function.md#四象限反正切函数)
 $$\phase{a+bi}=\operatorname{Arctan(a,b)}$$
+
+根据复数乘除法
+对于多个复数组成的分式, 其相位为分子因式相位之和**减去**分母因式幅值之和
+$$\begin{split}\phase{\frac{\prod (a_m+b_mi)}{\prod (c_n+d_ni)}}
+&=\sum \phase{a_m+b_mi}-\sum \phase{c_n+d_ni}\\
+&=\sum \operatorname{Arctan}(a_m,b_m)-\sum\operatorname{Arctan}(c_n,d_n)\end{split}$$
+
 
 ### 部分分式分解
 部分分式分解将分式转变为几个简单分式之和, 此技巧在使用拉普拉斯变换求解微分方程与分式不定积分中有重要作用
