@@ -279,6 +279,11 @@ print(np.array([1, 2], ndim = 2).T) # 维度为2可以转置
 
 [Matlab 的函数对应的 numpy 函数](https://mathesaurus.sourceforge.net/matlab-numpy.html)
 
+### 统计函数
+#### 线性回归
+1. np.polyfit(x, y, deg)
+获取数据的线性回归, deg 为线性回归次数
+
 ## 数据IO
 ### npy/npz 数据
 1. np.save(file, arr)

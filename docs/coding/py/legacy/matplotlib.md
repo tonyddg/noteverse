@@ -124,12 +124,24 @@ axe.legend(字符串数组)
 * 通过字符串数组设置各条曲线的 legend, 而不是传入多个字符串
 
 ### 通用子图像设置
-fig, axes = plt.subplot(x, y, layout="constrained")
+fig, axes = plt.subplots(x, y, layout="constrained")
 * 创建 $x\times y$ 的子图像
 * 需要设置参数 layout="constrained" 保证子图像合理排列
-* 返回值 axes 为一个 $x\times y$ 的数组, 包含了各个子图像
+* 返回值 axes 为一个 $x$ 行 $y$ 列的数组, 包含了各个子图像
 
 ### 快速子图像设置
 axe = plt.subplot(x, y, n)
 * 用于快速创建子图像
 * n 为子图像的索引, 需要从 1 开始计
+
+## 用户设置
+### 中文显示
+> 参考文章 <https://zhuanlan.zhihu.com/p/52779214?from_voters_page=true>
+
+1. 打开路径 `.../anaconda3/envs/[python 环境名]/Lib/site-packages/matplotlib/mpl-data`
+1. 将 `simhei.ttf`, `arial.ttf` 放入路径下的 `fonts/ttf` 文件夹 (通常可在 `C:/windows/Fonts` 中找到)
+1. 将路径下的 `matplotlibrc` 文件复制到 `C:\用户\[用户名]\.matplotlib\matplotlibrc` (Windows), `$HOME/.config/matplotlib/matplotlibrc` (Linux)
+1. 打开复制后的文件
+    1. `font.family` 删除该选项前的 `#`
+    1. `font.sans-serif` 删除该选项前的 `#`, 在冒号后添加 `simhei`
+    1. `axes.unicode_minus` 删除该选项前的 `#`, 将值改为 `False`
