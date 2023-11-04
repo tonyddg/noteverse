@@ -35,6 +35,9 @@ export default defineUserConfig({
 
                 // 启用任务列表
                 tasklist: true,
+
+                // 添加对于 ECharts 的支持
+                echarts: true,
             },
 
             autoCatalog:{
