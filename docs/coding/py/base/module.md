@@ -75,6 +75,12 @@ with open("./text.txt") as file:
 1. 通过 `file.seek(0, 2)` 与 `file.tell()` 组合可以获取文件末尾位置 EOF
 1. 通过 `list.append()` 函数可以动态扩展储存空间, 不断向列表末尾插入数据
 
+#### 踩坑记录: Windows 下读取 Unix 中保存的文本
+当在 Windows 下读取 Unix 中保存的文本时 (如实验数据), 使用 tell 函数可能会返回错误值 `18446744073709551714`  
+为了规避这一错误, 应采用 `rb` 模式打开文件, 如 `open("...", mode='rb')`  
+
+参考文章 <https://stackoverflow.com/questions/15934950/python-file-tell-giving-strange-numbers>
+
 ## 常用操作
 ### 操作系统接口
 使用模块 os
