@@ -13,11 +13,11 @@
   "devDependencies": {
     "@vuepress/client": "2.0.0-beta.63",
     "echarts": "^5.4.3",
-    "vue": "^3.3.4",
+    "vue": "^3.3.8",
     "vuepress": "2.0.0-beta.63",
     "vuepress-theme-hope": "2.0.0-beta.229"
   },
   "dependencies": {
-    "pnpm": "^8.9.2"
+    "pnpm": "^8.10.5"
   }
 }
