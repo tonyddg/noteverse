@@ -165,6 +165,8 @@ c_v\ln\frac{p_2}{p_1}+c_p\ln\frac{v_2}{v_1}\\
 $$
 
 ## 不可压缩物质的推广
+以下公式仅用于无相变物质的计算
+
 ### 不可压缩物质的比热容
 不可压缩物质的比热容满足
 $$c_v\approx c_p\approx c_{av}$$
@@ -174,8 +176,19 @@ $$c_v\approx c_p\approx c_{av}$$
 
 ### 不可压缩物质的热力学能与焓
 根据证明可得, 不可压缩物质的热力学能依然满足
-$$u=c_{av}T$$
+$$U=mc_{av}T$$
 
 由于不可压缩物质 $v=C$, 不可压缩物质的焓满足
-$$h=c_{av}T+v\Delta p$$
+$$H=mc_{av}T+V\Delta p$$
+
+### 不可压缩物质的熵
+由于不可压缩物质 $\mathrm{d}v=0, q=\Delta u$, 因此
+$$\mathrm{d}s=\frac{\mathrm{d}u}{T}=mc_{av}\frac{\mathrm{d}T}{T}$$
+
+积分后可得
+$$S=mc_{av}\ln\frac{T_2}{T_1}$$
+其中近似认为 $T_2$ 为物质末状态的温度  
+$T_1$ 为物质初状态的温度
+
+
 
