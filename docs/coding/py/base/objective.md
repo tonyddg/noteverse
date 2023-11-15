@@ -5,7 +5,10 @@
 ```python
 class [类名]:
     "[类说明文档]"
-    [类体]
+    val: type = ...
+
+    def fun(self, ...):
+        ...
 ```
 
 ### 成员函数
@@ -77,6 +80,13 @@ class Child(Father):
 
 ### 私有成员
 当成员名称为 __[成员名] 时, 认为是私有成员
+
+### 使用注意
+#### 类的成员
+在定义类时, 即使声明了成员变量, 但没有赋初值, 也将认为类没有该成员  
+因此在类中声明了成员变量后, ==必须要对其赋初值==, 至少要赋值为 `None`
+
+可使用函数 `hasattr(__obj, __name)` 判断类是否有该成员
 
 ## 迭代器与生成器
 ### 迭代器
@@ -163,7 +173,8 @@ finally:
 ```python
 raise [异常类型]([异常信息])
 ```
-抛出异常后, 后方的代码不会再执行
+抛出异常后, 后方的代码不会再执行  
+异常类型通常即异常基类 `Exception`
 
 ### 简单异常处理
 对于存在成员函数 `__exit__()` 与 `__enter__()` 的类, 可以简化异常处理过程
@@ -192,4 +203,221 @@ text = ""
 with open("test.txt", "r") as file:
     text = file.read()
 ```
+
+## Type Hint
+参考自 <https://www.bilibili.com/video/BV11Z4y1h79y>
+
+用于 Python 3.5 以上的版本  
+除了[基本类型表示](#基本类型表示)中的内容, 其余函数 / 对象 (类型的本质为一种特殊的对象) 均需要通过 `import typing` 来获取
+
+### 基本类型表示
+* 基本类型 `int, float, bool, str, bytes, None`, 其中 `bytes` 为字节串 (即字节方式读取的字符串)
+* 列表 `list[type]`  
+通过 `type` 限制列表元素的类型
+* 元组 `tuple[type_1, type_2, ...]`  
+`type_n` 限定了元组中各个位置元素的类型  
+通常用于表示一些报文结构, 如 `tuple[int, Optional[str]]`, 第一个元素保存错误码, 第二个元素保存错误信息 
+* 字典 `dict[type_key, type_val]`
+`type_key` 限定了字典键的类型  
+`type_val` 限定了字典元素的类型  
+* 集合 `set[type]`  
+通过 `type` 限制集合元素的类型
+
+注意, 在 Python3.9 之前的版本需要通过 `from typing import ...` 的方式调用除基本类型外的类型, 且首字母为大写, 如  
+`List, Tuple, Dict, Set`
+
+### 复杂类型表示
+注意, 以下类型均需要通过 `from typing import ...` 的方式调用
+
+* 顺序存储类型 `Squence[type]`  
+表明变量可以是列表, 元组, 字符串等一系列顺序存储的变量类型, 要求存储元素类型为 `type`  
+例如 `Squence[int]` 类型的变量可以是列表 `[0, 1, 2]`, 元组 `(0, 1, 2)`, 字节字符串 `b"abc"`
+
+* 复合类型 `Union[type1, type2, ...]`  
+表明变量类型可能是 `type1`, `type2` 等几个类型中的一个  
+对与函数使用时, 推荐使用[函数模板](#函数模板)代替
+
+* 可选变量 `Option[type]`  
+表明变量类型可能使 `type`, 也可能是 `None`, 常用于函数的可选参数  
+该类型最好仅用于接收信息的只读成员或函数的可选参数  
+此时仍要给出参数的默认值, 如 `f(a: Option[int] = None)`
+
+* 可调用变量 `Callable[[type_1, type_2, ...], type_return]`  
+表明变量是一个参数类型为 `type_1, type_2, ...`, 返回值为 `type_return` 的函数或可调用的类
+
+* 变量值限定 `Literal[val1, val2, ...]`  
+要求变量的值只能是 `valn` 中的一个
+
+* 任意类型 `Any`
+
+### 基本使用
+#### 变量标注
+通过 `val:type` 的方式标注变量类型  
+在使用变量标注后, 除非使用 `Option` 类型, 否则最好对变量赋初值
+
+#### 函数标注
+`def fun(a: type_1, b: type_2, ...) -> type_return`
+
+其中
+* `type_n` 为函数参数的类型
+* `type_return` 为函数返回值类型
+
+使用注意
+1. 默认情况下, 认为函数返回 `Any`
+1. 当函数不返回值时, 应标注返回类型为 `None`
+1. 当函数中可能终止程序 (如抛出错误) 时, 应采用 `NoReturn`
+
+应用举例
+```python
+from typing import NoReturn
+
+def fun() -> None:
+    pass
+
+def ExitPrgm(code: Literal["ok", "error"]) -> NoReturn:
+    if code == "ok":
+        exit()
+    else:
+        raise Exception("Exit Error")
+```
+
+#### 类标注
+在类定义完成后, 将自动识别并成为一个类型  
+但是在类定义中, 需要表示类的类型时, 应使用 `"classname"` 的方式, 其中 `classname` 为类名  
+
+对于成员函数中的 `self` 则不需要标注类型  
+对于构造函数 `__init__` 则不需要标注返回类型
+
+```python
+class container:
+    def __init__(self):
+        ...
+    def copy(self, obj: "container")
+```
+
+### 类型断言
+#### 类型断言  
+当类型前有对类型的判断语句后, 将自动对类型进行断言
+
+```python
+from typing import Literal, Optional
+
+# Option 类型
+def add(a: int, b: Optional[int]) -> int:
+    if type(b) == int:
+        # 经过判断后认为 b 即 int 类型
+        return a + b
+    else:
+        return a
+
+# Literal 类型
+
+x: Literal["a", "b"] = "a"
+y: str = "b"
+
+if y == "b":
+    # 经过判断后, 认为 y 已经满足 Literal["a", "b"] 的要求
+    x = y
+```
+
+类型的判断通常通过函数 `type(val)` 完成  
+注意其返回值为无类型限制的[基本类型](#基本类型表示)或自定义的类, 如 `list, int`   
+对于模板类, `type(val)` 仅能判断模板类, 无法判读示例化后的类  
+无法用于判断复杂类型, 如 `Union[int, str], Any`
+
+#### 显式类型转换  
+即内置的类型转换函数, 如 `str, int` 等  
+以及独立类型别名的转换函数 `TypeName(val)`
+常用于 `NewType` 的转换  
+
+```python
+a: int = 100
+s: str = str(a)
+```
+
+#### 忽略类型判断  
+在出现类型错误的位置使用注释 `# type: ignore`  
+可以让系统不进行类型检查
+
+#### 强制类型转换 (不建议使用)  
+`typing.cast(type, val)`  
+
+直接将变量 `val` 的类型标记转换为 `type`
+
+### 类型别名
+#### 基本类型别名  
+`TypeName = type`  
+在解释时, 将使用 `type` 代替 `TypeName`  
+因此认为 `type` 与 `TypeName` 是同一个类型
+
+#### 独立类型别名  
+`TypeName = NewType("TypeName", type)`  
+认为 `TypeName` 与 `type` 不同, 无法相互赋值, 需要进行显式类型转换  
+
+```python
+from typing import NewType
+
+UserID_A = NewType("UserID_A", int)
+a: UserID_A = UserID_A(10)
+```
+
+### 模板类型 (泛型)
+类似 C++ 的模板, 在定义模板前, 需要定义泛型变量的名称  
+python 使用如下方式定义  
+`T = typing.TypeVar("T", type_1, type_2, ...)`  
+`type_n` 为模板允许的类型, 不定义则表示模板可为任意类型  
+
+注意
+* 一个泛型变量仅用于一个模板函数 / 模板类
+* 操作泛型时要保证各个可能类型对操作适用
+* 可以通过断言对不同类型进行专门操作
+
+#### 函数模板
+函数模板可以自动识别示例化类型
+
+使用示例
+
+```python
+from typing import TypeVar, Sequence
+
+T = TypeVar("T", str, int)
+def fun(a: T, b: T) -> Sequence[T]:
+    if type(a) == int:
+        return [a + b, a - b]
+    else:
+        return [a, b]
+```
+
+#### 类模板
+类通过继承基类 `Generic["T"]` 的方式变为模板类 (`T` 为泛型变量的名称)  
+在使用时需要通过 `classname[type]` 确定模板的示例化类型
+
+使用示例
+
+```python
+from typing import TypeVar, Generic
+
+T = TypeVar("T")
+
+class Container(Generic[T]):
+    item: Optional[T] = None
+    def __init__(self, item: Optional[T] = None):
+        self.item = item
+    
+    def set(self, item: T):
+        self.item = item
+
+    def get(self) -> Optional[T]:
+        return self.item
+
+    def show(self) -> None:
+        print(self.item)
+
+a: Container[str] = Container[str]()
+```
+
+### 有关设置
+1. 启用 IDE 的类型检查
+    * vscode   
+    启用 Pylance 设置 `"python.analysis.typeCheckingMode": "basic"`
 

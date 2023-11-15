@@ -81,7 +81,25 @@ with open("./text.txt") as file:
 
 参考文章 <https://stackoverflow.com/questions/15934950/python-file-tell-giving-strange-numbers>
 
-## 常用操作
+### 退出程序
+参考自 <https://www.bilibili.com/video/BV1bZ4y1B7vT>
+
+* `quit(code = 0)` 或 `exit(code = 0)`  
+函数参数 `code` 为退出码, 取 `0` 为正常退出  
+以上两个退出函数为基本的退出函数, 其本质为发起异常 `raise SystemExit`, 可能被 `try` 语句捕获  
+由于这两个函数来自自动导入的模块 `site`, 因此当这个模块被排除时, 将因为函数不存在而导致异常  
+因此一般不推荐使用
+
+* `sys.exit(code = 0)`  
+同样为 `raise SystemExit`  
+但使用时要明确导入模块 `sys`, 因此更安全, 推荐使用
+
+* `os._exit(code)`  
+通过系统层面直接退出程序, 可以保证程序立刻退出  
+该函数没有默认的退出码, 需要手动指定  
+不推荐使用, 因为没有 `raise SystemExit`, 可能导致部分退出保护程序无法运行
+
+## 常用模块
 ### 操作系统接口
 使用模块 os
 1. os.getcwd()
