@@ -201,6 +201,64 @@ $$\mathscr{L}[\frac{1}{t}f(t)]=\int_{s}^{+\infty}F(s)ds$$
 例如
 $$\begin{aligned}\mathscr{L}[t\sin 2t]&=-\frac{d}{ds}[\frac{2}{s^2+4}]\\ &=\frac{4s}{(s^2+4)^2}\end{aligned}$$
 
+## Z 变换
+> 参考自 <https://www.bilibili.com/video/BV1nT4y167Zo>
+
+用于离散系统分析, 处理离散时间信号  
+Z 变换可以将离散信号转换为复频域信号
+
+### 冲激序列
+假设采样间隔为 $T$, 有冲激序列
+
+$$\delta_T(t)=\sum_{n=0}^{\infty}\delta(t-nT)$$
+
+每隔 $T$ 间隔有一个冲激函数
+
+### 信号采样
+将信号采样表示为冲激序列与信号相乘的形式, 有
+
+$$f_s(t)=\delta_T(t)\cdot f(t)$$
+
+虽然 $f_s(t)$ 名为对信号的采样, 但 $f_s(nT)=f(nT)\cdot \delta(nT-nT) \neq f(nT)$
+
+### 信号采样的拉普拉斯变换
+显然 $f_s(t)$ 在时间上是连续的, 因此可以进行拉普拉斯变换  
+根据冲激函数 $\delta(t)$ 的采样定律有
+
+$$\begin{split}
+F_s(s)&=\int_{-\infty}^{\infty}\delta_T(t)\cdot f(t)e^{-st}\mathrm{d}t\\
+&=\sum_{n=-\infty}^{\infty}\int_{-\infty}^{\infty}\delta(t-nT)\cdot f(t)e^{-st}\mathrm{d}t\\
+&=\sum_{n=-\infty}^{\infty}f(nT)e^{-snT}
+\end{split}$$
+
+其中 $f(nT)$ 为一个间隔 $T$ 的序列, 取值仅与顺序 $n$ 有关, 因此记为 $f[n]$
+
+### 变量代换
+定义变量代换 (注意 $z$ 仍然为复数)
+
+$$z=e^{sT}$$
+
+将此时信号采样的拉普拉斯变换即为 $Z$ 变换
+$$Z[f_s(t)]=F_s(z)=\sum_{n=0}^{\infty}f[n]z^{-n}$$
+
+### 与拉普拉斯变换的关系
+即 $Z$ 变换的一般形式, 其本质为一个复数域的[幂级数](/course/math/Complex%20Variables%20and%20Integral%20Transformation/ch5.md#幂级数)
+
+对于拉普拉斯变换 $s$ 为一个复平面上的点  
+经过变换 $z=e^{sT}$, $s$ 的左半平面映射到 $z$ 的单位圆内, 右半部分则映射到单位圆外, 虚轴映射为单位圆
+
+### Z 变换举例
+单位阶跃函数 $1(t)$ 的 $Z$ 变换   
+对于 $f(t)=1(t)$ 显然有 $f[n]=1$  
+根据[此类幂级数](/course/math/Complex%20Variables%20and%20Integral%20Transformation/ch5.md#重要展开)可得
+
+$$Z[F_s(z)]=\sum_{n=0}^{\infty}z^{-n}=\sum_{n=0}^{\infty}(\frac{1}{z})^{n}=\frac{z}{z-1}$$
+
+单位冲激函数 $\delta(t-kT)$ 的 $Z$ 变换   
+
+根据 $\mathscr{L}[\delta(t-kT)]=e^{-kTs}$, 以及变量代换 $z=e^{sT}$ 可得
+$$Z[\delta(t-kT)]=z^{-k}$$
+
 ## 代数知识
 ### 多项式分式
 #### 基本形式
