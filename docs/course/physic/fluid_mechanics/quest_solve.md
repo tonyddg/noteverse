@@ -157,3 +157,24 @@ $$\Pi_2=F\cdot \rho\mu^{-2} R^0=\frac{F\rho}{\mu^2}$$
 
 最终可得到公式的无量纲形式为
 $$F=\frac{\mu^2}{\rho}f(\frac{v\rho R}{\mu})$$
+
+### 准则数应用
+在风洞中做鱼雷阻力试验, 模型与原型的缩尺比例为 $1:3$. 已知原型流场参数 $v_p=6km/h,\rho_p=1010kg/m^3,\nu_p=1.145\times 10^{-6}m^2/s$; 模型流场参数 $\rho_m=1.29kg/m^3,\nu_m=1.45\times 10^{-5}m^2/s$. 求  
+(1) 风洞试验的模拟速度 $v_m$  
+(2) 当风洞试验中测出模型阻力 $F_m$, 求原型鱼雷受到的阻力 $F_p$  
+
+(1)  
+由题意得模型与实际满足几何相似性, 有 $C_L=\frac{1}{3}$  
+研究物体在流场中受到的阻力, 因此选择雷诺数 $Re$ 作为模型与实际需要满足的准则数, 因此有  
+$$\begin{split}Re_p&=Re_m\\
+\frac{v_pl_p}{\nu_p}&=\frac{v_ml_m}{\nu_m}\\
+v_m&=v_p\frac{l_p\nu_m}{l_m\nu_p }=\frac{v_p}{C_L}\frac{\nu_m}{\nu_p}\approx 227.95km/h
+\end{split}$$
+
+(2)  
+为了计算阻力, 引入欧拉准则则有  
+$$\begin{split}Eu_p&=Eu_m\\
+\frac{F_{p}/l_p^2}{\rho_p v_p^2}&=\frac{F_{m}/l_m^2}{\rho_m v_m^2}\\
+\frac{F_{p}}{F_{m}}&=\frac{\rho_p}{\rho_m}\frac{v_p^2}{v_m^2}\frac{l_p^2}{l_m^2}=\frac{\rho_p}{\rho_m}\frac{v_p^2}{v_m^2}\frac{1}{C_L^2}\approx 4.88 
+\end{split}$$
+
