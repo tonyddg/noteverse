@@ -212,7 +212,9 @@ print("out:{str:^10}\n    0123456789".format(str = "Hello"))
     * `{:+}` 带符号 (前缀)
     * `{:,}` 千位分隔符 (前缀)
     * `{x>/</^n}` 对齐, 含义见上 (前缀)
-    * `{:#X}` 十六进制 (仅用于整数)
+    * `{:#X}` 十六进制 (仅用于整数)  
+    对于十六进制宽度通过此方法控制 `{:#n_X}`, `n` 为宽度  
+    也可使用 `O`, `x` 表示八进制或十六进制小写
 ```python
 # 保留 n 位小数
 print("{pi:.3f}".format(pi = 3.14159))
@@ -252,7 +254,25 @@ print("{pi:#X}".format(pi = 314159))
 > '\\frac{10}{x}'
 ```
 
+* 混合格式
+
+对于以上各种格式可以混合使用, 具体规则如下
+
+```text
+format_spec     ::=  [[fill]align][sign][#][0][width][grouping_option][.precision][type]
+fill            ::=  <any character>
+align           ::=  "<" | ">" | "=" | "^"
+sign            ::=  "+" | "-" | " "
+width           ::=  digit
+grouping_option ::=  "_" | ","
+precision       ::=  digit
+type            ::=  "b" | "c" | "d" | "e" | "E" | "f" | "F" | "g" | "G" | "n" | "o" | "s" | "x" | "X" | "%"
+```
+
 * `f-string`
+通过在字符串前加上 `f` 可以自动生成格式化字符串, 而不使用 `format`  
+
+对于 `f-string` 必须指出变量名, 将从可用变量中自动寻找  
 
 #### 字符串标记
 放在字符串最前处, eg R"Hello"
