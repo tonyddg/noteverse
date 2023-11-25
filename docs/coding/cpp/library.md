@@ -19,7 +19,7 @@ match是全文匹配，即要求整个字符串符合匹配规则。
 ## 格式化输出 fmt
 对于 C++20 以上的标准, 可使用 std::format  
 
-提供了类似 [Python 格式化字符串](/docs/coding/py/base/base.md#转义与格式化)功能  
+提供了类似 [Python 格式化字符串](/coding/py/base/base.md#转义与格式化)功能  
 以及格式控制, 字符颜色等功能  
 参考文档 <https://github.com/fmtlib/fmt>
 
