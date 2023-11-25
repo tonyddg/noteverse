@@ -27,12 +27,15 @@ $$Q_{1a2}=\int\limits_{1a2}T\mathrm{d}S\neq Q_{1b2}=\int\limits_{1b2}T\mathrm{d}
 
 ![](./src/ch2_w_pv.drawio.svg)
 
-对于==任意过程==, 体积功满足 ($w_b$ 为单位质量工质的体积功)
-$$\delta W_b=p\mathrm{d}V\quad \delta w_b=p\mathrm{d}V$$
+对于==准静态过程== (一般过程无法表示为过程曲线, 显然也无法使用曲线积分), 体积功满足 ($w_b$ 为单位质量工质的体积功)
+$$\delta W_b=p\mathrm{d}V\quad \delta w_b=p\mathrm{d}v$$
 
 如图所示, 体积功大小即 $p-V$ 图上过程曲线与 $V$ 轴围成的面积  
 对于不同的过程, 虽然初末态相同, 但体积功不同, 因此==体积功为一个过程量==
 $$W_{b,1a2}=\int\limits_{1a2}p\mathrm{d}V\neq W_{b,1b2}=\int\limits_{1b2}p\mathrm{d}V$$
+
+注意, 对于一般过程, 此时的体积功仅能通过外部的实际做功计算  
+如==突然释放==(没有微小势差)的压缩气体推动活塞, 可通过大气一侧与推动活塞做功简介计算, 即 $W_b=p_a\Delta V+FL$ ($p_a$ 为大气压力, $F$ 为推动活塞的力, $L$ 为推动活塞移动距离)
 
 ### 总功量 $W$
 除了体积功外, 系统还可通过多种其他方式对外做功 / 接收外界做功, 如转轴的轴功 $W_s$等  
@@ -41,7 +44,12 @@ $$W_{b,1a2}=\int\limits_{1a2}p\mathrm{d}V\neq W_{b,1b2}=\int\limits_{1b2}p\mathr
 
 当系统不存在其他做功方式时 (可逆过程), 体积功与系统总做功相同, 因此也可以使用总功量 $W$ 直接表示体积功
 
-注意, 对于活塞一侧为大气的简单可压缩系统, 当活塞移动产生体积功的同时, 还有==大气对活塞做功 $W=p_a\Delta V$==, 这部分属于外界对系统做功的功量
+* 过程功  
+即工质的总功量
+* 无用功  
+总功量中因摩擦损耗或抵挡大气压力所做的, 无法利用的功
+* 有用功  
+总功量中, 排除无用功的剩余部分
 
 ### 热力学能 U
 将系统的微观能量, 即物体内部拥有的各种能量定义为**热力学能** $U$   
@@ -60,7 +68,7 @@ $E_p$ 为系统的宏观总势能
 $U$ 为系统的热力学能 (微观能量)
 
 一般情况下有 ($c$ 为工质的平均宏观速度)
-$$E_k=\frac{1}{2}mc^2\quad E_p=\rho gh$$
+$$E_k=\frac{1}{2}mc^2\quad E_p=\rho gz$$
 
 对于固定不做运动的系统 (如==闭口系中的气体==), 一般情况下 $U\gg E_k+E_p$, 因此可以忽略总动能与总势能, 有 $E=U$  
 对于==运动固体== (如活塞), 一般情况下 $\Delta U\ll E_k+E_p$, 因此可以忽略热力学能的影响 $\Delta U$
@@ -74,7 +82,7 @@ $$E_k=\frac{1}{2}mc^2\quad E_p=\rho gh$$
 除此之外, 外界向系统推入 / 接受工质时, 有流动功 $W_f=pV$
 
 因此如图进入 / 离开系统的总能量有四部分组成 (由于开口系中系统总质量不确定, 因此多采用比强度)
-$$\Theta=m(\frac{1}{2}c^2+gh+u+pv)$$
+$$\Theta=m(\frac{1}{2}c^2+gz+u+pv)$$
 
 ### 焓 H
 将状态参数 $U,p,V$ 组合得到新的广延参数定义为**焓** $H$, 满足
@@ -84,7 +92,7 @@ $$H=U+pV$$
 对于开口, 焓代表着伴随工质流动而迁移的与工质热力学状态直接有关的那一部分能量 ($m(u+pv)$)
 
 ### 技术功 Wt
-由于总功量 $W$, 宏观能量 $m(\frac{1}{2}c^2+gh)$ 都属于机械能范畴是技术上可以利用的功, 以此定义**技术功** $W_t$, 满足
+由于总功量 $W$, 宏观能量 $m(\frac{1}{2}c^2+gz)$ 都属于机械能范畴是技术上可以利用的功, 以此定义**技术功** $W_t$, 满足
 $$W_t=W+m[\frac{1}{2}(c_2^2-c_1^2)+g(h_2-h_1)]$$
 
 ![](./src/ch2_wt_pv.drawio.svg)
@@ -133,11 +141,11 @@ $$T\mathrm{d}S=p\mathrm{d}V+\mathrm{d}U$$
 ### 流动微元过程分析
 在开口系得瞬间时刻下, 开口系中除了热量与总功量的交换, 还有物质交换, 以及物质所携带的宏观能量的交换  
 对于开口系微元过程下有能量守恒
-$$\delta Q+\delta m_{in}(h_{in}+\frac{1}{2}c_{in}^2+gh_{in})=\delta W+\mathrm{d}E+\delta m_{out}(h_{out}+\frac{1}{2}c_{out}^2+gh_{out})$$
+$$\delta Q+\delta m_{in}(h_{in}+\frac{1}{2}c_{in}^2+gz_{in})=\delta W+\mathrm{d}E+\delta m_{out}(h_{out}+\frac{1}{2}c_{out}^2+gz_{out})$$
 
 
 除以时间微元 $\mathrm{d}\tau$ 后有 
-$$\frac{\delta Q}{\mathrm{d}\tau}+\frac{\delta m_{in}}{\mathrm{d}\tau}(h_{in}+\frac{1}{2}c_{in}^2+gh_{in})=\frac{\delta W}{\mathrm{d}\tau}+\frac{\mathrm{d}E}{\mathrm{d}\tau}+\frac{\delta m_{out}}{\mathrm{d}\tau}(h_{out}+\frac{1}{2}c_{out}^2+gh_{out})$$
+$$\frac{\delta Q}{\mathrm{d}\tau}+\frac{\delta m_{in}}{\mathrm{d}\tau}(h_{in}+\frac{1}{2}c_{in}^2+gz_{in})=\frac{\delta W}{\mathrm{d}\tau}+\frac{\mathrm{d}E}{\mathrm{d}\tau}+\frac{\delta m_{out}}{\mathrm{d}\tau}(h_{out}+\frac{1}{2}c_{out}^2+gz_{out})$$
 
 ### 稳态稳流条件
 稳态稳流条件表明
@@ -154,7 +162,7 @@ $$\frac{\delta Q}{\mathrm{d}\tau}+\frac{\delta m_{in}}{\mathrm{d}\tau}(h_{in}+\f
 
 ### 稳态稳流下的热力学第一定律
 因此, 代入稳态稳流条件后有稳态稳流下的热力学第一定律
-$$q_Q=q_W+q_m[(h_{out}+\frac{1}{2}c_{out}^2+gh_{out})-(h_{in}+\frac{1}{2}c_{in}^2+gh_{in})]$$
+$$q_Q=q_W+q_m[(h_{out}+\frac{1}{2}c_{out}^2+gz_{out})-(h_{in}+\frac{1}{2}c_{in}^2+gz_{in})]$$
 
 引入[技术功](#技术功-wt)后, 在 $\Delta \tau$ 内有
 $$Q=W_t+\Delta H$$
