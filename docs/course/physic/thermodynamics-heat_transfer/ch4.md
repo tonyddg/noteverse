@@ -73,7 +73,7 @@ $$c_p\ln T=R_g\ln p+C\to T=\frac{p}{C}$$
 
 ### 定温过程
 #### 过程方程
-对于定容过程, 温度 $T$ 为常数, 有
+对于定温过程, 温度 $T$ 为常数, 有
 $$T=C, \mathrm{d}p=0$$
 
 因此
@@ -126,7 +126,7 @@ $$pv^k=C$$
 由于 $s$ 为常数, 显然其 $T-s$ 图为一条沿 $T$ 轴方向的直线
 
 * 区域分析  
-根据[热力学能](./ch2.md#热力学能-u)与[焓](./ch2.md#焓-h)表达式, ==在状态 $O$ 向曲线**上侧**区域移动的过程==中, $\mathrm{d}T>0$, ==**热力学能与焓** $\Delta h,\Delta u\propto \Delta T$ 增大==
+根据[热量的表达式](./ch2.md#热量-q), ==在状态 $O$ 向曲线**右侧**区域移动的过程==中, $\mathrm{d}s>0$, ==**热量** $q\propto \Delta s$ 增大==
 
 ## 多变过程
 将一类满足过程方程 $pv^n=C$ 的==可逆过程==定义为**多变过程**  
@@ -204,6 +204,15 @@ $$\frac{p_1V_1}{T_1}=\frac{p_2V_2}{T_2}=mR_g$$
 
 $$\Delta u = c_v(T_2-T_1)\quad \Delta h = c_p(T_2-T_1)$$
 
+以及熵变 (理想气体的熵变公式对任意过程满足)
+
+$$\Delta s=\int_{1}^{2}\mathrm{d}s=\begin{cases}
+c_v\ln\frac{T_2}{T_1}+R_g\ln\frac{v_2}{v_1}\\
+c_p\ln\frac{T_2}{T_1}-R_g\ln\frac{p_2}{p_1}\\
+c_v\ln\frac{p_2}{p_1}+c_p\ln\frac{v_2}{v_1}\\
+\end{cases}
+$$
+
 ### 准静态判断
 对各个系统的过程分别进行准静态判断  
 
@@ -228,15 +237,6 @@ $$w_b=\int\limits_{l_{1\to 2}}p\mathrm{d}v\quad w_t=\int\limits_{l_{1\to 2}}-v\m
 $$q=\int\limits_{l_{1\to 2}}T\mathrm{d}s$$
 
 以上公式一般仅在定温 $q=T\Delta s$ 或绝热 $q=0$ 下使用
-
-如果工质为理想气体, 则还可以计算熵变 $\Delta s$
-
-$$\Delta s=\int_{1}^{2}\mathrm{d}s=\begin{cases}
-c_v\ln\frac{T_2}{T_1}+R_g\ln\frac{v_2}{v_1}\\
-c_p\ln\frac{T_2}{T_1}-R_g\ln\frac{p_2}{p_1}\\
-c_v\ln\frac{p_2}{p_1}+c_p\ln\frac{v_2}{v_1}\\
-\end{cases}
-$$
 
 ### 系统热力学过程判断
 #### 基本过程

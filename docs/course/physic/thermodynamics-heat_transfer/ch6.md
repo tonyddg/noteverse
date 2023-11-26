@@ -11,7 +11,7 @@ order: 6
 #### 傅里叶传热定律
 一维情况下大平板中的傅里叶传热定律为
 
-$$\Phi=-\lambda A\frac{\mathrm{d}t}{\mathrm{x}}=\lambda A\frac{\Delta t}{\delta}$$
+$$\Phi=-\lambda A\frac{\mathrm{d}t}{\mathrm{d}x}=\lambda A\frac{\Delta t}{\delta}$$
 
 公式中的负号体现了热量由高温向低温传递 ($\mathrm{d}t$ 以低温向高温为正)  
 其中
@@ -45,7 +45,7 @@ $$\Phi=Ah\Delta t$$
 相同情况下, 强制对流的换热系数更大
 
 注意换热壁面的选取  
-对于空间中的平面壁, 可能两侧都参与换热, 因此 $A_h=2A$  
+对于空间中的平面壁, 可能两侧都参与换热, 此时 $A_h=2A$  
 对于管道中的热流与外界换热, 换热面为管道内侧的圆柱面, $A_h=\pi dL$  
 对于空间中的圆柱体, 除了壁面还有上下两面参与换热, $A_h=\pi dL+2\frac{\pi}{4}d^2$
 
@@ -56,8 +56,8 @@ $$\Phi=Ah\Delta t$$
 $$\Phi_{12}=\varepsilon A\sigma (t_1^4-t_2^4)$$
 
 其中
-* $T_1$ 为物体温度, 单位 $K$
-* $T_2$ 为环境温度, 单位 $K$
+* $t_1$ 为物体温度, 单位 $K$
+* $t_2$ 为环境温度, 单位 $K$
 * $\sigma=5.67\times 10^{-8}$ 为玻尔兹曼常数
 * $\varepsilon$ 为物体发射率
 
@@ -69,7 +69,7 @@ $$\Phi_{12}=\varepsilon A\sigma (t_1^4-t_2^4)$$
 其中 
 * 总热流量 $\Phi$ 为过程中的转移量, 类比电流 $I$
 * 温度差 $\Delta t$ 为过程中的动力, 类比电压差 $\Delta U$
-* 热阻 $\R$ 为过程中的转移量, 类比电阻 $R$
+* 热阻 $R$ 为过程中的转移量, 类比电阻 $R$
 
 热阻 $R$ 则根据 $\Phi$ 与 $\Delta T$ 定义
 $$\Phi=\frac{\Delta t}{R}$$
