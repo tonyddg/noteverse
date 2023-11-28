@@ -221,7 +221,10 @@ res = floor(log10(test));
 3. sgtitle 在子图网格上添加标题(用于 subplot)
 4. mlabel 为 m 轴添加标签
 5. legend 在坐标区上添加图例说明(顺序与定义图像的顺序相同)
-6. text 在指定点位置添加文字 指定参数 Units 为 normalized 时, 使用 0 - 1 的相对坐标, 否则默认为实际坐标
+6. text 在指定点位置添加文字 
+    * 指定参数 Units 为 `normalized` 时, 使用 0 - 1 的相对坐标, 否则默认为实际坐标
+    * 指定参数 Interpreter 为 `latex` 时, 可以使用 Latex (此时字符串内不可有中文, 使用 `$$` 包裹转以部分)
+    * 文字可通过函数 `sprintf` 格式化
 
 为 `for` 循环生成的图像批量添加 legend 的技巧
 1. 使用一个字符串数组保存各个图像的 legend, 其中字符串数组通过函数 `string` 创建, 如 `legend_list = string(n);`
