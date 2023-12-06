@@ -1,19 +1,23 @@
-# 常用模块
-## 内置函数
-### 输入输出
-#### 打印到屏幕
+# 常用模块与操作
+可参考文档 <https://docs.python.org/zh-cn/3/library/allos.html>
+
+## 文本输入输出
+### 打印到屏幕
 `print([表达式1], [表达式2], ...)`
 
-将表达式转为字符串, 打印到屏幕上
+将表达式转为字符串, 打印到屏幕上  
+通常直接使用字符串的 [`format` 成员函数](./base.md#转义与格式化)完成格式化
 
-#### 获取输入
+### 获取输入
 1. `raw_input([输入提示])`
 从屏幕上获取一行, 返回字符串
 2. `input([输入提示])`
 从屏幕上获取一行, 通常返回字符串, 也可以解析[推导式](./base.md#推导式), 然后返回
 3. 如果要读取数字等, 需要使用类型转换, 如 `int(input())`
 
-### 文件操作
+## 文件操作
+来自模块 `io`, 已默认导入
+
 #### 打开文件
 ```python
 a = open(file, mode = 'r', encoding = 'utf8')
@@ -81,26 +85,28 @@ with open("./text.txt") as file:
 
 参考文章 <https://stackoverflow.com/questions/15934950/python-file-tell-giving-strange-numbers>
 
-### 退出程序
+## 退出程序
 参考自 <https://www.bilibili.com/video/BV1bZ4y1B7vT>
 
-* `quit(code = 0)` 或 `exit(code = 0)`  
+### 直接方法
+`quit(code = 0)` 或 `exit(code = 0)`  
 函数参数 `code` 为退出码, 取 `0` 为正常退出  
 以上两个退出函数为基本的退出函数, 其本质为发起异常 `raise SystemExit`, 可能被 `try` 语句捕获  
 由于这两个函数来自自动导入的模块 `site`, 因此当这个模块被排除时, 将因为函数不存在而导致异常  
 因此一般不推荐使用
 
-* `sys.exit(code = 0)`  
+### 一般推荐方法
+`sys.exit(code = 0)`  
 同样为 `raise SystemExit`  
 但使用时要明确导入模块 `sys`, 因此更安全, 推荐使用
 
-* `os._exit(code)`  
+### 特殊方法
+`os._exit(code)`  
 通过系统层面直接退出程序, 可以保证程序立刻退出  
 该函数没有默认的退出码, 需要手动指定  
 不推荐使用, 因为没有 `raise SystemExit`, 可能导致部分退出保护程序无法运行
 
-## 常用模块
-### 操作系统接口
+## 操作系统接口
 使用模块 os
 1. os.getcwd()
 获取当前工作目录
@@ -118,12 +124,12 @@ with open("./text.txt") as file:
 与路径, 文件信息有关的子模块
 * 对于操作文件夹, 可能需要具有递归版本的函数, 查表
 
-### 文件搜索
+## 文件搜索
 使用模块 glob
 1. glob.glob([带有通配符的路径])
 返回符合通配符的路径
 
-### 系统交互接口
+## 系统交互接口
 使用模块 sys
 1. sys.argv
 获取命令行参数
@@ -132,8 +138,46 @@ with open("./text.txt") as file:
 3. sys.exit()
 终止脚本
 
-### 正则表达式
+## 正则表达式
 1. r"[正则表达式]"
 定义正则表达式
 2. re.findall([正则表达式], [字符串])
 正则表达式匹配
+
+## 计时与时间
+使用模块 time
+
+参考资料 <https://www.runoob.com/python3/python3-date-time.html>
+
+### 日期
+#### 获取时间戳
+`ticks = time.time()`
+
+获取一个浮点数类型的当前时间戳
+
+#### 转换为时间结构体
+`lt = time.localtime(ticks)`
+
+* 参数 `ticks` 为被转换的时间戳  
+
+时间结构体中共包含以下成员  
+`tm_year, tm_mon, tm_mday, tm_hour, tm_min, tm_sec, tm_wday, tm_yday, tm_isdst`
+
+#### 时间格式化
+`time.strftime(format, lt)`
+
+* 参数 `format` 为格式化字符串, `%Y` `%m` `%d` `%H` `%M` `%S` 分别表示年月日时分秒
+* 参数 `lt` 为给转化的时间结构体
+
+### 计时
+#### 获取计时器时间戳
+`ticks = time.perf_counter()`
+
+获取一个以秒为单位的浮点类型时间戳, 可通过两个时间戳的差值用于计时
+
+#### 休眠
+`time.sleep(sec)`
+
+调用此函数的线程休眠 `sec` 秒, 可以输入浮点参数  
+当 `sec=0`, 将会把时间片让渡给其他需要的线程
+

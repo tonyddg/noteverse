@@ -237,10 +237,10 @@ with open("test.txt", "r") as file:
 表明变量类型可能是 `type1`, `type2` 等几个类型中的一个  
 对与函数使用时, 推荐使用[函数模板](#函数模板)代替
 
-* 可选变量 `Option[type]`  
+* 可选变量 `Optional[type]`  
 表明变量类型可能使 `type`, 也可能是 `None`, 常用于函数的可选参数  
 该类型最好仅用于接收信息的只读成员或函数的可选参数  
-此时仍要给出参数的默认值, 如 `f(a: Option[int] = None)`
+此时仍要给出参数的默认值, 如 `f(a: Optional[int] = None)`
 
 * 可调用变量 `Callable[[type_1, type_2, ...], type_return]`  
 表明变量是一个参数类型为 `type_1, type_2, ...`, 返回值为 `type_return` 的函数或可调用的类
