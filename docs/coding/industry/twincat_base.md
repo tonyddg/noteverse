@@ -227,6 +227,71 @@ VAR_GLOBAL 中声明对应的全局变量
 * `prg` 为程序名
 * `act` 为子程序名 
 
+#### 方法 Method
+右键程序 (PRG), 使用菜单内的 Add 可以添加子程序 (Action)
+
+子程序隶属于程序 (PRG), 有自己的内部变量, 也可以使用来自程序的变量  
+方法还可以有输入参数接收来自外部的值  
+并且方法也可以返回值, 注意返回值保存在与方法名同名的变量中
+
+通过 `[prg].[met](in1 := ..., ...);` 可在程序中调用子程序
+* `prg` 为程序名
+* `met` 为方法名 
+* `inx` 为输入参数
+
+### 编程技巧
+#### 使用方法封装触发型命令功能块
+```iecst
+METHOD ExecuteXXX : BYTE
+VAR_INPUT
+    INS_XXX : FB_XXX;
+    PA1 : ...;
+    ...
+    TIMEOUT : TIME := T#50ms;
+VAR_END
+
+VAR
+    TRIG : BOOL := FALSE;
+    Timer : TON;
+VAR_END
+
+VAR_OUTPUT
+    ERROR : UDINT;
+VAR_END
+
+//////////////////////////
+
+IF NOT TRIG THEN
+    TRIG := TRUE;
+    // 在方法中实例化化
+    INS_XXX(FB_PA1 := PA1, ...);
+    // 使用延时, 延长脉冲, 防止脉冲不被识别
+    Timer(IN:= TRUE, PT:= TIMEOUT);
+
+    INT_XXX.bExecute := TRUE;
+ELSIF Timer.Q THEN
+    INT_XXX.bExecute := FALSE;
+    IF INS_XXX.bErr THEN
+        // 命令错误, 返回 2
+        ExecuteXXX := 2;
+        ERROR := INS_XXX.nErrID;
+        TRIG := FALSE;
+
+        RETURN;
+    ELSIF NOT INS_XXX.bBUSY THEN
+        // 命令发送, 返回 1 (注意命令发送完成, 不一定执行完成)
+        ExecuteXXX := 1;
+        ERROR := INS_XXX.nErrID;
+        TRIG := FALSE;
+
+        RETURN;
+    END_IF
+END_IF
+
+// 命令运行中, 返回 0
+ExecuteXXX := 0;
+```
+
 ### 程序控制语句
 #### IF
 ```iecst

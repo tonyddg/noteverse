@@ -36,9 +36,8 @@ FIFO 可以同时控制多个轴 (最多 8/16) 个轴, 实现多轴联动
 * `FIFO-Dimension` FIFO 控制的轴组数, 最多 8/16 (由控制器性能决定)
 * `Fifo Length` 坐标栈的大小, 即最多保存的坐标数
 * `Fifo Override Type` 运动速度调节方式
-    * `1` 表示跃进型
-    * `2` 表示平滑型
-    * `3` 表示三次型 ?
+    * `1` 表示跃进型 
+    * `2` 表示平滑型 (默认, 经测试存在问题 ?)
 * `P-T2 time for override changes` 平滑型下的切换时间, 越大运动切换越平滑
 * `Base Time of Fifo entries` 坐标点运动间隔, 必须是控制周期的整数倍
 
@@ -157,8 +156,8 @@ FIFO 控制的轴数, 即坐标数组中的 `n`
 
 ### 基本使用流程
 1. 通过 `MC_Power` 使能被控制的轴
-1. 使用功能块 `FiFoGroupIntegrate` 绑定被控制的轴
 1. 使用功能块 `FiFoWrite` 写入坐标
+1. 使用功能块 `FiFoGroupIntegrate` 绑定被控制的轴
 1. 使用功能块 `FiFoStart` 开始运行指定运动
 1. 使用功能块 `FiFoGroupDisintegrate` 解除绑定
 
