@@ -83,6 +83,8 @@ ctrl+v 进入块选择模式，移动光标框选块
 1. 打开 fcitx-configuration 前保证 fcitx 已打开
 1. 添加输入法, 添加时需要取消勾选 show only current language 
 
+# 命令帮助
+使用 TLDR 查看经过简化的用户友好终端命令
 
 # linux
 ## 基本操作
