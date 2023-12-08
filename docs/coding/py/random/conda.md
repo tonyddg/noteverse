@@ -75,6 +75,8 @@ Conda 为开源的 Python 包管理工具, 分为两个版本
 ## conda 包管理
 包管理时, 需要先激活被管理的环境
 
+可以直接使用 [pip](./pip.md) 来安装环境中的包
+
 ### 搜索包
 `conda search [pkg]`  
 搜索名称为 `pkg` 的包
@@ -101,37 +103,3 @@ conda 本质也为一个包, 因此也可通过此方法升级
 
 `conda update --all`  
 升级所有包
-
-## pip 包管理
-除了 conda, 也可使用 pip 管理包 (), 同样需要先激活被管理的环境  
-conda 已自动在环境中安装了 pip, 若没有安装则需要通过 conda 手动安装
-
-通常 conda 下找不到的包可以通过 pip 安装
-
-参考资料 <https://zhuanlan.zhihu.com/p/107847620>
-
-### 搜索包
-通过网页 <https://pypi.org/> 搜索可安装的包
-
-### 列出已安装包
-`pip list`  
-列出当前环境已安装的包
-
-### 安装包
-`pip install [pkg]`  
-安装包名称为 `pkg` 的包  
-
-`pip install [pkg]==[ver]`  
-安装包名称为 `pkg` 的包, 且包的版本为 [ver]  
-
-### 卸载包
-`conda uninstall [pkg]`  
-卸载名称为 `pkg` 的包
-
-### 升级包
-`pip install --upgrade [pkg]`  
-升级名称为 `pkg` 的包  
-
-### 检查包
-`pip check`  
-可用于检查依赖冲突或有问题的包
