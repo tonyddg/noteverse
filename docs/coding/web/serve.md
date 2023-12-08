@@ -1,3 +1,4 @@
+# 服务器笔记
 ## Linux操作
 ### 环境
 ubuntu
@@ -100,6 +101,3 @@ sudo apt-get install libboost-dev
 TARGET_LINK_LIBRARIES(cpp_test mysqlcppconn)
 ````
 gcc -lmysqlcppconn(不是mysqlcppconn8)
-
-## 多窗口 screen
-## 软连接 ln
