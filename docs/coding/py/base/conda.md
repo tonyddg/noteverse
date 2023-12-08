@@ -54,6 +54,11 @@ Conda 为开源的 Python 包管理工具, 分为两个版本
 激活环境, 此时终端的 Python 将基于指定的环境  
 可直接运行 `python` 进入该环境的 Python 终端
 
+### 查看环境中的包
+`conda list [pkg]`  
+查看环境中安装的名称为 `[pkg]` 的包  
+当 `[pkg]` 缺省时, 则查看所有安装的包
+
 ## conda 配置
 ### 查看配置信息
 `conda info`  
