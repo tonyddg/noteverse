@@ -1,11 +1,25 @@
 import { defineUserConfig } from 'vuepress'
 import { hopeTheme } from "vuepress-theme-hope";
 
+import { searchProPlugin } from "vuepress-plugin-search-pro";
+import { cut } from "nodejs-jieba";
+
 export default defineUserConfig({
     lang: 'zh-CN',
     title: "Tonyddg's Noteverse",
     description: 'A place for everything I would like to record.',
     base: '/noteverse/',
+    plugins: [
+        searchProPlugin({
+            // 索引全部内容
+            indexContent: true,
+        indexOptions: {
+                // 使用 nodejs-jieba 进行分词
+                tokenize: (text, fieldName) =>
+                    fieldName === "id" ? [text] : cut(text, true),
+            },
+        })
+    ],
 
     theme: hopeTheme({
         plugins: {
