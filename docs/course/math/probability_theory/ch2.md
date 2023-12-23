@@ -77,7 +77,7 @@ $$DX=\frac{(b-a)^2}{12}$$
 * $$DX=\frac{1}{\lambda^2}$$
 #### 正态分布
 * $$X\sim N(\mu,\sigma^2)$$
-* $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{(x-\mu)^2}{2\sigma^2}}$$
+* $$f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
 * $$EX=\mu$$
 * 注意$\sigma$为标准差 
 $$DX=\sigma^2$$
@@ -86,7 +86,7 @@ $$Y=\frac{X-EX}{\sqrt{DX}}\sim N(0,1)$$
 * 标准化正态分布的对称性 
 $$P(X>0)=P(X<0)=\frac{1}{2}$$
 * 标准化正态分布的==分布函数==记为 
-$$\Phi(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-\frac{x^2}{2}}$$
+$$\Phi(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^xe^{-\frac{x^2}{2}}\mathrm{d}x$$
 为单调递增函数(分布函数的性质)
 ## 解题步骤
 1. 设随机变量 X
