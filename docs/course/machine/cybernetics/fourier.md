@@ -244,7 +244,7 @@ $$C_n=\frac{1}{T}\int_{0}^{T}f(t)\cdot e^{-in\omega_0 t}\mathrm{d}t$$
 
 ![](./src/saw_n_-7_7.gif =x200) ![](./src/saw_n_0_7.gif =x200)
 
-### 非周期函数的傅里叶级数
+### 非周期函数的傅里叶变换
 对于非周期函数 $f(t)$ 其周期 $T\to\infty$, 基频 $\omega_0\to 0$  
 因此函数的频率分布之间的间隔 $\omega_0=\Delta\omega\to 0$, 此时==函数的频域连续分布==    
 根据以下变换
@@ -261,233 +261,146 @@ f(t)&=\sum_{n=-\infty}^{\infty}C_n e^{in\omega_0 t}\\
 
 此时 $C_n$ 可以被表示成一个连续的函数 $F(\omega)$, 因此有
 $$\begin{split}
-f(t)=\mathscr{F}^{-1}[F(\omega)]&=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i\omega t}\mathrm{d}\omega\\
-F(\omega)=\mathscr{F}[f(t)]&=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}\mathrm{d}t
+&F(\omega)=\mathscr{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}\mathrm{d}t\\
+&f(t)=\mathscr{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i\omega t}\mathrm{d}\omega
 \end{split}$$
 
 其中  
 $F(\omega)=\mathscr{F}[f(t)]$ 为傅里叶正变换  
 $f(t)=\mathscr{F}^{-1}[F(\omega)]$ 为傅里叶逆变换
 
-## 离散傅里叶变换
-### 前提结论
-#### 傅里叶变换的对称性
-对于傅里叶变换对 $f(t)$ 与 $F(f)$ (注意此处采用的频域自变量单位为==频率==, 对于角频率还需要而外修正)
-$$\mathscr{F}[f(t)]=F(f)$$
+根据推导可得, 傅里叶变换得到的 $F(\omega)$ 相当于 $C_n=F(\omega)\mathrm{d}\omega$, 因此 $F(\omega)$ 并不代表信号中频率为 $\omega$ 的成分, 而是在频率范围 $\omega\sim\mathrm{d}\omega$ 内的密度  
+因此 ==$F(\omega)$ 体现的是信号在 $\omega$ 的幅值密度==而非幅值 (与傅里叶级数做区分)
 
-假设有信号具有与频谱相同的函数 $F(t)$  
-则该信号的傅里叶变换满足
-$$\mathscr{F}[F(t)]=f(-f)$$
+## 工程应用
+### 频率下的傅里叶变换与级数
+分析时, 工程上更多采用频率 $f$ 而非角频率
 
-#### 傅里叶级数与变换的联系
-无论是傅里叶级数还是变换, 信号的频域特性均不变  
-因此对于周期信号 $f(t)$ 的傅里叶级数与变换间满足关系 (注意 $f_0$ 为[基频], 单位为频率)
-$$C_n=F(nf_0)\mathrm{d}f$$
+注意, 以上推导中, $\omega$ 均指角频率而非一般频率 $f$  
+根据频率与角频率之间的关系
+$$f=2\pi\omega,f_0=\frac{1}{T}$$
 
-根据冲激函数的性质, 可得周期信号的傅里叶变换为
-$$F(f)=\sum_{n=-\infty}^{\infty}C_n\delta(f-nf_0)$$
-
-#### 傅里叶变换的离散性
-由[傅里叶级数与变换的联系](#傅里叶级数与变换的联系)得, 周期信号 $f(t)$ 的傅里叶变换 $F(f)$ 必定是离散的, 且间隔为 $f_0$, 即信号的频率  
-根据[对称性](#傅里叶变换的对称性)还可以推出, 对于离散信号 $f_s(t)$ 的傅里叶变换 $F_s(f)$ 必定是周期性的, 且周期为 $\frac{1}{T_s}$, 即离散信号间隔 $T_s$ 的倒数
-
-#### 脉冲信号的傅里叶变换
-对于周期为 $T_s$ 的脉冲信号  
-$$\delta_s(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT_s)$$
-
-其有复数傅里叶级数
-$$C_n=\frac{1}{T_s}\int_{-\frac{T_s}{2}}^{\frac{T_s}{2}}\delta_s(t)e^{-j2\pi nt/T_s}\mathrm{d}t=\frac{1}{T_s}$$
-
-因此 $C_n=\frac{1}{T_s}$ 为一个与 $n$ 无关的常数, 根据[傅里叶级数与变换的联系](#傅里叶级数与变换的联系), 可得其傅里叶变依然为一个脉冲函数
-$$F(f)=\frac{1}{T_s}\sum_{n=-\infty}^{\infty}\delta(f-nf_s)=\frac{1}{T_s}\delta_{fs}(t)$$
-
-#### 周期延拓
-对于信号 $f(t)$, 根据卷积的特性, 将其与间隔为 $T_0$ 的脉冲函数 $\delta_0(t)$ 求卷积得到信号 $f_0(t)$ 必定为以 $T_0$ 周期  
-特别的, 当 $f(t)$ 为宽度为 $T_0$ 的有限信号, $f_0(t)$ 为 $f(t)$ 在空间上的重复
-
-$$\begin{split}(f*\delta_0)(t)&=\int_{-\infty}^{\infty}\delta_s(\tau)f(t-\tau)\mathrm{d}\tau\\
-&=\int_{-\infty}^{\infty}\sum_{n=-\infty}^{\infty}f(t-\tau)\delta(\tau-nT_0)\mathrm{d}\tau\\
-&=\sum_{n=-\infty}^{\infty}f(t-nT_0)
+对傅里叶变换中的积分变量进行变量代换可得
+$$\begin{split}
+&F(f)=\mathscr{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-j2\pi ft}\mathrm{d}t\\
+&f(t)=\mathscr{F}^{-1}[F(f)]=\int_{-\infty}^{\infty}F(f)e^{j2\pi ft}\mathrm{d}f
 \end{split}$$
 
-#### 约定
-* 以下推导中采用 $\operatorname{sinc}(t)=\frac{\sin t}{t}$
-
-### 信号采样
-定义  
-* 时域上周期无限长的信号 $f(t)$  
-* 采样间隔为 $T_s$ 的信号采样脉冲 $\delta_s(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT_s)$
-* 截取信号的窗函数 $u_0(t)=h(t+\frac{T_s}{2})-h(t-\frac{T_s}{2}-T_0)$
-
-通过采样脉冲对信号进行采样, 得到间隔为 $T_s$ 的离散信号 
-$$f_s(t)=f(t)\delta_s(t)$$
-
-仅采样 $t=-T_s/2\sim T_0-T_s/2$ 间共 $N$ 个信号, ==注意采样间隔 $T_s$ 与截取长度 $T_0$ 间满足 $T_s=NT_0$==  
-相当于使用一个矩形窗函数 $u_0(t)$ 截取信号
-$$\hat{f}(t)=f_s(t)u_0(t)=\sum_{n=0}^{N-1}f(t)\delta(t-nT_s)$$
-
-此时 $\hat{f}(t)$ 便为一个可通过计算机处理的理想==有限离散信号==
-
-### 频域采样
-对于有限离散信号 $\hat{f}(t)$, 其傅里叶变换 $\hat{F}(f)$ 必定为连续的周期函数, 依然不利于计算机处理  
-因此也需要对信号的傅里叶变换做采样  
-
-根据[周期延拓](#周期延拓)的性质, 傅里叶变换最适合以信号宽度的倒数 $f_0$ 为间隔采样有  
-$$\tilde{F}(f)=\hat{F}(f)\delta_0(f)$$
-
-由傅里叶变换的卷积特性以及[脉冲函数的傅里叶变换](#脉冲信号的傅里叶变换)可得, 此频域采样也等价于将有限信号 $\hat{f}(t)$ 在空间上延拓, 每个周期 $-T_s/2\sim T_0+T_s/2$ 内即 $\hat{f}(t)$
-$$\begin{split}\tilde{f}(t)&=\hat{f}(t)*\mathscr{F}^{-1}[\delta_0(f)]\\
-&=T_0\sum_{r=-\infty}^{\infty}\hat{f}(t-rT_0)\\
-&=T_0\sum_{r=-\infty}^{\infty}\sum_{n=0}^{N-1}f(t-rT_0)\delta(t-rT_0-nT_s)\\
-&=T_0\sum_{r=-\infty}^{\infty}\sum_{n=0}^{N-1}f(nT_s)\delta(t-rT_0-nT_s)
+对傅里叶级数的复数形式做变量代换后有
+$$\begin{split}
+&C_n=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(t)e^{-j2\pi nf_0t}\mathrm{d}t\\
+&f(t)=\sum_{n=-\infty}^{\infty}C_n e^{j2\pi nf_0t}
 \end{split}$$
 
-此时 $\tilde{f}(t)$, 有周期 $T_0$, 可求出其傅里叶级数 (积分时直接取 $r=0, \hat{f}(t)$ 相同的周期)
-$$\begin{split}C_k&=\frac{1}{T_0}\int_{-T_s/2}^{T_0+T_s/2}T_0\sum_{n=0}^{N-1}f(nT_s)\delta(t-nT_s)e^{-j2\pi kt/T_0}\mathrm{d}t\\
-&=\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi knT_s/T_0}\\
-&=\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi kn/N}
+对傅里叶级数做变量代换后有
+$$\begin{split}
+&a_0=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(t)\mathrm{d}t\\
+&a_n=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(t)\cos(2\pi nf_0)\mathrm{d}t\\
+&b_n=\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(t)\sin(2\pi nf_0)\mathrm{d}t\\
+&f(t)=a_0+\sum_{n=1}^\infty a_n\cos(2\pi nf_0)+b_n\sin(2\pi nf_0)
 \end{split}$$
 
-根据[傅里叶级数与变换的联系](#傅里叶级数与变换的联系), 可由此得到其傅里叶变换
+### 分析频谱
+定义 $f_n=n\cdot f_0$ 为 $n$ 次谐波分量, 傅里叶级数中的系数 $a_n,b_n,C_n$ 可看作一个关于 $nf_0$ 的离散函数  
+$$a[f_n]=a_n,b[f_n]=b_n,C[f_n]=C_n$$
 
-{#tag-a .block_anchor}
-$$\tilde{F}(f)=\sum_{k=-\infty}^{\infty}\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi kn/N}\delta(f-kf_0)\tag{a}$$
+#### 傅里叶级数的频谱
+由于傅里叶级数中, 同一频率 $f_n$ 的两个三角函数可以通过辅助角公式合称为单个三角函数
+$$a_n\cos(2\pi nf_0)+b_n\sin(2\pi nf_0)=\sqrt{a_n^2+b_n^2}\cos(2\pi nf_0-\varphi_n)$$
 
-注意, 根据 $e^{-j2\pi (k+N)n/N}=e^{-j2\pi (n/N+1)}=1\cdot e^{-j2\pi n/N}$ (或[傅里叶变换的离散性](#傅里叶变换的离散性)) 可得, $\tilde{F}(f)$ 依然为一个周期函数, ==周期为 $f_s=Nf_0$==
+因此可得到信号中频率为 $f_n$ 的分量, 并根据此分量确定信号中 $f_n$ 分量的幅值 $A_n$ 与频率 $\varphi_n$
 
-因此使用离散序列 $\tilde{F}[k]$ 表示为
+* 实频谱满足 $a[f_n]$
+* 虚频谱满足 $b[f_n]$
+* 幅值谱满足 $A[f_n]=\sqrt{a_n^2+b_n^2}$
+* 相位谱满足 $\varphi[f_n]=\arctan{\frac{b_n}{a_n}}$
 
-{#tag-b .block_anchor}
-$$\tilde{F}[k]=\tilde{F}(kf_0)\mathrm{d}f=\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi kn/N}\tag{b}$$
+#### 傅里叶级数的复数频谱
+为了与傅里叶级数的频谱区分, 有关傅里叶级数的复数形式的频谱称为傅里叶级数谱或 FS 谱, 双边谱  
 
-### 逆变换
-通过以上推导, 来自 $f(t)$ 的周期离散信号 $\tilde{f}(t)$ 的傅里叶变换 $\mathscr{F}[\tilde{f}(t)]=\tilde{F}(f)$ 已经求得, 现求其逆变换 $\mathscr{F}^{-1}[\tilde{F}(f)]=\tilde{f}(t)$
+傅里叶级数的复数频谱通常直接来自复数系数 $C_n$, 且存在负频率 $f_n<0$
 
-不难发现, $\tilde{F}(f)$ 与 $\tilde{f}(t)$ 均为离散周期函数  
-因此可以尝试将 $\tilde{F}(f)$ 的周期分离, 使其与 $\tilde{f}(t)$ 具有相同的形式  
-之后根据傅里叶变换的[对称性](#傅里叶变换的对称性)有 $\mathscr{F}[\tilde{F}(t)]=\tilde{f}(-f)$
+* FS 实频谱满足 $Re[f_n]=Re[C_n]$
+* FS 虚频谱满足 $Im[f_n]=Im[C_n]$
+* FS 幅值谱满足 $A[f_n]=|C_n|$
+* FS 相位谱满足 $\varphi[f_n]=\phase{C_n}$
 
-对于序列 $\tilde{F}[k]=\tilde{F}(kf_0)$ 具有周期 $N$, 因此可令 $r=k+rN, k=0\sim N-1$  
-现对 $\tilde{F}(t)$ 进行变形  
-$$\begin{split}\tilde{F}(f)&=\sum_{k=-\infty}^{\infty}\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi kn/N}\delta(f-kf_0)\\
-&=\sum_{r=-\infty}^{\infty}\sum_{k=0}^{N-1}\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi (k+rN)n/N}\delta(f-kf_0-rNf_0)\\
-&=f_s\sum_{r=-\infty}^{\infty}\sum_{k=0}^{N-1}\Bigg[\frac{1}{f_s}\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi kn/N}\Bigg]\delta(f-kf_0-rf_s)
-\end{split}$$
+#### 傅里叶变换的频谱
+根据[傅里叶变换的推导](#非周期函数的傅里叶变换)可知, 傅里叶变换得到 $F(f)$ 为频率密度函数, 但由于傅里叶变换一般以非周期信号为对象, 因此称其为非周期信号频谱或 FT 谱
 
-不难发现, 除 $\frac{1}{f_s}\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi kn/N}$ 部分外, 此时的 $\tilde{F}(t)$ 具有与 $\tilde{f}(t)$ 完全相同的形式  
+注意频率密度函数 $F(f)$ 的函数值为复数, 且是一个 $(-\infty,\infty)$ 上的连续函数, 因此 FT 谱在频率上均为连续的, 且存在负频率
 
-根据离散序列 $\tilde{F}[k]$ 的定义可得, 此部分即
-$$T_s\sum_{n=0}^{N-1}f(nT_s)e^{-j2\pi kn/N}=T_s\tilde{F}[k]$$
+* FS 实频谱满足 $F_R(f)=Re[F(f)]$
+* FS 虚频谱满足 $F_I(f)=Im[F(f)]$
+* FS 幅值谱满足 $|F(f)|=\sqrt{Re[F(f)]^2+Im[F(f)]^2}$
+* FS 相位谱满足 $\phase{F(f)}=\operatorname{Arctan}(Re[F(f)],Im[F(f)])$
 
-使用 $T_s\tilde{F}[n]$ 代替 $f(nT_s)$, $T_s$ 代替 $f_0$, 带入[式 a](#tag-a), 然后令 $k=-k, t=-t$ 有
-$$\begin{split}\tilde{f}(-t)&=\sum_{k=-\infty}^{\infty}\sum_{n=0}^{N-1}T_s\tilde{F}[n]e^{-j2\pi kn/N}\delta(t-kT_s)\\
-\tilde{f}(t)&=T_s\sum_{k=-\infty}^{\infty}\sum_{n=0}^{N-1}\tilde{F}[n]e^{-j2\pi (-k)n/N}\delta(-t+kT_s)\\
-\tilde{f}(t)&=T_s\sum_{k=-\infty}^{\infty}\sum_{n=0}^{N-1}\tilde{F}[n]e^{j2\pi kn/N}\delta(t-kT_s)
-\end{split}$$
+#### 频谱之间的转换
+* 单边谱幅值与双边谱幅值 (傅里叶级数与傅里叶级数的复数形式)  
+由于负数频率仅代表相反的旋转方向, 频率性质与正数频率一致  
+因此将==双边幅值谱中的正负频率对应的幅值相加即可得到单边幅值谱==
 
-同样的, 使用离散序列 $\tilde{f}[k]$ 表示为
+* 周期函数的频率密度函数与频谱  
+由于周期信号由确定的几个频率 $f_n$ 组成, 且没有 $f\neq f_n$ 的频率成分  
+因周期信号的频率密度函数为一系列大小与其傅里叶级数有关的冲激函数, 满足
+$$F(f)=\sum_{n=-\infty}^{\infty} C_n\delta(f-nf_0)$$
 
-$$\tilde{f}[k]=\tilde{f}(kT_s)\mathrm{d}t=T_s\sum_{n=0}^{N-1}\tilde{F}[n]e^{j2\pi kn/N}$$
+* 功率谱与幅值谱  
+根据功率的定义, 功率谱与幅值谱之间满足
+$$A^2[f_n]=(A[f_n])^2$$
 
-### 离散傅里叶级数 DFS
+* 频率与角频率的频谱  
+比较两种频率类型下的傅里叶系数与变换方法可得, 频率与角频率的频谱在对应的频率上相同, 仅复原方法不同
 
-将[式 b](#tag-b)带入 $\tilde{f}[k]$ 中的 $\tilde{F}[n]$ 有 (或根据[频域采样](#频域采样)步骤中 $f(t)$ 与 $\tilde{f}(t)$ 的关系可得到相同结论)
-$$\begin{split}\tilde{f}[k]&=T_s\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}f(mT_s)e^{-j2\pi nm/N}e^{j2\pi kn/N}\\
-&=T_s\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}f(mT_s)e^{j2\pi n(k-m)/N}\\
-&=T_s\sum_{n=0}^{N-1}f(kT_s)\\
-&=NT_sf(kT_s)
-\end{split}$$
+### 常见信号的傅里叶变换与级数
+对于复杂信号的傅里叶变换可根据傅里叶变化的线性性, 拆分为几个简单信号分析, 最后再线性叠加得到信号的频谱
 
-综上所述, 有离散傅里叶级数 ($DFS$) 变换对
-$$\begin{cases}
-\tilde{F}[k]=\frac{1}{NT_s}\sum_{n=0}^{N-1}\tilde{f}[n]e^{-j2\pi kn/N},&k\in Z\\
-\\
-\tilde{f}[k]=T_s\sum_{n=0}^{N-1}\tilde{F}[n]e^{j2\pi kn/N},&k\in Z
+线性组合时, 应在原始级数系数 / 频率密度曲线的基础上进行
+
+确定信号基频 $f_0$ 时
+* 对于由三角函数组成的信号, 应提出 $2\pi$ 或根据给出信息确定各个信号的频率, 其最小公约数为基频
+* 对于其他信号, 则可根据信号的周期确定基频 $f_0=\frac{1}{T}$
+
+#### 余弦函数
+整体信号基频为 $f_0$, 对于其中的余弦信号
+$$f(t)=A\cos(2\pi kf_0t)$$
+
+* 傅里叶级数 
+$$a_k=A,b_n=0$$
+* 复数形式的傅里叶级数
+$$C_{\pm k}=\frac{A}{2}$$
+* 傅里叶变换
+$$F(f)=\frac{A}{2}[\delta(f-kf_0)+\delta(f+kf_0)]$$
+
+#### 正弦函数
+整体信号基频为 $f_0$, 对于其中的正弦信号
+$$f(t)=A\sin(2\pi kf_0t)$$
+
+* 傅里叶级数 
+$$a_n=0,b_k=A$$
+* 复数形式的傅里叶级数
+$$C_{\pm k}=\mp\frac{A}{2}j$$
+* 傅里叶变换
+$$F(f)=\frac{A}{2}j[-\delta(f-kf_0)+\delta(f+kf_0)]$$
+
+#### 含相位角的余弦函数
+$$f(t)=A\cos(2\pi kf_0t+\varphi)$$
+
+具体分析时, 可拆分为余弦函数与正弦函数之和
+$$f(t)=A\cos(\varphi)\cos(2\pi kf_0t)-A\sin(\varphi)\sin(2\pi kf_0t)$$
+
+或使用傅里叶变换的时移特性
+$$f'(t)=A\cos(2\pi kf_0t)\quad f(t)=f(t+\frac{\varphi}{2\pi kf_0})\\
+F'(f)=\frac{A}{2}[\delta(f-kf_0)+\delta(f+kf_0)]\quad F(f)=\frac{A}{2}[e^{\varphi j}\delta(f-kf_0)+e^{-\varphi j}\delta(f+kf_0)]$$
+
+#### 窗函数
+对于一宽度为 $T$, 高度为 $A$ 的矩形窗函数
+$$f(t)=\begin{cases}
+A,&-\frac{T}{2}<t<\frac{T}{2}\\
+0,&\text{其余}
 \end{cases}$$
 
-序列 $\tilde{F}[k]$ 与 $\tilde{f}[k]$ 均为无限长序列, 且具有周期 $N$, 分别有分布间隔 $f_0=f_s/N$ 与 $T_s$
+由于为非周期信号, 因此仅有傅里叶变换
+$$F(f)=\frac{A\sin\pi f T}{\pi f}$$
 
-### 离散傅里叶变换 DFT
-在实际使用中, 通常会直接使用采集到的离散数据序列 $f[k]$, 其定义即为
-$$f[k]=f(kT_s), k\in[0,N)$$
-
-由于计算机中的序列不可能无限长, 因此仅截取序列 $\tilde{F}[k]$ 一个周期 $N$ 内的值   
-定义 $f[k]$ 的离散傅里叶变换为序列 $F[k]$ 满足 
-$$F[k]=\tilde{F}[k], k\in[0,N)$$
-
-规定 $T_s=1$, 使用 $f[k]$ 代替离散傅里叶级数中的 $\tilde{f}[k]=NT_sf[k]$  
-因此有离散傅里叶变换 ($DFT$) 变换对 
-$$\begin{cases}
-F[k]=\sum_{n=0}^{N-1}f[n]e^{-j2\pi kn/N},&k\in [0,N)\\
-\\
-f[k]=\frac{1}{N}\sum_{n=0}^{N-1}F[n]e^{j2\pi kn/N},&k\in [0,N)
-\end{cases}$$
-
-### 信号复原
-复原信号时, 可令 $kT_s=t$, 得到复原信号
-$$f'(t)=\frac{1}{N}\sum_{n=0}^{N-1}F[n]e^{j2\pi tn/T_0}$$ 
-
-由于 $F[k]$ 也经过 $f=-f_0/2\sim f_s-f_0/2$ 的截取  
-因此复原得到的实际信号为 (对信号取绝对值)
-$$f'(t)=|\tilde{f}(t)*[f_s\operatorname{sinc}(\pi f_s t)e^{-j2\pi f_ct/2}]|=\tilde{f}(t)*f_s\operatorname{sinc}(\pi f_s t)$$
-其中 $f_c=(f_s-f_0)/2$ 可根据傅里叶变换的移频性自行推导
-
-根据卷积特性可得 $f'(t)=f_s\sum_{k=-\infty}^{\infty}f[k]s(t-kT_s)$  
-其中 $s(t)=\operatorname{sinc}(\pi f_s t)$, 且 $s(\frac{n}{T_s})=0(n\neq 0)/=1(n=0)$
-
-因此 $k\in [0,N)$ 时必然有 $f'(kT)=f_sf(kT)$ 但其余部分无法保证, 但只要采样点 $N$ 足够多, 就能复原出原信号  
-根据以上推导可得, $F[k]$ 复原得到的是 $f_s f(kT)$, 因此 $F[k]$ 反应的是 $f_s f(t)$ 的频域特性  
-因此根据傅里叶变换的线性性, 对于 $FFT$ 的结果 $F[t]$, ==还需要取 $F'[k]=F[k]/f_s$ 才能得到接近实际傅里叶变换 $F(t)$ 的结果==
-
-### DFT 与 DFS 的关系 
-:::warning 以下部分为个人猜想, 有待证明
-:::
-
-通过离散傅里叶级数 $DFS$ 得到的结果为离散的==幅值谱==, 近似认为
-$$F[k]\approx f_s\cdot \int_{(k-\frac{1}{2})f_0}^{(k+\frac{1}{2})f_0}F(f)\mathrm{d}f$$  
-
-对于 $F[k]$ 与 $\tilde{F}[k]$ 可发现当输入序列相同时满足  
-$$\tilde{F}[k]=f_0\cdot F[k]$$
-
-通过离散傅里叶变换 $DFT$ 得到的结果为离散的==幅值密度谱==, 近似认为 (待证明)  
-$$F[k]\approx T_0\cdot f_s\cdot \int_{(k-\frac{1}{2})f_0}^{(k+\frac{1}{2})f_0}F(f)\mathrm{d}f$$  
-因此 $DFT$ 结果的最大分辨率为 $\frac{1}{T_0}$
-
-:::info 以下推论经实验为正确的, 但成因不确定, 也可能由能量泄露导致
-:::
-
-由上可知==对于如 $\sin,\cos$ 等幅值密度谱中有冲击函数的信号==  
-假设其在 ${(k-\frac{1}{2})f_0}\sim{(k+\frac{1}{2})f_0}$ 的傅里叶变换结果为 $F(f)=A\delta(kf_0)$  
-此时其 $DFT$ 的结果为 $F[k]=T_0 f_s A$
-
-### DFT 特点总结
-![](./src/fft_process.svg)
-
-1. 采样长度 $T_0$, 采样间隔 $T_s$, 采样点数 $N=T_0/T_s$
-1. 首先使用窗函数截取连续信号 $f(t)$ 在 $t=-T_s/2\sim T_0-T_s/2$ 的部分, 此时将导致能量泄露
-1. 然后使用间隔为 $T_s$ 的脉冲采样, 此时频域以 $\frac{1}{T_s}$ 为周期循环, ==当信号频域有 $f>f_s/2$ 的部分, 将与其他周期混淆==, 即香农采样定理
-1. 之后以间隔为 $\frac{1}{T_0}$ 的脉冲在频域采样, ==因此 $DFT$ 结果的最大分辨率为 $\frac{1}{T_0}$==, 此时时域的采样信号将以 $T_0$ 为周期循环
-1. 对于 $DFT$ 得到的结果, 还需要除以 $f_s$ 才能与接近实际的傅里叶变换结果对应
-
-### 实际使用
-实际中多使用快速傅里叶变换 ($FFT$), 其算法与离散傅里叶变换相同, 但是优化了运算过程  
-具体体现为
-1. 将截取区间修改为 $k\in (-\frac{N}{2},\frac{N}{2}]$
-1. 当数据点不为 $2^n$ 时, 将自动补 $0$
-
-对于 numpy.fft 中的 `f = fft.fft(x)` 函数  
-参数 `x` 
-`x` 为实数数组, 即采集到的离散数据点   
-返回值 `f`  
-`f` 为复数数组, 即离散傅里叶变换结果  
-索引 `[0:N/2]` 保存了正数部分的幅值 $F[0]\sim F[N/2]$  
-索引 `[N/2+1:]` 保存了负数部分的幅值 $F[-N/2]\sim F[-1]$  
-
-根据[信号复原](#信号复原)可得, 变换结果 $F[k]$ 对应的是频率为 $f=\frac{k}{T_0}=\frac{k}{NT_s}$ 下的幅值
-
-### 误差分析
-$f'(t)$ 的形式也表明, 经过离散傅里叶变换后, 仅能保留频率为 $f=\frac{n}{T_0}$ 的成分  
-
-::: warning
-该笔记尚未完成
-:::
+注意, 对于 $F(f)$ 在 $f=0$ 的极限 $\lim_{f\to 0}\frac{A\sin\pi f T}{\pi f}=AT$
