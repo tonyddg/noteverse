@@ -151,6 +151,7 @@
 |$[\substack{a\\b}]$|`[\substack{a\\b}]`|行内垂直堆叠|
 |$\binom{A}{B}$|`\binom{A}{B}`|数对|
 |$\boxed{\pi=\frac{c}{d}}$|`\boxed{\pi=\frac{c}{d}}`|方框|
+|$\textcircled{\scriptstyle{\mathrm{E}}}$|`\textcircled{\scriptsize{\mathrm{E}}}`|圆圈<br>`\scriptstyle` <br> 小写字母不需要此修饰|
 |$\phase{-78^\circ}$|`\phase{-78^\circ}`|相量|
 |$\braket{ABC}$|`\braket{ABC}`||
 
