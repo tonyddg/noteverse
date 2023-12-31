@@ -1,57 +1,53 @@
-<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="492px" height="102px" viewBox="-0.5 -0.5 492 102" style="background-color: rgb(255, 255, 255);" content="&lt;mxfile&gt;&lt;diagram id=&quot;CP5oS2erDr6EqBsytnzf&quot; name=&quot;第 1 页&quot;&gt;7VvLcpswFP0a7xEPP5apk7abzmQmiy47CihGE4wYIb/69ZUMGCMZy5ZFJ47ihQddxJV8z9HV5YBHwXy5/UFhkf4iCcpGvpdsR8HjyPeDMOTfwrCrDL4fVYYFxUllAq3hBf9FtdGrrSucoLLTkRGSMVx0jTHJcxSzjg1SSjbdbm8k645awAVSDC8xzFTrb5ywtLaC8aw98RPhRVoPPfUn1YlXGL8vKFnl9XgjP3jbf6rTS3jwVRnKFCZkU5n2vz14GgVzSgirjpbbOcpEaJuwVQH63nP2MG+KcnbJBX51wRpmK9TMeD8vtmtigfLkQYSUt3KSc+O3lC0z3gL8MF7RNUrqRnUpSpTYtrMBh9/IqYPIEjG64102bZCjmgLpUXgbG0UZZHjddQ9rrBcHd4cRngnmA/teTUtQB8NrWOl5XRclWdEY1VcdR01y5E81jhikC8QURzyOcHfUrRAdyjMTHkvjAO/8vLxufzDT9A/P+ucH1Yyb1hFmrWnPqNPsClxmF4gssUtxNBC7mvbF7AqvY5fk/2Z2hTbZlcAyvWOqRbaoJjnqoZoBWtEXWoesbAst2ZE9tMYuZ27jukC7BdgDaOISQNp6a+it1QCg6WD5TjSeIWOI5sIinPKvj48iAFLwJ6Z5cKZxZA/F2Y0ongOOuwnvbSXeI4bNlN3IldZuQxRHwWC5EgCXEfLlwJoidKkMYYKQ7xJC2jLBuN4YcA05JbYoFaHpGjKV8kwQukCwKFNYiMOYkrJ8hZRDsUkxQy8FjIV9Q2HRhW0vNrclBqYoZpiIAoOHQCBRY7lGlKHttWjWF/TJBEdg+yfADr1+XDuBPBc1q8LBR+c1kDU2U2VHKxFZ5LVbYoGisdtCaDg1BzilFgSyrj0z3BsiBaFhhPjQO70H9c0rlIX1qaZ/zx5nS4gHVrWOu6PX2Ba9ZEcD0QtMrqRXdB29JP+30+tWEeZ+Hx0oXDMtBxSuDVcONCN9wWVeG6g7z3BwOaW9yAgZP0lQV+Zg940NIG4gJFPfGCE15Q2HkFXt5VM87AkiuSgwTYWBxpFFGG99o+SzPe25SxCd0ou025DxfjacUu3WyyVKxWGqVGtLF4sIOaUXaQsF44pjwDXklOSi1ISma0hbXFpE6ALV4oM+7Qn6xIL/8LinQdYNYgeK1GZYYGmFInvEDtwSDGSETCUdrTZkESH/BEL83iZ8/LOsDhTAeLJgXZRKRsk7mpOM0BbFN5xlkglmeCHyT8zxQiKDidSDY5g91CeWOEnEMCdTW5vPPDu5q+c/B8dsGZ9gi7yhGKWuUyqAiHby+cOuvCEwXNx5s/1/XLU62v8gBk//AA==&lt;/diagram&gt;&lt;/mxfile&gt;">
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="611px" height="126px" viewBox="-0.5 -0.5 611 126" style="background-color: rgb(255, 255, 255);" content="&lt;mxfile&gt;&lt;diagram id=&quot;CP5oS2erDr6EqBsytnzf&quot; name=&quot;第 1 页&quot;&gt;7VxNk5s4EP013BHfPmY82d3LVqVqDntMKSDbVDC4QB578usjzJeRzMgIyWtQcpiYRjS431NL/SRj2Ov9+e8cHnb/ZhFKDMuMzob9aliWb7vkb2n4qAxO4FSGbR5HlQl0hrf4F6qNZm09xhEqeg1xliU4PvSNYZamKMQ9G8zz7NRvtsmS/l0PcIsYw1sIE9b6XxzhXW0F3qo78Q+Kt7v61oHlVyd+wPDnNs+OaX0/w7I3l3/V6T1sfVWGYgej7FSZLt/d/mrY6zzLcPVpf16jpAxtE7YqQH8NnG2fO0cpvucC266ueIfJETWPfHkw/NEEA6XRlzKm5CjNUmJ82eF9Qo4A+Rge83cU1QfVpShigts9Dmi/JOEOyvYI5x+kyamLsltzYHcV38aWowTi+L3vHtZgb1t37R2+ZTG5sWXWvAR1NMyalpbp9l0U2TEPUX3VddgoR1bAcYRhvkWYcUTiCD+umh3KBsUnD+xR9wHu589l9tuDFae986l/8qF64uboCrPOdKHUAL0cnekFXEn0YhwpohfwRtLLGUcvyv90erky6RXBYjdfrjVQTuYa7WiAayJweX/gagcMSXAxjiTC5eucvIXnBtxRQCJCgU4IcSddqodXEYRWOiEkbQLEOLKVIdRMUfREyKIDK4rQvRWQCEJAJ4S4yUk4yynsQ5bOCAn3IVEVQQQhrXSelaTaiFtkSQRIK6VkRRNfEkAKqyFHqtbw7AA5tHKzEsxx3oAiKVvKcgZy6dBzuXTXDjjtaSXWlCtlOVK1kdnRy5NFL9qRInoBfyS93HH0ovxPp5dULWdW0hvLNcHBhuWausFGqrAza7iE5wY0XCrnBlqpPCxCgsmb6ZnqdLjmq+uBEEt9WcOrQoS0Unm41BfuQ+pUHtfSGSFhlYebLiUipJXKw01OwllOYR/SSuZhxiHRPsQd0CQipJfOAyjqixZH3CpLIkJ6SSWApr4khBTWQ+4ttYFkPuf1u+G/7A3/tTpkYMPojPtYFTjPfqJ1lmR5h+UmThLKBJN4m5LDkKCGiP3lHeU4DmHypT6xj6OovM3LaRdj9HaAYXnPUw4PxHbZsXuhhNlSonSAzmNJce6DT8tSV5zxbnDGNofp0cPjs+Df0g7KaEdl8DcaBN/2/8foS5UCesrNdeB7yFyafYOYxL4MNihvR76xWf3//CmOWWYLBFMcs+RNO1K1b7Zez7p736zPac+svvTaT1aDm8f/Q9IJFbsoSZlqQxFJmSULDkmZJQsOSZklC9kkFRKEemS8Yuyz04vJgb6sbT+0I3nTPM/SGqFAFkK0I4kITRWEnh0ULtvvBcWmC2GF3WaqBjQ7UER7CgOKwp4yVfZ5dlBsWWtCtCOFa0LeOKUnTGBRxOG8cWl+UzcdF4UZbNxukkXgIq+/KExiQ9LPZumSz+Bm9wdIPt44yafrDQVBHs+6kwBK52xf4DB6Iy8jmCoTpxtxcLEjPRtL0d/40I6Asszl3yr22xUDaLjrfZxqIF0DWmUCj8tjviXSMeZazjN6nmjlyOh56uZdvlA5vxiERMtIVnFVh9C42n5RcwHeftu7h53H7bP2x1X9S4LLkfVGCtqRSrim7vx4dlDmKGf6U39a8uygcIePu8ch+3Hj0NQfkDw9KLJe10I7Uihn+qJCwYxxEZYzGUfqMliTdHXCRV5/UZfEgiFRYPFy5uCO9AfIAIG19KGDV7ALj+cKU9S4yn9RhYpPZy7RQoXeFuqbyuBa+hI/E0vROTHjSJ3GHNwq9tuN0ReNGZ410JgdeuOeOo2ZHHbvsq4g694Xbn/9DQ==&lt;/diagram&gt;&lt;/mxfile&gt;">
     <defs/>
     <g>
-        <path d="M 80 70 Q 120 80 140 70 Q 160 60 180 70 Q 200 80 240 70" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 80 20 Q 120 30 140 20 Q 160 10 180 20 Q 200 30 240 20" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 80 25 Q 80 25 240 25" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
-        <path d="M 80 65 Q 80 65 240 65" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
-        <path d="M 80 70 Q 80 70 80 20" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 240 70 Q 240 70 240 20" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 70 45 Q 70 45 250 45" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="stroke"/>
-        <path d="M 70 45 Q 70 45 250 45" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="1 4" pointer-events="stroke"/>
-        <path d="M 80 20 Q 80 20 80 0" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 80 100 Q 80 100 80 70" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 240 20 Q 240 20 240 0" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 240 100 Q 240 100 240 70" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 30 35 L 30 55 M 70 35 L 70 55 M 30 45 L 70 45" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" transform="rotate(90,50,45)" pointer-events="all"/>
-        <path d="M 60 25 Q 60 25 80 25" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 60 65 Q 60 65 80 65" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 320 60 Q 360 70 380 60 Q 400 50 420 60 Q 440 70 480 60" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 320 30 Q 360 40 380 30 Q 400 20 420 30 Q 440 40 480 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 320 25 Q 320 25 480 25" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
-        <path d="M 320 65 Q 320 65 480 65" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
-        <path d="M 320 70 Q 320 70 320 20" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 480 70 Q 480 70 480 20" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 310 45 Q 310 45 490 45" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="12 12" pointer-events="stroke"/>
-        <path d="M 310 45 Q 310 45 490 45" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="1 4" pointer-events="stroke"/>
-        <path d="M 320 20 Q 320 20 320 0" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 320 100 Q 320 100 320 70" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 480 20 Q 480 20 480 0" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 480 100 Q 480 100 480 70" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 270 35 L 270 55 M 310 35 L 310 55 M 270 45 L 310 45" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" transform="rotate(90,290,45)" pointer-events="all"/>
-        <path d="M 300 25 Q 300 25 320 25" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <path d="M 300 65 Q 300 65 320 65" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
-        <rect x="0" y="30" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <path d="M 70 94 Q 110 104 130 94 Q 150 84 170 94 Q 190 104 230 94" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 70 44 Q 110 54 130 44 Q 150 34 170 44 Q 190 54 230 44" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 70 49 Q 70 49 230 49" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 70 89 Q 70 89 230 89" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 70 94 Q 70 94 70 44" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 230 94 Q 230 94 230 44" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 70 44 Q 70 44 70 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 70 124 Q 70 124 70 94" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 230 44 Q 230 44 230 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 230 124 Q 230 124 230 94" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 40 49 Q 40 49 70 49" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 40 89 Q 40 89 70 89" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 390 84 Q 430 94 450 84 Q 470 74 490 84 Q 510 94 550 84" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 390 54 Q 430 64 450 54 Q 470 44 490 54 Q 510 64 550 54" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 390 49 Q 390 49 550 49" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 390 89 Q 390 89 550 89" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 390 94 Q 390 94 390 44" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 550 94 Q 550 94 550 44" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 390 44 Q 390 44 390 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 390 124 Q 390 124 390 94" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 550 44 Q 550 44 550 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 550 124 Q 550 124 550 94" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 360 49 Q 360 49 390 49" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 360 89 Q 360 89 390 89" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <rect x="0" y="54" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 45px; margin-left: 1px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 69px; margin-left: 1px;">
                         <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 <mjx-container class="MathJax" jax="SVG" display="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="3.466ex" height="1.902ex" role="img" focusable="false" viewBox="0 -683 1531.8 840.8" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.357ex;">
                                         <defs>
-                                            <path id="MJX-27-TEX-I-1D437" d="M287 628Q287 635 230 637Q207 637 200 638T193 647Q193 655 197 667T204 682Q206 683 403 683Q570 682 590 682T630 676Q702 659 752 597T803 431Q803 275 696 151T444 3L430 1L236 0H125H72Q48 0 41 2T33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM703 469Q703 507 692 537T666 584T629 613T590 629T555 636Q553 636 541 636T512 636T479 637H436Q392 637 386 627Q384 623 313 339T242 52Q242 48 253 48T330 47Q335 47 349 47T373 46Q499 46 581 128Q617 164 640 212T683 339T703 469Z"/>
-                                            <path id="MJX-27-TEX-I-1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-132-TEX-I-1D437" d="M287 628Q287 635 230 637Q207 637 200 638T193 647Q193 655 197 667T204 682Q206 683 403 683Q570 682 590 682T630 676Q702 659 752 597T803 431Q803 275 696 151T444 3L430 1L236 0H125H72Q48 0 41 2T33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM703 469Q703 507 692 537T666 584T629 613T590 629T555 636Q553 636 541 636T512 636T479 637H436Q392 637 386 627Q384 623 313 339T242 52Q242 48 253 48T330 47Q335 47 349 47T373 46Q499 46 581 128Q617 164 640 212T683 339T703 469Z"/>
+                                            <path id="MJX-132-TEX-I-1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/>
                                         </defs>
                                         <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
                                             <g data-mml-node="math">
                                                 <g data-mml-node="msub">
                                                     <g data-mml-node="mi">
-                                                        <use data-c="1D437" xlink:href="#MJX-27-TEX-I-1D437"/>
+                                                        <use data-c="1D437" xlink:href="#MJX-132-TEX-I-1D437"/>
                                                     </g>
-                                                    <g data-mml-node="mi" transform="translate(861,-150) scale(0.707)">
-                                                        <use data-c="1D45A" xlink:href="#MJX-27-TEX-I-1D45A"/>
+                                                    <g data-mml-node="TeXAtom" transform="translate(861,-150) scale(0.707)" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mi">
+                                                            <use data-c="1D45A" xlink:href="#MJX-132-TEX-I-1D45A"/>
+                                                        </g>
                                                     </g>
                                                 </g>
                                             </g>
@@ -62,32 +58,34 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="30" y="49" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    $$D_m$$
+                <text x="30" y="73" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$D_{m}$$
                 </text>
             </switch>
         </g>
-        <rect x="240" y="30" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <rect x="320" y="54" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
         <g transform="translate(-0.5 -0.5)">
             <switch>
                 <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
-                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 45px; margin-left: 241px;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 69px; margin-left: 321px;">
                         <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
                             <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
                                 <mjx-container class="MathJax" jax="SVG" display="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="2.769ex" height="1.927ex" role="img" focusable="false" viewBox="0 -694 1223.8 851.8" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.357ex;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="2.244ex" height="2.237ex" role="img" focusable="false" viewBox="0 -694 991.9 989" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.667ex;">
                                         <defs>
-                                            <path id="MJX-28-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/>
-                                            <path id="MJX-28-TEX-I-1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-133-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/>
+                                            <path id="MJX-133-TEX-I-1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"/>
                                         </defs>
                                         <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
                                             <g data-mml-node="math">
                                                 <g data-mml-node="msub">
                                                     <g data-mml-node="mi">
-                                                        <use data-c="1D451" xlink:href="#MJX-28-TEX-I-1D451"/>
+                                                        <use data-c="1D451" xlink:href="#MJX-133-TEX-I-1D451"/>
                                                     </g>
-                                                    <g data-mml-node="mi" transform="translate(553,-150) scale(0.707)">
-                                                        <use data-c="1D45A" xlink:href="#MJX-28-TEX-I-1D45A"/>
+                                                    <g data-mml-node="TeXAtom" transform="translate(553,-150) scale(0.707)" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mi">
+                                                            <use data-c="1D453" xlink:href="#MJX-133-TEX-I-1D453"/>
+                                                        </g>
                                                     </g>
                                                 </g>
                                             </g>
@@ -98,8 +96,195 @@
                         </div>
                     </div>
                 </foreignObject>
-                <text x="270" y="49" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
-                    $$d_m$$
+                <text x="350" y="73" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$d_{f}$$
+                </text>
+            </switch>
+        </g>
+        <path d="M 70 69 Q 110 79 130 69 Q 150 59 170 69 Q 190 79 230 69" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="12 5 2 5" pointer-events="stroke"/>
+        <path d="M 390 69 Q 430 79 450 69 Q 470 59 490 69 Q 510 79 550 69" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="12 5 2 5" pointer-events="stroke"/>
+        <path d="M 70 64 L 230 64" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 70 74 L 230 74" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 230 64 L 260 64" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 230 74 L 260 74" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 250 94 L 250 44" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 250 34 L 250 57.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 250 62.88 L 246.5 55.88 L 250 57.63 L 253.5 55.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 250 94 L 250 80.37" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 250 75.12 L 253.5 82.12 L 250 80.37 L 246.5 82.12 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="230" y="24" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 39px; margin-left: 231px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.244ex" height="2.059ex" role="img" focusable="false" viewBox="0 -705 550 910" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.464ex;">
+                                        <defs>
+                                            <path id="MJX-134-TEX-I-1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D453" xlink:href="#MJX-134-TEX-I-1D453"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="260" y="43" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$f$$
+                </text>
+            </switch>
+        </g>
+        <path d="M 100 92.63 L 100 55.37" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 100 97.88 L 96.5 90.88 L 100 92.63 L 103.5 90.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 100 50.12 L 103.5 57.12 L 100 55.37 L 96.5 57.12 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 100 54 L 100 4" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <rect x="90" y="4" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 19px; margin-left: 91px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.841ex" height="1.901ex" role="img" focusable="false" viewBox="0 -683 2581.7 840.1" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.355ex;">
+                                        <defs>
+                                            <path id="MJX-135-TEX-I-1D437" d="M287 628Q287 635 230 637Q207 637 200 638T193 647Q193 655 197 667T204 682Q206 683 403 683Q570 682 590 682T630 676Q702 659 752 597T803 431Q803 275 696 151T444 3L430 1L236 0H125H72Q48 0 41 2T33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM703 469Q703 507 692 537T666 584T629 613T590 629T555 636Q553 636 541 636T512 636T479 637H436Q392 637 386 627Q384 623 313 339T242 52Q242 48 253 48T330 47Q335 47 349 47T373 46Q499 46 581 128Q617 164 640 212T683 339T703 469Z"/>
+                                            <path id="MJX-135-TEX-I-1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"/>
+                                            <path id="MJX-135-TEX-N-6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"/>
+                                            <path id="MJX-135-TEX-N-69" d="M69 609Q69 637 87 653T131 669Q154 667 171 652T188 609Q188 579 171 564T129 549Q104 549 87 564T69 609ZM247 0Q232 3 143 3Q132 3 106 3T56 1L34 0H26V46H42Q70 46 91 49Q100 53 102 60T104 102V205V293Q104 345 102 359T88 378Q74 385 41 385H30V408Q30 431 32 431L42 432Q52 433 70 434T106 436Q123 437 142 438T171 441T182 442H185V62Q190 52 197 50T232 46H255V0H247Z"/>
+                                            <path id="MJX-135-TEX-N-6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="msub">
+                                                    <g data-mml-node="mi">
+                                                        <use data-c="1D437" xlink:href="#MJX-135-TEX-I-1D437"/>
+                                                    </g>
+                                                    <g data-mml-node="TeXAtom" transform="translate(861,-150) scale(0.707)" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mi">
+                                                            <use data-c="1D44E" xlink:href="#MJX-135-TEX-I-1D44E"/>
+                                                        </g>
+                                                        <g data-mml-node="mo" transform="translate(695.7,0)">
+                                                            <use data-c="6D" xlink:href="#MJX-135-TEX-N-6D"/>
+                                                            <use data-c="69" xlink:href="#MJX-135-TEX-N-69" transform="translate(833,0)"/>
+                                                            <use data-c="6E" xlink:href="#MJX-135-TEX-N-6E" transform="translate(1111,0)"/>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="23" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$D_{a\min...
+                </text>
+            </switch>
+        </g>
+        <path d="M 390 64 L 550 64" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 390 74 L 550 74" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 50 82.63 L 50 55.37" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 50 87.88 L 46.5 80.88 L 50 82.63 L 53.5 80.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 50 50.12 L 53.5 57.12 L 50 55.37 L 46.5 57.12 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 370 82.63 L 370 55.37" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 370 87.88 L 366.5 80.88 L 370 82.63 L 373.5 80.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 370 50.12 L 373.5 57.12 L 370 55.37 L 366.5 57.12 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 230 64 L 260 64" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 550 74 L 580 74" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 570 94 L 570 44" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 570 34 L 570 57.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 570 62.88 L 566.5 55.88 L 570 57.63 L 573.5 55.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 570 94 L 570 80.37" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 570 75.12 L 573.5 82.12 L 570 80.37 L 566.5 82.12 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="550" y="24" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 39px; margin-left: 551px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.244ex" height="2.059ex" role="img" focusable="false" viewBox="0 -705 550 910" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.464ex;">
+                                        <defs>
+                                            <path id="MJX-136-TEX-I-1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D453" xlink:href="#MJX-136-TEX-I-1D453"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="580" y="43" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$f$$
+                </text>
+            </switch>
+        </g>
+        <path d="M 550 64 L 580 64" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 420 82.63 L 420 65.37" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 420 87.88 L 416.5 80.88 L 420 82.63 L 423.5 80.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 420 60.12 L 423.5 67.12 L 420 65.37 L 416.5 67.12 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 420 74 L 420 4" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <rect x="410" y="4" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 19px; margin-left: 411px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="5.454ex" height="1.927ex" role="img" focusable="false" viewBox="0 -694 2410.8 851.8" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.357ex;">
+                                        <defs>
+                                            <path id="MJX-137-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/>
+                                            <path id="MJX-137-TEX-I-1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"/>
+                                            <path id="MJX-137-TEX-N-6D" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q351 442 364 440T387 434T406 426T421 417T432 406T441 395T448 384T452 374T455 366L457 361L460 365Q463 369 466 373T475 384T488 397T503 410T523 422T546 432T572 439T603 442Q729 442 740 329Q741 322 741 190V104Q741 66 743 59T754 49Q775 46 803 46H819V0H811L788 1Q764 2 737 2T699 3Q596 3 587 0H579V46H595Q656 46 656 62Q657 64 657 200Q656 335 655 343Q649 371 635 385T611 402T585 404Q540 404 506 370Q479 343 472 315T464 232V168V108Q464 78 465 68T468 55T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"/>
+                                            <path id="MJX-137-TEX-N-61" d="M137 305T115 305T78 320T63 359Q63 394 97 421T218 448Q291 448 336 416T396 340Q401 326 401 309T402 194V124Q402 76 407 58T428 40Q443 40 448 56T453 109V145H493V106Q492 66 490 59Q481 29 455 12T400 -6T353 12T329 54V58L327 55Q325 52 322 49T314 40T302 29T287 17T269 6T247 -2T221 -8T190 -11Q130 -11 82 20T34 107Q34 128 41 147T68 188T116 225T194 253T304 268H318V290Q318 324 312 340Q290 411 215 411Q197 411 181 410T156 406T148 403Q170 388 170 359Q170 334 154 320ZM126 106Q126 75 150 51T209 26Q247 26 276 49T315 109Q317 116 318 175Q318 233 317 233Q309 233 296 232T251 223T193 203T147 166T126 106Z"/>
+                                            <path id="MJX-137-TEX-N-78" d="M201 0Q189 3 102 3Q26 3 17 0H11V46H25Q48 47 67 52T96 61T121 78T139 96T160 122T180 150L226 210L168 288Q159 301 149 315T133 336T122 351T113 363T107 370T100 376T94 379T88 381T80 383Q74 383 44 385H16V431H23Q59 429 126 429Q219 429 229 431H237V385Q201 381 201 369Q201 367 211 353T239 315T268 274L272 270L297 304Q329 345 329 358Q329 364 327 369T322 376T317 380T310 384L307 385H302V431H309Q324 428 408 428Q487 428 493 431H499V385H492Q443 385 411 368Q394 360 377 341T312 257L296 236L358 151Q424 61 429 57T446 50Q464 46 499 46H516V0H510H502Q494 1 482 1T457 2T432 2T414 3Q403 3 377 3T327 1L304 0H295V46H298Q309 46 320 51T331 63Q331 65 291 120L250 175Q249 174 219 133T185 88Q181 83 181 74Q181 63 188 55T206 46Q208 46 208 23V0H201Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="msub">
+                                                    <g data-mml-node="mi">
+                                                        <use data-c="1D451" xlink:href="#MJX-137-TEX-I-1D451"/>
+                                                    </g>
+                                                    <g data-mml-node="TeXAtom" transform="translate(553,-150) scale(0.707)" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mi">
+                                                            <use data-c="1D44E" xlink:href="#MJX-137-TEX-I-1D44E"/>
+                                                        </g>
+                                                        <g data-mml-node="mo" transform="translate(695.7,0)">
+                                                            <use data-c="6D" xlink:href="#MJX-137-TEX-N-6D"/>
+                                                            <use data-c="61" xlink:href="#MJX-137-TEX-N-61" transform="translate(833,0)"/>
+                                                            <use data-c="78" xlink:href="#MJX-137-TEX-N-78" transform="translate(1333,0)"/>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="440" y="23" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$d_{a\max...
                 </text>
             </switch>
         </g>
