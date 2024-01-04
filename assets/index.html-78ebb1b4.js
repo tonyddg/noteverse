@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-709e115f","path":"/coding/web/legacy/","title":"Legacy","lang":"zh-CN","frontmatter":{"title":"Legacy","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{e as data};

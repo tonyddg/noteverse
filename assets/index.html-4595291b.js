@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-8ef77498","path":"/random/legacy/sketch/%E5%88%B6%E5%9B%BE/%E6%88%90%E5%9B%BE/","title":"成图","lang":"zh-CN","frontmatter":{"title":"成图","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{e as data};
