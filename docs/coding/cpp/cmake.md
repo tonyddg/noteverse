@@ -120,6 +120,15 @@ ADD_LIBRARY(<目标项目名> <生成库的类型> <源文件...>)
 * 目标项目名即输出文件的名称, 且不需要有后缀
 * 对于一个目标项目名, 仅能输出一个文件, 因此仅通过 `ADD_LIBRARY` 或 `ADD_EXECUTABLE` 无法生成同名的文件, 仅有最后一个生效, 因此还需要设置目标项目属性
 
+#### ADD_DEFINITIONS
+预处理宏定义 (待补充)
+
+#### ADD_COMPILE_OPTIONS
+编译选项
+
+#### ADD_LINK_OPTIONS
+链接选项
+
 ### 其他操作
 #### SET
 定义变量
@@ -149,6 +158,9 @@ MESSAGE(<消息类型> <输出消息...>)
     * 对于字符串, 需要使用 `""` 包裹
     * 对于变量, 需要使用 `${}` 包裹
     * 允许输出多个值, 将出现在同一行
+
+#### IF
+流程控制 (待补充)
 
 ### 全局变量
 #### CMAKE_PROJECT_NAME
@@ -404,7 +416,8 @@ Vcpkg 是一个多平台 C++ 库管理工具
 
 此命令将自动创建空的 vcpkg.json 与 vcpkg-configuration.json 文件  
 建议向 vcpkg.json 中添加字段以实现基于 IDE 的字段注释与检查  
-`"$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json"`
+`"$schema": `  
+`"https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json"`
 
 可以通过直接修改 vcpkg.json 的方式设置项目名与版本, 具体添加, 设置依赖  
 方法见[参考文档](https://learn.microsoft.com/zh-cn/vcpkg/reference/vcpkg-json)
@@ -461,10 +474,6 @@ cmake --build [Build路径]
 * `x64-windows` x64 位 Windows 下使用 MCVS 编译, 采用外部链接 (默认的配置)
 
 注意 Windows 下默认使用的是 `x64-windows`, 此配置仅适用于 VisualStudio, 如果使用 MinGW, 必须改为配置 `x64-mingw-...`
-
-#### vcpkg 环境设置
-通过 `SET([环境变量名] [值])` 的方式直接设置 vcpkg 的环境变量, 进行高级设置.  
-详细配置见[文档](https://learn.microsoft.com/zh-cn/vcpkg/users/triplets)
 
 ### 模块使用注意
 #### 基本模块引用
