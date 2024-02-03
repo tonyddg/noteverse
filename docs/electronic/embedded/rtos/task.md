@@ -25,5 +25,6 @@ order: 1
 
 ## 编辑任务函数
 1. CubeMX 将任务函数生成于 Src/freertos.c 中
-1. 通过函数 osKernelStart() 启动 RTOS 任务调度
+1. 通过函数 osKernelStart() 启动 RTOS 任务调度 (CubeMX 已经自动在 main 中调用此函数了)
 1. 各个线程之间耦合程度低, 日后对项目进行维护时只要对相关的线程程序进行修改就行了
+1. 在任务中, 一般使用 osDelay 用于延时, 参数单位为系统刻 (一般即 1ms), 而非 HAL_Delay
