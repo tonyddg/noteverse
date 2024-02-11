@@ -188,3 +188,289 @@ auto logger = spdlog::rotating_logger_mt("[日志注册名]", "[日志文件路�
 对于 C++17 以上的标准, 可使用 std::filesystem  
 对于其余情况, 可使用 boost-filesystem    
 参考文档 <https://blog.csdn.net/A_L_A_N/article/details/85626296>
+
+## 多线程 std::thread
+<https://blog.csdn.net/qq_15041569/article/details/131798965>  
+<https://mp.weixin.qq.com/s?__biz=MzkyMjIxMzIxNA==&mid=2247484579&idx=1&sn=07ffd2a0b7cb37c739387e2e3327641b&chksm=c1f68a92f6810384c314254b36b0d188a61b87ad52c3503ca7d4282be78a050fbc85a4549aed&token=327902945&lang=zh_CN#rd>  
+<https://blog.csdn.net/weixin_45663220/article/details/120686644>  
+
+## 异步通讯 Boost.asio
+安装完成后, 引用头文件 `#include <boost/asio.hpp>` 以引入该库
+
+### 定时器
+参考文档 <https://www.boost.org/doc/libs/1_84_0/doc/html/boost_asio/tutorial.html>
+
+#### 定时器的基本使用
+```cpp
+#include <iostream>
+#include <boost/asio.hpp>
+
+int main()
+{
+    // 使用 asio 库中的组件进行异步通讯时, 都必须基于一个 io 上下文对象
+    boost::asio::io_context io;
+    // asio 库中有计时器对象 boost::asio::steady_timer
+    // 第一个参数为 io 上下文对象, 第二个参数为计时器过期 (expired) 时限
+    // 在该对象被创建后, 将立即开始计时
+    boost::asio::steady_timer t(io, boost::asio::chrono::seconds(5));
+    // 成员函数 wait 为同步等待计时器达到过期时限, 因此计时未到时限时, 程序将被阻塞
+    t.wait();
+
+    // 计时结束后输出信息
+    std::cout << "Timer expired" << std::endl;
+    return 0;
+}
+```
+
+#### 异步计时
+```cpp
+#include <iostream>
+#include <boost/asio.hpp>
+
+// 处理函数原型为 void(const boost::system::error_code&)
+void print(const boost::system::error_code& e)
+{
+    std::cout << "Timer expired" << std::endl;
+    return;
+}
+
+int main()
+{
+    boost::asio::io_context io;
+    boost::asio::steady_timer t(io, boost::asio::chrono::seconds(5));
+    
+    // 成员函数 async_wait 为计时器达到过期时限这一事件注册异步等待处理函数, 处理函数原型见上
+    // 注册后并不会立即执行
+    t.async_wait(&print);
+    // 对于异步处理的内容, 需要使用 io 上下文的成员函数 run 处理所有注册在该上下文的事件
+    // 此时执行 io.run 的线程将被阻塞用于等待所有之前注册的事件发生并处理
+    // 当所有事件都处理结束时, io.run 函数才会退出
+    io.run();
+
+    return 0;
+}
+```
+
+#### 绑定成员函数
+对于绑定带参数函数的部分见[教程](https://www.boost.org/doc/libs/1_84_0/doc/html/boost_asio/tutorial/tuttimer3.html)  
+关于函数包装器 `std::bind`, 可见[笔记](./base.md#bind-函数)  
+绑定函数时, 需要使用专门的占位器 `boost::asio::placeholders::error`
+
+```cpp
+#include <iostream>
+#include <functional>
+#include <boost/asio.hpp>
+
+class printer{
+private:
+    boost::asio::steady_timer _timer;
+    unsigned _counter;
+
+public:
+    void print(const boost::system::error_code& e){
+        if(_counter < 5){
+            std::cout << "Counter: " << _counter << std::endl;
+            _counter++;
+
+            // 使用成员函数 expires_after 重置过期时限
+            _timer.expires_after(boost::asio::chrono::seconds(1));
+            // 当前事件已经结束, 因此需要重新注册重置时限后的等待事件
+            _timer.async_wait(std::bind(&printer::print, this, std::placeholders::_1));
+        }
+
+        return;
+    }
+
+    printer(boost::asio::io_context& io):
+    _timer(io, boost::asio::chrono::seconds(1)),
+    _counter(0){
+        // 使用来自 function 的函数 std::bind 包装成员函数, 并将其与对象绑定
+        // 此外由于函数有参数 const boost::system::error_code& e 
+        // 因此还需要占位符 std::placeholders::_1 
+        _timer.async_wait(std::bind(&printer::print, this, std::placeholders::_1));
+    }
+};
+
+int main(){
+    boost::asio::io_context io;
+    printer p(io);
+    io.run();
+    return 0;
+}
+```
+
+#### 多线程与强制同步
+使用多线程处理公用同一资源的两个事件时, 当两个事件同时被处理  
+将导致公共资源因同时修改而使程序不稳定  
+因此需要引入调节器 `boost::asio::strand`, 当其中一个事件在处理时, 阻塞另一事件的处理
+
+```cpp
+#include <iostream>
+#include <functional>
+#include <thread>
+#include <boost/asio.hpp>
+
+class printer{
+private:
+    // 调节器类为 boost::asio::strand, 以 io 上下文类型为模板 
+    boost::asio::strand<boost::asio::io_context::executor_type> _strand;
+    boost::asio::steady_timer _timer1;
+    boost::asio::steady_timer _timer2;
+    unsigned _counter;
+
+public:
+    void print1(const boost::system::error_code& e){
+        if(_counter < 10){
+            std::cout << "Timer1 cnt: " << _counter << std::endl;
+            _counter++;
+            _timer1.expires_after(boost::asio::chrono::seconds(1));
+
+            _timer1.async_wait(boost::asio::bind_executor(_strand,
+                std::bind(&printer::print1, this, std::placeholders::_1)));
+        }
+        return;
+    }
+
+    void print2(const boost::system::error_code& e){
+        if(_counter < 10){
+            std::cout << "Timer2 cnt: " << _counter << std::endl;
+            _counter++;
+            _timer2.expires_after(boost::asio::chrono::seconds(1));
+            
+            _timer2.async_wait(boost::asio::bind_executor(_strand,
+                std::bind(&printer::print2, this, std::placeholders::_1)));
+        }
+        return;
+    }
+
+    printer(boost::asio::io_context& io):
+    // 注意调节器的初始化方式
+    _strand(boost::asio::make_strand(io)),
+    _timer1(io, boost::asio::chrono::seconds(1)),
+    _timer2(io, boost::asio::chrono::seconds(1)),
+    _counter(0){
+        // 在注册处理函数前, 还需要函数 boost::asio::bind_executor 将处理函数与调节器绑定
+        _timer1.async_wait(boost::asio::bind_executor(_strand,
+            std::bind(&printer::print1, this, std::placeholders::_1)));
+
+        // 仅当绑定了同一个调节器的事件才会相互阻塞, 其他事件依然能并行处理
+        _timer2.async_wait(boost::asio::bind_executor(_strand,
+            std::bind(&printer::print2, this, std::placeholders::_1)));
+    }
+};
+
+int main(){
+    boost::asio::io_context io;
+    printer p(io);
+
+    // 一个 io.run 仅能同时处理一个事件
+    // 因此当仅有一个线程运行 io.run 时, 当有正在处理的事件时, 仅能等待当前事件处理结束才能处理下一事件
+    std::thread t1([&]{ io.run(); std::cout << "Thread 1 Over" << std::endl;});
+    t1.detach();
+    // 通过多线程同时运行 io.run, 则能在事件同时发生, 使用另一线程进行处理
+    // 也可使用 asio 提供的 thread_pool 对象代替 io_context, 使用线程池管理
+    std::thread t2([&]{ io.run(); std::cout << "Thread 2 Over" << std::endl;});
+    t2.detach();
+
+    // 可使用 io 上下文的成员数 stopped 判断是否仍有待处理的事件
+    while(!io.stopped()){}
+    std::cout << "Program Over" << std::endl;
+
+    return 0;
+}
+```
+
+### 串口通信
+#### 异步读取
+串口通信建立与配置  
+<https://blog.csdn.net/keeplearning365/article/details/108718410>
+异步读取事件注册函数  
+<https://www.boost.org/doc/libs/1_84_0/doc/html/boost_asio/reference/basic_serial_port/async_read_some.html>  
+缓冲区  
+<https://www.boost.org/doc/libs/1_84_0/doc/html/boost_asio/reference/buffer.html>
+
+```cpp
+#include <iostream>
+#include <string>
+#include <functional>
+#include <boost/asio.hpp>
+
+class serialReader{
+private:
+    // 串口通信对象 
+    boost::asio::serial_port _sp;
+    // 数据缓冲区
+    char* _buf;
+    size_t _bufSize;
+
+public:
+    // 与计时器不同, 异步接收事件处理函数还需要一个参数 std::size_t bytes_transferred 表示接收到的数据位数
+    // 将一次接收多个数据直到接收到 \r\n
+    void readHandler(const boost::system::error_code& error, std::size_t bytes_transferred){
+        // 将缓冲区末尾置 \0, 将其视为字符串处理
+        _buf[bytes_transferred] = '\0';
+        std::cout << "Read Size:" << bytes_transferred << std::endl;
+        std::cout << "Read Data:" << _buf << std::endl;
+
+        // 通过错误对象 error 的成员 failed 判断读取时是否发生错误
+        if(error.failed()){
+            std::cerr << error.what() << std::endl;
+        }
+        else{
+            // 使用成员函数 async_read_some 注册异步读取事件的处理函数
+            // 注册时, 首先要使用 boost::asio::mutable_buffer 创建缓冲区, 此处是基于一段动态内存空间, 其他创建方法见参考资料
+            // 由于处理函数原型存在两个参数, 因此需要两个占位符
+            _sp.async_read_some(boost::asio::mutable_buffer((void *)_buf, _bufSize), 
+                std::bind(&readHandler, this, std::placeholders::_1, std::placeholders::_2));            
+        }
+    }
+
+    serialReader(boost::asio::io_context& io, const std::string& portName, size_t bufSize = 128):
+    _sp(io),
+    _buf(nullptr),
+    _bufSize(bufSize){
+        try{
+            // 使用串口对象的 open 成员打开串口
+            // 当端口占用或不存在时将抛出错误, 因此建议使用 try catch 包含 open 成员
+            _sp.open(portName);
+            _buf = new char[_bufSize];
+        }
+        catch(const std::exception& e){
+            std::cerr << e.what() << std::endl;
+            exit(1);
+        }
+
+        std::cout << "Open Success" << std::endl;
+
+        // 设置串口属性, 属性的具体含义见串口通信建立与配置
+        // 需要在串口打开后再进行配置
+        _sp.set_option(boost::asio::serial_port::baud_rate(115200));
+        _sp.set_option(boost::asio::serial_port::flow_control(boost::asio::serial_port::flow_control::none));
+        _sp.set_option(boost::asio::serial_port::parity(boost::asio::serial_port::parity::none));
+        _sp.set_option(boost::asio::serial_port::stop_bits(boost::asio::serial_port::stop_bits::one));
+        _sp.set_option(boost::asio::serial_port::character_size(8));
+
+        _sp.async_read_some(boost::asio::mutable_buffer((void *)_buf, _bufSize), 
+            std::bind(&readHandler, this, std::placeholders::_1, std::placeholders::_2));
+    }
+
+    ~serialReader(){
+        delete[] _buf;
+    }
+};
+
+int main(){
+    boost::asio::io_context io;
+    std::string portName;
+
+    std::cout << "Please Enter The COM Port: ";
+    std::cin >> portName;
+    
+    // Windows 串口名称使用 COM + 数字 (见设备管理器)
+    // Linux 可使用设备名如 /dev/ttyUSB0
+    serialReader sr(io, portName);
+    io.run();
+
+    return 0;
+}
+```
