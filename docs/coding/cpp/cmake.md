@@ -348,7 +348,11 @@ endfunction()
 * `PROJECT_SOURCE_DIR` 当前项目源码目录 (通常即该项目的 `CMakeLists.txt` 文件所在目录)
 
 #### 其他项目信息
-通过设置变量 `CMAKE_XXX_STANDARD_REQUIRED` 查询与设置项目中语言 `XXX` 标准要求 (不建议通过编译选项设置标准要求)  
+通过设置变量 `CMAKE_XXX_STANDARD` 查询与设置项目中语言 `XXX` 标准要求, 标准即一个数字 (不建议通过编译选项设置标准要求)  
+* 对于 `CXX` (C++) 常用的有 `98`, `11`, `17` 等
+* 对于 `C` 常用的有 `98`, `11`
+
+之后还要设置变量 `CMAKE_CXX_STANDARD_REQUIRED` 为 `ON`, 开启要求
 
 通过设置变量 `CMAKE_BUILD_TYPE` 查询与设置项目的构建类型, 通常有以下构建类型
 * `Debug` 调试版本, 启用编译选项 `-g`, 默认采用此设置
@@ -534,6 +538,7 @@ CMake 仅有构建项目的能力, 而无法生成目标, 因此生成目标时�
     "CMAKE_TOOLCHAIN_FILE": "[vcpkg 安装目录]\\scripts\\buildsystems\\vcpkg.cmake"
 },
 ```
+1. 另外推荐关闭 cmake tool 插件的自动配置功能, 防止频繁进行配置, 具体参考 <https://blog.csdn.net/qq_35914805/article/details/135532395>
 
 其他平台安装参考文档 <https://github.com/microsoft/vcpkg/blob/master/README_zh_CN.md>
 
@@ -595,6 +600,16 @@ CMake 仅有构建项目的能力, 而无法生成目标, 因此生成目标时�
 #### OpenCV
 1. 推荐中要求设定变量 `OpenCV_DIR` 的值, 实际可不进行设置
 1. 链接 `OpenCV` 时应使用变量 `${OpenCV_LIBS}`, 或打印此变量, 查看可用的库
+
+#### Boost
+1. 仅在[此列表](https://www.boost.org/doc/libs/1_79_0/more/getting_started/windows.html#header-only-libraries)中的库需要按推荐的方式设置, 一般的库使用 `find_package(Boost REQUIRED)` 与 `target_link_libraries(${PROJECT_NAME} PRIVATE Boost::boost)` 即可
+1. 对于 Boost::asio, 在 Windows 下还需要额外链接库 `target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32.lib PRIVATE mswsock.lib)`
+1. 对于 Boost::python
+    * 需要使用语句 `find_package(Boost COMPONENTS python3.11 REQUIRED)` 与 `target_link_libraries(<目标名> PRIVATE Boost::python3.11)`, 其中 Python 根据安装的 Boost::python 版本决定, 对于 1.83 版本, 使用 3.11.5 版本的 Python
+    * 可安装特定版本的 Boost::python, 以改变使用的 Python 版本 (导出的模块仅能被同版本的 Python 调用)
+    * 被调用的 Python 位于 `build/vcpkg_installed/x64-windows/tools/python3` 中
+    * 导出模块时, 需要生成动态链接 (SHARED) 目标, 且要改名为 `模块名.pyd`, 将同目录下的 .dll 文件移至同一目录中, 由该目录下的 Python 脚本调用
+    * 无法使用 MingW 进行编译 
 
 #### 错误排查
 1. 模块安装失败时, 注意检查 Triplet 是否正确
@@ -676,7 +691,7 @@ cmake --build "build" --target "[项目名]"
 需要构建或调试目标时, 点击该按钮即可
 
 #### vcpkg 集成
-使用 <kbd>Ctrl</kbd> + <kbd>`</kbd> 快捷键可以打开终端  
+使用 <kbd>Ctrl</kbd> + <kbd>\`</kbd> 快捷键可以打开终端  
 在终端中使用相同的方法在 `CMakeLists.txt` 所在目录下创建 vcpkg 项目即可
 
 修改 `vcpkg.json` 时, 可退出 CMake 视图
