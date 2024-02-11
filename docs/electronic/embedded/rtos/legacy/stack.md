@@ -31,7 +31,6 @@ order: 2
 * FreeRTOS 提供了五个 pvPortMalloc 和 vPortFree 的实现方案
 * 可以在 CubeMX 中, FreeRTOS -> Config Parameters -> Memory Management Setting 中设置
 * 由于通常的 free 与 malloc 不可使用, 在 C++ 中, 需要重载 new 与 delete, [参考](https://blog.csdn.net/qq_34269632/article/details/115618386)
-*
 
 ### 分配方案
 1. Heap_1 适用于小型的嵌入式系统
