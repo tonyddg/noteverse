@@ -321,6 +321,30 @@ endfunction()
 引用文件时将执行被引用文件, 且引用的文件中具有与引用位置相同的作用域  
 可将部分操作作为封装为函数并写入单独的 `.cmake` 中, 在需要使用时引用
 
+### 文件操作
+#### 文件查找
+使用命令 `file(<GLOB|GLOB_RECURSE> <res> [LIST_DIRECTORIES true|false] [RELATIVE <path>] <express1> <express2> ...)` 可以查找文件, 如源文件
+* `res` 查找结果保存变量, 为一个列表, 保存了所有满足查找结果的文件路径 (绝对路径)
+* `express` 查找文件的表达式字符串, 允许使用 `*` 与 `?` 等通配符, 可以此实现查找所有源文件的效果, 如 `src/*.cpp`
+* `LIST_DIRECTORIES` 用于递归查询, 是否将递归结果中的目录放在结果中, 默认关闭
+* `RELATIVE <path>` 查找路径, 默认为当前的 `CMakeLists.txt` 所在路径
+* `GLOB|GLOB_RECURSE` `GLOB` 表示仅查找当前目录, `GLOB_RECURSE` 则将进行递归查找
+* 使用示例  
+命令 `file(GLOB SOURCE_FILE "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.c")` 将寻找文件夹 `src` 下所有的 `.c` 与 `.cpp` 文件
+
+使用命令 `aux_source_directory(<res> <dir>)` 将寻找指定目录下所有源文件
+* `res` 保存查询结果的变量, 为一个列表
+* `dir` 查询的文件夹
+
+#### 其他常用文件操作
+* 命令 `file([FILE_COPY|COPY] <source> <dest>)` 复制文件
+    * `FILE_COPY` 复制单个文件为指定文件
+    * `COPY` 复制多个文件与目录到指定目录下
+* 命令 `file(RENAME <source> <dest>)` 重命名 (移动) 文件
+* 命令 `file([WRITE|APPEND] <file> <content>)` 创建文件并写入内容, 文件不存在时将创建
+    * `WRITE` 写入时将覆盖原有内容
+    * `APPEND` 写入时将在文件末尾添加内容
+
 ## 项目配置
 参考文章 <https://blog.csdn.net/qq_43495002/article/details/134000654>
 
@@ -346,6 +370,7 @@ endfunction()
 经过设置项目信息后, 可通过以下变量读取信息
 * `PROJECT_NAME` 当前项目名称
 * `PROJECT_SOURCE_DIR` 当前项目源码目录 (通常即该项目的 `CMakeLists.txt` 文件所在目录)
+* `PROJECT_BINARY_DIR` 生成文件存放目录 (通常即 `build` 目录)
 
 #### 其他项目信息
 通过设置变量 `CMAKE_XXX_STANDARD` 查询与设置项目中语言 `XXX` 标准要求, 标准即一个数字 (不建议通过编译选项设置标准要求)  
@@ -369,6 +394,7 @@ endfunction()
 #### 编译器配置
 通过命令 `add_compile_definitions(<def1> <def2> ...)` 设置预定义宏
 * `def` 预定义的宏, 等价为 GCC 的 `-D` 命令
+* 定义格式为 `-D<宏名称>[=[宏值]]`, 注意如果定义宏的值时, 则等号之间不能有空格, 默认值为 1
 * 此命令将对之后所有生成的目标生效
 
 通过命令 `add_compile_options(<options>)` 设置编译时向编译器传递的编译选项, 如 gcc
@@ -410,19 +436,8 @@ endfunction()
 * `-lm -lstdc++` 启用对 C++ 的支持, 用于 C/C++ 混合编程
 
 ### 生成配置
-#### 文件查找
-使用命令 `file([GLOB|GLOB_RECURSE] <res> [LIST_DIRECTORIES true|false] [RELATIVE <path>] <express1> <express2> ...)` 可以查找文件, 如源文件
-* `res` 查找结果保存变量, 为一个列表, 保存了所有满足查找结果的文件路径 (绝对路径)
-* `express` 查找文件的表达式字符串, 允许使用 `*` 与 `?` 等通配符, 可以此实现查找所有源文件的效果, 如 `src/*.cpp`
-* `LIST_DIRECTORIES` 用于递归查询, 是否将递归结果中的目录放在结果中, 默认关闭
-* `RELATIVE <path>` 查找路径, 默认为当前的 `CMakeLists.txt` 所在路径
-* `GLOB|GLOB_RECURSE` `GLOB` 表示仅查找当前目录, `GLOB_RECURSE` 则将进行递归查找
-* 使用示例  
-命令 `file(GLOB SOURCE_FILE "${PROJECT_SOURCE_DIR}/src/*.cpp" "${PROJECT_SOURCE_DIR}/src/*.c")` 将寻找文件夹 `src` 下所有的 `.c` 与 `.cpp` 文件
-
-使用命令 `aux_source_directory(<res> <dir>)` 将寻找指定目录下所有源文件
-* `res` 保存查询结果的变量, 为一个列表
-* `dir` 查询的文件夹
+#### 源文件查找
+可参考[文件查找](#文件查找)命令, 搜索源文件目录下的 `.cpp`, `.c` 等源文件
 
 #### 添加包含项
 使用命令 `include_directories(<dir1> <dir2> ...)` 添加包含目录  
@@ -432,6 +447,10 @@ endfunction()
 使用命令 `link_libraries(<path1> <path2> ...)` 添加链接包含库文件
 * 此命令将对之后所有目标生效, 但在该命令之前的目标不会生效
 * 等价于 `GCC` 中的 `-l` 选项, 但推荐使用该命令添加包含目录
+
+使用命令 `link_directories(<dir1> <dir2> ...)` 添加库目录
+* 注意, `link_libraries` 将从该命令定义的目录中寻找库文件
+* 该命令不起链接效果, 仅是辅助 `link_libraries` 使用
 
 #### 生成目标
 使用命令 `add_executable(<target> <src>)` 生成目标可执行文件
@@ -450,11 +469,12 @@ endfunction()
 #### 常用目标配置命令
 目标配置命令只在在生成目标命令之后才会生效
 
-* 设置目标编译选项 `target_compile_options(<target> [domain1] <opt1> ...)`
-* 设置目标预定义宏 `target_compile_definitions(<target> [domain1] <def1> ...)`
-* 设置目标链接选项 `target_link_options(<target> [domain1] <opt1> ...)`
-* 设置目标包含目录 `target_include_directories(<target> [domain1] <dir1> ...)`
-* 设置目标引用库 `target_link_libraries(<target> [domain1] <path1>)`
+* 设置目标编译选项 `target_compile_options(<target> [domain1] <opt1> ...)`, 对应 `add_compile_options`
+* 设置目标预定义宏 `target_compile_definitions(<target> [domain1] <def1> ...)` 对应 `add_compile_definitions`
+* 设置目标链接选项 `target_link_options(<target> [domain1] <opt1> ...)` 对应 `add_link_options`
+* 设置目标包含目录 `target_include_directories(<target> [domain1] <dir1> ...)` 对应 `include_directories`
+* 设置目标引用库目录 `target_link_directories(<target> [domain1] <path1>)` (仅设置目录, 具体链接库还需要 `target_link_libraries`) 对应 `link_directories`
+* 设置目标引用库 `target_link_libraries(<target> [domain1] <path1>)` 对应 `link_libraries`
 
 #### 依赖传递参数
 其中的参数 `domain` 为依赖传递参数  
@@ -478,11 +498,18 @@ endfunction()
 * `构建阶段` 有如下执行命令的构建阶段
     * `PRE_BUILD` 编译前执行
     * `PRE_LINK` 链接前执行
-    * `POST_BUILD` 生成后执行
+    * `POST_BUILD` 生成后执行, 例如将生成的库移动到测试环境
 * `cmd` 执行的 [CMake 命令](https://cmake.org/cmake/help/latest/manual/cmake.1.html#run-a-command-line-tool) (与 bash 基本相同, 可直接运行可执行文件)  
 对于命令中的参数直接用空格分割, 引号仅由于包裹参数  
 多条命令通过 `COMMAND` 分隔    
 例如命令 `add_custom_command(TARGET xxx POST_BUILD echo Build done)` 将在构建完成时输出 `Build done`
+
+为了保证 CMake 项目的跨平台特性, 在执行命令时推荐
+* 通过变量引用具体的命令解释器, 而非执行命令, 如 
+    * `${CMAKE_COMMAND}` 获取 CMake 解释器路径表达命令, 如 `${CMAKE_COMMAND} -E echo "Post build command start"`  
+    * `${PYBIND11_PYTHON_EXECUTABLE_LAST}` 获取 python 解释器 (pybind11 中)
+* 对于如复制, 重命名文件等操作, 推荐使用 cmake 的 -E 选项完成, 具体见[Cmake 完成简单命令行操作](#简单命令行操作)
+* 注意此时的相对路径的根目录无法确定, 因此应当使用[项目信息](#项目信息)中的变量如 `${PROJECT_SOURCE/BINARY_DIR}` 获取源文件 / build 文件的根目录
 
 #### 自定义目标
 通过命令 `add_custom_target(<target> COMMAND <cmd1> COMMAND <cmd2> ...)` 创建自定义目标  
@@ -520,6 +547,17 @@ CMake 仅有构建项目的能力, 而无法生成目标, 因此生成目标时�
 * `MinGW Makefiles` 用于 Windows 下的 MinGW
 
 关于支持的所有生成器见 <https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#manual:cmake-generators(7)>
+
+#### 简单命令行操作
+使用选项 `-E` 可通过 CMake 执行简单的命令行操作  
+基本格式为 `cmake -E <命令内容>`, 通常配合[目标生成过程执行命令](#目标生成过程执行命令)使用    
+常用的命令有
+* `copy <file1> [file2 ...] <dest>` 将文件 `file` 复制到目录 `dest` 下
+* `renome <old> <new>` 重命名 / 移动文件
+* `chdir <dir>` 修改所作目录即相对路径的根目录 
+* `echo <string>` 像控制台输出内容
+
+其他操作见[官方文档](https://cmake.org/cmake/help/latest/manual/cmake.1.html#run-a-command-line-tool)
 
 ## 多层级结构
 
@@ -604,12 +642,49 @@ CMake 仅有构建项目的能力, 而无法生成目标, 因此生成目标时�
 #### Boost
 1. 仅在[此列表](https://www.boost.org/doc/libs/1_79_0/more/getting_started/windows.html#header-only-libraries)中的库需要按推荐的方式设置, 一般的库使用 `find_package(Boost REQUIRED)` 与 `target_link_libraries(${PROJECT_NAME} PRIVATE Boost::boost)` 即可
 1. 对于 Boost::asio, 在 Windows 下还需要额外链接库 `target_link_libraries(${PROJECT_NAME} PRIVATE ws2_32.lib PRIVATE mswsock.lib)`
-1. 对于 Boost::python
-    * 需要使用语句 `find_package(Boost COMPONENTS python3.11 REQUIRED)` 与 `target_link_libraries(<目标名> PRIVATE Boost::python3.11)`, 其中 Python 根据安装的 Boost::python 版本决定, 对于 1.83 版本, 使用 3.11.5 版本的 Python
-    * 可安装特定版本的 Boost::python, 以改变使用的 Python 版本 (导出的模块仅能被同版本的 Python 调用)
-    * 被调用的 Python 位于 `build/vcpkg_installed/x64-windows/tools/python3` 中
-    * 导出模块时, 需要生成动态链接 (SHARED) 目标, 且要改名为 `模块名.pyd`, 将同目录下的 .dll 文件移至同一目录中, 由该目录下的 Python 脚本调用
-    * 无法使用 MingW 进行编译 
+
+#### pybind11
+对于 Python 与 C++ 的混合编程, 推荐使用 pybind11 而不使用 Boost::python
+1. 首先要定义变量 `Python_ROOT_DIR`, 变量值为要求的 python 环境中的解释器程序所在的根目录 (可通过在要求的 python 环境中执行 `print(sys.executable)` 具体确定 `Python_ROOT_DIR`, 该变量的本质为辅助 CMake 找到 python, 其他寻找方法见[官方文档](https://cmake.org/cmake/help/latest/module/FindPython.html#hints))
+1. 确定变量后, 需要通过[文件复制](#文件复制)命令将 `Python_ROOT_DIR` 下的 `pythonXXX.dll` 复制到生成目录 (`PROJECT_BINARY_DIR`) 下
+1. 注意, DEBUG 模式下, 需要使用 `pythonXXX_d.dll` 版本的动态链接库, 若没有则推荐设置构建类型 (CMAKE_BUILD_TYPE) 为 RelWithDebugInfo
+1. 通过 `find_package(Python COMPONENTS Interpreter Development)` 寻找 python 与 `find_package(pybind11 CONFIG REQUIRED)` 导入 pybind11
+1. 对于不同的混合方式需要采用以下目标
+    * 通过 C++ 调用 Python 时, 除了生成可执行文件 `target_link_libraries(<可执行文件目标名> PRIVATE pybind11::embed)`
+    * 生成供 Python 调用的 C++ 库时, 则使用命令 `pybind11_add_module(<模块名> MODULE <源文件>)` 生成 python 模块文件 `模块名.调用信息.pyd` (自动生成, 注意模块名)
+
+自动化项目时, 可能会用到以下实用变量
+* `PYBIND11_PYTHON_EXECUTABLE_LAST` 项目所用环境对应的 python 解释器, 可用此解释器执行脚本保证环境匹配
+* `PYTHON_MODULE_EXTENSION` 对应平台的 python 模块后缀, 可用此获取生成的模块文件
+
+对于 C++ 调用 Python 的配置示例如下
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(pybind_test)
+
+# 需要手动确认的变量
+# 解释器程序根目录
+set(Python_ROOT_DIR "D:/miniconda3/envs/playground")
+# python 版本
+set(PYTHON_DLL_VERSION "312")
+
+# 生成三个重要的变量
+set(PYTHON_DLL "python${PYTHON_DLL_VERSION}.dll")
+file(COPY_FILE "${Python_ROOT_DIR}/python${PYTHON_DLL_VERSION}.dll" "${PROJECT_BINARY_DIR}/python${PYTHON_DLL_VERSION}.dll")
+
+find_package(Python COMPONENTS Interpreter Development)
+find_package(pybind11 CONFIG REQUIRED)
+
+file(GLOB SOURCE_FILE ./src/*.cpp)
+add_executable(${PROJECT_NAME} ${SOURCE_FILE})
+target_link_libraries(${PROJECT_NAME} PRIVATE pybind11::embed)
+# 生成供 C++ 代码调用的宏
+target_compile_definitions(${PROJECT_NAME}
+    PRIVATE -DPYTHON_HOME_PUTENV_STR="PYTHONHOME=${Python_ROOT_DIR}"
+    # 用于调用 python 时, 引用的动态链接库文件夹
+    PRIVATE -DPYTHON_ADD_DLL_DIR="${Python_ROOT_DIR}/Library/bin"
+)
+```
 
 #### 错误排查
 1. 模块安装失败时, 注意检查 Triplet 是否正确
@@ -659,7 +734,9 @@ cmake --build "build" --target "[项目名]"
 通过打开项目大纲, 还可选择不同的目标进行生成, 如[自定义目标](#自定义目标)
 
 #### vcpkg 集成
-注意, 使用 mingw 时, 必须先构建一次项目, 然后再修改 `CMakeCache.txt` 中的 `VCPKG_TARGET_TRIPLET` 为 `x64-mingw-dynamic/static`
+使用 mingw 时, 必须先构建一次项目, 然后再修改 `CMakeCache.txt` 中的 `VCPKG_TARGET_TRIPLET` 为 `x64-mingw-dynamic/static/dynamic`
+
+更推荐通过修改 CMake Tools 插件的 `configureSettings` 选项, 在工作区添加 `"VCPKG_TARGET_TRIPLET" : "x64-mingw-dynamic"` 实现
 
 ### visual studio
 #### 前置配置
