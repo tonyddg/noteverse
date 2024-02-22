@@ -454,8 +454,8 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 * `\subsubsection{次节名}` 次节
 
 在大纲划分中
-* 对于标题都会进行计数, 但对于使用末尾带 $*$ 版本的命令, 则将不会进行计数, 不会显示序号且不会计入目录
-* 对于以上情况, 使用此命令 `\addcontentsline{toc}{标题类型}{标题名称}` 计入目录
+* 对于标题都会进行计数, 但对于使用末尾带 $*$ 版本的命令, 则将不会进行计数, 不会显示序号且不会计入目录, 可用于如摘要标题等情况
+* 对于以上情况, 需要在之后使用命令 `\addcontentsline{toc}{标题类型}{标题名称}` 计入目录
 * 使用命令 `\renewcommand{\chaptername}{新章节名}` 自定义章节名称, 默认为 `Chapter` (部分同理, 默认为 `Part`)
 * 文档中的一到三级标题将以 $x.y.z$ 的形式显示标题层级
     * 对于 book 与 report 类的文档, 以 `\chapter, \section, \subsection` 为三级标题  
@@ -524,6 +524,17 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 * `\data{...}` 时间, 若没有给出参数, 则以编译时的时间作为参数
 
 定义元数据后, 在文档区的开始使用命令 `\maketitle` 可以自动创建文档封面
+
+#### 文档要素的标题
+对于如表格, 图片等文档要素的标题, 一般称为 `caption`  
+一般的显示格式为 `要素名称 + 计数器 + 要素标题`  
+
+对于要素名称, 可通过重定义宏 `\xxxname` 完成, `xxx` 可以是 `figure`, `table` 等
+
+标题显示格式可使用宏包 `caption` 进行设置
+* `\DeclareCaptionFont{字体格式名称}{字体格式命令}` 定义标题字体格式
+* `\captionsetup{font=字体格式名称}` 设置要素标题字体
+* `\captionsetup{labelsep=间距}` 设置计数器与标题间距, 一般设置为 `quad`
 
 #### 目录
 使用命令 `\tableofcontents` 将根据文档的大纲自动创建  
@@ -873,12 +884,12 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 
 使用时
 ```latex
-\begin{lstlisting}[language=代码语言, caption=代码环境标题]
+\begin{lstlisting}[language=代码语言, caption=代码环境标题, label=代码环境标签]
 ...
 \end{lstlisting}
 ```  
 
-其中属性 `caption` 不是必须的
+其中属性 `caption` 与 `label` 不是必须的
 
 也可使用命令 `\lstinputlisting[设置]{代码文件}` 引入代码文件, 设置与环境 `lstlisting` 的设置相同
 
@@ -922,6 +933,10 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 }
 ```
 
+#### 代码环境标题设置
+* 重定义命令 `\lstlistingname` 可设置代码环境名
+* 重定义命令 `\lstlistingautorefname` 可设置代码环境[链接名](#标签与超链接) (结合 hyperref 宏包)
+
 ### 其他文档要素与环境
 
 #### 标签与超链接
@@ -932,11 +947,14 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 启用宏包后, 将自动为目录添加超链接且将为 PDF 生成书签目录  
 
 该宏包常用参数有
-    * `colorlinks` 是否启用链接颜色
-    * `linkcolor` 文档内链接颜色
-    * `urlcolor` 网页链接颜色
-    * `citecolor` 参考文献链接颜色
-    * `bookmarks` 是否生成 pdf 书签
+* `colorlinks` 是否启用链接颜色
+* `linkcolor` 文档内链接颜色
+* `urlcolor` 网页链接颜色
+* `citecolor` 参考文献链接颜色
+* `bookmarks` 是否生成 pdf 书签
+* `hidelinks` 选项参数, 隐藏标签颜色
+
+使用宏包时注意
 * 当在标题中使用了如数学环境等无法显示为纯文本的内容无法显示为 pdf 书签则    
 需要使用 `\texorpdfstring{原始内容}{替换内容}`, 如 `\texorpdfstring{$E=mc^2$}{E=mc\textasciicircum 2}`  
 * 文档内链接 `\hyperref[label-name]{print-text}`, 用于一般位置的链接
@@ -949,8 +967,8 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
     可用要素如下
         * 各级标题 (标签放在标题后)
         * 图片与表格 (标签放在 `\caption` 下)
-        * Equation 环境中的公式 (标签放在环境内)
-        * 定理 (Theorem), 脚注 (footnote), 附录 (Appendix) 等
+        * equation 环境中的公式 (标签放在环境内)
+        * 定理 (theorem), 脚注 (footnote), 附录 (appendix) 等
 * 链接到标签所在页 `\autopageref{label-name}`, 用于链接到标签所在页
 * 带名称的网页链接 `\href{URL}{print-text}`
 * 纯网页链接 `\url{URL}`
@@ -1047,7 +1065,7 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 设置内容时, 可使用[大纲信息宏](#大纲信息宏)表示当前标题信息  
 还可使用命令设置字体与颜色等  
 
-### 其他常用操作
+### 高级自定义
 #### 文档拆分
 使用命令 `\input{xxx.tex}` 或 `\include{xxx}` 可拆分文档, 将文档的不同部分拆分为多个文件  
 两个命令的区别如下
@@ -1057,6 +1075,8 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 通常将文档的各章 (一级标题) 分为多个文档, 并使用 `\include` 命令导入  
 
 导入文章时, 尽量使用相对路径, 且下层文档在主文档所在目录下或子目录下
+
+拆分文档时, 需要在文档开头添加 `% !TEX root = ./<主文档>.tex` 确定编译时的主文档
 
 #### 自定义宏
 通过自定义宏, 可将复杂的文档内容使用一个命令表示  
@@ -1097,10 +1117,11 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 * `after` 环境内容结束后命令
 * 其余参数与[自定义命令](#自定义命令)相同
 
-#### 流程控制
-按字符串选择 (需要宏包 xstring) `\IfStrEqCase{判断变量}{{字符串1}{内容} {字符串2}{内容} ...}`  
+#### 字符串操作
+使用宏包 xstring 可以完成大多数字符操作
 
-例如建议半角标点转换命令
+按字符串选择命令 `\IfStrEqCase{判断变量}{{字符串1}{内容} {字符串2}{内容} ...}`  
+例如简易半角标点转换命令
 ```latex
 \NewDocumentCommand{\q}{m}{%
     \IfStrEqCase{#1}{%
@@ -1114,11 +1135,47 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 }
 ```
 
-#### 自定义宏包
-自定义宏包实质为一个 `.sty` 文件, 可将一些常用命令以及导言区的设置编写为自定义命令或宏, 放置到自定义宏包中  
+字符串替换命令 `\StrSubstitute{被替换的字符串}{查找子字符串}{替换子字符串}[保存宏]`  
+当没有给出保存宏时, 将直接输出替换结果  
+保存宏在使用前不需要定义, 需要对同一个字符串进行多次替换时, 需要将中间结果保存在一个临时宏中  
+例如简易半角标点全文转换命令
+```latex
+% 可选参数为转化前置符号, 必选参数为被转化的内容
+\NewDocumentCommand{\q}{O{=} m}{%
+    \StrSubstitute{#2}{#1,}{，}[\res]%
+    \StrSubstitute{\res}{#1.}{。}%
+}
+```
+
+#### 自定义宏包与文档类
+自定义宏包实质为一个 `.sty` 文件, 可将一些常用命令放置到自定义宏包中  
+自定义文档类实质为一个 `.cls` 文件, 可将文档的导言区内容定义为一个文档类作为模板
 
 自定义宏包需要以命令 `\ProvidesPackage{<package name>}` 作为开头, 其中 `package name` 即宏包名  
-并在调用其他宏包时使用命令 `\RequirePackage[⟨options⟩]{⟨package name⟩}`, 参数与 `\usepackage` 相同
+自定义文档类需要以命令 `\ProvidesClass{<class name>}` 作为开头, 其中 `class name` 即文档类名  
+当宏包 / 文档类在子目录下是, 名称为 `子目录/包名`, 调用时也是用此名称
+
+并在调用其他宏包时使用命令 `\RequirePackage[<options>]{<package name>}`, 参数与 `\usepackage` 相同
+对于文档类, 还应在开头使用命令 `\LoadClass[<options>]{<class name>}` 引用如 `article` 等基础文档类, 参数与 `\documentclass` 相同
+
+调用宏包时, 推荐使用各个宏包自带的参数传递命令, 而不直接使用 `\RequirePackage` 传递参数
+
+#### 宏包与文档类的参数传递
+推荐使用宏包 `kvoptions` 配置传递给宏包 / 文档类的参数  
+
+首先使用使用命令 `\SetupKeyvalOptions` 配置宏包, 基本格式为
+```latex
+\SetupKeyvalOptions {
+    family=<参数类>,
+    prefix=<参数类>@,
+    setkeys=\setkeys
+}
+```
+
+使用命令 `\DeclareVoidOption{选项}{启用时执行命令}` 配置选项型参数, 当选项参数出现在参数中时, 将执行启用命令 (一般将选项信息赋值给一个参数表示选项开启)  
+使用命令 `\DeclareStringOption[初值]{参数名}` 配置字符串参数, 通过 `参数名=参数值` 传递, 使用 `\参数类@参数名` 访问参数值
+
+最后使用命令 `\ProcessKeyvalOptions*` 完成配置
 
 ## 数学环境
 使用数学环境时, 推荐默认引用宏包 `amsmath` 以提供更多的数学公式排版与符号  
