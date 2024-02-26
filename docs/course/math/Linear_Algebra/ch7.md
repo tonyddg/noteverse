@@ -3,7 +3,7 @@ order: 7
 ---
 
 # 正定性
-> 参考教程 [麻省理工公开课 线性代数](https://www.bilibili.com/video/BV1zx411g7gq) P26~P30
+> 参考教程 [麻省理工公开课 线性代数](https://www.bilibili.com/video/BV1zx411g7gq) P26~P30, P34
 
 ## 对称矩阵的特性
 ### 对称矩阵的特征值与特征向量

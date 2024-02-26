@@ -197,5 +197,10 @@ v_1&v_2&v_3
 交叉积具有以下性质
 1. $\vec{u}\times\vec{v}=-\vec{v}\times\vec{u}$
 1. 交叉积的结果与向量 $\vec{u},\vec{v}$ 正交, 因此 $\vec{u}\cdot(\vec{u}\times\vec{v})=0$, 且满足右手定则
-1. 两个同方向向量的交叉积结果为向量 $\vec{0}$, 即 $(k\vec{u})\times\vec{u}=0$
+1. 两个同方向向量的交叉积结果为向量 $\vec{0}$, 即 $(k\vec{u})\times\vec{u}=0$  
+因此对于任意两个向量 $\vec{u},\vec{v}$ 叉乘, 可将 $\vec{v}$ 分解为相对 $\vec{u}$ 的垂直分量 $\vec{v}_{\perp}$ 与平行分量 $\vec{v}_{\parallel}$, 有 $\vec{u}\times\vec{v}_{\perp}=\vec{u}\times\vec{v}$
 1. 交叉积结果的绝对值为以 $\vec{u},\vec{v}$ 为边的平行四边形的面积, 因此 $|\vec{u}\times\vec{v}|=|\vec{u}||\vec{v}||\sin\theta|$
+1. 当固定向量 $\vec{u}$ 在左侧, 并在右侧乘以向量 $\vec{v}$, 则可等价为向量 $\vec{v}$ 左乘[叉乘矩阵](https://sat.huijiwiki.com/wiki/%E5%8F%89%E4%B9%98%E7%9F%A9%E9%98%B5) $[\tilde{u}]$, 叉乘矩阵满足
+$$[\tilde{u}]=\begin{bmatrix}
+0&-u_z&u_y\\ u_z&0&-u_x\\ -u_y&u_x&0
+\end{bmatrix},\quad \vec{u}\times\vec{v}=[\tilde{u}]\vec{v}$$

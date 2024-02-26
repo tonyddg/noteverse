@@ -3,6 +3,8 @@ order: 8
 ---
 
 # 线性变换
+> 参考教程 [麻省理工公开课 线性代数](https://www.bilibili.com/video/BV1zx411g7gq) P31~P33
+
 ## 线性变换的定义
 ### 基本定义
 对于 $\vec{x}\in R^n$ 与 $\vec{y}\in R^m$ 之间存在映射关系 $\vec{y}=T(\vec{x})$  
