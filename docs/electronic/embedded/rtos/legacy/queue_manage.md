@@ -3,7 +3,7 @@ order: 4
 ---
 
 # 队列管理
-![](./src/queue_example.webp)
+<!-- ![](./src/queue_example.webp) -->
 
 ## 全局变量和弊端
 * 使用全局变量将导致线程不安全, 一种解决这个问题的方案就是采用队列

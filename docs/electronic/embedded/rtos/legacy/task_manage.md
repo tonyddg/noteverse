@@ -28,7 +28,7 @@ void TaskFunction( void *pvParameters )
     1. 挂起状态 (Suspended)
     当任务被 vTaskSuspend() 函数禁止运行的时候处于此状态
 
-![](./src/task_schedule.jpg)
+<!-- ![](./src/task_schedule.jpg) -->
 
 ## 任务的优先级
 * 任务的优先级可以用 vTaskPrioritySet() 函数设置 
