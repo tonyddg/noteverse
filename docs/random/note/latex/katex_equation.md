@@ -147,7 +147,7 @@
 |$\xrightarrow[\text{下方公式}]{\text{上方公式}}$|`\xrightarrow[\text{下方公式}]{\text{上方公式}}`|不可逆反应|
 |$\xleftarrow[\text{下方公式}]{\text{上方公式}}$|`\xleftarrow[\text{下方公式}]{\text{上方公式}}`||
 |$\overbrace{a+b+c}^{\text{note}}$|`\overbrace{a+b+c}^{\text{note}}`||
-|$\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}$|`\underset{a}{\overset{b}{^{c}_{d}M^{e}_{f}}}`||
+|$\underset{a}{\overset{b}{\space^{c}_{d}M^{e}_{f}}}$|`\underset{a}{\overset{b}{\space^{c}_{d}M^{e}_{f}}}`|左侧上下标需要有 `\space` 占位|
 |$[\substack{a\\b}]$|`[\substack{a\\b}]`|行内垂直堆叠|
 |$\binom{A}{B}$|`\binom{A}{B}`|数对|
 |$\boxed{\pi=\frac{c}{d}}$|`\boxed{\pi=\frac{c}{d}}`|方框|
