@@ -33,7 +33,7 @@ a = open(file, mode = 'r', encoding = 'utf8')
 
 #### 文件方法
 使用 `open` 函数后, 将创建文件对象, 通过其成员函数操作文件
-1. `file.close`
+1. `file.close()`
 关闭文件
 
 2. `file.read(<读取字符数>)`
@@ -139,6 +139,8 @@ with open("./text.txt") as file:
 终止脚本
 
 ## 正则表达式
+使用模块 `re`
+
 1. r"[正则表达式]"
 定义正则表达式
 2. re.findall([正则表达式], [字符串])
@@ -181,3 +183,9 @@ with open("./text.txt") as file:
 调用此函数的线程休眠 `sec` 秒, 可以输入浮点参数  
 当 `sec=0`, 将会把时间片让渡给其他需要的线程
 
+## 序列化
+### 序列化为 JSON 文件
+使用模块 `json`
+
+### 序列化为二进制数据
+使用模块 `pickle`

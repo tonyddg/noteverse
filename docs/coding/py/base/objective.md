@@ -204,13 +204,19 @@ with open("test.txt", "r") as file:
     text = file.read()
 ```
 
+## 纯虚类
+参考文档 <https://docs.python.org/zh-cn/3/library/abc.html>
+
+todo
+
 ## Type Hint
 参考自 <https://www.bilibili.com/video/BV11Z4y1h79y>
 
 用于 Python 3.5 以上的版本  
 除了[基本类型表示](#基本类型表示)中的内容, 其余函数 / 对象 (类型的本质为一种特殊的对象) 均需要通过 `import typing` 来获取
 
-### 基本类型表示
+### 类型表示
+#### 基本类型表示
 * 基本类型 `int, float, bool, str, bytes, None`, 其中 `bytes` 为字节串 (即字节方式读取的字符串)
 * 列表 `list[type]`  
 通过 `type` 限制列表元素的类型
@@ -226,7 +232,7 @@ with open("test.txt", "r") as file:
 注意, 在 Python3.9 之前的版本需要通过 `from typing import ...` 的方式调用除基本类型外的类型, 且首字母为大写, 如  
 `List, Tuple, Dict, Set`
 
-### 复杂类型表示
+#### 复杂类型表示
 注意, 以下类型均需要通过 `from typing import ...` 的方式调用
 
 * 顺序存储类型 `Squence[type]`  
@@ -248,7 +254,17 @@ with open("test.txt", "r") as file:
 * 变量值限定 `Literal[val1, val2, ...]`  
 要求变量的值只能是 `valn` 中的一个
 
+* 附加元数据 `Annotated[type, args1, args2, ...]`  
+该类型实际即第一个参数 `type`, 之后的参数均为附加的元数据  
+可配合[类型解析](#类型解析), 用于进一步的判断, 具体见跳转处的例子
+
 * 任意类型 `Any`
+
+#### 其他类型表示的情况
+* 当希望限制的并不是具体的类型, 而是具有某一类特殊功能的类型  
+此时就需要借助[纯虚类](#纯虚类), 限制类型必须具有的成员函数 (之其中自然包括了支持的运算等)  
+例如定义一个能够用于比较的类型, 可参考 <https://stackoverflow.com/questions/37669222/how-can-i-hint-that-a-type-is-comparable-with-typing>
+* 部分情况下, 类型错误难以被发现, 又对类型的正确性有较高的要求, 可能需要手动解析类型并编写类型断言, 可参考[类型解析](#类型解析)
 
 ### 基本使用
 #### 变量标注
@@ -295,6 +311,25 @@ class container:
     def copy(self, obj: "container")
 ```
 
+#### 重载函数修饰
+python 并不存在重载函数, 但可以通过 typing 模块导入重载修饰器 `@overload` 用于辅助类型判断  
+基本使用为
+
+```python
+# 导入修饰器
+from typing import overload
+
+# 定义函数可能的输入参数以及对应的返回值类型情况
+@overload
+def func(a: int) -> None:... # 使用省略号, 不需要给出实现
+@overload
+def func(a: str) -> str:... # 使用省略号, 不需要给出实现
+
+# 在下方立刻定义函数, 此时不再需要确定函数的类型, 但应当严格符合上方的规则
+def func(a):
+    ...
+```
+
 ### 类型断言
 #### 类型断言  
 当类型前有对类型的判断语句后, 将自动对类型进行断言
@@ -321,9 +356,51 @@ if y == "b":
 ```
 
 类型的判断通常通过函数 `type(val)` 完成  
-注意其返回值为无类型限制的[基本类型](#基本类型表示)或自定义的类, 如 `list, int`   
-对于模板类, `type(val)` 仅能判断模板类, 无法判读示例化后的类  
-无法用于判断复杂类型, 如 `Union[int, str], Any`
+注意其返回值为无类型限制的[基本类型](#基本类型表示)或自定义的类, 如 `list, int`  
+
+* 对于模板类, `type(val)` 仅能判断模板类, 判读示例化后的类还需要借助[类型解析](#类型解析), 获取其泛型参数的具体值  
+* 对于[纯虚类](#纯虚类)的判断, 只能通过检查对象是否有纯虚类所要求的成员 (检查是否是未实现 `NotImplemented`)  
+* 对于 `typing.Callable`, `typing.Sequene` 等大部分此类对象均会继承的纯虚类以及继承自纯虚类的对象, 可使用 `isinstance(obj, class)` 判断 (注意 `typing.Sequene` 表示的仅是一个符号, 还需要[类型解析](#类型解析)获取其背后的信息)
+
+#### 类型解析
+* 函数 `typing.get_origin(type)` 可获取类型 `type` 的根类型  
+    * 例如 `isinstance([1, 2, 3], typing.get_origin(typing.Sequence))` 可判断类型是否为 `typing.Sequence`
+* 函数 `typing.get_args(type)` 可获取一个元组, 该元组中的元素即类型 `type` 的泛型参数  
+    * 该函数也可以使用 `type.__args__[n]` 代替
+    * 例如 `typing.get_args(typing.Sequence[int])[0] == int` 可获取 `typing.Sequence` 的参数 `int`
+
+以下为一个基于类型解析进行断言的例子  
+由例子也可知, 仅通过 Type Hint 并不适合运行时的类型检查与复杂类型表示, 仅推荐在少部分对通用性要求高的情况下使用  
+实际可通过直接检查数据长度的方法完成, 而不需要专门解析
+
+```python
+import typing
+
+# 此处为创建一个具有一个具有两个元数据的新类型 (不是类型别名)
+# Annotated 配合 TyperVar 使用时均需要使用此方法
+T1 = typing.TypeVar("T1")
+TLen = typing.TypeVar("TLen") # 使用该元数据记录数组应用的长度
+type FixArrayLikeBase[T1, TLen] = typing.Annotated[T1, TLen]
+
+# 通过别名的方式创建定长数组类型
+FixArrayLike = FixArrayLikeBase[typing.Sequence, TLen]
+
+# 为常用的定长数组创建别名, 表示数据时应用 typing.Literal[3]
+Array3 = FixArrayLike[typing.Literal[3]]
+
+def FixArrayAssert(obj : FixArrayLike, type):
+    '''
+    断言函数  
+
+    仅能用于判断变量 obj 是否符合类型 type 的要求
+    '''
+    # 检查传入的是 FixArrayLikeBase, 即所有别名的基础
+    assert typing.get_origin(type) == FixArrayLikeBase, f"Unknown assert type"
+    # 类型仅是符号, 需要 typing.get_origin 获得类型对应的纯虚类, 再使用 isinstance 判断
+    assert isinstance(obj, typing.get_origin(typing.get_args(type)[0])), f"Type error, require is {typing.get_args(type)[0]}, given is {type(obj)}"
+    # 将列表的长度与元数据要求的长度比较
+    assert len(obj) == typing.get_args(type)[1].__args__[0], f"Length error, require is {typing.get_args(type)[1].__args__[0]}, given is {len(obj)}"
+```
 
 #### 显式类型转换  
 即内置的类型转换函数, 如 `str, int` 等  
@@ -364,13 +441,27 @@ a: UserID_A = UserID_A(10)
 ### 模板类型 (泛型)
 类似 C++ 的模板, 在定义模板前, 需要定义泛型变量的名称  
 python 使用如下方式定义  
-`T = typing.TypeVar("T", type_1, type_2, ...)`  
-`type_n` 为模板允许的类型, 不定义则表示模板可为任意类型  
+`T = typing.TypeVar("T"[, type_1, type_2, ...])` 或 `T = typing.TypeVar("T", bound = ...)`  
+* `type_n` 为模板允许的类型, 至少要给出两个, 不定义则表示模板可为任意类型  
+* `bound` 为要求类型 `T` 至少继承自参数 `bound` 给出的类型, 或具有相同的接口 (可使用[纯虚类](#纯虚类))
 
 注意
-* 一个泛型变量仅用于一个模板函数 / 模板类
+* 不同于 C++, 一个泛型变量可用于一个模板函数 / 模板类
 * 操作泛型时要保证各个可能类型对操作适用
 * 可以通过断言对不同类型进行专门操作
+* 泛型的第一个参数需要与泛型名一致
+
+#### 基于模板的类型
+可直接将泛型变量用于类型的定义, 例如  
+
+```python
+T = typing.TypeVar("T")
+
+StrIndexDict = dict[str, T]
+StrDict = StrIndexDict[str]
+```
+
+当具有泛型的类型未指定泛型变量直接用于函数等, 将泛型视为 `Unknown` 处理
 
 #### 函数模板
 函数模板可以自动识别示例化类型
@@ -417,7 +508,6 @@ a: Container[str] = Container[str]()
 ```
 
 ### 有关设置
-1. 启用 IDE 的类型检查
-    * vscode   
-    启用 Pylance 设置 `"python.analysis.typeCheckingMode": "basic"`
-
+使用 Type Hint 时, 建议启用 IDE 的类型检查
+* 对于 vscode 启用 Pylance 设置 `"python.analysis.typeCheckingMode": "basic"`
+* 对于无 IDE 环境, 可安装 mypy, 通过 mypy 进行类型检查
