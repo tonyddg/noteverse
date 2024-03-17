@@ -9,18 +9,32 @@ wsl --install
 
 ### 安装特定版本
 ```shell
-# 查看可用版本
+# 查看可用版本, 也可使用命令 wsl -l -o
 wsl --list --online
 
 # 安装特定版本
 wsl --install -d [版本名]
-
 ```
 
 通过以上命令安装特定版本的 Linux
 
+### 多版本管理
+wsl 中允许安装多个版本的 Linux
+* `wsl --list --all` 列出所有安装的 Linux 版本
+* `wsl --unregister <Distro>` 删除 Linux 版本 `Distro`
+* `wsl -s <Distro>` 设置 `Distro` 为默认启动版本
+
 ### 安装后操作
 更新软件 `sudo apt update && sudo apt upgrade`
+
+## 其他命令
+### 关闭 WSL
+运行 `wsl` 命令可直接启动  
+但关闭 wsl 需要在外部终端中使用以下命令才可关闭
+
+```powershell
+wsl --shutdown
+```
 
 ## 美化
 首先在 WSL 中安装 oh-my-zsh 与 p10k 主题, [参见](./linux.md#oh-my-zsh)
@@ -54,14 +68,4 @@ wsl --install -d [版本名]
 git config --global  --unset https.https://github.com.proxy 
 git config --global  --unset http.https://github.com.proxy 
 ```
-
-## 其他命令
-### 关闭 WSL
-运行 `wsl` 命令可直接启动  
-但关闭 wsl 需要在外部终端中使用以下命令才可关闭
-
-```powershell
-wsl --shutdown
-```
-
 
