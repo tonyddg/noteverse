@@ -480,54 +480,346 @@ int main(){
 ## C++ Python 混合编程
 通过 pybind11 实现 C++ 与 Python 的混合编程
 
+参考文档 <https://pybind11.readthedocs.io/en/latest/basics.html>  
 项目的配置见 [CMake 笔记](./cmake.md#pybind11)  
+
+导出模块时默认需要头文件 `#include <pybind11/pybind11.h>`  
+调用 Python 时, 默认需要头文件 `#include <pybind11/embed.h>`  
 约定使用命名空间的别名 `namespace py = pybind11;`
 
-### C++ 中调用 Python
-参考文档 <https://pybind11.readthedocs.io/en/latest/advanced/embedding.html>  
-通过头文件 `#include <pybind11/embed.h>` 完成 C++ 中调用 Python 的基本功能  
-
-#### 基本配置
-在正式调用前, 需要进行如下配置
+### 导出函数
+#### 导出函数基本方法
+使用 pybind11 导出函数的基本形式如下
 
 ```cpp
-// 设置环境变量, 对应配置项目时的变量 PYTHON_HOME
-_putenv("PYTHONHOME=<Python_ROOT_DIR>");
-
-// 启动 Python
-py::scoped_interpreter guard{};
-
-// 设置 DLL 目录
-py::module_ os = py::module_::import("os");
-os.attr("add_dll_directory")("<Python_ROOT_DIR>/Library/bin");
-```
-
-为了提升程序的可移植性, 推荐通过咨询用户的方式获取变量 `Python_ROOT_DIR`
-
-可通过以下方式检查环境是否符合要求
-```cpp
-// 具体确定用户提供的 Python 版本信息
-py::module_ sys = py::module_::import("sys");
-// 检查属性 sys.version_info, 此处直接打印
-py::print(sys.attr("version_info"));
-
-// 检查特定模块的导入是否成功
-try
+PYBIND11_MODULE(example, m)
 {
-    // 当模块不存在时, 将产生异常
-    py::module_ xxx = py::module_::import("xxx");
-    // 检查模块 xxx 的版本, 此处直接打印
-    py::print(xxx.attr("__version__"));
-}
-catch (const std::exception& e)
-{
-    std::cerr << e.what() << std::endl;
+    m.doc() = "...";
+    m.def("fun_name", &fun, "fun_doc");
 }
 ```
 
-### C++ 导出 Python 模块
-参考文档 <https://pybind11.readthedocs.io/en/latest/basics.html>  
-通过头文件 `#include <pybind11/pybind11.h>"` 完成将 C++ 内容导出为 Python 模块
+* `PYBIND11_MODULE` 进入模块定义环境, 定义模块前必须进入该环境, 下文默认不写出
+* `example` 导出的模块名称, 应当保证导出的模块名与编译生成的模块文件名相同, 下文中默认使用 `example`
+* `m` 模块接口名, 将定义一个名称为 `interface` 的模块接口对象 `py::module_`, 通过该对象的一系列成员函数定义模块, 下文中默认使用 `m`
+* `py::module_::doc()` 定义模块的说明文字 (通过赋值的形式)
+* `py::module_::def(name, fun, extract)` 导出函数
+    * `name` 函数导出名称
+    * `fun` 函数指针, 一般即 `&` + 函数名, 此外也可以是 Lambda 表达式 (不需要其他修饰)  
+    对于模板函数, 应当使用 `&fun<...>` 指明示例化类型
+    应当保证函数的参数与返回值满足[类型要求](#类型要求)
+    * `extract` 附加定义, 一般第一个附加参数为一个字符串, 表示函数的说明文档
+
+#### 导出函数的参数修饰
+通过附加定义 `py::arg(str)` 可以设置参数的名称以及默认参数  
+使用方式如下
+
+```cpp
+m.def("fun_name", &fun, "doc ...", py::arg("<arg1>") = val1, py::arg("<arg2>") = val2, ...)
+```
+
+* `arg1` 函数第 1 个参数的名称, 经此方式确定函数参数名后, 可在 Python 中通过关键字的方式传参
+* `val1` 函数第 1 个参数的默认值, 该设置不是必须的, 但应当符合 Python 的要求, 即有默认值的参数应在最后, 且类型要符合要求 (编译时 pybind11 不会检查这些内容, 但将导致在 Python 运行时出错)
+* 不建议将[导出类](#导出类)作为默认参数, 而改为传入指针, 使用空指针 `nullptr` 表示使用默认参数 (可能需要 `static_cast` 进行类型转换)
+* 参数修饰时, 将按从左到右的顺序与被绑定函数的参数逐个对应
+
+关于参数的更多修饰见[导出函数参数的设置](#导出函数参数的设置)
+
+#### 导出重载函数
+pybind11 允许导出具有相同名称的函数  
+而对于 C++ 的重载函数, 可使用 [static_cast](../cpp/base.md#static_cast) 运算符进行明确, 例如
+
+```cpp
+m.def("add", static_cast<int(*)(int, int)>(&add), "Add two number");
+m.def("add", static_cast<float(*)(float, float)>(&add), "Add two number");
+```
+
+对于[成员函数的导出](#成员函数的导出)同样支持重载, 此时函数指针类型表示为  
+`static_cast<返回值类型(类名::*)(参数类型列表)>(&类名::函数名)`
+
+#### 返回值策略
+对于 `int`, `float` 等简单类型, 以及直接返回对象, pybind11 总会拷贝变量值并传递到 Python 并完全由 Python 管理
+
+而对于其他复杂类型, 如 [STL](#stl-类型包裹), [导出类](#导出类)等对象, 以引用或指针方式返回这一对象时, 需要在明确如何处理这个被返回的对象
+
+还要注意
+* Python 并不会区分返回的是常量引用还是引用, 都将视为引用处理, 指针同理
+* 通过[智能指针](#智能指针与导出函数)能很好地确定职责, 因此返回智能指针时不需要额外定义返回策略
+* 仅非 Python 的基本类型需要确定返回策略, 对于 `std::string` 或来自 Python 的对象不需要额外指定返回策略
+
+因此, 应当在导出函数的[附加定义](#导出函数基本方法)中给出返回值策略作为参数, 一般表示为类型 `py::return_value_policy` 的枚举量, 共有以下几种策略
+* `return_value_policy::take_ownership`  
+Python 完全接管返回的对象, 当 C++ 仍在控制该对象或该对象为全局量等不是存储在动态内存的情况 (不通过 `new` 创建), 将导致错误
+* `return_value_policy::copy`  
+Python 将深拷贝被返回的对象, 理论上两个对象的控制将完全分离, 但可能产生额外的内存消耗  
+该策略产生的消耗最大, 但可以基本保证不会产生任何异常
+* `return_value_policy::move`  
+Python 将浅拷贝被返回的对象 (通过 `std::move`), 即 Python 控制的对象为原始对象的浅拷贝, 且原始对象通过 `std::move` 语义在移动发生后即被销毁  
+该策略要求对象不能有指向动态内存的成员或拥有安全的浅拷贝函数 (即拷贝后将原始对象的指针赋为空值, 可参考[浅拷贝构造函数](./base.md#浅拷贝构造函数)), 在满足以上条件时, 类似于 `take_ownership` 但更加安全
+* `return_value_policy::reference`  
+Python 仅引用返回对象而不负责销毁, 销毁责任由 C++ 负责, 但是当对象被销毁时, Python 仍在引用该对象, 将导致错误; 但当 C++ 不主动负责销毁则将始终存在未释放的内存空间
+* `return_value_policy::automatic`  
+该策略将根据返回值自动判断使用的策略, 为一般情况下的默认策略
+    * 返回一般引用 (即右值引用) 时, 将采用策略 `return_value_policy::copy`
+    * 返回右值引用时, 将采用策略 `return_value_policy::move`
+    * 返回指针时, 将采用策略 `return_value_policy::take_ownership`
+* `return_value_policy::automatic_reference`  
+该策略与 `return_value_policy::automatic` 类似, 但时返回指针采用的策略是 `return_value_policy::reference`, 为部分情况下的默认策略
+* `return_value_policy::reference_internal`  
+与策略 `return_value_policy::reference` 类似, 但用于[导出类](#导出类)的成员函数的返回值, 该策略还保证了当返回值仍在被 Python 使用时, Python 不会销毁获取该返回值的父类, 是[成员变量的导出](#成员变量的导出)有关函数使用的默认策略
+
+关于返回值策略的补充说明
+* 在 C++ 中, 直接返回值时, 将回使用浅拷贝创建被返回对象的副本用于传递, 然后删除被返回对象, 因此务必保证对象有一个安全的浅拷贝构造函数; 并且 pybind11 也将再次通过浅拷贝传递到 Python, 效率低下, 因此不建议直接返回对象, 而是使用 `new` 创建的对象代替
+* 使用函数, 通过 `new` 等动态内存创建一个对象, 并且不再需要管理此对象时, 推荐令函数返回指针, 使用 `return_value_policy::take_ownership` 策略 (也是返回指针的默认的策略)
+* 使用类的成员函数并返回由类管理的对象时, 并且也希望 Python 访问此对象, 推荐令函数返回引用, 使用 `return_value_policy::reference_internal` 策略
+* 希望返回常量对象 (如类的成员或全局变量), 不希望 Python 修改时, 推荐令函数返回常量引用, 使用 `return_value_policy::copy` 策略
+* 希望返回全局对象, 且希望 Python 修改时, 推荐令函数返回引用, 使用 `return_value_policy::reference` 策略
+* 希望 Python 接管一个全局对象 (只能接管一次) 或右值引用参数的控制权, 推荐令函数返回右值引用, 使用 `return_value_policy::move` 策略
+* 当接收来自 Python 的对象作为参数, 然后返回这个对象, 可使用引用的方式接收与返回对象, 使用 `return_value_policy::take_ownership` 策略
+
+#### 参数生命保护策略  
+* 当 Python 将一个对象作为参数传递给函数后, 如果这个对象不再使用, 将会自动销毁  
+然而, 如果这个==对象的指针==保存到了 C++ 中, ==如将对象插入容器, 或保存该参数==, 从容器中尝试访问该对象时将导致错误, 因此==需要使用此策略==
+* 使用此策略时, 在[导出函数的附加定义](#导出函数基本方法)中传入参数 `py::keep_alive<1, ind>()`  
+其中 `ind` 为需要保护的函数参数在参数列表中的位置, 从 2 开始索引  
+使用此策略保护后, 传入的参数将不会被销毁, 直到被调用的父对象被销毁
+* 该策略仅能保护且主要用于[导出类](#导出类)的成员函数, 无法保护将对象指针保存到全局变量的操作
+* 注意参数 `py::keep_alive<1, ind>()` 不能使用超出范围的索引, 也不能用于一般函数, 这些错误将导致运行时的异常, 而不会有编译时的错误
+
+#### 接收 Python 类型的参数以及变长参数
+* 当函数以 pybind 中的 [Python 对象包裹类](#python-对象)为参数时, 即可接收来自 Python 的参数, 一般即使用 `py::object`, 以引用 (仅能用于接收可变对象) 或常量引用的方式接收
+* 当函数的参数为 `int`, `std::string` 等存在对应包裹类或[导出类](#导出类), 则 pybind11 将自动转换而不需要以特定的 Python 对象包裹类为参数
+* 对于变长参数, 使用类型 `py::args` 与 `py::kwargs` 作为函数参数分别表示一般变长参数与带关键字的变长参数, 这两个类型本质即 `py::tuple` 与 `py::dict`, 一般使用常量引用的方式接收  
+    * 注意必须先接收一般参数, 再接收一般边长参数, 最后接收带关键字的边长参数 `[一般参数, ]py::args, py::kwargs kwargs`
+    * 应当先使用 `is_none()` 成员函数检查是否为空
+
+#### 导出函数参数的设置
+通过连续调用参数接口 `py::arg` 可对参数进行设置
+
+* 禁止类型转换  
+在 Python 中调用函数时, 如果类型不正确 Python 会尝试转换类型, 但可能导致 pybind11 一侧产生异常, 如传入大小不正确的 numpy 数组作为 Eigen 矩阵  
+在使用 [py::arg](#导出函数的参数修饰) 修饰时, 调用成员 `py::arg(...).noconvert()` 即可阻止类型转换, 并在 Python 一侧产生类型错误 `TypeError`
+* 传入空指针  
+对于接收指针或智能指针的参数, 导出时 pybind11 将允许使用 `None` 作为参数, 此时将会转换为空指针 `nullptr` 传入  
+如果希望禁止空指针的传入, 则可使用 `py::arg(...).none(false)` 禁止, 同样地, 传入 `true` 则表示允许
+
+#### 智能指针与导出函数
+* 对于独占智能指针 `std::unique_ptr`  
+只能作为函数的返回值使用, 且一般直接返回指针实例  
+通过返回独占智能指针即明确了由 Python 接管返回对象, 不需要额外的返回值策略
+* 对于共享智能指针 `std::shared_ptr`  
+需要配合[以共享指针管理的导出类](#成员函数的导出)  
+即使在 C++ 中, 也以共享智能指针作为参数或返回值代替野指针 `*` 管理类, 表示与 Python 共同引用, 并当不再被任何一侧引用时销毁
+
+### 导出类
+#### 成员函数的导出
+类以及成员函数导出的基本形式如下所示
+
+```cpp
+PYBIND11_MODULE(example, m) {
+    m.doc() = "..."; // optional module docstring
+
+    py::class_<Data[, std::shared_ptr<Data>]>(m, "Data", extract) data;
+
+    data
+    .def(py::init<const std::string&>(), py::arg("name"))
+    ...
+    .def("setName", &Data::setName);
+}
+```
+
+* 类通过在导出环境中定义类接口 `py::class_<type>(module, "name")` 实现
+    * `type` 被导出的类, 对于嵌套类使用 `Shell::Inside` 表示
+    * `module` 导出环境中模块接口, 即 `PYBIND11_MODULE` 中所定义的
+    * `name` 导出采用的类名
+    * `extract` 附加定义, 一般第一个附加参数为一个字符串, 表示类的说明文档
+    * `std::shared_ptr<Data>` 管理对象的指针对象
+        * pybind11 默认使用独占智能指针 `std::unique_ptr<Data>` 管理对象, 即当对象被 Python 销毁时, 对象直接销毁
+        * 可改为共享智能指针 `std::shared_ptr<Data>` 管理对象, 仅当其完全不再使用时才会销毁, 安全性更高  
+        但应保证始终以 `std::shared_ptr` 管理对象, 任何位置都最好不能出现野指针 `*Data`
+    * 该接口具有连续求值得特点, 即可以使用如例子所示的方式连续定义, 而不需要多次调用接口 (注意最后一个语句需要加上 `;`)
+* 导出成员函数的方法与要求和[导出函数](#导出函数)完全一致, 唯一区别为需要使用 `&类名::函数名` 的方式获取函数指针
+    * 常量成员函数也可使用此方式导出
+* 在定义导出类的其他部分时, 首先要定义构造函数, 与一般函数不同, 其定义方式为 `class_::def(py::init<...>(), extract)`
+    * 定义时不需要给出函数名称以及绑定的函数名
+    * 通过 `py::init<...>()` 表示构造函数, 其中模板参数即构造函数的参数类型列表 (析构函数一般将自动注册)
+* 导出具有名称 `__xxx__` 即定义 Python 类中的特殊方法, 常用的特殊方法有
+    * `__repr__` 确定导出类如何转换为字符串 (返回字符串)
+    * `__copy__`, `__deepcopy__` 前拷贝与深拷贝方法 (参见[官方文档](https://docs.python.org/3/library/copy.html))
+* 对于导出运算符重载, 除了重载对应的特殊方法, 还需要添加额外参数 `py::is_operator()`  
+此外还可使用简便方法, 需要导入头文件 `#include <pybind11/operators.h>` 使用 `py::self` 代表对象类型, `type()` 代表其他参与运算的类型, 如 `float()`, 通过类型与运算符之间的组合表示被重载的运算  
+对于对象类型 `vect` 使用示例如下, 注意重载的运算中应至少包含一个 `py::self`
+    * `vect.def(py::self + py::self)` 代表重载函数 `vect vect::operator+(const vect&)`
+    * `vect.def(py::self *= float())` 代表重载函数 `vect& vect::operator*+(float)`
+    * `vect.def(float() * py::self)` 代表重载函数 `friend vect operator+(float, const vect&)` 
+    * `vect.def(-py::self)` 代表重载函数 `vect& vect::operator-()` 
+
+#### 成员变量的导出
+* 对于公有成员变量, 使用以下方式可直接导出  
+一般公有成员变量 `py::class_<type>.def_readwrite("name", &type::arg)`  
+常量公有成员变量 `py::class_<type>.def_readonly("name", &type::arg)`
+    * `type` 导出的类
+    * `name` 导出采用的变量名
+    * `arg` 被导出的成员变量 (注意需要通过类的命名空间下访问, 且需要 `&` 取地址)
+* 对于私有成员变量, 以及伪变量, 则可通过以下方式导出  
+一般私有成员变量 `py::class_<type>.def_property("name", &type::getFun, &type::setFun)`  
+常量私有成员变量 `py::class_<type>.def_property_readonly("name", &type::getFun)`
+    * `type` 导出的类
+    * `name` 导出采用的变量名
+    * `getFun` 读取变量时调用的成员函数 (不需要再导出此函数, 通常为一个具有返回值的常量成员函数)
+    * `setFun` 设置变量时调用的函数 (不需要再导出此函数, 通常为一个接收单个参数的成员函数, 返回 `void`)
+    * 由于 `getFun` 与 `setFun` 本质也是一个函数, 如果要进行[返回值策略](#返回值策略)等设置, 可使用 `py::cpp_function(&type::getFun, extract)` 包裹函数, 其中 `extract` 即额外参数
+    * 特别注意[返回值策略](#返回值策略)与[参数生命保护策略](#参数生命保护策略)
+        * 当使用 `getFun` 且不希望 Python 修改该成员时, 应当使函数返回常量引用 (减少中间拷贝消耗), 并使用策略 `py::return_value_policy::copy`
+        * 当使用 `getFun` 且希望 Python 也能修改该成员时, 应当使函数返回引用, 并使用策略 `py::return_value_policy::reference_internal` (默认已使用)
+        * 当使用 `setFun` 且以指向对象的指针为传入参数, 应当使用[参数生命保护策略](#参数生命保护策略)
+* 对于 Python 对象, 其成员变量可任意添加, 但对于 C++ 对象, 一旦类确定就无法添加类实例对象的成员  
+    * 对于导出类的默认表现也与 C++ 一致, 即无法添加新的对象
+    * 如果希望其能像 Python 一样具有动态的成员变量, 可在[导出类](#成员函数的导出)时添加附加定义 `py::dynamic_attr()`
+
+#### 继承关系类的导出
+假设类 `Child` 继承自父类 `Father`, 则在导出类 `Child` 时注意
+
+简单情况下, `Father` 为一个实际存在的类, 则
+* 父类 `Father` 也必须导出
+* 子类不需要重复导出来自父类的成员也可使用继承得到的成员
+* 在导出子类时, 还需要使用以下两种等价的类接口定义之一
+    * `py::class_<Child, Father>(m, ...)`
+    * `py::class_<Child>(m, father)` (假设父类的导出接口对象为 `father`)
+
+对于虚类与虚函数较为复杂, 可参考[官方文档的有关内容](https://pybind11.readthedocs.io/en/latest/advanced/classes.html#combining-virtual-functions-and-inheritance)
+
+#### 构造函数的导出
+在 pybind11 中, 构造函数也允许重载, 以及使用多种方式导出不同函数作为构造函数
+* `py::init<...>()` 用于表示一般的构造函数 (即在类中定义的构造函数), 其中模板参数为构造函数的参数列表, 可用此区分不同构造函数的重载
+* `py::init(&fun)` 使用一个返回被构造类的指针或直接返回实例的工厂函数作为构造函数
+* 对于结构 `struct` 存在一个按结构成员顺序的默认构造函数, 该构造函数也可使用第一种方式绑定
+
+#### 导出类的析构函数
+* 导出类的析构函数最好定义为公有函数, 对于非公有析构函数直接使用将导致错误, 需要参考[官方文档内容](https://pybind11.readthedocs.io/en/latest/advanced/classes.html#non-public-destructors)
+* 导出类的析构函数最好不要调用有关 Python 的内容如 `py::print` 等, 因为调用时将产生异常 `error_already_set`, 如果需要调用参考[官方文档内容](https://pybind11.readthedocs.io/en/latest/advanced/classes.html#destructors-that-call-python)
+
+#### 其他类导出注意
+* 当导出类 `A` 能转换为 `B` (即 `B` 存在以 `A` 为参数的构造函数, 可参见[隐式类型转换](./base.md#隐式类型转换))  
+可通过函数 `py::implicitly_convertible<A, B>();` 在模块导出时向 Python 声明二者之间的关系
+* 导出类的静态成员变量时, 可使用[成员变量的导出](#成员变量的导出)中函数的带后缀 `_static` 版本  
+并且以 `def_property` 方式导出时, 设置与接收函数还将接收一个 [py::object](#python-对象) 类型的参数, 对应 `self`  
+如果不需要使用, 可使用 labmda 表达式包裹实际要调用的函数, 如 `[](const py::object&){return fun();}`
+* 关于将导出类获得通过 `pickle` 模块序列化为二进制形式可参考[官方文档](https://pybind11.readthedocs.io/en/latest/advanced/classes.html#pickling-support)
+* 假设同一个项目同时生成多个 Python 库, 当其中一个模块导出类 `exam`, 另一个模块即可直接使用这个类 `exam` 而不需要再次导出  
+如果希望禁止这个特性, 则应在[导出类](#成员函数的导出)的额外定义中使用参数 `py::module_local()`
+
+### 其他导出注意与技巧
+#### 导出模块变量
+通过模块接口对象, 使用 `py::module_::attr("name") = val` 即可导出模块变量
+* `name` 导出变量的名称
+* `val` 被导出的变量
+* 应当保证导出的变量满足[类型要求](#类型要求)
+
+例如 `m.attr("val") = val`
+
+注意
+* 以上导出语句本质为创建一个模块变量, 然后将特定值赋给这个模块变量, 其与赋值变量没有任何关联
+* 应当保证导出一个 Python 对象, 因此应当使用 [py::cast()](#类型转换) 函数进行类型转换
+
+#### 导出枚举类型
+导出枚举类型的基本格式如下  
+由于 C++ 枚举类型可以被赋值, 且不能再修改, 因此无论是 C++ 还是 Python 中都可以视为特殊的常量使用  
+导出枚举类型的基本类型如下
+
+```cpp
+py::enum_<EnumType>(base, "enumName"[, py::arithmetic()])
+.value("value1", EnumType::value1)
+.value(...)
+.export_values();
+```
+
+其中
+* `EnumType` 即枚举类型, 可以是一般的枚举类型或类的嵌套枚举类型 (需要使用 `Shell::EnumType` 通过所在类访问)
+* `enumName` 导出的枚举类型名称, 被导出的枚举类型也将作为一个特殊的 Python 类型存在
+* `value1`, `EnumType::value1` 导出的枚举值名称以及被绑定的枚举值 (在 Python 需要使用 `enumType.value1.value` 才能访问到枚举量的绑定值)
+* `base` 被绑定的接口, 一般枚举类型使用模块接口 `py::module_ m`, 嵌套枚举类型使用其所在类的导出接口 `py::class_`
+* `export_values` 最后调用该函数, 将使枚举量显示地称为绑定模块的常量
+* `py::arithmetic()` 为一个可选的设置, 表示枚举类型可以进行比较与位操作, 可用于 `unsigned` 类型, 按位的取值表示选项等情况
+
+#### 类型要求
+在导出类, 变量, 函数时, 必须要时刻注意类型要求
+
+注意, 对于 `int`, `float`, `string` 等简单类型将经过 pybind11 的自动识别与包裹, 因此可以使用以上方式进行直接导出  
+* 对于接收或返回自定义的类, 则需要保证该[类导出](#导出类)
+* 对于 STL 类型, 见 [STL 类型包裹](#STL-类型包裹)
+* 对于指针, 都将被自动转换为原始类型, 当应当注意[返回值策略](#返回值策略)
+* 对于智能指针, 见[智能指针交互](#智能指针交互)
+
+#### Python 对象
+由于 Python 中一切类型皆为类, 因此在 pybind11 中, 可使用一个 Python 包裹类来操作这些来自 Python 的对象   
+* 在 pybind11 中, Python 对象有以下常用包裹类
+    * 类型 `py::handle` 表示不带引用计数的 Python 对象, 继承自 `py::object_api`, 是最基础的 Python 包裹类, 一般用于表示临时的 Python 对象, 一般不直接使用
+    * 类型 `py::object` 表示带引用计数的 Python 对象, 继承自 `py::handle`, 基本使用与 `py::handle` 一致, 一般用于在 C++ 中引用 Python 中的具体对象, 或作为函数参数传递
+    * 字符串 `py::str`, 元组 `py::tuple`, 列表 `py::list`, 字典 `py::dict` 等 Python 基本类型, 均继承自 `py::object`, 仅根据类型自身特点进行特化
+* 对于基础的 `py::handle`, 有以下常用成员函数以操作 Python 对象  
+    * `py::handle::attr(const char* key)` 访问对象名称为 `key` 的成员, 返回值即此成员的 Python 对象的引用
+    * `py::handle::is_none()` 判断该 Python 对象是否为 None
+    * `py::handle::equal(const object& other)` 判断该对象与另一 Python 对象 `obj` 是否相等, 即 Python 中的 `=` 运算
+    * `py::handle::operator()(...)` 相当于调用 Python 对象的 `__call__(...)` 方法, 也可用此调用 Python 对象的方法
+    * `py::handle::cast<T>()` 尝试将当前 Python 对象转换为指定的 C++ 类型, 失败时将抛出异常 `cast_error`
+* 此外, pybind11 也提供了 Python 内置函数的接口, 可用这些函数获取关于 Python 对象的信息
+    * `py::len(obj)` 相当于 Python 中的 `len`, 用于获取对象的长度信息
+    * `py::hasattr(obj, name)` 相当于 Python 中的 `hasattr`, 用于判断对象是否存在成员
+* 对于 Python 的基本类型包裹类, 此处做简单介绍
+    * `py::int_ / py::float_ / py::bool_` 通过这些包裹对象的构造函数可将 C++ 类型或其他 Python 对象的变量转为 Python 对象
+    * `py::str` 通过这些包裹对象的构造函数可将 C++ 类型或其他 Python 对象的变量转为 Python字符串  
+    此外, 还可使用 `py::str::cast<std::string>()` 或 `std::string(obj)` 转换回字符串  
+    例如将 Python 对象 `obj` 转为字符串 `py::str(obj).cast<std::string>()`
+    * `py::list / py::tuple` Python 中的列表 / 元组包裹
+        * 可使用运算符 `[]` 通过数字索引其中的元素, 其中 `py::list` 列表包裹对象还能修改其中的元素
+        * 可使用 `for(auto it : obj){...}` 遍历其中的元素, 遍历变量的类型同样为 `py::handle`
+    * `py::dict` Python 中的字典包裹
+        * 可使用运算符 `[]` 通过索引访问或修改其中的元素, 但是==注意必须使用 Python 包裹对象包裹的 Python 值作为索引==
+        * 可使用 `for(auto it : obj){...}` 遍历其中的元素, 使用 `it.first` 访问键, `it.second` 访问值
+* 其他使用注意
+    * 对于使用 `attr` 修改成员, 修改字典或列表的成员时, 最好将 C++ [类型转换](#类型转换)为 Python 对象再赋值
+
+#### STL 类型包裹
+* 需要引入头文件 `#include<pybind11/stl.h>`, 才能使 pybind11 获得将 STL 容器与对应 Python 对象如 `list,dict` 相互转换的能力
+* 在默认情况下, pybind11 能够处理接收或直接导出 STL 容器以及常量引用, 但处理方式为将作为参数的 Python 对象如列表 `list` 转换为对应的 STL 容器如 `std::vector`, 这将消耗大量的时间用于类型转换以及复制 (注意 `list` 中的元素为 Python 对象, 不一定是 `std::vector` 允许的容器元素), 且==无法修改来自 Python 的对象==
+* 如果希望 pybind11 能通过引用或指针的方式传递 STL 容器, 以 `std::vector<int>` 为例, 需要使用如下方法
+    * 首先要使用宏 `PYBIND11_MAKE_OPAQUE(std::vector<int>);` 的方式解除 pybind11 的自动转换
+    * 引入头文件 `#include<pybind11/stl_bind.h>` 并使用 `py::bind_vector<std::vector<int>>(m, "VectorInt");` 将 `std::vector<int>` 作为名称为 `VectorInt` 的[导出类](#导出类) (同时返回 `py::class_` 的类接口), 并且可通过合法的列表 (所有元素为整数) 构造, 且有着类似的方法
+    * 与 `py::bind_vector` 类似, 可通过 `py::bind_map` 将 `std::map` 类型的容器导出为类字典的导出类
+    * 除了 `py::bind_vector`, 也可直接将 `std::vector<int>` 作为导出类, 并定义其成员函数, 可参考[官方文档](https://pybind11.readthedocs.io/en/latest/advanced/cast/stl.html#making-opaque-types)
+
+#### Eigen 矩阵类型的交互
+使用 pybind11 与 [Eigen](#eigen-线性代数库) 交互前, 需要引入头文件 `#include<pybind11/eigen.h>`, 注意此处的矩阵均指 `Eigen/Dense` 中的稠密矩阵, 对于稀疏矩阵见[官方文档](#https://pybind11.readthedocs.io/en/latest/advanced/cast/eigen.html)  
+通过引入头文件, 使 pybind11 获得 Eigen 矩阵对象 `Eigen::Matrix` 与 Python 中的 `numpy.ndarray` 进行相互转换的能力
+
+当按值传递 Eigen 矩阵对象时, pybind11 会依据传入的 `numpy.ndarray` 对象的数据创建一个新的, 要求接收的 Eigen 矩阵对象  
+此时允许传递矩阵与要求矩阵在类型, 形状上存在不同, 但无法使用指针等方式引用传入的 `numpy.ndarray` 对象, 且会产生额外开销
+
+当使用 `Eigen::Ref<MatrixType>` (参考[关于 Eigen 的内容](#在函数中引用矩阵对象)) 时, pybind11 则会尝试使用引用的方式传递 `numpy.ndarray` 对象, 但存在以下局限性
+* 传入的 `numpy.ndarray` 对象的形状 `shape` 以及类型 `dtype` 必须严格符合 `MatrixType` 的要求 (`float64` 对应 `double`)
+* 由于 Eigen 的矩阵与 numpy 的数组存在不同的内存读取方式, 前者为列优先, 后者为行优先, 因此必须先使用以下方法解决这一兼容性问题 (对于向量或单行 / 单列的矩阵不存在这一问题)
+    * 使用 pybind11 提供的引用类型 `py::EigenDRef<MatrixType>` (本质为 `Eigen::Ref`, 但声明了不连续的存储顺序)  
+    使用该类型能够接收 `arr[0::2, 2:9:3]` 方式索引的数组切片, 但由于存储顺序不连续, 因此无法使用向量化操作优化运算速度
+    * 使用行优先的矩阵如 `Eigen::RowMatrix` 以及设置 `Eigen::RowMajor` 或传入行优先的 `numpy.ndarray` 对象 (设置参数 `order = 'F'`)  
+    使用此方法虽然能通过向量化操作优化运算, 但不能接收数组切片以及使用 `transpose` 转置的 numpy 数组
+* 当兼容性无法解决时, pybind11 与 Python 总会尝试通过复制解决问题, 但此时引用将失去意义, 如果宁愿抛出异常也不要复制, 可参考[禁止类型转换](#导出函数参数的设置)
+
+返回 Eigen 对象时
+* 与[一般返回值处理](#返回值策略)不同, 直接返回 Eigen 的矩阵对象时, numpy 的数组也将引用返回的 Eigen 对象, 而不会重新创建, 即类似于 `return_value_policy::take_ownership`, 但对象是在函数中创建的
+* 如果返回 `const` 类型的数组时, 将设置 `numpy.ndarray` 的 `writeable` 属性为 `False` 阻之返回的矩阵被修改
+* 如果返回引用或指针, 则根据[返回值处理](#返回值策略)进行处理, 但一般不存在兼容性问题, 因为 pybind11 将自动设置返回的数组对象以兼容 Eigen 矩阵
+* 也可以返回 `Eigen::Ref` 类型作为引用, 此时依然需要注意返回值策略
+
+向量问题, 注意在 numpy 中, 向量可以是 1 维数组, 也可以是 1xn 或 nx1 的多维数组, 但 Eigen 的向量始终为二维  
+以下是 pybind11 如何处理向量
+* 当接收向量时
+    * 如果传入一维的 numpy 数组, 则将自动转换为对应的向量, 如果传入二维的 numpy 数组, 则要求具有相同的形状  
+    * 当接收的矩阵为动态大小时, 将优先转换为行向量
+    * 当接收的矩阵仅具有动态的行 / 列时, 将尝试令动态的一侧为 1
+* 当返回向量时
+    * 如果返回的 Eigen 矩阵对象固定只有 1 行或 1 列, 则将返回 1 维向量
+    * 如果返回的 Eigen 矩阵为动态大小的, 将返回 2 维向量
 
 #### 生成模块注释
 对于 `.pyd` 的导出模块, 开发环境无法直接读取模块内的注释信息, 还需要使用 `模块名.pyi` 的注释文件配合  
@@ -572,6 +864,48 @@ add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/${MODULE_RESULT_PYI} ${PROJECT_SOURCE_DIR}/${PY_TEST_PATH}
     COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/${PYTHON_DLL} ${PROJECT_SOURCE_DIR}/${PY_TEST_PATH}
 )
+```
+
+### C++ 中调用 Python
+参考文档 <https://pybind11.readthedocs.io/en/latest/advanced/embedding.html>  
+通过头文件 `#include <pybind11/embed.h>` 完成 C++ 中调用 Python 的基本功能  
+
+#### 基本配置
+在正式调用前, 需要进行如下配置
+
+```cpp
+// 设置环境变量, 对应配置项目时的变量 PYTHON_HOME
+_putenv("PYTHONHOME=<Python_ROOT_DIR>");
+
+// 启动 Python
+py::scoped_interpreter guard{};
+
+// 设置 DLL 目录
+py::module_ os = py::module_::import("os");
+os.attr("add_dll_directory")("<Python_ROOT_DIR>/Library/bin");
+```
+
+为了提升程序的可移植性, 推荐通过咨询用户的方式获取变量 `Python_ROOT_DIR`
+
+可通过以下方式检查环境是否符合要求
+```cpp
+// 具体确定用户提供的 Python 版本信息
+py::module_ sys = py::module_::import("sys");
+// 检查属性 sys.version_info, 此处直接打印
+py::print(sys.attr("version_info"));
+
+// 检查特定模块的导入是否成功
+try
+{
+    // 当模块不存在时, 将产生异常
+    py::module_ xxx = py::module_::import("xxx");
+    // 检查模块 xxx 的版本, 此处直接打印
+    py::print(xxx.attr("__version__"));
+}
+catch (const std::exception& e)
+{
+    std::cerr << e.what() << std::endl;
+}
 ```
 
 ## Eigen 线性代数库
@@ -953,13 +1287,14 @@ new (&mp) maptype(p2);
 std::cout << "mp:\n" << mp << std::endl;    
 ```
 
-#### 矩阵对象的引用 (在函数中使用矩阵对象)
+#### 在函数中引用矩阵对象
 参考资料 <https://stackoverflow.com/questions/21132538/correct-usage-of-the-eigenref-class>
 
-当定义了有关矩阵对象的函数时, 为了提升效率推荐使用 `Eigen::Ref<typename MatrixType>` 表示矩阵对象的引用参数  
+当定义了有关矩阵对象的函数时, 为了提升效率与兼容性, 推荐使用 `Eigen::Ref<typename MatrixType>` 表示矩阵对象的引用参数  
 简单来说
 * 表示可修改的引用时使用 `Eigen::Ref<MatrixType>` 作为参数的类型
 * 表示常量引用时使用 `const Eigen::Ref<const MatrixType>&` 作为参数的类型
+* 除了作为参数, 也可用于表示返回值
 
 #### pybind11 与 Eigen 交互
 参考资料 <https://pybind11.readthedocs.io/en/latest/advanced/cast/eigen.html>

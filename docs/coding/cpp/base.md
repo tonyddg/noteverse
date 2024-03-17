@@ -1161,6 +1161,23 @@ int* pi2 = const_cast<int*>(cpd);// 不允许, const_cast 不能改变类型
 ```
 ##### static_cast
 即存在对应操作符重载函数的转换运算
+
+该运算符也可用于明确重载函数的函数指针具体指向那个函数, 如
+
+```cpp
+int add(int i, int j){
+    return i + j;
+}
+
+float add(float i, float j){
+    return i + j;
+}
+```
+
+对于以上的重载函数
+* `static_cast<int(*)(int, int)>(&add)` 运算将其转换为 `int(*)(int, int)` 类型, 表示函数的第一个版本
+* `static_cast<float(*)(float, float)>(&add)` 运算将其转换为 `float(*)(float, float)` 类型, 表示函数的第二个版本
+
 ##### reinterpret_cast
 直接读取内存的强制类型转换
 
