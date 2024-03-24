@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-4c415d6c","path":"/coding/py/legacy/","title":"Legacy","lang":"zh-CN","frontmatter":{"title":"Legacy","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{e as data};

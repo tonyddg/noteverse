@@ -1,0 +1,504 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="336px" height="253px" viewBox="-0.5 -0.5 336 253" style="background-color: rgb(255, 255, 255);" content="&lt;mxfile&gt;&lt;diagram id=&quot;zl8Rgz3da9z28mEDpxic&quot; name=&quot;第 1 页&quot;&gt;7ZxZj6M4EIB/TaTdh5VizJXHIT2987LSSC3t8bRywEnQODhynGt//ZpgCDZ0CAQYcrS6O7gMRfBXVS6Xo4zgdHX4naH18g8aYDIyxsFhBN9GhgFNS/yPBcdEYFjjRLBgYZCIwFnwEf6HpTA9bRsGeKOcyCklPFyrQp9GEfa5IkOM0b162pwS9a5rtMAFwYePSFH6VxjwpZQCe3Lu+IbDxVLe2jWcpGOG/B8LRreRvN/IgPPTT9K9QpmuRLBZooDuE9Hp2eHXEZwySnlytDpMMYmHNh22ZIDeP+nN3jfDEb/mAiO5YIfIFqfv+PS++DEdCxwFX+IhFa2IRkLoBWizxLECIBpLviLy8PTcWQdBM0y8bDymlFAmugI8R1si3py34Yz+wEX5nEb8Ha1CEhvPN0x2mIc+kh3SVgCQ7ZLLQ0JSqXILTwz2Or5YWs1JFj/Ld8Q5ZlGsNn52KP6M3B8UpyWjgoOC2ZwHGmT4hFdgusKcHcUp+7P9pE6wzFlOKmOYIB7uVPVImvEiU5fd4TsNxY2NsfQ44Eo9qcNJ7pmKDd0yH8ur8gahKYKGqsjV9HDEFpgX9IiD3FOfRSdzKzc9+DK9xzC9iWZ6TkPTM80KG27P9sxatucTtNmEvmpxedZxlHd97PsF0xI9M9cyxVBDT2h8D0l6/dCxGhoNYDeNKDpWszOsTutYAwu7gVmG1TVm0LafCaShzTGgO/8E9fKSJyFZ6UlXu6SeLYy7I+m2TxJhd14aam3fxbP5M5Hscc4EkxfJHqdJ0N00mdpIO6l3/URo6Ewrw+MAZ8wU4Ytpw0A5RD9tdYn8eEwrUQzRT+stPZ+PaVuxt8fMqOa6UzK9gHGO7XKMgTOZje8BY3uLTr26BLsrSJalRWb8a0132B85XjBy3kRDjDIiBJNMHgn5v0A0ebjCG1UsdNin4uCMiaMFP8E7adVNhOMDV+1C5S/tJm8sUoRIuIhriL6Aj+PS4g6zuHBJvsiOVRgE8W28/TLk+GON/Piee4bWSu30bFmxAnyoa1upD0ONWVoRzNmeXWJ7Otq8mSlcL0EEVRBZTEW8AvH6myo1Hp1MYaLrk0xZhqqQkW706AyMT5KNPhiUZZRFBg/vB4Uso08G9SpixWxhI6Y8nnZToSaV5XYXznsN95AtQH2Sb7o405O+QtrRYrZQrxxWxCiGnh3/zjf+yTfeDhJe0jrWRGmMk0fNcxrK2rtxMmjpobM7vObnyaBXzPvysfMXNacAeo7x68h6e/T4qhO3+wuvZqOiyU01ajXYKmv1oUfeyspH0y0l0N2WktmohHLTzuAdE26tSNYnYevlwz+jZKYT7u7DX6b98uGfsHnRJ+FGRdHnKXRXohhiXH4tXStH32rqmlrRdNIdxVtXrkNnUjWUVy83QV9I0gcvq8vN8CIUK0vvzxXiLDwkWxDX7DtYU0FRvfDptiJMS3PP1DR6WIlajaLllTMgBiLlccpmwIntQHQPH2c0bEthY1hWMz/tcY/QujV2PuBWL1AxAtdsiLFgD2ZXGO2yePtyzes96urkVGcKrM6YGi+ml0t9Gop0fOqHW11RZ+HW7vLTUo/AdGJeRnE904mmyOmMaaPi3hMxdXQUbkOmrmYcsLvYe2s5T8H7YnqBaUUQb5HprZ9qrCr23EVy21oipG1dw+6qdPatVbqhQ6kcy6uhTPqDUrZwjGsvwaOXYLLtqGwJ0FkJRjTPX52RQDp/PQn8+j8=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 0 164 L 140 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="12 3 2 2 2 3" pointer-events="stroke"/>
+        <path d="M 10 214 L 260 164" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="12 3 2 2 2 3" pointer-events="stroke"/>
+        <path d="M 60 104 L 155.03 180.02" fill="none" stroke="#b85450" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 159.13 183.3 L 151.47 181.66 L 155.03 180.02 L 155.85 176.2 Z" fill="#b85450" stroke="#b85450" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 60 104 L 95.5 68.5" fill="none" stroke="#82b366" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 99.21 64.79 L 96.73 72.22 L 95.5 68.5 L 91.78 67.27 Z" fill="#82b366" stroke="#82b366" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 160 184 L 195.5 148.5" fill="none" stroke="#82b366" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 199.21 144.79 L 196.73 152.22 L 195.5 148.5 L 191.78 147.27 Z" fill="#82b366" stroke="#82b366" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 160 184 L 253.76 165.25" fill="none" stroke="#6c8ebf" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 258.9 164.22 L 252.73 169.02 L 253.76 165.25 L 251.35 162.16 Z" fill="#6c8ebf" stroke="#6c8ebf" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 60 104 L 153.76 85.25" fill="none" stroke="#6c8ebf" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 158.9 84.22 L 152.73 89.02 L 153.76 85.25 L 151.35 82.16 Z" fill="#6c8ebf" stroke="#6c8ebf" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 200 144 L 100 64" fill="none" stroke="#b85450" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 260 164 L 160 84" fill="none" stroke="#b85450" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 160 84 L 100 64" fill="none" stroke="#b85450" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 200 144 L 260 164" fill="none" stroke="#b85450" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 60 104 L 110 174" fill="none" stroke="#d79b00" stroke-miterlimit="10" pointer-events="stroke"/>
+        <rect x="150" y="214" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 229px; margin-left: 151px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.021ex" height="3.048ex" role="img" focusable="false" viewBox="0 -1097 4871.1 1347" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.566ex;">
+                                        <defs>
+                                            <path id="MJX-1446-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/>
+                                            <path id="MJX-1446-TEX-N-20D7" d="M377 694Q377 702 382 708T397 714Q404 714 409 709Q414 705 419 690Q429 653 460 633Q471 626 471 615Q471 606 468 603T454 594Q411 572 379 531Q377 529 374 525T369 519T364 517T357 516Q350 516 344 521T337 536Q337 555 384 595H213L42 596Q29 605 29 615Q29 622 42 635H401Q377 673 377 694Z"/>
+                                            <path id="MJX-1446-TEX-N-2225" d="M133 736Q138 750 153 750Q164 750 170 739Q172 735 172 250T170 -239Q164 -250 152 -250Q144 -250 138 -244L137 -243Q133 -241 133 -179T132 250Q132 731 133 736ZM329 739Q334 750 346 750Q353 750 361 744L362 743Q366 741 366 679T367 250T367 -178T362 -243L361 -244Q355 -250 347 -250Q335 -250 329 -239Q327 -235 327 250T329 739Z"/>
+                                            <path id="MJX-1446-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-1446-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/>
+                                            <path id="MJX-1446-TEX-N-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"/>
+                                            <path id="MJX-1446-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                    <g data-mml-node="mover">
+                                                        <g data-mml-node="mi">
+                                                            <use data-c="1D451" xlink:href="#MJX-1446-TEX-I-1D451"/>
+                                                        </g>
+                                                        <g data-mml-node="mo" transform="translate(427,283) translate(-250 0)">
+                                                            <use data-c="20D7" xlink:href="#MJX-1446-TEX-N-20D7"/>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(797.8,0)">
+                                                    <use data-c="2225" xlink:href="#MJX-1446-TEX-N-2225"/>
+                                                </g>
+                                                <g data-mml-node="msub" transform="translate(1575.6,0)">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45B" xlink:href="#MJX-1446-TEX-I-1D45B"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1446-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                        <use data-c="31" xlink:href="#MJX-1446-TEX-N-31"/>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(2834.3,0)">
+                                                    <use data-c="D7" xlink:href="#MJX-1446-TEX-N-D7"/>
+                                                </g>
+                                                <g data-mml-node="msub" transform="translate(3834.6,0)">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45B" xlink:href="#MJX-1446-TEX-I-1D45B"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1446-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                        <use data-c="32" xlink:href="#MJX-1446-TEX-N-32"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="180" y="233" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$\vec{d}\...
+                </text>
+            </switch>
+        </g>
+        <rect x="100" y="114" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 129px; margin-left: 101px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.782ex" height="2.251ex" role="img" focusable="false" viewBox="0 -845 2997.6 995" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.339ex;">
+                                        <defs>
+                                            <path id="MJX-1447-TEX-I-1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-1447-TEX-N-20D7" d="M377 694Q377 702 382 708T397 714Q404 714 409 709Q414 705 419 690Q429 653 460 633Q471 626 471 615Q471 606 468 603T454 594Q411 572 379 531Q377 529 374 525T369 519T364 517T357 516Q350 516 344 521T337 536Q337 555 384 595H213L42 596Q29 605 29 615Q29 622 42 635H401Q377 673 377 694Z"/>
+                                            <path id="MJX-1447-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/>
+                                            <path id="MJX-1447-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/>
+                                            <path id="MJX-1447-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="msub">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45F" xlink:href="#MJX-1447-TEX-I-1D45F"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(281.1,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1447-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="TeXAtom" transform="translate(484,-150) scale(0.707)" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mn">
+                                                            <use data-c="31" xlink:href="#MJX-1447-TEX-N-31"/>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(1109.8,0)">
+                                                    <use data-c="2212" xlink:href="#MJX-1447-TEX-N-2212"/>
+                                                </g>
+                                                <g data-mml-node="msub" transform="translate(2110,0)">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45F" xlink:href="#MJX-1447-TEX-I-1D45F"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(281.1,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1447-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(484,-150) scale(0.707)">
+                                                        <use data-c="32" xlink:href="#MJX-1447-TEX-N-32"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="130" y="133" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$\vec{r}_...
+                </text>
+            </switch>
+        </g>
+        <rect x="40" y="64" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 79px; margin-left: 41px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="2.345ex" height="2.251ex" role="img" focusable="false" viewBox="0 -845 1036.6 995" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.339ex;">
+                                        <defs>
+                                            <path id="MJX-1448-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-1448-TEX-N-20D7" d="M377 694Q377 702 382 708T397 714Q404 714 409 709Q414 705 419 690Q429 653 460 633Q471 626 471 615Q471 606 468 603T454 594Q411 572 379 531Q377 529 374 525T369 519T364 517T357 516Q350 516 344 521T337 536Q337 555 384 595H213L42 596Q29 605 29 615Q29 622 42 635H401Q377 673 377 694Z"/>
+                                            <path id="MJX-1448-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="msub">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45B" xlink:href="#MJX-1448-TEX-I-1D45B"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1448-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                        <use data-c="31" xlink:href="#MJX-1448-TEX-N-31"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="70" y="83" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$\vec{n}_...
+                </text>
+            </switch>
+        </g>
+        <rect x="200" y="164" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 179px; margin-left: 201px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="2.345ex" height="2.251ex" role="img" focusable="false" viewBox="0 -845 1036.6 995" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.339ex;">
+                                        <defs>
+                                            <path id="MJX-1449-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-1449-TEX-N-20D7" d="M377 694Q377 702 382 708T397 714Q404 714 409 709Q414 705 419 690Q429 653 460 633Q471 626 471 615Q471 606 468 603T454 594Q411 572 379 531Q377 529 374 525T369 519T364 517T357 516Q350 516 344 521T337 536Q337 555 384 595H213L42 596Q29 605 29 615Q29 622 42 635H401Q377 673 377 694Z"/>
+                                            <path id="MJX-1449-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="msub">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45B" xlink:href="#MJX-1449-TEX-I-1D45B"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1449-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                        <use data-c="32" xlink:href="#MJX-1449-TEX-N-32"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="230" y="183" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$\vec{n}_...
+                </text>
+            </switch>
+        </g>
+        <path d="M 211.92 161.7 L 260 104" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <ellipse cx="210" cy="164" rx="3" ry="3" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 260 104 L 330 104" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <rect x="260" y="4" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 19px; margin-left: 261px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.49ex" height="2.477ex" role="img" focusable="false" viewBox="0 -845 6404.7 1095" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.566ex;">
+                                        <defs>
+                                            <path id="MJX-1450-TEX-N-5B" d="M118 -250V750H255V710H158V-210H255V-250H118Z"/>
+                                            <path id="MJX-1450-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-1450-TEX-N-20D7" d="M377 694Q377 702 382 708T397 714Q404 714 409 709Q414 705 419 690Q429 653 460 633Q471 626 471 615Q471 606 468 603T454 594Q411 572 379 531Q377 529 374 525T369 519T364 517T357 516Q350 516 344 521T337 536Q337 555 384 595H213L42 596Q29 605 29 615Q29 622 42 635H401Q377 673 377 694Z"/>
+                                            <path id="MJX-1450-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/>
+                                            <path id="MJX-1450-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/>
+                                            <path id="MJX-1450-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/>
+                                            <path id="MJX-1450-TEX-I-1D45F" d="M21 287Q22 290 23 295T28 317T38 348T53 381T73 411T99 433T132 442Q161 442 183 430T214 408T225 388Q227 382 228 382T236 389Q284 441 347 441H350Q398 441 422 400Q430 381 430 363Q430 333 417 315T391 292T366 288Q346 288 334 299T322 328Q322 376 378 392Q356 405 342 405Q286 405 239 331Q229 315 224 298T190 165Q156 25 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 114 189T154 366Q154 405 128 405Q107 405 92 377T68 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-1450-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/>
+                                            <path id="MJX-1450-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/>
+                                            <path id="MJX-1450-TEX-N-5D" d="M22 710V750H159V-250H22V-210H119V710H22Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mo">
+                                                    <use data-c="5B" xlink:href="#MJX-1450-TEX-N-5B"/>
+                                                </g>
+                                                <g data-mml-node="msub" transform="translate(278,0)">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45B" xlink:href="#MJX-1450-TEX-I-1D45B"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1450-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                        <use data-c="31" xlink:href="#MJX-1450-TEX-N-31"/>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="msub" transform="translate(1314.6,0)">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45B" xlink:href="#MJX-1450-TEX-I-1D45B"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1450-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                        <use data-c="32" xlink:href="#MJX-1450-TEX-N-32"/>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(2351.1,0)">
+                                                    <use data-c="28" xlink:href="#MJX-1450-TEX-N-28"/>
+                                                </g>
+                                                <g data-mml-node="msub" transform="translate(2740.1,0)">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45F" xlink:href="#MJX-1450-TEX-I-1D45F"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(281.1,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1450-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(484,-150) scale(0.707)">
+                                                        <use data-c="31" xlink:href="#MJX-1450-TEX-N-31"/>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(3849.9,0)">
+                                                    <use data-c="2212" xlink:href="#MJX-1450-TEX-N-2212"/>
+                                                </g>
+                                                <g data-mml-node="msub" transform="translate(4850.1,0)">
+                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                        <g data-mml-node="mover">
+                                                            <g data-mml-node="mi">
+                                                                <use data-c="1D45F" xlink:href="#MJX-1450-TEX-I-1D45F"/>
+                                                            </g>
+                                                            <g data-mml-node="mo" transform="translate(281.1,31) translate(-250 0)">
+                                                                <use data-c="20D7" xlink:href="#MJX-1450-TEX-N-20D7"/>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mn" transform="translate(484,-150) scale(0.707)">
+                                                        <use data-c="32" xlink:href="#MJX-1450-TEX-N-32"/>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(5737.7,0)">
+                                                    <use data-c="29" xlink:href="#MJX-1450-TEX-N-29"/>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(6126.7,0)">
+                                                    <use data-c="5D" xlink:href="#MJX-1450-TEX-N-5D"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="290" y="23" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$[\vec{n}...
+                </text>
+            </switch>
+        </g>
+        <path d="M 100 64 L 200 44" fill="none" stroke="#6c8ebf" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 160 84 L 200 44" fill="none" stroke="#82b366" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 200 144 L 300 124" fill="none" stroke="#6c8ebf" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 260 164 L 300 124" fill="none" stroke="#82b366" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 300 124 L 200 44" fill="none" stroke="#b85450" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 201.92 91.7 L 250 34" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <ellipse cx="200" cy="94" rx="3" ry="3" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 250 34 L 330 34" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <rect x="270" y="74" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 89px; margin-left: 271px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="9.718ex" height="2.477ex" role="img" focusable="false" viewBox="0 -797.5 4295.6 1095" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.673ex;">
+                                        <defs>
+                                            <path id="MJX-1451-TEX-N-2225" d="M133 736Q138 750 153 750Q164 750 170 739Q172 735 172 250T170 -239Q164 -250 152 -250Q144 -250 138 -244L137 -243Q133 -241 133 -179T132 250Q132 731 133 736ZM329 739Q334 750 346 750Q353 750 361 744L362 743Q366 741 366 679T367 250T367 -178T362 -243L361 -244Q355 -250 347 -250Q335 -250 329 -239Q327 -235 327 250T329 739Z"/>
+                                            <path id="MJX-1451-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/>
+                                            <path id="MJX-1451-TEX-N-20D7" d="M377 694Q377 702 382 708T397 714Q404 714 409 709Q414 705 419 690Q429 653 460 633Q471 626 471 615Q471 606 468 603T454 594Q411 572 379 531Q377 529 374 525T369 519T364 517T357 516Q350 516 344 521T337 536Q337 555 384 595H213L42 596Q29 605 29 615Q29 622 42 635H401Q377 673 377 694Z"/>
+                                            <path id="MJX-1451-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/>
+                                            <path id="MJX-1451-TEX-N-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"/>
+                                            <path id="MJX-1451-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mrow">
+                                                    <g data-mml-node="mo">
+                                                        <use data-c="2225" xlink:href="#MJX-1451-TEX-N-2225"/>
+                                                    </g>
+                                                    <g data-mml-node="mtable" transform="translate(500,0)">
+                                                        <g data-mml-node="mtr" transform="translate(0,-47.5)">
+                                                            <g data-mml-node="mtd">
+                                                                <g data-mml-node="msub">
+                                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                                        <g data-mml-node="mover">
+                                                                            <g data-mml-node="mi">
+                                                                                <use data-c="1D45B" xlink:href="#MJX-1451-TEX-I-1D45B"/>
+                                                                            </g>
+                                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                                <use data-c="20D7" xlink:href="#MJX-1451-TEX-N-20D7"/>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                                        <use data-c="31" xlink:href="#MJX-1451-TEX-N-31"/>
+                                                                    </g>
+                                                                </g>
+                                                                <g data-mml-node="mo" transform="translate(1258.8,0)">
+                                                                    <use data-c="D7" xlink:href="#MJX-1451-TEX-N-D7"/>
+                                                                </g>
+                                                                <g data-mml-node="msub" transform="translate(2259,0)">
+                                                                    <g data-mml-node="TeXAtom" data-mjx-texclass="ORD">
+                                                                        <g data-mml-node="mover">
+                                                                            <g data-mml-node="mi">
+                                                                                <use data-c="1D45B" xlink:href="#MJX-1451-TEX-I-1D45B"/>
+                                                                            </g>
+                                                                            <g data-mml-node="mo" transform="translate(300,31) translate(-250 0)">
+                                                                                <use data-c="20D7" xlink:href="#MJX-1451-TEX-N-20D7"/>
+                                                                            </g>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g data-mml-node="mn" transform="translate(633,-150) scale(0.707)">
+                                                                        <use data-c="32" xlink:href="#MJX-1451-TEX-N-32"/>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                    <g data-mml-node="mo" transform="translate(3795.6,0)">
+                                                        <use data-c="2225" xlink:href="#MJX-1451-TEX-N-2225"/>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="300" y="93" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$\begin{V...
+                </text>
+            </switch>
+        </g>
+        <path d="M 85 199 L 110 174" fill="none" stroke="#9673a6" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 35 128 L 85 198" fill="none" stroke="#d79b00" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 110 174 L 185 159" fill="none" stroke="#9673a6" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 105 166 L 115 164" fill="none" stroke="#9673a6" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 114 164 L 119 171" fill="none" stroke="#9673a6" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 99 172 L 104 179" fill="none" stroke="#9673a6" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 99 172 L 105 166" fill="none" stroke="#9673a6" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 111.18 176.76 L 140 244" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <ellipse cx="110" cy="174" rx="3" ry="3" fill="none" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 140 244 L 210 244" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <rect x="20" y="154" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 169px; margin-left: 21px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.176ex" height="1.593ex" role="img" focusable="false" viewBox="0 -694 520 704" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.023ex;">
+                                        <defs>
+                                            <path id="MJX-1452-TEX-I-1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D451" xlink:href="#MJX-1452-TEX-I-1D451"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="50" y="173" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$d$$
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>

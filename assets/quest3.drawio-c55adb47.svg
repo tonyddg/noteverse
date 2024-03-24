@@ -1,0 +1,229 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="151px" height="115px" viewBox="-0.5 -0.5 151 115" content="&lt;mxfile&gt;&lt;diagram id=&quot;_tUdvJ8nuv9FjtDqehjH&quot; name=&quot;第 1 页&quot;&gt;7Zpdk5owFIZ/DbcdAQG9FN1ubzrdGTvT7mUKWcgsEifEr/76JiEIBFBUsLrrzS7nACF5n+TkJEYzp4vtMwHL8Dv2YaQZA3+rmTPNMPTRgP3ljp10GE7qCAjypSt3zNFfKJ3yvWCFfJiUHqQYRxQty04PxzH0aMkHCMGb8mNvOCp/dQkCWHHMPRBVvb+QT0Pp1e1xfuMbREEoPz3K2rcA+4dTRxICH29Sl2ic+aSZU4IxTa8W2ymMuHaZLqkCXxvu7itGYExbvSAVXYNoJRsnK0Z3WWspQSAOuOVuQkThfAk8fmvD2DJfSBcRs3R2STAFFOGYmeMBs6u1kRVcQ0LhtuCStXuGeAEp2bFH5F3DtNJXsq5iyRpvCsJLV1iQPPMBiTrYl5yrwS6kIPXiGMe1YfyWQguwW2LEW+km75B6vGZcgTcURXP5eIIjXrKbpP3ZZpfiHUie1kygRIoofKLWlqtZM1nIFEeYMGeMYw6CQFYK+CPKHWTKF+wlJIi1F/JXPMi/8ZJ73CQGy5/4Ja2w+GgnpAZHSRk1pIwOSJnHScHYn/Chn2tY6Lhwi+hvLt0XS3ek/Sps25LmbCulFcauYBSUnR3s9QleEQ+W+hb0S5GmKm5BPKtGvMxHYMRG3rocn+oUlV9I2efs7DK7CpS06vKtYjxRCxopncBWCqKABJBWChKA981uxXx4IfNs6EYofucmqxlVnm5F0rotkoZCcnj7JO0bIbnPJUTLHnS7oWs9ZtFTZlHn/82izoPUKaR0ZSya1yM1vjxipsuOg/nKrQS9QU9Br1JQd0FP7yA7yQmVhtjN43L6wmX1h6vFJPVRcVld4VLXED3i6iBjvFdcZle4htfD1SKx+Ki41CThbFxq5t8jrtHnxdW0h3UpLr1lqsFEBbvCYzI5vhBop+nifQFVOZwN1D5SUHfjL6vyZ8RldYVreN74OwdXxxuRjYyK21K3xu0O96X2K/7TtjvuZYej3RL/hO0OdUSNr7fdUbuHyIbd0E3/VbixNlFlkFGC36GieQ0GEKEg3kvMHFwh5IFoIm8skO83/hZK8Cr2oZ+F3sY4XOxEIRD+Thipk9SwysiuYWR2wahuTcbh/HgwOrRtuI9w12BUtxDjcKYPRgcPHdTEut4Y1a2+OJzJg1GRka7uDupXZFS3oBJwrCkrLQCa405czWET/tRbkTUUh46IqMQD4qFfu5zrQTSN4/lfNW/3QRIKvfQyLq0uHa9R5/4zdHVF3V+Gbp51rKeJEONAdvKQT2a+yu4tjPyEj7CyIz5tySoLNPuWaFcgtaY9Vgrqb9vDrFtH82D5ctMxsyHktRr6DVNZ3W/+HUVBZuaHS1NI+Qld8+kf&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 55 14 L 65 19 L 55 24 Z" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" transform="rotate(90,60,19)" pointer-events="all"/>
+        <ellipse cx="60" cy="24" rx="3" ry="3" fill="rgb(0, 0, 0)" stroke="none" pointer-events="all"/>
+        <rect x="50" y="14" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <path d="M 60 24 L 100 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 68.4 62.8 L 98.4 22.8 M 101.6 25.2 L 71.6 65.2 M 101.6 25.2" fill="none" stroke="rgb(0, 0, 0)" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="100" cy="24" rx="3" ry="3" fill="rgb(0, 0, 0)" stroke="none" pointer-events="all"/>
+        <rect x="90" y="14" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <ellipse cx="40" cy="104" rx="3" ry="3" fill="rgb(0, 0, 0)" stroke="none" pointer-events="all"/>
+        <rect x="30" y="94" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <path d="M 20 104 L 100 104" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 90 104 L 100 114" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 70 104 L 80 114" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 50 104 L 60 114" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 30 104 L 40 114" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 50 14 L 40 4" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 40 14 L 80 14" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 70 14 L 60 4" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 38.4 102.8 L 68.4 62.8 M 71.6 65.2 L 41.6 105.2 M 71.6 65.2" fill="none" stroke="rgb(0, 0, 0)" stroke-linejoin="round" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="70" cy="64" rx="3" ry="3" fill="rgb(0, 0, 0)" stroke="none" pointer-events="all"/>
+        <rect x="60" y="54" width="20" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <rect x="80" y="4" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 19px; margin-left: 81px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.717ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 759 683" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: 0px;">
+                                        <defs>
+                                            <path id="MJX-183-TEX-I-1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D435" xlink:href="#MJX-183-TEX-I-1D435"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="110" y="23" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$B$$
+                </text>
+            </switch>
+        </g>
+        <rect x="30" y="24" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 39px; margin-left: 31px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.726ex" height="1.643ex" role="img" focusable="false" viewBox="0 -704 763 726" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.05ex;">
+                                        <defs>
+                                            <path id="MJX-184-TEX-I-1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D442" xlink:href="#MJX-184-TEX-I-1D442"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="60" y="43" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$O$$
+                </text>
+            </switch>
+        </g>
+        <rect x="55" y="54" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 69px; margin-left: 56px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.719ex" height="1.645ex" role="img" focusable="false" viewBox="0 -705 760 727" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.05ex;">
+                                        <defs>
+                                            <path id="MJX-185-TEX-I-1D436" d="M50 252Q50 367 117 473T286 641T490 704Q580 704 633 653Q642 643 648 636T656 626L657 623Q660 623 684 649Q691 655 699 663T715 679T725 690L740 705H746Q760 705 760 698Q760 694 728 561Q692 422 692 421Q690 416 687 415T669 413H653Q647 419 647 422Q647 423 648 429T650 449T651 481Q651 552 619 605T510 659Q484 659 454 652T382 628T299 572T226 479Q194 422 175 346T156 222Q156 108 232 58Q280 24 350 24Q441 24 512 92T606 240Q610 253 612 255T628 257Q648 257 648 248Q648 243 647 239Q618 132 523 55T319 -22Q206 -22 128 53T50 252Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D436" xlink:href="#MJX-185-TEX-I-1D436"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="85" y="73" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$C$$
+                </text>
+            </switch>
+        </g>
+        <rect x="0" y="74" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 89px; margin-left: 1px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.697ex" height="1.62ex" role="img" focusable="false" viewBox="0 -716 750 716" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: 0px;">
+                                        <defs>
+                                            <path id="MJX-186-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D434" xlink:href="#MJX-186-TEX-I-1D434"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="30" y="93" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$A$$
+                </text>
+            </switch>
+        </g>
+        <rect x="90" y="34" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 49px; margin-left: 91px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="7.712ex" height="1.645ex" role="img" focusable="false" viewBox="0 -716 3408.8 727" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: -0.025ex;">
+                                        <defs>
+                                            <path id="MJX-187-TEX-I-1D714" d="M495 384Q495 406 514 424T555 443Q574 443 589 425T604 364Q604 334 592 278T555 155T483 38T377 -11Q297 -11 267 66Q266 68 260 61Q201 -11 125 -11Q15 -11 15 139Q15 230 56 325T123 434Q135 441 147 436Q160 429 160 418Q160 406 140 379T94 306T62 208Q61 202 61 187Q61 124 85 100T143 76Q201 76 245 129L253 137V156Q258 297 317 297Q348 297 348 261Q348 243 338 213T318 158L308 135Q309 133 310 129T318 115T334 97T358 83T393 76Q456 76 501 148T546 274Q546 305 533 325T508 357T495 384Z"/>
+                                            <path id="MJX-187-TEX-I-1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"/>
+                                            <path id="MJX-187-TEX-I-1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"/>
+                                            <path id="MJX-187-TEX-N-21B7" d="M972 209Q980 209 981 204T982 179Q982 155 979 151T957 139Q915 121 878 86T815 8Q808 -1 803 -1Q801 -1 797 1Q797 6 783 28T732 84T650 139L628 150Q626 152 626 177Q626 201 630 206Q636 210 637 210Q650 210 697 181Q727 166 764 137L784 119L782 132Q767 239 689 318T499 417Q474 421 442 421Q343 421 261 369T130 219Q86 121 86 28Q86 15 79 8Q73 1 66 1T53 8Q46 15 46 30Q46 102 77 192T186 361Q274 443 386 459Q396 460 426 460Q515 460 588 431T703 361T773 271T812 187T822 132Q822 123 825 123Q936 209 972 209Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D714" xlink:href="#MJX-187-TEX-I-1D714"/>
+                                                </g>
+                                                <g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(622,0)">
+                                                    <g data-mml-node="mi">
+                                                        <use data-c="1D434" xlink:href="#MJX-187-TEX-I-1D434"/>
+                                                    </g>
+                                                    <g data-mml-node="mi" transform="translate(750,0)">
+                                                        <use data-c="1D435" xlink:href="#MJX-187-TEX-I-1D435"/>
+                                                    </g>
+                                                </g>
+                                                <g data-mml-node="mo" transform="translate(2408.8,0)">
+                                                    <use data-c="21B7" xlink:href="#MJX-187-TEX-N-21B7"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="120" y="53" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$\omega{A...
+                </text>
+            </switch>
+        </g>
+        <path d="M 40 104 L 40 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <path d="M 40 24 L 60 24" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/>
+        <rect x="0" y="14" width="60" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 29px; margin-left: 1px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; white-space: normal; overflow-wrap: normal;">
+                                <mjx-container class="MathJax" jax="SVG" display="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.699ex" height="1.545ex" role="img" focusable="false" viewBox="0 -683 751 683" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: 0px;">
+                                        <defs>
+                                            <path id="MJX-188-TEX-I-1D443" d="M287 628Q287 635 230 637Q206 637 199 638T192 648Q192 649 194 659Q200 679 203 681T397 683Q587 682 600 680Q664 669 707 631T751 530Q751 453 685 389Q616 321 507 303Q500 302 402 301H307L277 182Q247 66 247 59Q247 55 248 54T255 50T272 48T305 46H336Q342 37 342 35Q342 19 335 5Q330 0 319 0Q316 0 282 1T182 2Q120 2 87 2T51 1Q33 1 33 11Q33 13 36 25Q40 41 44 43T67 46Q94 46 127 49Q141 52 146 61Q149 65 218 339T287 628ZM645 554Q645 567 643 575T634 597T609 619T560 635Q553 636 480 637Q463 637 445 637T416 636T404 636Q391 635 386 627Q384 621 367 550T332 412T314 344Q314 342 395 342H407H430Q542 342 590 392Q617 419 631 471T645 554Z"/>
+                                        </defs>
+                                        <g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)">
+                                            <g data-mml-node="math">
+                                                <g data-mml-node="mi">
+                                                    <use data-c="1D443" xlink:href="#MJX-188-TEX-I-1D443"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </mjx-container>
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="30" y="33" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    $$P$$
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>
