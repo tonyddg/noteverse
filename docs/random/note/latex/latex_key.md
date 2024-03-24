@@ -1153,7 +1153,8 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 
 自定义宏包需要以命令 `\ProvidesPackage{<package name>}` 作为开头, 其中 `package name` 即宏包名  
 自定义文档类需要以命令 `\ProvidesClass{<class name>}` 作为开头, 其中 `class name` 即文档类名  
-当宏包 / 文档类在子目录下是, 名称为 `子目录/包名`, 调用时也是用此名称
+当宏包 / 文档类在子目录下是, 名称为 `子目录/包名`, 调用时也是用此名称  
+注意, ==`包名` 不能与任何已有宏包或已调用宏包重名, 即使所在的子目录不同==
 
 并在调用其他宏包时使用命令 `\RequirePackage[<options>]{<package name>}`, 参数与 `\usepackage` 相同
 对于文档类, 还应在开头使用命令 `\LoadClass[<options>]{<class name>}` 引用如 `article` 等基础文档类, 参数与 `\documentclass` 相同
@@ -1238,3 +1239,8 @@ Latex 将字体分为三大族, 文档中根据要求使用这三中字族设置
 * `\textcircled{\scriptsize{E}}` 无法在数学环境中使用
 * `\phase` (需要宏包 steinmetz)
 * `\degree` (使用 `^\circ` 代替)
+
+## 常见问题
+### Missing $ inserted
+在除了数学环境外的位置使用了[保留字](#保留字) `_` 而没有转义  
+应当改为 `\_`
