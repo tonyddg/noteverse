@@ -54,6 +54,8 @@ Conda 为开源的 Python 包管理工具, 分为两个版本
 激活环境, 此时终端的 Python 将基于指定的环境  
 可直接运行 `python` 进入该环境的 Python 终端
 
+注意, 在 powershell 终端环境下, 可能无法切换环境, 需要使用 cmd 终端环境
+
 ### 查看环境中的包
 `conda list [pkg]`  
 查看环境中安装的名称为 `[pkg]` 的包  
