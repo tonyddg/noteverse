@@ -200,7 +200,21 @@ v_1&v_2&v_3
 1. 两个同方向向量的交叉积结果为向量 $\vec{0}$, 即 $(k\vec{u})\times\vec{u}=0$  
 因此对于任意两个向量 $\vec{u},\vec{v}$ 叉乘, 可将 $\vec{v}$ 分解为相对 $\vec{u}$ 的垂直分量 $\vec{v}_{\perp}$ 与平行分量 $\vec{v}_{\parallel}$, 有 $\vec{u}\times\vec{v}_{\perp}=\vec{u}\times\vec{v}$
 1. 交叉积结果的绝对值为以 $\vec{u},\vec{v}$ 为边的平行四边形的面积, 因此 $|\vec{u}\times\vec{v}|=|\vec{u}||\vec{v}||\sin\theta|$
-1. 当固定向量 $\vec{u}$ 在左侧, 并在右侧乘以向量 $\vec{v}$, 则可等价为向量 $\vec{v}$ 左乘[叉乘矩阵](https://sat.huijiwiki.com/wiki/%E5%8F%89%E4%B9%98%E7%9F%A9%E9%98%B5) $[\tilde{u}]$, 叉乘矩阵满足
+
+### 交叉积矩阵
+当固定向量 $\vec{u}$ 在左侧, 并在右侧乘以向量 $\vec{v}$, 则可等价为向量 $\vec{v}$ 左乘[叉乘矩阵](https://sat.huijiwiki.com/wiki/%E5%8F%89%E4%B9%98%E7%9F%A9%E9%98%B5) $[\tilde{u}]$ (也写作 $[\vec{u}]$), 叉乘矩阵满足
 $$[\tilde{u}]=\begin{bmatrix}
 0&-u_z&u_y\\ u_z&0&-u_x\\ -u_y&u_x&0
-\end{bmatrix},\quad \vec{u}\times\vec{v}=[\tilde{u}]\vec{v}$$
+\end{bmatrix},\quad \vec{u}\times\vec{v}=[\tilde{u}]\vec{v}=-\vec{v}^T[\tilde{u}]$$
+
+可得 $[\tilde{u}]$ 为一个对角线为 $0$ 的反对称矩阵  
+而对于这类矩阵 $A$, 定义运算 $[\tilde{u}]=A^{\lor}=\vec{u}$ 可将叉乘矩阵转化为向量
+
+### 混合积
+对于三维空间中的三个向量 $\vec{u},\vec{v},\vec{w}$ 定义混合积 (也称为三重积) 运算满足
+$$[\vec{u}\vec{v}\vec{w}]=(\vec{u}\times\vec{v})\cdot\vec{w}=\begin{vmatrix}u_1&u_2&u_3\\v_1&v_2&v_3\\w_1&w_2&w_3\end{vmatrix}$$
+
+混合积具有以下性质
+* 由行列式[基本性质二](#基本性质二), 交换混合积中任意两个向量的位置, 结果取反
+* 由行列式性质[推论四](#推论四), 当三个向量位于同一平面时, 运算结果为 0
+* 由[体积与行列式](#体积与行列式)关系可得, 混合积的结果为三个向量为棱边组成的平行六面体体积
