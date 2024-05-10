@@ -37,7 +37,7 @@ axe.plot(x, y)
 |`Grid`|网格|`axe.grid(...)`|
 |`Spine`||`plt.spine`|
 
-## 图像布局 Axe
+## 图像 Axe
 ### 基本操作
 #### 设置坐标轴名称
 
@@ -237,7 +237,7 @@ fig.savefig("matplotlib_log2tick.svg")
 * 参数 `projection` 为子图像类别, 如极坐标图, 可选择参数 `{None, 'aitoff', 'hammer', 'lambert', 'mollweide', 'polar', 'rectilinear', '3d', str}` 
     * `polar` 表示极坐标图
     * `rectilinear` 表示二维空间坐标图
-    * `3d` 表示三维空间坐标图
+    * `3d` 表示三维空间坐标图 (详见[三维图像绘制](#三维图像绘制))
     * 其余图像主要用于地理
 
 #### 示例 : 九宫格图
@@ -328,7 +328,7 @@ fig.savefig('matplotlib_3x3subplot.svg')
 * 参数 `sharex` 设置 x 轴在子图像之间是否共享 / 共享方式, 可选参数 `bool or {'none', 'all', 'row', 'col'}` 
 * 参数 `sharey` 设置 y 轴在子图像之间是否共享 / 共享方式, 可选参数 `bool or {'none', 'all', 'row', 'col'}` 
 
-#### 示例 : 复杂图像布局
+#### 示例 : 复杂图像
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
@@ -387,10 +387,36 @@ fig.savefig("matplotlib_complex_layout.svg")
 ### 直线 axline
 
 ## 图像
+### 统计直方图
+
+### 离散折线图
 
 ## 高级绘图
-### 高级图像绘制
+### 特殊图像绘制
 ### 三维图像绘制
+#### 创建三维图像
+推荐的三维图像创建代码如下
+
+```python
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# 方法一
+fig = plt.figure()
+axe: Axes3D = fig.add_subplot(1, 1, 1, projection = '3d') # type: ignore
+
+# 方法二
+fig = plt.figure()
+axe = Axes3D(fig, auto_add_to_figure=False)
+fig.add_axes(axe)
+
+# 建议在终端中运行, 以实现与三维图像的互动
+plt.show()
+```
+
+#### 创建三维多边形
+<https://stackoverflow.com/questions/4622057/plotting-3d-polygons>
+
 ### 动画绘制
 参考自[文章](https://mp.weixin.qq.com/s?__biz=MzA3NTMzMjMyOA==&mid=2650929620&idx=1&sn=864a7c886f1bec26f005ed2cf557cf16)
 
@@ -455,6 +481,15 @@ matplotlib_funcanimation
 
 ## 杂项
 ### 中文显示
+> 参考文章 <https://zhuanlan.zhihu.com/p/52779214?from_voters_page=true>
+
+1. 打开路径 `.../anaconda3/envs/[python 环境名]/Lib/site-packages/matplotlib/mpl-data`
+1. 将 `simhei.ttf`, `arial.ttf` 放入路径下的 `fonts/ttf` 文件夹 (通常可在 `C:/windows/Fonts` 中找到)
+1. 将路径下的 `matplotlibrc` 文件复制到 `C:\用户\[用户名]\.matplotlib\matplotlibrc` (Windows), `$HOME/.config/matplotlib/matplotlibrc` (Linux)
+1. 打开复制后的文件
+    1. `font.family` 删除该选项前的 `#`
+    1. `font.sans-serif` 删除该选项前的 `#`, 在冒号后添加 `simhei`
+    1. `axes.unicode_minus` 删除该选项前的 `#`, 将值改为 `False`
 
 ### 简单 Latex 显示
 Matplotlib 可以绘制简单的行内 Latex (不支持宏包)
