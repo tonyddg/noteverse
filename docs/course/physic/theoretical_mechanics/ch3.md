@@ -53,7 +53,7 @@ $$\vec{L_D}=J_C\vec{\omega}+\vec{r_C}\times m\vec{v_C}$$
 1. 加速度为 $0$ 的点 (加速度瞬心, 瞬时平动时使用)
 
 此时有等式 
-$$\vec{M_D}=J_D\vec{\omega}$$
+$$\vec{M_D}=J_D\vec{\alpha}$$
 ==注意, 对于不同的动矩心 $D$, $J_D$ 的取值不同==
 
 #### 刚体平面运动微分方程
