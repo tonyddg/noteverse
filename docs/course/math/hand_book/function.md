@@ -108,11 +108,16 @@ $$\operatorname{Arctan}(x,y)=\begin{cases}
 0&,x=0,y=0
 \end{cases}$$
 
-* 推导图像  
+推导图像如下  
 
 ![](./src/Arctan_explain.drawio.svg)
 
-* 参考文献 <https://wuli.wiki/online/Arctan.html>
+注意
+* 一般编程中使用的是 `arctan2(y,x)`, 与上述定义存在差异
+* ==$\operatorname{Arctan}(x \cdot b,y \cdot b) \neq \operatorname{Arctan}(x,y)$==, 但可通过判断 $b$ 的符号使用 $\pm 1$ 代替
+* $\operatorname{Arctan}(x \cdot b,y \cdot b) = \operatorname{Arctan}(x,y) (b>0)$, 如果 $b>0$ 如 $b=x^2+y^2$ 则可以通分
+
+参考文献 <https://wuli.wiki/online/Arctan.html>
 
 ### 双曲函数
 #### 双曲正弦函数 
@@ -158,6 +163,12 @@ $$\cos A+\cos B=2\cos[\frac{A+B}{2}]\cos[\frac{A-B}{2}]$$
 $$\sin A\cos B=\frac{1}{2}[\sin(A+B)+\sin(A-B)]$$
 $$\cos A\cos B=\frac{1}{2}[\cos(A+B)+\cos(A-B)]$$
 $$\sin A\sin B=\frac{1}{2}[-\cos(A+B)+\cos(A-B)]$$
+
+#### 万能公式
+将仅含三角函数的超越方程转换为多项式方程
+$$x=\tan\frac{\theta}{2}$$
+$$\cos\theta=\frac{1-x^2}{1+x^2}$$
+$$\sin\theta=\frac{2x}{1+x^2}$$
 
 ### 反三角函数公式
 #### 反正切函数公式
