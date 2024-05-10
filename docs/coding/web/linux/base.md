@@ -78,7 +78,7 @@ Linux 的根目录中, 一般有如下目录
     * `-i` 如果 `dest` 存在, 则进行覆盖查询, 否则将直接覆盖
     * `-a` 相当于 `-dpr`, 一般复制时会开启此选项
 * `rm [-rfi] <file>` 删除文件
-    * `file` 要删除的文件路径
+    * `file` 要删除的文件路径, 可使用通配符 `*` 或 `?` 删除多个文件
     * `-f` 强制删除所有文件, 忽略不存在的文件
     * `-r` 递归删除目录即目录下的文件, 默认情况下只能删除文件, 如果需要删除文件夹即文件夹下的文件, 需要使用此命令
     * `-i` 在每个文件被删除前进行确认
@@ -370,7 +370,7 @@ set encoding=utf-8
 * `gr` 文件所有者同组用户的权限字符
 * `or` 其他用户的权限字符
 * `file` 文件或目录名
-* `= | + | -` 分别表示设置, 新增, 删除权限
+* `=+-` 分别表示设置, 新增, 删除权限
 
 选项
 * `-R` 如果选择的是目录, 则递归修改该目录下所有文件
@@ -694,6 +694,95 @@ HOME=/
     * 连接时需要输入公钥文件的保护密码
 * 强制密钥对方式连接设置 (见视频介绍)
 
+### 终端复用 tmux
+即使只有一个真实终端, 可通过 tmux 实现对终端的复用, 使多个虚拟终端同时运行, 并在同一个终端中拆分窗口  
+参考 <https://github.com/tmux/tmux/wiki/Getting-Started>
+
+* 基本概念
+    * 会话 session  
+        * 会话可以理解为窗口管理器, 窗口必须在会话下管理  
+        * 一个终端中允许多个会话运行, 但一个终端能有一个会话附加 (attach), 其他会话则在分离 (detach) 到后台运行
+        * 当会话被附加到终端时, 将会在下方显示一个状态栏, 从左到右分别显示
+            * 当前会话名称
+            * 当前窗口列表, 被选中的窗口有后缀 `*`
+            * 被选中的窗格名
+            * 当前时间
+        * 当会话内没有窗口时将自动销毁
+    * 窗口 window  
+        * 窗口即显示在当前终端下的画面  
+        * 一个会话中允许有多个窗口运行, 但终端仅显示一个窗口, 其他窗口则在后台运行
+        * 当窗口内没有窗格时将自动销毁
+    * 窗格 pane  
+        * 窗格即最基本的终端单元, 由窗口管理  
+        * 同一个窗口上至少有一个窗格, 多个窗格则将占据终端的不同部分并分别同时显示   
+        * 当窗格创建时执行了特定程序 (带有 `command` 参数), 则窗格将在程序结束后自动销毁, 否则将在终端关闭后自动销毁 (使用 `exit` 命令)
+    * 快捷键
+        * 快捷键只能在附加会话内使用
+        * 使用时应先按下 <kbd>Ctrl</kbd><kbd>b</kbd> 作为前缀, 再按下其他键
+* 会话管理  
+仅能在 tmux 环境外进行会话管理, 进入特定会话后无法管理其他会话  
+以下命令默认在会话外, 即一般终端中运行
+    * `tmux new [-d] [-n <session-name>] [command]` 新建会话, 并在会话中创建一个窗口
+        * `session-name` 新建的会话名
+        * `command` 在新建会话的第一个窗口中执行命令, 可使用字符串 `''` 包裹命令
+        * `-d` 创建会话后立刻分离, 用于创建后台程序
+    * `tmux attach -t <session-name>` 将指定会话附加到终端上
+    * `tmux kull-session -t <session-name>` 销毁指定会话
+    * `tmux kill-server` 销毁所有会话
+    * `tmux switch -t <session-name>` 切换到指定会话 (在会话中使用)
+    * `tmux rename-session -t <session-name> <new-name>` 重名名会话
+    * `tmux ls` 列出所有会话 (可在任意场合使用)
+    * 快捷键 <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>d</kbd> 或命令 `tmux detach` 分离当前会话 (在会话中使用), 
+* 窗口与窗格管理  
+仅能在附加会话内管理该会话下的窗口, 在特定窗口下管理该窗口下的窗格  
+以下仅介绍部分常用命令, 更多操作可通过快捷键完成 (对应命令可查看手册)
+    * `tmux new-window [-d] [-n <window-name>] [-t <window-number>] [command]` 新建窗口, 窗口中有一个窗格
+        * `window-name` 新建的窗口名
+        * `window-number` 新建窗口的编号, 默认从 `1` 往后编号
+        * `command` 在新建窗口的第一个窗格中执行命令
+        * `-d` 不使用新建的窗口作为当前窗口
+    * `tmux split-window [-hv] [-t <pane-number>] [command]` 通过切分当前窗格创建窗格
+        * `-h` 沿水平方向切分当前窗格
+        * `-v` 沿竖直方向切分当前窗格
+        * `pane-number` 新建窗格的编号, 默认从 `0` 往后编号
+        * `command` 在新建窗格中执行命令
+    * `tmux select-pane -t <pane-number>` 通过编号选择窗格
+    * `tmux select-window -t <window-name>` 通过名称选择窗口
+    * `tmux select-layout <layout>` 使用预设布局当前窗格, 可选预设有
+        * `even-horizontal` 所有窗格横向拉伸, 沿纵向排列
+        * `even-vertical` 所有窗格纵向拉伸排列, 沿横向排列
+        * `main-horizontal` 其中一个窗格放大, 剩余窗格在底部横向排列
+        * `main-vertical` 其中一个窗格放大, 剩余窗格在右侧纵向排列
+        * `tiled` 尽量让各个窗格大小相等, 且行列数相等
+    * 窗格相关快捷键
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>%</kbd> 沿水平方向切分当前窗格, 即 `tmux split-window -h`
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>"</kbd> 沿竖直方向切分当前窗格, 即 `tmux split-window -v`
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>方向键</kbd> 向指定方向选择窗格
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>q</kbd> 在窗格上打印编号
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>q</kbd> + <kbd>数字</kbd> 选择指定编号的窗格
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>x</kbd> 销毁当前窗格
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>Space</kbd> 重新布局窗格 (多次按下可切换布局)
+    * 窗口相关快捷键
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>数字</kbd> 移动到指定编号的窗口
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>n</kbd> 移动到下一窗口
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>p</kbd> 移动到上一窗口
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>w</kbd> 进入窗口选择器, 可在该选择器选择窗口 (<kbd>Enter</kbd>) 与查看窗口 (<kbd>方向键</kbd>)
+        * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>&</kbd> 销毁当前窗口
+* 其他快捷键与使用
+    * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>?</kbd> 列出所有快捷键
+    * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>:</kbd> 命令模式, 相当于向 tmux 输入命令 (不需要前缀 `tmux`)
+    * <kbd>Ctrl</kbd><kbd>b</kbd> + <kbd>[</kbd> 浏览模式 (复制模式), 在此模式下可通过光标上下移动终端, 浏览终端的历史输出, 该模式下有以下操作键
+        * <kbd>q</kbd> 退出浏览模式
+        * <kbd>方向键</kbd> 移动光标
+        * <kbd>Ctrl</kbd><kbd>Space</kbd> 开始选择内容 (该快捷键可能与 Windows 下的输入法快捷键冲突, 可能需要关闭输入法快捷键)
+        * <kbd>Ctrl</kbd><kbd>w</kbd> 复制选择内容到剪切板中并退出 
+* 通常使用流程
+    * 编写脚本用于组织窗口与运行程序
+        * 使用 `tmux new-window [command]` 创建新窗口, 并在窗口中执行命令
+        * 使用 `tmux split-window [command]` 创建新窗格, 并在窗格中执行命令
+        * 使用 `tmux select-layout main-vertical` 设置窗格布局
+        * 使用 `zsh` 在运行该脚本的窗格上创建一个新终端 (通常即最后一句)
+    * 使用 `tmux new-window 'zsh <脚本文件>'` 根据以上创建的脚本创建会话
 ### 其他实用命令
 * `man <命令名称>` 获取命令的详细帮助, 一般情况下使用该命令可获得比 `--help` 更详细的信息  
 查看文档的方式与 [less](#浏览文件内容) 相同
@@ -716,3 +805,10 @@ HOME=/
 * `date [+"format"]` 获取当前时间
     * `format` 使用格式 `format` 输出, 设置可参考 <https://www.runoob.com/linux/linux-comm-date.html>  
     常用的格式有 `%F` 显示当前完整日期, 可用于日志名称, `%T` 显示当前完整时间
+* `sleep <number>[smhd]` 等待一段时间
+    * `number` 等待时间
+    * `smhd` 时间单位
+        * `s` 秒
+        * `m` 分
+        * `h` 时
+        * `d` 天
