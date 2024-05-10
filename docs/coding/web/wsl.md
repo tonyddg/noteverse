@@ -1,5 +1,5 @@
 # WSL
-## 安装
+## 基本使用
 ### 直接安装
 ```shell
 wsl --install
@@ -24,20 +24,37 @@ wsl 中允许安装多个版本的 Linux
 * `wsl --unregister <Distro>` 删除 Linux 版本 `Distro`
 * `wsl -s <Distro>` 设置 `Distro` 为默认启动版本
 
-### 安装后操作
-更新软件 `sudo apt update && sudo apt upgrade`
+### 进入 WSL
+* 使用 `wsl` 可直接进入 WSL 中的 Linux 环境  
+该命令进入的默认 Linux 版本可通过 `wsl -s <Distro>` 设置
+* 使用 `wsl -d <Distro>` 进入版本为 `Distro` 的 Linux
 
-## 其他命令
 ### 关闭 WSL
 运行 `wsl` 命令可直接启动  
 但关闭 wsl 需要在外部终端中使用以下命令才可关闭
 
-```powershell
-wsl --shutdown
-```
+* `wsl --shutdown` 关闭所有正在运行的 Linux
+* `wsl --terminal <Distro>` 关闭版本名为 `Distro` 的 Linux
+
+### Linux 导出与导入
+* `wsl --export <Distro> <file>` 导出 Linux 镜像
+    * `Distro` 被导出的 Linux 版本名
+    * `file` 导出镜像保存路径与文件名, 一般使用后缀 `.tar`
+* `wsl --import <Distro> <path> <file>`
+    * `Distro` 被导出的 Linux 版本名
+    * `path` Linux 虚拟硬盘所在路径
+    * `file` 导入的 Linux 镜像
+
+### WSL 配置
+WSL 有如下的配置文件
+* Windows 下文件 `C:\User\<用户名>\.wslconfig` 应用于所有 WSL 的配置文件
+* WSL 内文件 `/etc/wsl.config` 用于特定 Linux 环境的配置文件
+
+常用的配置有 (注意 `\n` 在配置文件中为换行)
+* 设置默认登录用户 `[user]\ndefault=<用户名>`
 
 ## 美化
-首先在 WSL 中安装 oh-my-zsh 与 p10k 主题, [参见](./linux.md#oh-my-zsh)
+首先在 WSL 中安装 oh-my-zsh 与 p10k 主题, [参见](./linux/software.md#oh-my-zsh)
 
 从网站 <https://nerdfonts.com/> 上下载所需要的字体, 推荐 Hack Nerd Font
 
