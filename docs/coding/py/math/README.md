@@ -10,4 +10,4 @@ index: false
 ## [Sympy 数学符号运算](./sympy.md)
 ## [Opencv 图像处理](./opencv.md)
 ## [Pandas 数据处理](./pandas.md)
-## [Scikit-learn 深度学习](./sklearn.md)
+## [机器学习](./machine_learning.md)
