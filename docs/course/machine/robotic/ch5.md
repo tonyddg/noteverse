@@ -214,6 +214,10 @@ $$
 
 对于连杆 $R_{1}$, 显然基座总是固定的, 因此其牵连运动参数必定全为 $0$, 为递推的实现提供了条件
 
+注意, 以下连杆的运动传递公式用于具体分析, 简单分析时可使用雅可比矩阵代替
+* 如果仅需要单个连杆的速度与角速度, 可通过[构造雅可比矩阵](./ch4.md#雅可比矩阵的构造), 再乘上关节速度矢量 $\dot{\bm{q}}$ 得到
+* 如果忽视各个连杆上单独的载荷, 可将末端上的分散载荷移动到末端关节后使用[力雅可比矩阵](./ch4.md#力雅可比矩阵), 求出各个关节的支承力
+
 ### 角速度的合成与递推
 由于角速度为矢量, 因此绝对角速度 $\bm{\omega}_a$ 可分解为相对角速度 $\bm{\omega}_r$ 与牵连角速度 $\bm{\omega}_e$
 $$\bm{\omega}_a=\bm{\omega}_r+\bm{\omega}_e$$
@@ -248,7 +252,7 @@ $${}^{A}\bm{\alpha}_{C}={}^{A}_{B}\bm{R}[\space^{B'}\bm{\omega}_{B}]{}^{B}\bm{\o
 $$\bm{v}_{N}^{a}=\bm{v}_{N}^{r}+\bm{v}_{N}^{e}$$
 
 对于空间坐标系 $\{\bm{A}\}$ 中的刚体 $B,C$ 以及刚体 $C$ 上的点 $N$ 有
-* 点 $N$ 在刚体 $C$ 上的绝对为 $\bm{v}_N^a={}^{A}\bm{v}_{C_N}$
+* 点 $N$ 在刚体 $C$ 上的绝对速度为 $\bm{v}_N^a={}^{A}\bm{v}_{C_N}$
 * 刚体 $C$ 上的点 $N$ 在参考系 $B$ 观察下有相对运动速度 $\bm{v}^r_{N}={}^{A}_{B}\bm{R}{}^{B}\bm{v}_{C_N}$  
 使用 ${}^{A}_{B}\bm{R}$ 的原因与[角速度的合成与递推](#角速度的合成与递推)相同
 * 点 $N$ 在刚体 $B$  上的绝对角速度即 $C$ 的牵连速度 $\bm{v}_{N}^e={}^{A}\bm{v}_{B_N}$
@@ -305,12 +309,12 @@ $$\space^{(i+1)'}\bm{v}_{(i+1)_{O_{i+1}}}=\space^{(i+1)'}_{i}\bm{R}{}^{i}\bm{v}_
 由于旋转关节 $J_{i+1}$ 没有平动, 因此 $\{i+1\}$ 的原点 ${O_{i+1}}$ 在连杆 $i$ 与 $i+1$ 上相对静止, 相对速度 ${}^{i}\bm{v}_{(i+1)_{O_{i+1}}}=\bm{0}$ 
 
 根据[基点法](../../physic/theoretical_mechanics/ch2.md#基点法求速度), 可得有牵连速度
-$$\space^{i'}\bm{v}_{i_{O_{i+1}}}=\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{(i+1)_{O_{i+1}}}+\space^{i'}\bm{v}_{i_{O_{i+1}}}$$
+$$\space^{i'}\bm{v}_{i_{O_{i+1}}}=\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{(i+1)_{O_{i+1}}}+\space^{i'}\bm{v}_{i_{O_{i}}}$$
 
 其中 ${}^{i}\bm{p}_{(i+1)_{O_{i+1}}}$ 即 $\{i+1\}$ 原点在坐标系 $\{i\}$ 上的坐标, $\space^{i'}\bm{\omega}_{i}$ 可根据递推得到  
 将牵连速度的观察坐标系由世界坐标系 $\{i'\}$ 转换到 $\{(i+1)'\}$ 后, 可得  
 旋转关节连杆 $R_{i+1}$ 的速度递推公式为
-$$\space^{(i+1)'}\bm{v}_{(i+1)_{O_{i+1}}}=\space^{i+1}_{i}\bm{R}(\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{(i+1)_{O_{i+1}}}+\space^{i'}\bm{v}_{i_{O_{i+1}}})$$
+$$\space^{(i+1)'}\bm{v}_{(i+1)_{O_{i+1}}}=\space^{i+1}_{i}\bm{R}(\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{(i+1)_{O_{i+1}}}+\space^{i'}\bm{v}_{i_{O_{i}}})$$
 
 ---
 以坐标系 $\{i+1\}$ 的原点 ${O_{i+1}}$ 为加速度分析对象有
@@ -324,7 +328,7 @@ $$\space^{i'}\bm{a}_{i_{O_{i+1}}}=\space^{i'}\bm{a}_{i_{O_i}}+\space^{i'}\bm{\al
 $$\space^{(i+1)'}\bm{a}_{(i+1)_{O_{i+1}}}=\space^{(i+1)'}_{i'}\bm{R}(\space^{i'}\bm{a}_{i_{O_i}}+\space^{i'}\bm{\alpha}_{i}\times{}^{i}\bm{p}_{O_{i+1}}+\space^{i'}\bm{\omega}_{i}\times\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{O_{i+1}})$$
 
 
-### 平动关节的递推
+### 平动关节的运动传递
 使用同样的坐标系规定  
 由于平动关节 $J_{i+1}$ 没有旋转, 因此连杆 $R_{i+1}$ 相对 $R_{i}$ 没有相对转动, 因此只有牵连角速度  
 类似[旋转关节的运动传递](#旋转关节的运动传递)可得牵连角速度满足 $\space^{(i+1)'}\bm{\omega}_{i}=\space^{(i+1)'}_{i'}\bm{R}\space^{(i)'}\bm{\omega}_{i}$
@@ -347,7 +351,7 @@ $$\space^{(i+1)'}\bm{\alpha}_{i+1}=\space^{(i+1)'}_{i'}\bm{R}\space^{i'}\bm{\alp
 类似[旋转关节的运动传递](#旋转关节的运动传递)可得牵连速度满足 $\space^{i'}\bm{v}_{i_{O_{i+1}}}=\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{(i+1)_{O_{i+1}}}+\space^{i'}\bm{v}_{i_{O_{i+1}}}$
 
 因此平动关节连杆 $R_{i+1}$ 的速度递推公式为
-$$\space^{(i+1)'}\bm{v}_{(i+1)_{O_{i+1}}}=\space^{i+1}_{i}\bm{R}(\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{(i+1)_{O_{i+1}}}+\space^{i'}\bm{v}_{i_{O_{i+1}}})+\dot{d}_{i+1}\bm{z}$$
+$$\space^{(i+1)'}\bm{v}_{(i+1)_{O_{i+1}}}=\space^{i+1}_{i}\bm{R}(\space^{i'}\bm{\omega}_{i}\times{}^{i}\bm{p}_{(i+1)_{O_{i+1}}}+\space^{i'}\bm{v}_{i_{O_{i}}})+\dot{d}_{i+1}\bm{z}$$
 
 ---
 以坐标系 $\{i+1\}$ 的原点 ${O_{i+1}}$ 为速度分析对象有
@@ -397,3 +401,31 @@ $$\begin{split}
 * 对于旋转关节 $J_i$, 其驱动力必定为绕 ${}^{i}\bm{z}_i$ 的力矩, 因此关节的广义驱动力为 $\tau_i={}^{i}\bm{\tau}_{i}^T{}^{i}\bm{z}_i$
 * 对于平动关节 $J_i$, 其驱动力必定为沿 ${}^{i}\bm{z}_i$ 的力, 因此关节的广义驱动力为 $\tau_i={}^{i}\bm{f}_{i}^T{}^{i}\bm{z}_i$
 
+### 动力学公式总结
+在实际使用中, 为了方便表示公式直接使用以下符号表示, 且不对坐标系的固连对象进行严格区分 
+$${^{i}\bm{v}_i} \to {^{i'}\bm{v}_{iO_i}}\quad {^{i}\bm{v}_{c_i}} \to {^{i'}\bm{v}_{iC_i}}\quad {^{i}\bm{a}_{i}}\to {^{i'}\bm{a}_{iO_i}}\quad {^{i}\bm{a}_{c_i}}\to {^{i'}\bm{a}_{iC_i}}$$
+
+对于旋转关节有递推公式
+$$\begin{cases}
+{^{i+1}\bm{\omega}_{i+1}}=\dot{\theta}_{i+1}\bm{z}+{^{i+1}_{i}\bm{R}}{^i\bm{\omega}_i}\\
+{^{i+1}\bm{\alpha}_{i+1}}=\big({^{i+1}_i\bm{R}}{^i\bm{\omega}_i}\big)\times\big(\dot{\theta}_{i+1}\bm{z}\big)+\big(\ddot{\theta}_{i+1}\bm{z}\big)+\big({^{i+1}_i\bm{R}}{^i\bm{\alpha}_i}\big)\\
+{^{i+1}\bm{v}_{i+1}}={^{i+1}_i\bm{R}}\big({^i\bm{\omega}_i}\times{^i\bm{p}_{O_{i+1}}}+{^i\bm{v}_{i}}\big)\\
+{^{i+1}\bm{a}_{i+1}}={^{i+1}_i\bm{R}}\big[{^{i}\bm{a}_{i}}+{^{i}\bm{\alpha}_{i}}\times{^{i}\bm{p}_{O_{i+1}}}+{^i\bm{\omega}_i}\times({^i\bm{\omega}_i}\times{^i\bm{p}_{O_{i+1}}})\big]
+\end{cases}$$
+
+对于平动关节有递推公式
+$$\begin{cases}
+{^{i+1}\bm{\omega}_{i+1}}={^{i+1}_{i}\bm{R}}{^i\bm{\omega}_i}\\
+{^{i+1}\bm{\alpha}_{i+1}}={^{i+1}_i\bm{R}}{^i\bm{\alpha}_i}\\
+{^{i+1}\bm{v}_{i+1}}={^{i+1}_i\bm{R}}\big({^i\bm{\omega}_i}\times{^i\bm{p}_{O_{i+1}}}+{^i\bm{v}_{i}}\big)+\dot{d}_{i+1}\bm{z}\\
+{^{i+1}\bm{a}_{i+1}}={^{i+1}_i\bm{R}}\big[{^{i}\bm{a}_{i}}+{^{i}\bm{\alpha}_{i}}\times{^{i}\bm{p}_{O_{i+1}}}+{^i\bm{\omega}_i}\times({^i\bm{\omega}_i}\times{^i\bm{p}_{O_{i+1}}})+2{^i\bm{\omega}_i}\times(\dot{d}_{i+1}\bm{z})\big]+\ddot{d}_{i+1}\bm{z}
+\end{cases}$$
+
+质心速度与加速度公式 (以下公式即基点法, 除了质心也可用于求取刚体上任意点的速度与加速度)
+$$\begin{cases}
+{^{i}\bm{v}_{c_i}}={^i\bm{v}_{i}}+{^{i}\bm{\omega}_{i}}\times{^{i}\bm{p}_{C_i}}\\
+{^{i}\bm{a}_{c_i}}={^i\bm{a}_{i}}+{^{i}\bm{\alpha}_{i}}\times{^{i}\bm{p}_{C_i}}+{^i\bm{\omega}_i}\times({^i\bm{\omega}_i}\times{^i\bm{p}_{C_{i}}})
+\end{cases}$$
+
+对于求得的, 固连在大地上, 与关节坐标系重合的坐标系 $\{i'\}$ 下观察的运动可通过坐标系变换为以基座为观察坐标系
+$${^{0}\bm{\omega}_{i}}={^{0}_{i}\bm{R}}{^{i}\bm{\omega}_{i}}$$

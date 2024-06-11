@@ -289,8 +289,8 @@ $$
 根据二者与 $\dot{\bm{R}}(t)$ 之间的关系可得 (其中步骤见[交叉积与姿态矩阵](#交叉积与姿态矩阵)的有关性质)
 $$\begin{split}
 \bm{R}(t)[{}^{b}\bm{\omega}]&=[{}^{s}\bm{\omega}]\bm{R}(t)\\
-[{}^{b}\bm{\omega}]&=\bm{R}(t)^T[{}^{s}\bm{\omega}]\bm{R}(t)\\
-{}^{b}\bm{\omega}&=\bm{R}(t)^T{}^{s}\bm{\omega}
+[{}^{b}\bm{\omega}]&=\bm{R}^T(t)[{}^{s}\bm{\omega}]\bm{R}(t)\\
+{}^{b}\bm{\omega}&=\bm{R}^T(t){}^{s}\bm{\omega}
 \end{split}$$
 
 使用坐标系 $\{\bm{C}\}$ 与 $\{\bm{B}\}$ 时可表示为 ${}^{B}\bm{\omega}_{B}(t)={}^{C}_{B}\bm{R}^T(t){}^{C}\omega_{B}(t)$
