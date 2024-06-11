@@ -377,19 +377,20 @@ row_contact = pd.concat([df1, df2], ignore_index = False, axis = 1)
         * `path_or_buf` 保存路径或写入文件对象
         * `na_rep` 空数据代替
         * `float_format` 浮点数表示格式, 使用转义字符格式如字符串 `%.2f`
-    * `dataframe.read_csv(filepath_or_buffer)` 从 csv 文件导入数据表
+    * `pd.read_csv(filepath_or_buffer, * names = None)` 从 csv 文件导入数据表
         * `filepath_or_buffer` 文件路径或读取文件对象
+        * `names` 字符串列表, 表示 csv 中各列的标题, 默认以第一行作为列标题
 * parquet 格式 (开源格式, 具有较高的压缩比)
     * `dataframe.to_parquet(path)` 将数据表导出为 Parquet 格式  
         * `path` 保存路径或写入文件对象
-    * `dataframe.read_parquet(path)` 从 Parquet 文件导入数据表
+    * `pd.read_parquet(path)` 从 Parquet 文件导入数据表
         * `path` 文件路径或读取文件对象
 * excel 格式
     * `dataframe.to_excel(excel_writer, *, sheet_name = 'Sheet1', na_rep = '', float_format = None)` 将数据表导出为 Excel 格式  
-        * `excel_writer` 保存路径或写入文件对象
+        * `excel_writer` 保存路径或写入文件对象, 需要带后缀 `xlsx`
         * `sheet_name` 导出文件中的子表格名
         * `na_rep` 空数据代替
         * `float_format` 浮点数表示格式, 使用转义字符格式如字符串 `%.2f`
-    * `dataframe.read_parquet(io, sheet_name = 0)` 从 Parquet 文件导入数据表
+    * `pd.read_parquet(io, sheet_name = 0)` 从 Parquet 文件导入数据表
         * `io` 文件路径或读取文件对象
         * `sheet_name` 读取的子表格名或次序
