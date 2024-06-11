@@ -87,7 +87,68 @@ $$(\vec{A}\cdot\vec{\nabla})\vec{A}=P\frac{\partial\vec{A}}{\partial x}+Q\frac{\
 \neq\\
 (\vec{\nabla}\cdot\vec{A})\vec{A}=(P\vec{\nabla}\cdot\vec{A},Q\vec{\nabla}\cdot\vec{A},R\vec{\nabla}\cdot\vec{A})$$
 
-
 ## 常用微元与坐标系变换
 
 ## 多重积分公式
+
+## 矢量求导法则
+参考 
+* <https://blog.csdn.net/SA14023053/article/details/51859446>
+* <https://www.cnblogs.com/pinard/p/10930902.html>
+
+矢量与矩阵求导依然满足链式法则, 一般利用链式法则避免直接对矩阵求导  
+可使用工具 <https://www.matrixcalculus.org/> 计算矩阵求导
+
+### 矢量对标量求导
+对于任意矢量或矩阵 $\bm{X}\in\R^{m\times n}$ 与标量 $y$  
+有 $\bm{X}$ 相对 $y$ 的导数即矩阵中各个元素 $x_{i,j}$ 相对 $y$ 求导, 满足
+
+$$\frac{\partial \bm{X}}{\partial y}=\begin{bmatrix}
+\frac{\partial x_{1,1}}{\partial y}&\frac{\partial x_{1,2}}{\partial y}&\dots&\frac{\partial x_{1,n}}{\partial y}\\
+\frac{\partial x_{2,1}}{\partial y}&\frac{\partial x_{2,2}}{\partial y}&\dots&\frac{\partial x_{2,n}}{\partial y}\\
+\vdots&\vdots&\ddots&\vdots\\
+\frac{\partial x_{m,1}}{\partial y}&\frac{\partial x_{m,2}}{\partial y}&\dots&\frac{\partial x_{m,n}}{\partial y}
+\end{bmatrix}$$
+
+### 标量对矢量求导
+对于任意矢量或矩阵 $\bm{X}\in\R^{m\times n}$ 与标量 $y$  
+有 $y$ 相对 $\bm{X}$ 的导数即 $y$ 相对矩阵中各个元素 $x_{i,j}$ 求导, 满足
+
+$$\frac{\partial y}{\partial \bm{X}}=\begin{bmatrix}
+\frac{\partial y}{\partial x_{1,1}}&\frac{\partial y}{\partial x_{1,2}}&\dots&\frac{\partial y}{\partial x_{1,n}}\\
+\frac{\partial y}{\partial x_{2,1}}&\frac{\partial y}{\partial x_{2,2}}&\dots&\frac{\partial y}{\partial x_{2,n}}\\
+\vdots&\vdots&\ddots&\vdots\\
+\frac{\partial y}{\partial x_{m,1}}&\frac{\partial y}{\partial x_{m,2}}&\dots&\frac{\partial y}{\partial x_{m,n}}
+\end{bmatrix}$$
+
+### 矢量对矢量求导
+对于行矢量 $\vec{x}^T\in\R^{1\times n}$ 与列矢量 $\vec{y}\in\R^{m\times 1}$  
+行矢量 $\vec{x}^T$ 相对列矢量 $\vec{y}$ 求导可得到 $m\times n$ 的雅可比矩阵, 满足
+
+$$\frac{\partial \vec{x}^T}{\partial \vec{y}}=\begin{bmatrix}\frac{\partial \vec{x}^T}{\partial y_{1}}\\\frac{\partial \vec{x}^T}{\partial y_{2}}\\\vdots\\\frac{\partial \vec{x}^T}{\partial y_{m}}\end{bmatrix}=\begin{bmatrix}
+\frac{\partial x_{1}}{\partial y_{1}}&\frac{\partial x_{2}}{\partial y_{1}}&\dots&\frac{\partial x_{n}}{\partial y_{1}}\\
+\frac{\partial x_{1}}{\partial y_{2}}&\frac{\partial x_{2}}{\partial y_{2}}&\dots&\frac{\partial x_{n}}{\partial y_{2}}\\
+\vdots&\vdots&\ddots&\vdots\\
+\frac{\partial x_{1}}{\partial y_{m}}&\frac{\partial x_{2}}{\partial y_{m}}&\dots&\frac{\partial x_{n}}{\partial y_{m}}
+\end{bmatrix}$$
+
+同样的, 列矢量 $\vec{y}$ 相对行矢量 $\vec{x}^T$ 求导可得到 $m\times n$ 的雅可比矩阵, 满足
+
+$$\frac{\partial \vec{y}}{\partial \vec{x}^T}=\begin{bmatrix}\frac{\partial \vec{y}}{\partial x_{1}}&\frac{\partial \vec{y}}{\partial x_{2}}&\dots&\frac{\partial \vec{y}}{\partial x_{n}}\end{bmatrix}=\begin{bmatrix}
+\frac{\partial y_{1}}{\partial x_{1}}&\frac{\partial y_{1}}{\partial x_{2}}&\dots&\frac{\partial y_{1}}{\partial x_{n}}\\
+\frac{\partial y_{2}}{\partial x_{1}}&\frac{\partial y_{2}}{\partial x_{2}}&\dots&\frac{\partial y_{2}}{\partial x_{n}}\\
+\vdots&\vdots&\ddots&\vdots\\
+\frac{\partial y_{m}}{\partial x_{1}}&\frac{\partial y_{m}}{\partial x_{2}}&\dots&\frac{\partial y_{m}}{\partial x_{n}}
+\end{bmatrix}$$
+
+当矢量 $\vec{x}\in\R^{n\times 1}, \vec{y}\in\R^{m\times 1}$ 均为列矢量或均为行矢量时, 求导结果依然为雅可比矩阵, 但需要明确使用的布局方法
+* 采用分母布局时, 导数从行数与列数优先与分母相同
+    * 当 $\vec{x},\vec{y}$ 均为列向量有 $\frac{\partial \vec{y}}{\partial \vec{x}}=\frac{\partial \vec{y}^T}{\partial \vec{x}}\in\R^{n\times m}$
+    * 当 $\vec{x},\vec{y}$ 均为行向量有 $\frac{\partial \vec{y}^T}{\partial \vec{x}^T}=\frac{\partial \vec{y}}{\partial \vec{x}^T}\in\R^{m\times n}$
+* 采用分子布局时, 则结果相反, 两种布局的结果互为转置
+
+根据矢量对矢量的求导法则可知, 函数 $\vec{y}=a\vec{x}+\vec{b}$ 中, 求导 $\frac{\partial\vec{y}}{\partial\vec{x}}$ 的结果是对角矩阵 $a\bm{I}$ 而不是单个标量
+
+### 矩阵对矩阵求导
+矩阵间以及矩阵对矢量的求导较为复杂, 一般通过链式法则转换为矢量与标量的求导, 具体可见参考资料的介绍
+
