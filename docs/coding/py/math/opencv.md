@@ -369,7 +369,83 @@ OpenCV 提供以下函数用于简单的角点检测
 OpenCV 提供以下函数用于 Canny 边缘提取
 * `cv.Canny(image, threshold1, threshold2, *, apertureSize, L2gradient)` 
     * `image` 被检测的图片数组, 要求时单通道的一般为灰度图
-    * `threshold1` 下阈值, 需要给出具体的灰度值
-    * `threshold2` 上阈值, 需要给出具体的灰度值
+    * `threshold1` 浮点数, 梯度下阈值, 值越小边缘越连续, 但可能引入噪声, 对于 8 位色深一般取 100
+    * `threshold2` 浮点数, 梯度上阈值, 值越大噪声越少, 但可能会缺少提取到的边缘, 对于 8 位色深一般取 200
     * `apertureSize` 整数, 即 Sobel 算子大小
     * `L2gradient` 布尔值, 计算梯度的范数, 默认为 `False`, 使用 p-1 范数即梯度为两个方向偏导绝对值之和, `True` 时使用 p-2 范数即梯度为两个方向导数的平方和再开根号
+    * 返回值为 8 位单通道图片, 其中非边缘点像素值为 0, 边缘点像素值为 255, 与输入图片大小相同
+
+### 霍夫变换
+<https://docs.opencv.org/4.9.0/d6/d10/tutorial_py_houghlines.html>  
+<https://docs.opencv.org/4.9.0/da/d53/tutorial_py_houghcircles.html>
+
+OpenCV 提供以下函数用于霍夫 (Hough) 变换
+* `cv.HoughLines(image, rho, theta, threshold)` 霍夫直线变换
+    * `image` 用于提取直线的 8 位单通道图片, ==通常经过 Canny 边缘提取的结果==
+    * `rho` 距离分辨率, 单位为像素, 一般为 1
+    * `theta` 角度分辨率, 单位为弧度, 一般为 $\pi/180$, 即 $1^\circ$
+    * `threshold` 标记阈值, 仅当直线上的像素个数超过此阈值才认为是直线, 一般为 200
+    * 返回值为一个元组 `((rho, theta), votes)` 组成的列表 (注意元组的第一个元素也是元组), 当没有匹配结果时返回 `None`
+        * `rho` 直线到原点 (左上角) 的垂直距离
+        * `theta` 直线到原点垂线与 X 轴的夹角
+        * `votes` 直线上的像素数
+        * 因此匹配直线的表达式为 $\rho=x\cos\theta+y\sin\theta$
+* `cv.HoughLinesP(image, rho, theta, threshold)` 基于概率的霍夫变换, 具有更快的速度
+    * 参数含义与霍夫变换相同, 但一般需要调小阈值参数 `threshold`
+    * 返回值为一个元组 `((x1, y1, x2, y2))` 表示提取到直线的起点与终点 (不一定是完整直线)
+* `cv.HoughCircles(image, method, dp, minDist, *, param1, param2, minRadius, maxRadius)` 霍夫圆变换
+    * `image` 用于提取圆的 8 位单通道图片, 可以直接传入灰度图使用内置的 Canny 边缘提取
+    * `method` 霍夫变换匹配方法, 可用值如下
+        * `cv.HOUGH_GRADIENT` 标准的霍夫圆变换, 一般使用此方法即可
+        * `cv.HOUGH_GRADIENT_ALT` 改进型霍夫圆变换, 具有更高的准确率
+    * `dp` 圆心位置分辨率相对原始大小的除数, 因此取 1 时分辨率为图上每个像素, 取 2 时仅由原图一半, 一般取 1
+    * `minDist` 允许两个圆圆心的最近距离, 过小将降低准确率, 过大将导致部分圆被忽略, 一般取 20
+    * `param1` 第一边缘检测参数, 即边缘上阈值, 对于 `cv.HOUGH_GRADIENT` 一般取 100, 对于 `cv.HOUGH_GRADIENT_ALT` 一般取 300
+    * `param2` 第二边缘检测参数
+        * 对于 `cv.HOUGH_GRADIENT`, 为圆上的像素个数阈值, 取值越小速度越快但可能误差越大, 一般取 50
+        * 对于 `cv.HOUGH_GRADIENT_ALT` 为 0 到 1 的浮点数, 即要求匹配圆的圆度, 一般取 0.9 或 0.8 (匹配小圆)
+    * `minRadius` 圆的最小半径, 默认为 0
+    * `maxRadius` 圆的最大半径, 当传入负数时, `cv.HOUGH_GRADIENT` 方法将仅寻找原点而不寻找半径
+    * 返回值为列表 `[[(x, y, radius), (x, y, radius), ...]]`, 注意实际结果在列表的第二层中, 因此一般使用 `circles[0]` 提取实际结果  
+    各条结果中 `x, y` 即圆心位置, `radius` 即半径, 当没有匹配结果时返回 `None`
+
+通常绘制霍夫直线变换结果直线的代码如下
+```python
+lines = cv.HoughLines(edge, 1, np.pi / 180, 200)
+back = 100
+forward = 1000
+
+for it in lines:
+    rho, theta = it[0]
+    a = np.cos(theta)
+    b = np.sin(theta)
+
+    # 找出直线与原点的垂足
+    x0 = rho * a
+    y0 = rho * b
+    # 由垂足分别向前后延伸指定距离
+    x1 = int(x0 - b * back)
+    x2 = int(x0 + b * forward)
+
+    y1 = int(y0 + a * back)
+    y2 = int(y0 - a * forward)
+
+    axe.plot((x1, x2), (y1, y2))
+
+plt.show()
+```
+
+通常绘制霍夫圆变换结果圆的代码如下
+```python
+# 使用 matplotlib.patches 绘制圆
+from matplotlib import patches
+
+circles = cv.HoughCircles(img, cv.HOUGH_GRADIENT_ALT, 1, 20,
+                            param1 = 300,
+                            param2 = 0.9)
+
+for it in circles[0]:
+    x, y, r = it
+    p = patches.Circle((x, y), r, color = 'b', fill = False)
+    axe.add_patch(p)
+```
