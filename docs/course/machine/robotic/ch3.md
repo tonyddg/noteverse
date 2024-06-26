@@ -1,3 +1,7 @@
+---
+order: 3
+---
+
 # 操作臂运动学
 ## 连杆参数与坐标系
 ![](./src/ch3_rod.drawio.svg)
@@ -147,10 +151,10 @@ $${}^{B}_{W}\bm{T}={}^{0}_{n}\bm{T}(\bm{q})={}^{0}_{1}(q_1)\bm{T}{}^{1}_{2}(q_2)
 对于同一个操作臂, 无论连杆参数如何选择, 只要坐标系 $\{0\},\{n\}$ 相同, 都能得到相同的正向运动学方程 ${}^{B}_{W}\bm{T}={}^{0}_{n}\bm{T}(\bm{q})$
 
 当关节位移带有偏置时, 如果要使用新的参数注意代换 $q_i=q_i'+s_{o}$, 即以带偏置的关节位移 $q'_i$ 代换变换矩阵中的原位移 $q_i$  
-例如带偏置的旋转关节 $\theta_i(90^\circ)$, 则在变换矩阵中 
+例如带偏置的旋转关节 $\theta_i(90^\circ)$, 则有 $q_i+90^\circ=\theta_i$, 在变换矩阵中 (可以在最后才带入代换)
 $$\begin{cases}
-\sin(\theta_i)\to\sin(\theta_i'+90^\circ)=\cos(\theta_i')\\
-\cos(\theta_i)\to\cos(\theta_i'+90^\circ)=-\sin(\theta_i')
+\sin(\theta_i)\to\sin(q_i+90^\circ)=\cos(q_i)\\
+\cos(\theta_i)\to\cos(q_i+90^\circ)=-\sin(q_i)
 \end{cases}$$
 
 ## 逆向运动学

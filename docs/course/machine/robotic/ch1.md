@@ -543,6 +543,9 @@ $$q=w+x\bm{i}+y\bm{j}+z\bm{k}$$
 此外也常用如下方式表示一个四元数
 $$q=\begin{bmatrix}w&(x&y&z)\end{bmatrix}=\begin{bmatrix}w&\vec{v}\end{bmatrix}$$
 
+在部分标准下, 使用如下方式表示四元数
+$$q=\begin{bmatrix}(x&y&z)&w\end{bmatrix}=\begin{bmatrix}\vec{v}&w\end{bmatrix}$$
+
 ### 四元数与轴角对的关系
 #### 轴角对
 欧拉已经证明, 任意三维中的旋转组合, 均等价于一个[绕特定轴的旋转](#绕任意轴旋转矩阵)  
