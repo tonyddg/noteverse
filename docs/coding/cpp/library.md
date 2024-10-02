@@ -237,10 +237,365 @@ auto logger = spdlog::rotating_logger_mt("[日志注册名]", "[日志文件路�
 对于其余情况, 可使用 boost-filesystem    
 参考文档 <https://blog.csdn.net/A_L_A_N/article/details/85626296>
 
-## 多线程 std::thread
-<https://blog.csdn.net/qq_15041569/article/details/131798965>  
-<https://mp.weixin.qq.com/s?__biz=MzkyMjIxMzIxNA==&mid=2247484579&idx=1&sn=07ffd2a0b7cb37c739387e2e3327641b&chksm=c1f68a92f6810384c314254b36b0d188a61b87ad52c3503ca7d4282be78a050fbc85a4549aed&token=327902945&lang=zh_CN#rd>  
-<https://blog.csdn.net/weixin_45663220/article/details/120686644>  
+## 时间与日期表示 std::chrono
+参考 <https://zhuanlan.zhihu.com/p/679451085>
+
+中 C11 后, C++ 提供了标准库 `<chrono>` 用于提供与时间相关的工具  
+作为一个基础组件, 该库被用于 [std::thread](#并发编程) 等众多标准库中
+
+该标准库中, 为了兼容而引用了 C++ 的经典时间库 `ctime`, 但不建议直接使用旧的时间库
+
+### 时间段
+#### 创建时间段
+时间段类 `std::chrono::duration` 可用于表示一段时间长度  
+相比于一般直接使用整数, 该类型可以高精度的表示不同单位的时间, 并且支持时间间的运算  
+
+一般不直接构造时间段类, 而是使用表示特定单位的别名, 并传入==整数值==参数 `rep`, 共同表示一个时长, 常用的有
+* `std::chrono::microseconds(rep)` 使用微秒单位
+* `std::chrono::milliseconds(rep)` 使用毫秒单位
+* `std::chrono::seconds(rep)` 使用秒单位
+* `std::chrono::minutes(rep)` 使用分钟单位
+* `std::chrono::hours(rep)` 使用小时单位
+* 更多参见[文档](https://zh.cppreference.com/w/cpp/chrono/duration)
+
+#### 时间段操作
+时间段类对运算符进行了重载, 支持
+* 两个时间段之间的加减运算 (结果的时间单位将使用参与运算的两个时间中单位较小的一个)
+* 两个时间段之间的比较
+* 时间段与整数之间的数乘或整除
+
+成员函数 `count()` 获取时间段在当前单位下的长度
+* 可以配合 `std::chrono::duration_cast` 函数, 获取一个时间段对象在不同单位下的长度
+* 通常返回值类型为 `int64`
+
+函数 `std::chrono::duration_cast<ToDuration>(const& d)` 可用于转换时段段单位
+* `ToDuration` 目标时间段单位, 参考[创建时间段](#创建时间段)中的单位别名
+* `d` 被转换的时间段对象
+* 返回转换结果的时间段对象, 由于时间长度一定是整数, 因此向更大的单位转换时将向下取整
+
+### 时间戳与时钟
+在 `chrono` 中, 通过类 `std::chrono::system_clock` 表示系统时钟  
+虽然其为一个类, 但无法构造, 一般都是通过其下的静态成员函数访问时钟, 更类似一个模块
+
+除了系统时钟外, 还有不同的时钟可以使用, 使用方式与系统时钟相同 (不同时钟间的时间戳不通用)
+* `std::chrono::system_clock` 系统时钟, 与系统时间调整同步
+* `std::chrono::steady_clock` 单调时钟, 不受外部影响
+* `std::chrono::high_resolution_clock` 高精度时钟
+
+#### 时间戳获取与转换
+静态成员函数 `system_clock::now()` 获取当前时间戳
+* 返回值类型为 `system_clock::time_point`, 即系统时钟下的时间戳类
+
+静态成员函数 `system_clock::from_time_t(std::time_t t)` 将经典时间戳转换为系统时钟下的时间戳对象
+* `t` 被转换的经典时间库 `ctime` 中的 `time_t` 类型的时间戳
+* 返回值类型为 `system_clock::time_point`, 即将经典时间戳转换为系统时钟下的时间戳
+
+静态成员函数 `system_clock::to_time_t(const system_clock::time_point& t)` 将系统时钟下的时间戳对象转换为经典时间戳
+* `t` 被转换的系统时钟下的时间戳对象 `system_clock::time_point`
+* 返回值类型为 `time_t` 类型的经典时间戳
+* 可用于与 `strftime` 等函数配合以显示时间, 或用于比较不同时钟的时间
+
+获取 `time_t` 类型的经典时间戳主要用于时间显示, 例如以下代码
+
+```cpp
+#include <iostream>
+#include <chrono>
+
+int main(int argc, const char** argv) {
+
+    // yyyy-MM-dd hh:mm:ss (19 + 1)
+    const size_t TIME_FORMAT_LENGTH = 20;
+    char time_str_buf[TIME_FORMAT_LENGTH]; 
+
+    auto now_point = std::chrono::system_clock::now();
+    auto now_stamp = std::chrono::system_clock::to_time_t(now_point);
+
+    // 来自 ctime, 在 chrono 中已经默认引用
+    auto now_tm = std::localtime(&now_stamp);
+    auto res = std::strftime(time_str_buf, TIME_FORMAT_LENGTH, "%Y-%m-%d %H:%M:%S", now_tm);
+
+    std::cout << "now is " << time_str_buf << std::endl;
+
+    return 0;
+}
+```
+
+#### 时间戳操作
+时间戳可通过运算进行操作
+* 同一时钟下的时间戳类之间可以进行比较运算
+* 同一时钟下的时间戳类之间也可以相减, 通过相减可得到两个时间戳相差的[时间段对象](#时间段), 可用于计时等应用
+* 时间戳类也可以与[时间段对象](#时间段)相加或相减, 得到调整后的时间段
+
+例如以下示例代码, 通过时间戳, 计算程序执行消耗时间
+```cpp
+#include <iostream>
+#include <chrono>
+#include <thread>
+
+int main(int argc, const char** argv) {
+
+    // 计时开始
+    auto timestamp = std::chrono::system_clock::now();
+    // 被计时的程序
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    // 计时结束, 使用毫秒精度
+    auto use_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - timestamp);
+
+    std::cout << "use time: " << use_time.count() << " ms" << std::endl;
+
+    return 0;
+}
+```
+
+## 并发编程
+参考教程 <https://www.bilibili.com/video/BV1g5411Z72H>
+
+线程是操作系统进行 CPU 调度的最小单位, 一个进程可以包含多个线程  
+通过多线程并发, 可将一个任务拆分为多个子任务, 加快速度  
+
+在 C11 后, C++ 提供了一系列标准库用于多线程以及相关组件
+
+建议阅读 <https://github.com/xiaoweiChen/CPP-Concurrency-In-Action-2ed-2019> 
+
+### 创建线程
+标准库 `<thread>` 用于创建与管理多线程  
+
+#### 线程类构造函数
+通过线程类 [std::thread](https://zh.cppreference.com/w/cpp/thread/thread) 管理与创建单个线程
+
+构造函数 `std::thread(f, args)`
+* `f` 函数指针, 即线程子任务对应的函数
+* `args` 变长参数, 用于传入线程任务函数的参数  
+传入引用参数时, 需要使用 `std::ref` 修饰
+* 当线程类被创建后, 将立刻启动子线程执行任务
+
+构造函数 `std::thread()`
+* 该方法将创建一个没有任务的空线程, 需要配合 [swap()](#子线程管理) 使用
+
+#### 子线程管理
+在主线程执行结束或==对象析构==时, 也将线程类的析构函数也将被调用, 如果此时的子线程没有退出将导致错误, 需要通过以下成员函数管理子线程
+* 成员函数 `joint()` 阻塞等待线程执行完毕
+    * 该方法为等待子线程的一般方法, 可在主线程退出前调用
+    * 即使确保线程任务已经执行完毕, 也应当在主线程退出前调用此方法
+* 成员函数 `detach()` 将该线程与主线程完全分离
+    * 不建议使用此方法等待子线程
+    * 由于对象的析构将伴随资源回收, 要注意分离子线程访问数据的有效性
+    * 当主线程退出时, 由于进程的结束, 分离子线程也将强制退出
+
+线程类也提供了以下成员函数用于获取线程信息
+* 成员函数 `joinable()` 检查线程是否可合并
+    * 当线程正在执行任务, 返回 `true`
+    * 当线程任务执行结束或被分离, 返回 `false`
+* 成员函数 `get_id()` 获取线程 id
+    * 返回值为 `std::thread::id` 类型
+    * 由于线程具有唯一性, 因此通过 id 可唯一标记一个子线程 (但可能在线程结束后被复用)
+* 静态成员函数 `thread::hardware_concurrency()` 获取系统最大并发线程数
+
+注意, 线程类不可复制, 只可移动
+* 成员函数 `swap(std::thread& other)` 交换两个线程对象管理的线程
+* 重载运算 `th1 = th2` 将线程 `th2` 的控制权转移到没有任务的线程 `th1` 上
+
+#### 任务内管理线程
+命名空间 `std::this_thread` 中, 还提供了一系列函数, 用于管理正在执行程序的线程  
+系列函数除了子线程的任务, 一般程序也可以调用
+
+函数 `this_thread::get_id()` 获取当前线程 id
+* 返回值为 `std::thread::id` 类型
+
+函数 `this_thread::sleep_for(const chrono::duration& sleep_duration)` 当前线程休眠指定时长
+* `sleep_duration` 休眠时间长度, 参数类型为[时间段](#时间段)
+
+函数 `this_thread::sleep_until(const chrono::time_point& sleep_time)` 当前线程休眠到指定时间
+* `sleep_time` 恢复时间, 参数类型为[时间戳](#时间戳与时钟)
+
+函数 `this_thread::yield()` 允许重新调度其他程序
+* 该函数通常与 `while` 配合, 用于暂时挂起线程以等待特定信号
+
+### 资源保护
+标准库 `<metux>` 用于子线程访问公共资源保护
+
+当两个线程并发执行时, 如果同时对同一个资源进行访问, 就可能导致异常, 一般称为资源竞争  
+
+例如对于全局整数变量 `i` 即使是两个线程同时运行 `i++` 也将导致异常结果, 因为 
+*`i++` 这一语句在汇编层面为内存值移入寄存器, 寄存器加一, 寄存器结果移入内存三步操作  
+* 而两个线程同时执行了这一语句时, 一种可能的情况是, 线程一运行到第二步时, 线程二运行到第一步取到了未经加一的 `i`
+* 当线程二运行完后, 又将使用未经加一的 `i` 覆盖线程一运算得到的 `i`
+
+为此需要通过上锁或规定公共资源原子化, 以此解决问题
+
+#### 互斥量
+互斥量为一种具有上锁与解锁两个状态的特殊信号量, 当互斥量被一个线程上锁后不能重复上锁, 且==只能由该线程解锁==  
+因此, 可以通过一个互斥量管理公共资源, 在访问资源前对其上锁, 在访问结束后解锁, 保证同时只有一个线程使用该资源  
+
+使用互斥量时注意, 应当通过私有成员的方式保护资源, 并且不能通过指针等方式共享资源, 资源只在互斥量的控制下被访问
+
+通过互斥量类 [std::mutex](https://zh.cppreference.com/w/cpp/thread/mutex) 表示互斥量  
+
+互斥量构造函数 `std::mutex()`
+* 不需要传入参数即可创建互斥量
+* 互斥量不支持移动与复制
+* 通常与被管理资源同时出现, 定义为成员变量或公共变量
+
+使用以下成员函数管理互斥量
+* 成员函数 `lock()` 为互斥量上锁, 如果已经上锁则阻塞线程直到其解锁, 如果重复上锁将出错
+* 成员函数 `try_lock()` 尝试为互斥量上锁, 如果已经上锁则放弃并返回 `false`
+* 成员函数 `unlock()` 解锁互斥量, 如果互斥量未被上锁, ==或被其他线程上锁==, 则将出错
+
+由于死锁问题, 一般不会直接使用互斥量, 可参考[死锁保护](#死锁保护)
+
+此外还有其他互斥量变种可供选择, 此处不介绍
+* [timed_mutex](https://zh.cppreference.com/w/cpp/thread/timed_mutex) 定时释放的互斥锁
+* [recursive_mutex](https://zh.cppreference.com/w/cpp/thread/recursive_mutex) 递归锁定互斥锁 (可被同一线程重复上锁, 用于如递归函数任务)
+
+#### 未解锁导致的死锁
+当子线程任务完成退出后, 没有对其上锁的互斥量解锁, 则互斥量将无法再被解锁, 进入死锁状态  
+即使在任务最后解锁, 但由于异常, 以及提前调用 `return` 退出程序等, 依然可能导致死锁  
+
+为此可以使用唯一互斥量包装器类 [std::unique_lock](https://zh.cppreference.com/w/cpp/thread/unique_lock) 管理互斥量  
+唯一互斥量包装器类使用了 [RAII 机制](https://zh.cppreference.com/w/cpp/language/raii), ==将在其析构函数中自动解锁==, 以此避免了此类死锁问题
+
+唯一互斥量包装器类构造函数 `std::unique_lock<mutex_type>(mutex_type& m[, t])`
+* `mutex_type` 被包装互斥量类型, 例如一般互斥量即 `std::mutex`
+* `m` 被包装的互斥量引用
+* `t` 包装选项
+    * 当没有选项时, 将对被包装互斥量上锁, 如果已上锁则阻塞等待
+    * `std::adopt_lock` 表明被包装互斥量已经上锁
+    * `std::try_to_lock` 将对被包装互斥量上锁, 如果已上锁则放弃
+        * 可通过包装器的 `owns_lock()` 函数判读是否上锁成功 (成功返回 `true`)
+    * `std::defer_lock` 仅包装互斥量, 不上锁
+
+经过包装后, 只能通过包装器的成员函数管理其中的互斥量
+* 成员函数 `lock(), try_lock()` 可对未上锁的被包装互斥量进行上锁
+* 成员函数 `unlock()` 对被包装互斥量进行解锁
+
+唯一互斥量包装器无法复制, 只可通过 `=` 运算或成员函数 `swap` 移动
+
+除此之外还有同样使用了 RAII 机制的互斥量保护包装器 `std::lock_guard`  
+互斥量保护包装器类构造函数 `std::lock_guard<mutex_type>(mutex_type& m, t)`
+* `mutex_type` 被包装互斥量类型, 例如一般互斥量即 `std::mutex`
+* `m` 被包装的互斥量引用 
+* `t` 包装选项
+    * 当没有选项时, 将对被包装互斥量上锁, 如果已上锁则阻塞等待
+    * `std::adopt_lock` 表明被包装互斥量已经上锁, 一般配合 [std::lock](#多个互斥量导致的死锁) 使用
+* 与 `std::unique_lock` 不同, `std::lock_guard` 支持操作较少, 但效率更高
+
+关于 `std::lock_guard` 有如下使用 `std::lock_guard` 保护全局变量 `std::cout` 的示例  
+* 如果没有互斥量 `io_mutex` 的保护, 以下程序将无法正常输出
+* 通过在 `{}` 规定的程序段开始时, 使用 `std::lock_guard` 上锁, 实现高细粒度的上锁, 避免长时间上锁导致的资源消耗
+* 将 `std::lock_guard` 换为 `std::unique_lock` 代码相同
+
+```cpp
+#include <iostream>
+#include <chrono>
+#include <thread>
+#include <mutex>
+
+std::mutex io_mutex;
+
+void task1(){
+    for(int i = 0; i < 8; i++){
+        {
+            std::lock_guard<std::mutex> lk(io_mutex);
+            std::cout << "task 1 start in count: " << i << std::endl;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+
+        {
+            std::lock_guard<std::mutex> lk(io_mutex);
+            std::cout << "task 1 end in count: " << i << std::endl;
+        }
+    }
+}
+
+void task2(){
+    for(int i = 0; i < 6; i++){
+        {
+            std::lock_guard<std::mutex> lk(io_mutex);
+            std::cout << "task 2 start in count: " << i << std::endl;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(400));
+
+        {
+            std::lock_guard<std::mutex> lk(io_mutex);
+            std::cout << "task 2 end in count: " << i << std::endl;
+        }
+    }
+}
+
+int main(){
+    std::thread th1(task1);
+    std::thread th2(task2);
+
+    th1.join();
+    th2.join();
+
+    return 0;
+}
+```
+
+#### 多个互斥量导致的死锁
+除了未解锁, 另一种常见的死锁是由于两个不同任务中同时使用了两个互斥锁导致的  
+如果两个互斥锁的上锁时间不同, 将出现线程 1 等待互斥量 a, 线程 2 等待互斥量 b 而死锁  
+
+为了避免以上问题, 应当保证
+* 降低上锁的细粒度, 仅在使用到共享资源时上锁, 使用完毕后立刻解锁, 可参见[该节示例](#未解锁导致的死锁)
+* 在对多个互斥量上锁时, 保证每次上锁次序相同, 如使用函数 `std::lock`
+* 在上锁完成后完全解锁前, 不可再对其他互斥量上锁
+
+可使用函数 `std::lock(Lockable1& lock1, Lockable2& lock2, LockableN&... lockn)` 用于给多个互斥量同时上锁
+* `lockn` 互斥量或 [std::unique_lock](#未解锁导致的死锁) 等包装器
+* 该函数可以保证各个互斥量的上锁顺序总是相同的
+
+例如以下代码, 注意
+* 习惯上将互斥锁定义为类的可变 (mutable) 私有成员, 保证常量成员函数可以正常使用
+* 注意 `lock_guard` 与 `unique_lock` 在与 `std::lock` 函数使用时存在部分区别
+
+```cpp
+class Example{
+private:
+    mutable std::mutex mtx;
+    ...
+
+public:
+    Example():
+    mtx(){
+        ...
+    }
+}
+
+void fun(Example& e1, Example& e2){
+    ...
+    {
+        // 使用 lock_guard 管理
+        // std::lock(lk1, lk2);
+        // std::lock_guard<std::mutex> lk1(e1.m, std::adopt_lock);
+        // std::lock_guard<std::mutex> lk2(e2.m, std::adopt_lock);
+
+        std::unique_lock<std::mutex> lk1(e1.m, std::defer_lock);
+        std::unique_lock<std::mutex> lk2(e2.m, std::defer_lock);
+        std::lock(lk1, lk2);
+
+        ...
+    }
+}
+```
+
+#### 原子量
+由[资源冲突](#资源保护)原因可得, 多线程中, 如果对象的一个操作是不可分割的, 或者说其在执行此操作时, 在其他线程不能对该对象执行其他操作  
+将此类操作称为原子操作, 或线程安全操作
+
+如果能保证一个资源的所有操作都是原子操作, 那么称其为原子量, 使用原子量时不需要担心资源竞争, 且不需要频繁上锁与释放锁, 以此提升了程序效率
+
+C11 的标准库 `<atomic>` 提供了原子量的创建与相关方法, 此处仅做简单介绍, 更多参见[建议阅读](#并发编程)  
+该标准库中, 通过原子量类 `std::atomic` 创建特定类型的原子量
+
+原子量构造函数 `std::atomic<T>(T desired)`
+* `T` 原子量类型, 通常仅 C++ 的基本类型, 如 `int` 以及[可平凡复制类](https://zh.cppreference.com/w/cpp/named_req/TriviallyCopyable)可作为原子量的类型
+* `desired` 原子量初值
+
+### 线程同步与数据交互
 
 ## 异步通讯 Boost.asio
 安装完成后, 引用头文件 `#include <boost/asio.hpp>` 以引入该库
