@@ -40,7 +40,7 @@ wsl 中允许安装多个版本的 Linux
 * `wsl --export <Distro> <file>` 导出 Linux 镜像
     * `Distro` 被导出的 Linux 版本名
     * `file` 导出镜像保存路径与文件名, 一般使用后缀 `.tar`
-* `wsl --import <Distro> <path> <file>`
+* `wsl --import <Distro> <path> <file>` 导入 Linux 镜像
     * `Distro` 被导出的 Linux 版本名
     * `path` Linux 虚拟硬盘所在路径
     * `file` 导入的 Linux 镜像

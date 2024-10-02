@@ -16,7 +16,7 @@
 
 ## 终端美化 oh-my-zsh
 ### 安装本体
-1. [安装教程](https://zhuanlan.zhihu.com/p/35283688)
+1. [官方安装教程](https://github.com/ohmyzsh/ohmyzsh/wiki)
 1. 运行 `sudo chsh -s /bin/zsh` 改变默认终端为 zsh
 1. logout 或重启, 使修改生效
 
