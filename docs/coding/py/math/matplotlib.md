@@ -483,13 +483,31 @@ matplotlib_funcanimation
 ### 中文显示
 > 参考文章 <https://zhuanlan.zhihu.com/p/52779214?from_voters_page=true>
 
-1. 打开路径 `.../anaconda3/envs/[python 环境名]/Lib/site-packages/matplotlib/mpl-data`
-1. 将 `simhei.ttf`, `arial.ttf` 放入路径下的 `fonts/ttf` 文件夹 (通常可在 `C:/windows/Fonts` 中找到)
-1. 将路径下的 `matplotlibrc` 文件复制到 `C:\用户\[用户名]\.matplotlib\matplotlibrc` (Windows), `$HOME/.config/matplotlib/matplotlibrc` (Linux)
-1. 打开复制后的文件
+1. 打开模块资源文件夹 `.../anaconda3/envs/[python 环境名]/Lib/site-packages/matplotlib/mpl-data` (或 `miniconda3`)
+1. 将中文黑体如[思源黑体](https://github.com/adobe-fonts/source-han-sans/releases/tag/2.004R)并安装或放置在特定字体文件夹 (对后缀无要求, 最好使用新字体)
+1. 打开模块设置文件夹
+    * `C:\用户\[用户名]\.matplotlib\matplotlibrc` (Windows)
+    * `$HOME/.config/matplotlib/matplotlibrc` (Linux)
+1. 打开模块设置文件夹下的 `fontlist-v330.json`, 并在键 `ttflist` 下的数组中添加如下方代码所示的结构体
+    * 将键 `fname` 的值改为字体路径, Windows 下安装字体后一般位于文件夹 `C:\\Windows\\Fonts`
+    * 将键 `name` 的值改为字体名称, 一般输入文件名即可
+1. 将模块资源文件夹下的 `matplotlibrc` 文件复制到模块设置文件夹并打开复制后的文件, 进行以下修改
     1. `font.family` 删除该选项前的 `#`
-    1. `font.sans-serif` 删除该选项前的 `#`, 在冒号后添加 `simhei`
-    1. `axes.unicode_minus` 删除该选项前的 `#`, 将值改为 `False`
+    1. `font.sans-serif` 删除该选项前的 `#`, 在冒号后添加之前添加结构体中键 `name` 的值
+
+结构体示例
+```json
+{
+    "fname": "Path\\to\\font\\XXX.ttf",
+    "name": "XXX",
+    "style": "normal",
+    "variant": "normal",
+    "weight": 400,
+    "stretch": "normal",
+    "size": "scalable",
+    "__class__": "FontEntry"
+}
+```
 
 ### 简单 Latex 显示
 Matplotlib 可以绘制简单的行内 Latex (不支持宏包)

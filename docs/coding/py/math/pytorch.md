@@ -1,11 +1,11 @@
-# 机器学习
+# 神经网络
 主要 Pytorch 介绍的使用
 
 笔记中的代码默认导入模块
 * Pytorch 模块 `import torch`
 * Numpy 模块 `import numpy as np`
 
-## 基础使用
+## 神经网络基础
 参考教程 <https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html>
 
 ### 张量类型
@@ -367,9 +367,6 @@ print("Done!")
 * `nn.Flatten(start_dim = 1, end_dim = -1)` 将图像转换为一维特征向量, 详见[之前介绍](#常用网络层介绍)
 
 ## 训练数据
-### 基于 Scikit-Learn
-<https://scikit-learn.org/stable/>
-
 ### 基于 Pytorch
 参考教程  
 <https://pytorch.org/tutorials/beginner/basics/data_tutorial.html#preparing-your-data-for-training-with-dataloaders>
