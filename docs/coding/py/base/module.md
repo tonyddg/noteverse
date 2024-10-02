@@ -221,6 +221,29 @@ with open('test.yaml', 'r') as f:
     print(data)
 ```
 
+### TOML 
+* 使用时
+    * 对于 Python3.11 及之后的版本, 使用模块 `tomllib` (不需要安装)
+    * 对于 Python3.11 之前的版本, 使用模块 `tomli` (需要安装, 类似但此处不介绍)
+* 数据导入
+    * `tomli.load(fp)` 将数据从可读对象导入
+        * `fp`, 读取对象, 即一个具有 `read()` 方法的对象, 如[文件对象](#文件操作)
+        * 返回 tomli 解析结果, 一般为一个[字典](./base.md#字典)
+    * `tomli.loads(s)` 以字符串形式导入数据
+        * `data` json 文件的字符串
+        * 返回 tomli 解析结果
+* 数据导出
+    * 由于 TOML 一般为只读的, 因此不具备导出功能
+    * 如果要导出, 参考模块 [tomli-w](https://pypi.org/project/tomli-w/)
+
+实例代码
+```python
+import tomllib
+# 注意 TOML 应当以 rb 模式读取文件
+with open("test.toml", 'rb') as f:
+    data = tomllib.load(f)
+    print(data)
+```
 
 ## 多线程
 参考 <https://www.cnblogs.com/guyuyun/p/11185832.html>  
@@ -229,23 +252,48 @@ with open('test.yaml', 'r') as f:
 ### 多线程创建
 #### 通过线程对象
 创建线程前, 需要先创建一个线程对象, 明确线程执行的内容  
-`threading.Thread(group = None, target = None, name = None, args = (), kwargs = {})`
+`threading.Thread(group = None, target = None, name = None, args = (), kwargs = {}, *, daemon = None)`
 * `group` 一般设置为 `None` 即可
 * `target` 线程执行的任务, 为一个函数
 * `name` 线程的名称, 默认为 `Thread-N`, `N` 为十位数编号
 * `args` 传递给线程函数的位置参数
 * `kwargs` 传递给线程函数的关键字参数
+* `daemon` 线程是否为守护模式
+    * 如果传入 `None` 将继承当前线程的模式, 对于主线程为非守护线程, 否则将设置为守护模式
+    * 非守护模式下, 当主线程退出后, 仍将运行, 直到所有线程退出时, Python 程序才会结束
+    * 在守护模式下, 当所有非守护线程退出后, 将强制退出, 可能导致其占用的资源没有正确释放
+* 线程对象创建后子线程并不会自动启动, 还需要通过 `start()` 方法启动线程
 
 通过对象的以下方法使用线程对象
-* `Thread.start()` 启动线程, 一个线程对象只能启动一次
-* `Thread.join(timeout=None)` 让当前线程 (通常即主线程) 等待线程运行结束 (必须保证线程已经启动)
+* 方法 `start()` 启动线程, 一个线程对象只能启动一次, 即使执行结束, 也不能再使用 `start` 重新启动
+* 方法 `join(timeout = None)` 让当前线程 (通常即主线程) 等待线程运行结束 (必须保证线程已经启动)
     * `timeout` 等待时间
-* `Thread.is_alive()` 判断该线程是否仍在运行中, 仍在运行中返回 `True`
+* 方法 `is_alive()` 判断该线程是否仍在运行中, 仍在运行中返回 `True`
 
-使用线程注意
-* 一个线程即使执行结束, 也不能再使用 `start` 重新启动
-* 即使主线程退出, 其他线程仍然会继续执行
-* 为了保证其他线程正常退出, 应当以 `try` 语句管理主程序, 并在处理部分 `finally` 发出主线程退出[事件](#事件对象), 使循环执行的任务退出 (因此事件以 `while not ent.is_set()` 为循环)
+#### 通过线程对象子类
+对于线程对象, 除了 `target` 参数传入任务, 还可通过继承 `threading.Thread` 类定义子任务类
+
+继承 `threading.Thread` 类时注意
+* 必须给出虚方法 `run()` 的定义
+* 只能重载构造函数, 并且需要[调用父类的构造函数](./base.md#访问父类) (不需要传入 `target, args, kwargs` 参数)
+* 类创建后, 依然需要通过 `start()` 方法启动线程
+
+例如以下代码
+```python
+import threading
+
+class MyThread(threading.Thread):
+    def __init__(self, name) -> None:
+        super().__init__()
+        self.name = name
+    
+    def run(self):
+        print(f"the name of task is {self.name}")
+
+if __name__ == "__main__":
+    m = MyThread("Hello")
+    m.start()
+```
 
 #### 通过定时器对象
 一般的多线程对象在线程任务执行结束后就会退出, 如果希望延迟执行任务, 则可使用定时器对象  
@@ -260,14 +308,260 @@ with open('test.yaml', 'r') as f:
 * 该对象为[线程对象](#通过线程对象)的子类, 因此基本方法与之相同
 * `Timer.cancel()` 如果定时器在等待任务开始, 则停止该任务
 
-#### 通过继承多线程对象
-
 ### 多线程资源管理
-#### 事件对象
+此处仅介绍部分资源管理方法, 其他管理方法参见[文档](https://docs.python.org/zh-cn/3/library/threading.html#module-threading)
 
-#### 互斥锁
+#### 互斥量
+虽然 Python 存在 GIL (全局解释器锁), 无法实现真正意义上的并发, 但依然可能存在资源竞争问题  
 
-#### 条件量
+例如当两个线程同时访问全局变量 `i`, 并执行 `i += 1`, 虽然该语句仅有一行, 但底层将分为 `tmp = i + 1` 与 `i = tmp` 两步
+* 当线程 1 运行到 `i = tmp`, 线程 2 运行到 `tmp = i + 1`, 此时线程 2 使用的是未经线程 1 运算的 `i`
+* 之后线程 2 运行 `i = tmp`, 线程 1 的运算将被覆盖
+
+对于每个全局变量或成员变量, 应该使用一个互斥量管理, 以防止资源竞争  
+在访问资源前对其上锁, 在访问结束后解锁, 保证同时只有一个线程使用该资源
+
+互斥量类构造函数 `threading.Lock()` 创建互斥量  
+* 互斥量通常作为全局变量或成员变量
+
+通过互斥量的方法管理互斥量  
+* `acquire(blocking = True, timeout = -1)` 对互斥量上锁
+    * `blocking` 是否阻塞程序直到互斥量解锁
+    * `timeout` 最多阻塞时长
+        * `-1` 表示不断阻塞, 直到成功上锁
+        * 正浮点数, 表示阻塞指定时长, 单位秒
+    * 如果互斥量上锁失败将放弃并返回 `False`, 否则返回 `True`
+* `release()` 对互斥量解锁
+    * Python 中, 非上锁线程也可以解锁互斥量
+    * 如果互斥量已经解锁将出现异常
+* `locked()` 获取互斥量是否被上锁
+
+使用互斥量时也要注意死锁问题, 主要是
+* 互斥量上锁后没有解锁
+* 同时对多个互斥量上锁
+
+Python 中没有 C++ 的 [lock_guard](/coding/cpp/library.md#未解锁导致的死锁)  
+可使用 [with 语句](./base.md#预定义异常处理)
+* 进入 `with` 语句内的代码段前, 将对互斥量上锁 
+* `with` 语句内的代码无论因何退出, 都将保证解锁, 防止由于没有解锁导致的死锁  
+* 建议使用此方法使用互斥量, 而不是互斥量的方法
+
+例如以下例子
+
+```python
+glob_val = 0
+glob_val_mtx = threading.Lock()
+
+def task():
+    print("task start")
+
+    # 仅在使用到资源时上锁
+    with glob_val_mtx:
+        nonlocal i
+        i += 1
+
+    print("task over")
+```
+
+#### 条件变量
+假设使用多个消费者线程共同从队列中等待数据, 并使用 `while` 阻塞等待条件, 此时
+* 如果仅插入一个数据, 多个线程可能同时启动, 导致部分线程读取了空队列而出错
+* 同时使用 `while` 阻塞等待效率较低
+
+可通过条件变脸解决此问题
+* 条件变量用于暂时阻塞线程并等待其他线程通知 (给出条件变量), 从而解开阻塞  
+* 条件变量被给出一次时, 同时只会有一个线程能够启动, 避免了同时读取
+* 条件变量的阻塞将降低线程优先级, 效率较高
+
+互斥量类构造函数 `threading.Condition()`
+* 条件变量需要与对应的等待条件组合使用, 当等待条件改变的同时切换条件量  
+* 条件变量通常作为全局变量或等待条件所在类的成员变量
+* 一个条件变量可以被多个接收者等待, 也可以被多个通知者通知
+
+对于通知者
+* 方法 `notify(n = 1)` 唤醒 `n` 个接收者  
+* 方法 `notify_all()` 唤醒所有接收者
+
+对于接收者
+* 方法 `wait(timeout = None)` 阻塞等待其他线程给出条件变量
+    * `timeout` 如果参数为正浮点数, 则仅阻塞等待 `timeout` 秒, 否则不断阻塞
+* 方法 `wait_for(predicate, timeout = None)` 阻塞等待其他线程给出条件变量, 或等待条件变为 `True`
+    * `predicate` 返回布尔值的等待条件函数
+    * `timeout` 同 `wait()` 的 `timeout` 参数
+
+使用条件变量时注意
+* 条件变量底层使用了[互斥量](#互斥量)管理, 仅当底层的互斥量上锁时可以操作
+* 通过同名的 `acquire()` 与 `release()` 方法, 以及 `with` 语句 (推荐) 可以管理底层的互斥量
+* 接收者在等待开始时立刻解锁, 不需要担心接收者阻塞等待导致死锁
+
+条件变量使用示例如下
+```python
+import threading
+
+# 使用事件对象, 向循环子程序通知主程序退出
+ent_mainexit = threading.Event()
+
+class ObservedList:
+    def __init__(self) -> None:
+        self.lt = []
+        self.cdt_lt_empty = threading.Condition()
+
+        pass
+
+    def is_not_empty(self):
+        return len(self.lt) != 0
+    
+    def push(self, item):
+        # 当数据插入时, 表明列表不为空的条件满足, 给出条件量
+        with self.cdt_lt_empty:
+            # 先插入再给出条件量
+            self.lt.append(item)
+            self.cdt_lt_empty.notify()
+
+# 循环从列表中读取数据并处理
+def task(mark: int, obs: ObservedList):
+    print(f"task {mark} start")
+
+    # 结束条件1: 通过事件检测主线程是否退出
+    # 结束条件2: 队列处理完成
+    while (not ent_mainexit.is_set()) or obs.is_not_empty():
+        # 通过条件变量, 等待列表不为空的条件为 True
+        with obs.cdt_lt_empty:
+            obs.cdt_lt_empty.wait_for(obs.is_not_empty)
+        
+        # 等待结束后即可读取与处理数据
+        item = obs.lt.pop()
+        print(f"task {mark} receive: {item}")
+
+    print(f"task {mark} exit")
+
+if __name__ == "__main__":
+    try:
+        ol = ObservedList()
+        tl = []
+
+        # 程序向队列中插入数据, 并由三个并行任务处理
+        for i in range(3):
+            tl.append(threading.Thread(target = task, args = [i, ol]))
+            tl[i].start()
+        
+        for i in range(10):
+            ol.push(i)
+    finally:
+        # 通过 try - finally 语句, 保证主程序结束事件总能在主程序退出时被发出
+        ent_mainexit.set()
+```
+
+注意
+* 以上示例还使用了事件对象 [threading.Event](https://docs.python.org/zh-cn/3/library/threading.html#event-objects), 并且展示了其通常应用 (通知循环进程关闭)
+* 实际上可使用[消息队列](#消息队列)实现更高效的数据交换, 而不需要条件变量
 
 #### 消息队列
 参考 <https://docs.python.org/zh-cn/3/library/queue.html#module-queue>
+
+消息队列位于通过内置模块 `<queue>` 中  
+Python 中的消息队列能够安全的在不同线程之间交换数据, 而不需要[互斥量](#互斥量)与[条件变量](#条件变量)保护  
+可以用于快速开发生产者-消费者模型的多线程应用
+
+消息队列构造函数 `queue.Queue(maxsize = 0)`
+* `maxsize` 消息队列内项目最大值, 如果传入 `0` 表示无限制
+
+消息队列方法
+* `empty()` 获取消息队列是否为空
+* `full()` 获取消息队列是否为满
+* `put(item, block = True, timeout = None)` 向消息队列插入数据
+    * `item` 插入值, 对类型没有要求
+    * `block` 如果队列已满, 是否阻塞等待
+    * `timeout` 传入整数表示等待时长单位秒, 否则将不断等待
+    * 如果插入失败, 将触发 `queue.Full` 异常
+* `get(block = True, timeout = None)` 向消息队列读取数据
+    * `block` 如果队列已满, 是否阻塞等待
+    * `timeout` 传入整数表示等待时长单位秒, 否则将不断等待
+    * 如果读取失败, 将触发 `queue.Empty` 异常
+
+通过消息队列改进[此处示例](#条件变量)
+```python
+import threading
+import queue
+
+ent_mainexit = threading.Event()
+
+def task(mark: int, obs):
+    print(f"task {mark} start")
+
+    while (not ent_mainexit.is_set()) or (not obs.empty()):
+        item = obs.get()
+        print(f"task {mark} receive: {item}")
+
+    print(f"task {mark} exit")
+
+if __name__ == "__main__":
+    try:
+        ol = queue.Queue()
+        tl = []
+
+        for i in range(3):
+            tl.append(threading.Thread(target = task, args = [i, ol]))
+            tl[i].start()
+        
+        for i in range(10):
+            ol.put(i)
+    finally:
+        ent_mainexit.set()
+```
+
+## 正则表达式
+参考 <https://docs.python.org/zh-cn/3/library/re.html#module-re>
+
+Python 中通过内置模块 `re` 引入与正则表达式相关的功能  
+关于正则表达式的使用参见[笔记](/coding/random/regex.md)
+
+### 正则对象
+模块方法 `re.compile(pattern, flags = 0)` 编译正则表达式
+* `pattern` 字符串, 即正则表达式, 一般使用 `r` 为前缀表示[不转义字符串](base.md#字符串表示), 避免元字符 `\` 导致的混乱
+* `flags` 正则表达式的[修饰符](/coding/random/regex.md#修饰符), 使用模块下的常量表示, 可通过或运算 `|` 组合
+    * `re.I` 相当于修饰符 `i`
+    * `re.M` 相当于修饰符 `m`
+    * `re.S` 相当于修饰符 `s`
+    * 修饰符 `g` 通过[多次匹配](#多次匹配)
+* 该方法将返回编译完的正则表达式对象 `re.Pattern`, 通过该对象的方法实现匹配
+
+### 单次匹配与提取
+以下为单次匹配方法, 即没有修饰符 `g` 的匹配  
+虽然无法匹配所有结果, 但可以在结果中[提取选择内容](/coding/random/regex.md#提取选择内容)  
+如果希望多次匹配并分别提取结果, 参见[多次匹配](#多次匹配)
+
+正则对象方法 `Pattern.search(string)` 匹配==第一个满足要求==的字符串
+* `string` 被匹配的文本内容字符串
+* 当存在匹配的子字符串时, 返回[匹配对象](#匹配对象), ==否则返回 `None`==, 可通过判断结果是否为 `None` 检查文本内容是否满足要求
+* 类似有方法 `Pattern.match(string)` ==从开头开始==匹配第一个满足要求的字符串, 相当于在正则表达式加上元字符 `^`
+* 类似有方法 `Pattern.fullmatch(string)` 要求==整个字符串都匹配==, 相当于在正则表达式加上元字符 `^, $`
+
+匹配对象为类 `re.Match`, 通常作为以上介绍单次匹配方法的返回值
+* 通过 `[n]` 运算符访问第 `n` 个位置的选择内容, 索引 `0` 为整个被匹配的子字符串
+* 除了[通用规则](/coding/random/regex.md#提取选择内容), 还支持使用 `(?P<name>)` 表示命名的选择内容, 并通过相应名称访问  
+    * 例如正则表达式 `(?P<first_name>\w+) (?P<last_name>\w+)` 中, 匹配结果 `res[1]` 还可通过 `res["first_name"]` 访问
+
+### 多次匹配
+正则对象方法 `Pattern.findall(string)` 直接寻找所有不重叠的满足要求的子字符串
+* `string` 用于匹配的文本内容字符串
+* 返回值为一个列表
+    * 如果没有内容选择, 返回值即一个字符串列表
+    * 如果由内容选择, 返回值为元组列表, 元组上各个索引的元素对应了各个位置的选择内容 (不包含原始字符串)
+
+正则对象方法 `Pattern.finditer(string)` 迭代寻找所有不重叠的满足要求的子字符串
+* `string` 用于匹配的文本内容字符串
+* 返回值为一个迭代器, 每次迭代都将返回一个[匹配对象](#单次匹配与提取), 可通过 `for` 循环遍历所有匹配结果
+* 迭代时, 将从左到右扫描匹配
+
+### 其他字符串操作
+正则对象方法 `Pattern.sub(repl, string, count = 0)` 根据正则表达式与替换模板替换文本内容
+* `repl` 替换模板, 通过字符串表示 (也可使用函数, 参见文档)
+    * 与正则表达式不同, 替换模板使用 `\` 加数字表示选择内容的索引, 而不是 `$`
+    * 模板中的如 `\n` 等转义依然能发挥作用, 如 `r"\n"` 经过该函数后将被转义
+    * 因此一般使用 `r` 为前缀表示[不转义字符串](base.md#字符串表示)
+* `string` 被用于替换的文本内容
+* `count` 替换次数
+    * 当为正整数时, 将从左向右不重叠的替换有限个匹配子字符串
+    * 其他情况下将替换所有可能的匹配子字符串
+* 返回值为替换后的字符串, 当替换没有发生将返回原字符串
