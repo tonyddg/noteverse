@@ -114,6 +114,9 @@ class NeuralNetwork(nn.Module):
     * 以函数的方式调用各层网络对象, 将数据输入, 并将输出的中间结果作为下层的输入, 最后的输出即正向传播结果
 
 #### 常用网络层介绍
+有关全连接层的基础知识参见[笔记](/course/machine/computer_vision/ch3.md#机器学习
+)
+
 神经网络中的各层通过模块 `nn` 下的网络层类创建  
 网络层类的实例为可调用的对象, 能够接收张量进行运算并输出
 
@@ -133,7 +136,7 @@ class NeuralNetwork(nn.Module):
     * `nn.Sigmoid()` Sigmoid 激活函数层
 * `nn.Softmax(dim)` Softmax 归一化输出激活函数层
     * `dim` 归一化的维度, 对于 `B x L` 的输入一般取 `1`
-    * 一般作为输出层, 将输入张量的最高维分别使用 SoftMax 函数归一化  
+    * 一般作为输出层, 将输入张量的最高维分别使用 SoftMax 函数归一化, 保证输出张量的归一化维度上元素之和为 1 (如输出概率质量函数)  
     一般输入 `B x L` 的张量, 将各通道下的一维数组的元素归一化
     * 对于 Softmax 的预测结果, 可使用 `tensor.argmax(1)` 提取各批次结果中, 概率最大的元素索引
     * 该网络层同样为激活函数, 根据上一层的全连接神经元层自动确定规模
@@ -177,11 +180,15 @@ device = (
 #### 模型训练器
 模型训练器 (模型优化器) 类定义于模块 `torch.optim` 下, 通过模型训练器可以完成模型的反向传播过程  
 
-* 传统梯度优化器 `torch.optim.SGD(params, lr=0.001)` 
+* 传统梯度优化器 `torch.optim.SGD(params, lr = 0.001)` 
     * `params` 模型参数迭代器, 通过模型对象的方法 `model.parameters()` 得到
     * `lr` 模型的学习率
     * 通过修改[单次模型训练](#单次模型训练)的细节, 可实现多种传统梯度下降算法
 * 其他优化器见 <https://pytorch.org/docs/stable/optim.html>
+    * 由于 `SGD` 无法解决局部最优问题, 因此实际场景中最常用的是
+        * 优化器 `torch.optim.Adam` 及其变种 `torch.optim.NAdam` 以获得最快的训练速度, 但可能不稳定
+        * 优化器 `torch.optim.SGD(params, lr = 0.001, momentum = 0.9)` 带有动量的 SGD 以获得最好的训练效果 (需要在小模型上调参, 参数 `momentum` 为动量系数)
+    * 对于更多优化器的介绍与使用方法参见 <https://zhuanlan.zhihu.com/p/416979875>
 
 无论使用何种优化器, 一般均通过以下两个对象方法进行一次反向传播
 * `optimizer.step()` 根据正向传播的[预测结果反向传播](#自动梯度)得到的自动梯度更新模型中的参数
@@ -199,9 +206,9 @@ device = (
     * 如果使用 Sigmoid 激活函数, 一般则取值为 `0.1`
 * 损失函数 `loss_fn`
     * 损失函数定义类位于模块 `torch.nn` 中, 详见 <https://pytorch.org/docs/stable/nn.html#loss-functions>
-    * 常用的损失函数定义类有交叉熵 `nn.CrossEntropyLoss`, 均方差 `nn.MSELoss` 等
+    * 常用的损失函数定义类有交叉熵 `nn.CrossEntropyLoss` (用于分类问题), 均方差 `nn.MSELoss` (用于回归问题) 等
     * 通过 `loss_fn = nn.CrossEntropyLoss()` 即可实例化损失函数
-        * 损失函数对象可接收参数 `loss = loss_fn(pred, y)`, 无论传入张量大小总是返回一个单元素张量 (使用 `tensor.item()` 可转为数字)
+        * 损失函数对象可接收参数 `loss = loss_fn(pred, y)`, 无论传入张量大小总是==返回一个单元素张量表示该批次训练的损失之和== (使用 `tensor.item()` 可转为 `float` 类型)
         * `pred` 为模型预测结果, `y` 为标记的结果, 传入的参数类型必须是张量 (因此导入数据集时必须数据预处理为张量, 即使只有一个值)
         * 当传入的 `y` 为单元素时, 将自动转换为独热编码, 因此一般不需要将 `y` 预处理为独热编码
         * 允许传入一个批次 (batch) 的数据, 此时 `pred` 的大小为 `B x L`, `y` 的大小为 `B`, 首先将 `y` 转换为独热编码, 再计算逐个批次的损失并返回平均值
@@ -355,25 +362,30 @@ print("Done!")
 * `W, H` 图片的宽与高
 
 #### 卷积网络层
+有关卷积神经网络的基础知识参见[笔记](/course/machine/computer_vision/ch3.md#cnn-卷积神经网络)
+
 * `nn.Conv2d(in_channels, out_channels, kernel_size, stride = 1, padding = 0)` 一般卷积网络层
     * `in_channels, out_channels` 输入与输出的图像通道数
     * `kernel_size` 整数 `k`, 卷积核大小为 `k x k`
     * `stride` 卷积核移动步长
     * `padding` 填充边缘
+    * 对于输入 $C \times W \times W$, 输出图像大小变为 $W = floor(\frac{W - k + 2p}{s})+1$
     * 注意, 该卷积网络层不具备激活函数, 因此下一层需要为[激活函数层](#常用网络层介绍)
 * `nn.MaxPool2d(kernel_size, stride = None)` 最大池化层
     * `kernel_size` 整数 `k`, 卷积核大小为 `k x k`
     * `stride` 卷积核移动步长, 默认与卷积核相同
+    * 对于输入 $C \times W \times W$, 输出图像大小变为 $W = floor(\frac{W - k}{k})+1$
 * `nn.Flatten(start_dim = 1, end_dim = -1)` 将图像转换为一维特征向量, 详见[之前介绍](#常用网络层介绍)
 
 ## 训练数据
-### 基于 Pytorch
 参考教程  
 <https://pytorch.org/tutorials/beginner/basics/data_tutorial.html#preparing-your-data-for-training-with-dataloaders>
 
 使用来自 Pytorch 的训练数据时, 需要安装模块 `torchvision`  
 
-#### 加载数据集
+关于自定义数据集参见 <https://pytorch.org/tutorials/beginner/basics/data_tutorial.html#creating-a-custom-dataset-for-your-files>
+
+### 加载数据集
 首先导入公开数据集加载模块 `from torchvision import datasets`
 
 通过 `torchvision.datasets` 下与数据集同名的数据集子类创建数据集对象实现数据集的加载  
@@ -387,7 +399,7 @@ print("Done!")
 * `transform` 加载原始特征数据时的预处理器, 默认即数据集的原始数据类型 更多见[数据预处理](#数据预处理)
 * `target_transform` 加载标签数据时的预处理器, 默认即数据集的原始数据类型, 更多见[数据预处理](#数据预处理)
 
-#### 访问数据集
+### 访问数据集
 在 Pytorch 中的数据集由多条数据组成, 每条数据仅包含特征 (即相同大小的原始数据, 一般为图像) 与标签 (根据数据集特性而定)  
 通常有以下方法访问数据集
 
@@ -403,17 +415,21 @@ print("Done!")
     * 数据加载器与数据集类似, 但将原始数据额外添加一个最高为度, 大小即 `batch_size`
     * 迭代加载器对象一般代码 `for batch, (X, y) in enumerate(dataloader):` 可以得到迭代的批次数与批次数据
 
-#### 数据预处理
-在[加载数据集](#加载数据集)时, 参数 `transform` 与 `target_transform` 可用于对数据集的特征与标签进行预处理
+### 数据预处理
+在[加载数据集](#加载数据集)时, 参数 `transform` 与 `target_transform` 可用于对数据集的特征与标签进行预处理  
+预处理器为 `torchvision.transforms` 下的一类对象, 通过模块内的类实例化即可创建对应的预处理器
 
-对于特征, 一般传入预处理器 `ToTensor()`, 即将原始数据转换为 `C x W x H` 的张量, `C` 为通道数, `W` 为宽度 `H` 为高度  
-该预处理器通过 `from torchvision.transforms import ToTensor` 导入
+以下为常用的预处理器
+* `ToTensor()` 将图片等原始数据转换为 `C x W x H` 的张量
+* `Lambda(lambda)` 将函数 `lambda` 包裹为预处理器处理原始数据, 并讲函数返回值作为处理后数据
+* `Normalize(mean, std)` 将输入的 `C x W x H` 张量按特定规则标准化
+    * `mean, std` 为浮点数元组, 元组的低 `i` 个元素表示通道 `i` 的平均值与标准差
+* `Compose(transforms)` 组合排列一系列预处理器
+    * `transforms` 预处理器实例的元组, 将按顺序使用元组中的预处理器
 
-对于标签, 一般不做处理, 或传入预处理器 `Lambda(lambda)`, 该预处理器将函数 `lambda` 包裹为预处理器  
-函数 `lambda` 接收原始输出, 并以处理过的数据为返回值  
-该预处理器通过 `from torchvision.transforms import Lambda` 导入
+以下为预处理器的使用实例
 
-以下为将数字标签预处理为 One-Hot 编码的例子
+将数字标签预处理为 One-Hot 编码的例子
 ```python
 from torchvision.transforms import Lambda
 # 创建预处理器, 该预处理器将 0-9 的标签转为 10 元素的 One-Hot 编码的一维张量
@@ -421,5 +437,226 @@ from torchvision.transforms import Lambda
 one_hot_transforms = Lambda(lambda y: torch.zeros(10, dtype=torch.float).scatter_(0, torch.tensor(y), value=1))
 ```
 
-#### 自定义数据集
-见 <https://pytorch.org/tutorials/beginner/basics/data_tutorial.html#creating-a-custom-dataset-for-your-files>
+标准化图片像素的预处理器
+```python
+transform = transforms.Compose(
+    [
+        transforms.ToTensor(),
+        transforms.Normalize((0.5,), (0.5,))
+    ])
+```
+
+## 高效训练
+### 模型详细信息 Pytorch Summary
+<https://github.com/sksq96/pytorch-summary>
+
+### 训练监控 TensorBoard
+* 参考教程 
+    * <https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html>
+    * <https://zhuanlan.zhihu.com/p/471198169> 
+* 参考文档 <https://pytorch.org/docs/stable/tensorboard.html>
+
+通过 TensorBoard, 可以实现对模型训练过程的学习曲线与相关信息的记录以及远程访问
+
+使用 TensorBoard 前需要安装模块 `pip install tensorboard`  
+并通过 `import torch.utils.tensorboard` 导入有关模块
+
+#### 学习数据记录
+在记录数据前, 首先需要使用 `from torch.utils.tensorboard.writer import SummaryWriter` 导入记录器类  
+
+数据记录器 `SummaryWriter` 
+* 通过 `from torch.utils.tensorboard.writer import SummaryWriter` 导入
+* Tensorboard 中, 通常使用一个工作目录保存所有学习数据, 目录下的子文件夹则为单次记录
+* 构造函数 `writer = SummaryWriter(log_dir = None, comment = "")`
+    * `log_dir` 学习数据记录路径, 默认为 `./runs/当前时间与用户信息`, 即将 `./runs` 作为工作目录
+    * `comment` 学习数据标记, 将添加到路径后
+
+通过 `SummaryWriter` 对象的方法记录学习数据
+* 记录图表时, 可使用标签 `xxx/yyy`, 此时图表 `yyy` 将被归类到 `xxx` 中, 通常通过训练模型特性作为 `xxx`
+* 对于同一工作文件夹下的多个记录之间可以互通, 因此最好保证图表的标签是唯一的
+
+以下为 `SummaryWriter` 对象的常用方法
+
+方法 `close()` 关闭学习记录器
+
+方法 `add_scalars(main_tag, tag_scalar_dict, global_step = None)` 插入一组数据点
+* `main_tag` 数据图表标签
+* `tag_scalar_dict` 插入数据点组, 为一个字典, 字典的键为特定折线名称, 值为该折线在此处的值
+* `global_step` 数据点索引, 默认将数据点插入末尾
+* 在 TensorBoard 中, 将体现为多线折线图, 可用于比较
+
+方法 `add_graph(model, input_to_model)` 插入模型详细信息图表
+* `model` 被插入的[模型对象](#定义模型对象)
+* `input_to_model` 用于测试的张量, 可通过 [torch.rand](#创建张量) 创建一个符合模型输入要求的张量
+* 该方法可创建一个关于模型内部详细信息的图表, 可用于分析模型各层规模以及层间交互
+
+方法 `add_hparams(hparam_dict, metric_dict)` 记录超参数模型表现信息
+* `hparam_dict` 一个以超参数名为键, 超参数值为值的字典, 记录该模型使用的超参数
+* `metric_dict` 一个以表现类型为键, 该超参数下的模型表现为值的字典, 记录该模型的表现
+* 该函数目前可能存在问题
+
+例如以下代码可用于监控模型训练的学习曲线
+
+```python
+self.writer.add_scalars(
+    main_tag  = dir + "loss", 
+    tag_scalar_dict  = {
+        "train": train_loss,
+        "test": test_loss
+    },
+    global_step = t)
+
+self.writer.add_scalars(
+    main_tag  = dir + "correct", 
+    tag_scalar_dict  = {
+        "train": train_correct,
+        "test": test_correct
+    },
+    global_step = t)
+```
+
+#### 访问仪表盘
+使用命令 `tensorboard --logdir=runs` 启动仪表盘服务器
+* 参数 `--logdir` 即指定工作文件夹位置
+* 当服务器启动成功时, 将输出访问网页地址
+* 可以在模型训练时实时监控
+* 对于远程访问等方法参见上文链接教程
+
+查看数据折线图
+* 如果要查看数据折线图, 需要选择 `SCALARS` 选项卡
+* 建议查看一般折线图时, 将左侧参数 `Smoothing` 设置为 `0`, 该参数用于平滑剧烈变化的曲线
+
+#### 其他数据记录方法
+以下为 `SummaryWriter` 对象的其他记录学习数据方法
+
+方法 `add_scalar(tag, scalar_value, global_step = None)` 插入单个数据点
+* `tag` 数据图表标签
+* `scalar_value` 插入新数据点, 通常只能传入浮点数
+* `global_step` 数据点索引, 默认将数据点插入末尾
+* 在 TensorBoard 中, 将体现为折线图
+
+方法 `add_figure(tag, figure, close = True)` 插入 Matplotlib 图像
+* `tag` 图片标签
+* `figure` 被插入的 Matplotlib 图像对象
+* `close` 是否在插入后自动关闭 `figure` 对象
+
+方法 `add_image(tag, img_tensor)` 插入图片
+* `tag` 图片标签
+* `img_tensor` 为 `(C,H,W)` 形状的张量表示视频, 可使用函数 `torchvision.utils.make_grid()` 分解 `(B,C,H,W)` 的张量
+* 使用时要求安装模块 `pillow`
+
+方法 `add_video(tag, vid_tensor, fps = 4)` 插入视频
+* `tag` 视频标签
+* `vid_tensor` 为 `(N,T,C,H,W)` 形状的张量表示视频, 其中 `N` 表示第几个视频
+* `fps` 视频帧率
+* 使用时要求安装模块 `moviepy`
+
+方法 `add_text(tag, text_string)` 插入文字
+* `tag` 文字标签
+* `text_string` 插入的文字, 可用于对分类进行详细说明
+
+### 性能分析 TensorBoard Profiler
+<https://pytorch.org/tutorials/intermediate/tensorboard_profiler_tutorial.html>
+
+### 超参数调节 Optuna
+参考教程 <https://optuna.readthedocs.io/en/stable/tutorial/index.html>
+
+通过 Optuna, 可以实现对模型超参数的快速搜索, 且 Optuna 与具体框架无关
+
+使用 Optuna 前需要安装模块 `pip install optuna`  
+并通过 `import optuna` 导入有关模块
+
+#### 基本搜索框架
+Optuna 将超参数调节视为一种优化问题
+* 优化问题使用一个传入 `optuna.trial.Trial` 对象参数的函数  
+在函数内通过与 `optuna.trial.Trial` 对象交互实现超参数的获取, 报告训练进程等
+* 使用 `optuna.study.Study` 对象管理优化问题  
+将优化问题传入 `optuna.study.Study` 对象从而对最优的一组超参数进行搜索, 并在搜索结束后获取结果
+
+因此 Optuna 的基本使用框架为
+
+```python
+import optuna
+
+# 将优化问题定义为函数
+def objective(trial):
+    # 通过向 trial 对象申请参数值, 隐性地定义了待调节的超参数
+    x = trial.suggest_float("x", -10, 10)
+    # 将优化目标作为函数返回值传出, 通常即模型的准确率等评价指标
+    return (x - 2) ** 2
+
+# 创建 optuna.study.Study 对象
+study = optuna.create_study()
+# 搜索问题的最优超参数
+study.optimize(objective, n_trials=100)
+# 搜索结束后, 获取最优超参数
+best_params = study.best_params
+```
+
+#### 优化目标设置
+如[基本搜索框架](#基本搜索框架)介绍, 在优化问题函数内, 通过 `optuna.trial.Trial` 对象注册超参数  
+Optuna 支持浮点, 整数, 类别三种超参数, 通过注册方法的返回值可获取其搜索值, 注册方法如下
+* 方法 `suggest_float(name, low, high, *, log = False)` 注册浮点型超参数
+    * `name` 字符串, 超参数名称
+    * `low, high` 浮点数, 超参数上下界
+    * `log` 是否使用 `log` 规律搜索参数
+* 方法 `suggest_int(name, low, high)` 注册整数超参数
+    * `name` 字符串, 超参数名称
+    * `low, high` 整数, 超参数上下界
+* 方法 `suggest_categorical(name, choices)` 注册类型超参数
+    * `name` 字符串, 超参数名称
+    * `choices` 列表, 类型列表, 超参数将从中采样
+
+Optuna 的超参数可以灵活使用
+* 允许每次优化任务中, 由于 `if` 等语句, 而使用不同的超参数
+* 允许通过循环创建多个超参数
+* 建议不要创建过多的超参数, 否则将增加搜索复杂度
+
+除了超参数, 还可开启剪枝模式, 根据训练过程提前中断没有希望的测试  
+具体参见 <https://optuna.readthedocs.io/zh-cn/stable/tutorial/10_key_features/003_efficient_optimization_algorithms.html>
+
+#### 优化过程管理
+模块方法 `study = optuna.create_study(*, study_name = None, direction = None, storage = None, load_if_exists = False)` 创建优化任务管理对象
+* `study_name` 字符串, 学习名称
+* `direction` 字符串, 优化方向, 可使用 `minimize` 或 `maximize` 表示希望最大化或最小化优化目标 (默认为最小化, 但常用的是最大化, 因此需要设置此参数)
+* `storage` 管理数据保存的数据库地址
+    * 字符串, 一般即 `sqlite:///<path>`, `path` 为指向 `.db` 文件的相对路径, 不存在时将自动创建
+    * `None`, 管理的数据将保存在内存中, 将在程序结束后释放 (不建议)
+* `load_if_exists` 布尔值, 开启时如果管理数据存在, 则加载
+    * 通过设置该参数可以加载之前的训练, 从而在已有数据基础上继续训练或读取之前训练结果, 训练可视化等
+    * 如果已有同名且同数据库的数据存在, 且设置为 `False`, 将出错
+* 此处仅介绍部分参数, 其他参数参见具体功能介绍
+
+通过 `study` 对象可管理优化任务
+* 方法 `optimize(func, n_trials = None)` 创建优化任务并进行优化
+    * `func` 函数, 接收一个 `optuna.trial.Trial` 类型的参数, 并返回浮点数
+    * `n_trials` 整数, 搜索次数, 如果设为 `None` 将不断搜索直到程序中断
+    * 对于同一个 `study` 可以执行多次优化任务
+* 属性 `best_params` 保存字典, 即搜索结束后得到的一组最优的超参数
+* 方法 `trials_dataframe(attrs, multi_index)` 将所有搜索结果与参数导出为 Pandas 数据表
+    * `attrs` 元组, 包含需要导出的超参数名
+    * `multi_index` 布尔值, 是否使用复合索引
+
+如果需要输出优化过程日志, 可使用以下示例代码
+```python
+import logging
+import sys
+
+import optuna
+
+# Add stream handler of stdout to show the messages
+optuna.logging.get_logger("optuna").addHandler(logging.StreamHandler(sys.stdout))
+```
+
+#### 优化结果可视化
+参考教程 <https://optuna-dashboard.readthedocs.io/en/latest/getting-started.html#installation>
+
+安装 Optuna 以下扩展模块可实现优化结果的可视化
+* 可视化核心 `pip install optuna-dashboard` 
+* 加速可视化页面 `pip install optuna-fast-fanova gunicorn`
+
+通过命令行 `optuna-dashboard <数据库地址>` 即可加载学习数据进行可视化
+* `数据库地址` 参见 [optuna.create_study](#优化过程管理) 方法的 `storage` 参数
+
+### 高层训练框架 Pytorch Ignite
+Pytorch Ignite 官方网站 <https://pytorch-ignite.ai/>
