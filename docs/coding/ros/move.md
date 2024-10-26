@@ -145,7 +145,7 @@ RVIZ 即一个 ROS 功能包, 提供了将消息可视化的仿真环境, 可以
 * 菜单栏选择 File -> Save Config As 将当前的配置导出为 `.rviz` 的配置文件
 * 之后启动 rviz 时, 导入之前导出的配置文件
     * 对于命令行, 使用 `rviz -d <file>` 导入配置文件, `file` 为 rviz 配置文件路径
-    * 对于 launch 文件, 通过 `args` 标签参数传入, 有 `args="$(find <功能包名>)/配置文件路径"`
+    * 对于 launch 文件, 通过 `args` 标签参数传入, 有 `args="-d $(find <功能包名>)/配置文件路径"` (注意选项 `-d`)
 
 ## URDF
 URDF 即统一机器人描述格式, 是在 ROS 中, 一种用于描述机器人连杆外形与特性以及连杆间关节的 XML 格式数据文件
@@ -214,7 +214,7 @@ URDF 使用时有以下基本注意
     * 可选子标签 `origin` 表示碰撞体的位姿
 
 ### 关节描述
-在 URDF 中, 通过 `joint` 标签以及其中的子标签描述一个连杆  
+在 URDF 中, 通过 `joint` 标签以及其中的子标签描述一个关节  
 
 该标签有以下属性
 * 必要属性 `name` 表示关节的名称
@@ -278,8 +278,9 @@ XACRO 提供了以下常用的参数化方法
     * 使用模板时
         * 通过标签 `xacro:<模板名>` 调用模板
         * 模板参数通过调用模板标签中的属性 `<参数名>="参数值"` 确定
-* 根标签下的标签 `xacro:include`, 可导入其他 XACRO 文件代替该标签
+* 根标签下的标签 `xacro:include`, 可导入其他 XACRO 文件
     * 属性 `filename` 表示被调用的文件名, 通常使用 `$(find ...)` 获取特定功能包的根目录
+    * 通过自闭和标签 `<.../>` (... 为调用文件名), 将导入的 XACRO 文件在此展开
 
 使用 XACRO
 * 使用前检查是否安装了相关的功能包 `rospack find xacro`
@@ -301,7 +302,7 @@ XACRO 提供了以下常用的参数化方法
 * URDF 模型读取 `ros-melodic-robot-state-publisher`
 * URDF 关节操作界面 `ros-melodic-joint-state-publisher-gui`
 
-使用 [launch 文件](./node.md#launch-文件)统一管理节点, 基本模板如下
+使用 [launch 文件](./node.md#launch-文件)统一管理节点, 基本模板如下 (注意打开 launch 文件前, 应够保证没有正在运行的 roscore)
 ```xml
 <launch>
     <!-- 将 URDF 文件导入参数服务器 -->
