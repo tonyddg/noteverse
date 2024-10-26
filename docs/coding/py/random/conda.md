@@ -94,6 +94,9 @@ Conda 为开源的 Python 包管理工具, 分为两个版本
 `conda install [pkg]=[ver]`  
 安装包名称为 `pkg` 的包, 且包的版本为 [ver]  
 
+除了安装包, 该方法还可直接用于升级环境的 Python 版本 (仅建议升级小版本)  
+`conda install python=[ver]` 
+
 ### 卸载包
 `conda uninstall [pkg]`  
 卸载名称为 `pkg` 的包

@@ -31,6 +31,8 @@ conda 已自动在环境中安装了 pip, 若没有安装则需要通过 conda �
 
 使用 `pip install --upgrade pip` 即可升级 pip
 
+如果要升级 Python 版本参见 [conda 相关命令](./conda.md#安装包)
+
 ### 检查包
 `pip check`  
 可用于检查依赖冲突或有问题的包
