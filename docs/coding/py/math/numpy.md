@@ -40,15 +40,21 @@ order: 1
 
 ### 基于 Numpy 的内置函数
 #### 生成特定形状的数组
-* `np.arange([start], stop[, step], dtype = None)` 生成指定步长的一维数列数组 (一维数组)
+* `np.arange([start], stop[, step], dtype = None)` 生成指定步长的==一维等差数列数组==
     * `start` 数列的起始项
     * `stop` 数列末尾 (==不包含==在数列中)
     * `step` 数列的步长
     * `dtype` 生成数组的数据类型 (默认将自动识别)
-* `np.linspace(start, stop, num = 50, dtype = None)` 生成指定元素数的一维数列数组 (一维数组)
+* `np.linspace(start, stop, num = 50, dtype = None)` 生成指定元素数的==一维等差数列数组==
     * `start` 数列的起始项
     * `stop` 数列末项 (==包含==在数列中)
     * `num` 数列的元素数
+    * `dtype` 生成数组的数据类型 (默认将自动识别)
+* `np.logspace(start, stop, num = 50, base = 10, dtype = None)` 生成指定元素数的==一维等比数列数组==
+    * `start` 数列的==起始项的指数== (可以是正数或负数)
+    * `stop` 数列==末项的指数== (==包含==在数列中)
+    * `num` 数列的元素数
+    * `base` 等比的底数, 默认为 `10`
     * `dtype` 生成数组的数据类型 (默认将自动识别)
 * `np.eye(n[, m])` 生成指定形状的单位矩阵 (对角线上的元素为 1, 其余为 0) (二维数组)
     * `n` 矩阵的行数
