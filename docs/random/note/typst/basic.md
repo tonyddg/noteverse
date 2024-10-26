@@ -115,6 +115,7 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
 ```
 
 有效果
+
 ![](./src/place_example.png)
 
 函数 `scale(x: ratio, y: ratio, origin: alignment)[body]` 拉伸内容
@@ -153,6 +154,7 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
 ```
 
 以上代码有效果
+
 ![](./src/grid_example.png)
 
 ### 图片
@@ -177,7 +179,10 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
 函数 `figure(body, *, caption, kind)` 创建图表容器
 * `body: content` 图表容器内容, 对内容没有限制
 * `caption: content` 图表标题
-    * 函数 `figure.caption(position, body)` 用于生成标题, 可通过 [Set 规则](#set-规则) 修改标题位置, 具体见例子
+    * 函数 `figure.caption(position, separator, body)` 用于生成图表标题
+        * `position` 图表标题位置, 传入[对齐样式](#样式值的表示)
+        * `separator` 图表编号与具体标题间的分隔符
+        * 可通过 [Set 规则](#set-规则) 修改图表标题, 具体见例子
 * `gap: length` 图表标题与内容的距离
 * `kind: auto | str | any` 图表类型标识, 对于相同的图表将使用同一个计数器
     * 默认能自动识别内置类型, 一般仅自定义的图表类型需要传入该参数
@@ -185,6 +190,7 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
     * 注意内置类型的 `kind` 参数都是==直接传入对应函数名称, 而不是字符串==, 具体见下方例子
 * `supplement: content` 图表类型名, 用于显示在标题与引用上的名称
     * 对于自定义类型或修改原有名称, 一般通过 [Shwo 规则](#show-规则)为其确定名称, 具体见例子
+    * 将[文字样式](#文字样式)设置为中文后, 将自动修改为中文样式的图表标题与图表类型名
 * `numbering: str` 图标编号模式
     * 具体设置方法参见[标题与目录](#标题与目录)
     * 如果要让图表按章节划分编号, 可参见包 [i-figured](https://github.com/RubixDev/typst-i-figured)
@@ -215,6 +221,7 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
 ```
 
 有运行效果
+
 ![](./src/figure_example.png)
 
 图表容器也可用于包含自定义浮动栏, 例如以下代码
@@ -231,6 +238,7 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
 ```
 
 有运行效果
+
 ![](./src/figure_example_2.png)
 
 ### 表格
@@ -306,6 +314,7 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
 ```
 
 以上代码效果
+
 ![](./src/tablex_cell_example.png)
 
 #### 表格线设置
@@ -349,6 +358,7 @@ Typst 中使用 [alignment](https://typst.app/docs/reference/layout/alignment/) 
 ```
 
 以上代码效果
+
 ![](./src/tablex_line_example.png)
 
 ### 正式排版
@@ -478,6 +488,7 @@ int main(){
 ````
 
 有渲染效果
+
 ![](./src/mark_code.png)
 
 ### 文字标记
@@ -787,6 +798,7 @@ Typst 中提供了以下专门用于表示符号的模块, 通过访问这些模
 * [按章节对公式与图表编号](https://github.com/RubixDev/typst-i-figured)
 * [复杂浮动栏](https://typst.app/universe/package/showybox)
 * [简单卡片浮动栏](https://typst.app/universe/package/gentle-clues)
+* [定理环境](https://typst.app/universe/package/ctheorems)
 
 ### 变量与函数定义
 #### 变量定义
@@ -830,6 +842,7 @@ $ A&=x + y \
 ```
 
 有运行效果
+
 ![](./src/math_base_example.png)
 
 #### 数学符号与标记语法
@@ -893,6 +906,7 @@ underbrace("ABC", "123") $
 ```
 
 有运行效果
+
 ![](./src/math_attach_example.png)
 
 #### 删除线标记
@@ -931,6 +945,7 @@ $ {x in RR mid(|) sum f(x) > 10} $
 ```
 
 有运行效果
+
 ![](./src/math_lr_example.png)
 
 #### 分式表示
@@ -1010,6 +1025,7 @@ $ mat(
 ```
 
 有运行效果
+
 ![](./src/math_matrix_example.png)
 
 #### 分支括号
@@ -1018,11 +1034,47 @@ $ mat(
 * `reverse: bool` 是否反转, 默认为左大括号
 * `body: array` 各条分支内容
 
-## 高级使用
+## 模块与高级使用
+### 按章节编号图表
+使用第三方模块 [i-figured](https://typst.app/universe/package/i-figured), 实现按章节编号
+
+#### 基本设置
+一般使用如下代码, 通过 [show 规则](#show-规则)即可实现按标题编号
+
+```typst
+#show heading: i-figured.reset-counters
+#show figure: i-figured.show-figure.with(numbering: "1-1")
+#show math.equation: i-figured.show-equation.with(numbering: "(1-1)")
+```
+
+注意
+* 必须在设置 `heading` 的 `numbering` 参数后, 再调用设置
+* 保证 `figure` 或 `math.equation` 的 `numbering` 参数为 `none`
+* 默认按一级标题编号, 更多设置参见文档
+
+#### 图表引用
+引用图表时
+* 对于图片 (`kind: image`), 使用标签 `fig:原标签` 进行引用
+* 对于表格 (`kind: table`), 使用标签 `tbl:原标签` 进行引用
+* 对于公式, 使用标签 `eqt:原标签` 进行引用
+
+如果不希望公式编号, 则使用标签 `<->` 修饰
+
+#### 自定义类型
+对于自定义图表类型
+1. 向 `reset-counters` 的设置传入参数 `extra-kinds: ...`, 参数值为一个[数组](#简单值的表示), 为自定义图表类型名称
+1. 向 `show-figure` 的设置传入参数 `extra-prefixes: ...`, 参数值为一个[字典](#简单值的表示), 以自定义图表类型名称为键, 引用前缀为值 (需要包含 `:`)
+
+例如以下代码
+```typst
+#show heading: i-figured.reset-counters.with(extra-kinds: ("atom",))
+#show figure: i-figured.show-figure.with(extra-prefixes: (atom: "atom:"))
+```
+
 ### 幻灯片
 使用第三方模块 [touying](https://typst.app/universe/package/touying/), 实现基于 Typst 的幻灯片制作
 
-通过 Typst 生成的幻灯片为 PDF 格式, 可使用 PDF 阅读器的演示模式放映
+通过 Typst 生成的幻灯片为 PDF 格式, 可使用 PDF 阅读器 (如 edge) 的演示模式或全屏的单页模式放映
 
 #### 创建幻灯片
 通过以下步骤即可创建一个幻灯片
@@ -1092,6 +1144,8 @@ Hello, Typst!
 * 进入三级标题时, 将在幻灯片中显示加粗的标题, 但不换页
 
 此外也可使用函数对幻灯片布局
-* 函数 `slide(...body)` 创建单页幻灯片
+* 函数 `slide(align: auto, composer: auto, ...body)` 创建单页幻灯片 (可通过 [set 规则](#set-规则)设置)
+    * `align` 内容对齐方式, 默认为居中, 传入[对齐样式](#样式值的表示)
+    * `composer` 多栏布局的比例, 传入[数组](#简单值的表示), 表示各栏的宽度
     * 当传入多个 `body` 参数时, 将使用多栏布局
 * 函数 `focuse-slide(body)` 创建居中强调幻灯片, 例如结尾致谢
