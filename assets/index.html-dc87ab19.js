@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-b2dfeff6","path":"/coding/ros/","title":"Ros","lang":"zh-CN","frontmatter":{"title":"Ros","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{e as data};

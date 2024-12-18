@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-4f7caa88","path":"/random/legacy/sketch/autocad/","title":"Autocad","lang":"zh-CN","frontmatter":{"title":"Autocad","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null}');export{a as data};

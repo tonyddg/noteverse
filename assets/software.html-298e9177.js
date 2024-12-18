@@ -1,0 +1,1 @@
+import{_ as t}from"./plugin-vue_export-helper-c27b6911.js";import{o as a,c as o,b as e,d as r}from"./app-8c5ce49e.js";const s={},c=e("h1",{id:"好用的软件",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#好用的软件","aria-hidden":"true"},"#"),r(" 好用的软件")],-1),n=[c];function _(d,i){return a(),o("div",null,n)}const l=t(s,[["render",_],["__file","software.html.vue"]]);export{l as default};
